@@ -381,6 +381,40 @@ public class CadastroBarbeiro extends JFrame {
 				
 				
 			}
+			
+			public boolean validarCadastro() {
+				if (textFieldNome.getText().trim().length() == 0) {
+					this.mostrarMensagemDeErro("O campo de Nome não pode estar em branco");
+					textFieldNome.requestFocus();
+					return false;
+				}
+
+				if (textFieldCpf.getText().trim().length() == 0) {
+					this.mostrarMensagemDeErro("O campo de CPF não pode estar em branco");
+					textFieldNome.requestFocus();
+					return false;
+				}
+
+				if (textFieldRg.getText().trim().length() == 0) {
+					this.mostrarMensagemDeErro("O campo de RG não pode estar em branco");
+					textFieldNome.requestFocus();
+					return false;
+				}
+
+				if (textFieldTel.getText().trim().length() == 0) {
+					this.mostrarMensagemDeErro("O campo de Telefone não pode estar em branco");
+					textFieldNome.requestFocus();
+					return false;
+				}
+
+				return true;
+			}
+
+			private void mostrarMensagemDeErro(String informacao) {
+				JOptionPane.showMessageDialog(null, informacao, "Atencao",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+
 		});
 		btnNewButtonSaveA.setBounds(167, 314, 150, 57);
 		contentPane.add(btnNewButtonSaveA);
