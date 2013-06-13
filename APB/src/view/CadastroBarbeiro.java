@@ -346,6 +346,9 @@ public class CadastroBarbeiro extends JFrame {
 		btnNewButtonSaveA.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if (this.validarCadastro() == false) {
+					return;
+				} else if (this.validarCadastro() == true) {
 				barbeiro = new Barbeiro();
 				barbeiro.setNome(textFieldNome.getText());
 				barbeiro.setCpf(textFieldCpf.getText());
@@ -377,9 +380,8 @@ public class CadastroBarbeiro extends JFrame {
 				textFieldRg.setEnabled(false);
 				textFieldTel.setEnabled(false);
 				
-				
-				
-				
+					
+				}
 			}
 			
 			public boolean validarCadastro() {
@@ -413,8 +415,8 @@ public class CadastroBarbeiro extends JFrame {
 			private void mostrarMensagemDeErro(String informacao) {
 				JOptionPane.showMessageDialog(null, informacao, "Atencao",
 						JOptionPane.INFORMATION_MESSAGE);
-			}
-
+			}	
+			
 		});
 		btnNewButtonSaveA.setBounds(167, 314, 150, 57);
 		contentPane.add(btnNewButtonSaveA);
