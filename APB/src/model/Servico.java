@@ -6,7 +6,7 @@ public class Servico {
 
 	private String nome;
 	private String preco;
-	private Barbeiro barbeiro;
+	private String nomeDoBarbeiro;
 	private Date data;
 
 	
@@ -14,17 +14,22 @@ public class Servico {
 		
 	}
 
-	public Servico(String nome, String preco, Barbeiro barbeiro, Date data) {
+	public Servico(String nome, String preco, String  nomeDoBarbeiro, Date data) {
 		this.nome = nome;
 		this.preco = preco;
-		this.barbeiro =  barbeiro;
 		this.data = data;
+		this.nomeDoBarbeiro = nomeDoBarbeiro;
 	}
 	
 	
 
-	public Barbeiro getBarbeiro() {
-		return barbeiro;
+
+	public String getNomeDoBarbeiro() {
+		return nomeDoBarbeiro;
+	}
+
+	public void setNomeDoBarbeiro(String nomeDoBarbeiro) {
+		this.nomeDoBarbeiro = nomeDoBarbeiro;
 	}
 
 	public Date getData() {
@@ -33,10 +38,6 @@ public class Servico {
 
 	public void setData(Date data) {
 		this.data = data;
-	}
-
-	public void setBarbeiro(Barbeiro barbeiro) {
-		this.barbeiro = barbeiro;
 	}
 
 	public String getNome() {
