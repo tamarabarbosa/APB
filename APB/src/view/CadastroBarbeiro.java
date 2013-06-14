@@ -31,8 +31,6 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import exception.BarbeiroException;
-
 @SuppressWarnings("serial")
 public class CadastroBarbeiro extends JFrame {
 
@@ -356,7 +354,7 @@ public class CadastroBarbeiro extends JFrame {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
-		
+
 		Salvar.setBounds(153, 11, 117, 34);
 		contentPane.add(Salvar);
 

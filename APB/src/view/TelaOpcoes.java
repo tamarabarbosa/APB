@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -11,9 +10,8 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.UIManager;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
+@SuppressWarnings("serial")
 public class TelaOpcoes extends JFrame {
 
 	private JPanel contentPane;
@@ -45,13 +43,15 @@ public class TelaOpcoes extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Op\u00E7\u00F5es", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		panel.setBorder(new TitledBorder(UIManager
+				.getBorder("TitledBorder.border"), "Op\u00E7\u00F5es",
+				TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 11, 414, 178);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		JButton btnNewButton = new JButton("Cadastrar Barbeiro");
 		btnNewButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -64,7 +64,7 @@ public class TelaOpcoes extends JFrame {
 		});
 		btnNewButton.setBounds(22, 39, 157, 37);
 		panel.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("Criar Servico");
 		btnNewButton_1.addMouseListener(new MouseAdapter() {
 			@Override
