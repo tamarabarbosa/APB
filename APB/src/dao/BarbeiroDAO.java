@@ -1,6 +1,6 @@
 package dao;
 
-import java.sql.ResultSet;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -48,7 +48,7 @@ public class BarbeiroDAO {
 
 	public void excluir(Barbeiro barbeiro) throws SQLException {
 		this.updateQuery("DELETE FROM barbeiro WHERE " +
-				"barbeiro.cpf = \"" + barbeiro.getCpf() + "\";"
+				"barbeiro.nome = \"" + barbeiro.getNome() + "\";"
 				);
 	}
 	
