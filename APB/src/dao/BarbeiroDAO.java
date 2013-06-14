@@ -24,11 +24,12 @@ public class BarbeiroDAO {
 	
 	public void incluir(Barbeiro barbeiro) throws SQLException{
 		this.updateQuery("INSERT INTO " +
-					"barbeiro (nome, cpf, rg, telefone) VALUES (" +
+					"barbeiro (nome, cpf, rg, telefone, cadeira) VALUES (" +
 					"\"" + barbeiro.getNome() + "\", " +
 					"\"" + barbeiro.getCpf()+ "\", " +
 					"\"" + barbeiro.getRg() + "\", " +
-					"\"" + barbeiro.getTelefone() + "\"); "
+					"\"" + barbeiro.getTelefone() + "\" +" +
+					"\"" + barbeiro.getCadeira() + "\"); "
 				);
 	
 	}
@@ -39,6 +40,7 @@ public class BarbeiroDAO {
 				"cpf = \"" + barbeiro_alterado.getCpf() + "\", " +
 				"rg = \"" + barbeiro_alterado.getRg() + "\", " +
 				"telefone = \"" + barbeiro_alterado.getTelefone() + "\""+
+				"cadeira = \"" + barbeiro_alterado.getCadeira() + "\""+
 				" WHERE " +
 				" barbeiro.cpf = \"" + CadastroBarbeiro.getOldCpf() + "\";"
 				);
