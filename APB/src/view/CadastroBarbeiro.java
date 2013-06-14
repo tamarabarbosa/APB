@@ -346,7 +346,6 @@ public class CadastroBarbeiro extends JFrame {
 		btnNewButtonSaveA.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
 				if (this.validarCadastro() == false) {
 					return;
 				} else if (this.validarCadastro() == true) {
@@ -380,7 +379,6 @@ public class CadastroBarbeiro extends JFrame {
 				textFieldCpf.setEnabled(false);
 				textFieldRg.setEnabled(false);
 				textFieldTel.setEnabled(false);
-
 				
 					
 				}
@@ -413,7 +411,6 @@ public class CadastroBarbeiro extends JFrame {
 
 				return true;
 			}
-
 
 			private void mostrarMensagemDeErro(String informacao) {
 				JOptionPane.showMessageDialog(null, informacao, "Atencao",
