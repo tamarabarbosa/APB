@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 
 import control.BarbeiroController;
 import dao.FactoryConnection;
+import exception.BarbeiroException;
 
 import model.Barbeiro;
 
@@ -27,14 +28,15 @@ import java.sql.Connection;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+import exception.BarbeiroException;
+
+@SuppressWarnings("serial")
 public class CadastroBarbeiro extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	private JTextField textFieldNome;
 	private JTextField textFieldCpf;
 	private JTextField textFieldRg;
@@ -42,8 +44,6 @@ public class CadastroBarbeiro extends JFrame {
 	private Barbeiro barbeiro;
 	private Connection connection;
 	private static String oldCpf;
-
-
 
 	/**
 	 * Launch the application.
@@ -94,7 +94,6 @@ public class CadastroBarbeiro extends JFrame {
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		scrollPane.setViewportView(table);
@@ -119,20 +118,21 @@ public class CadastroBarbeiro extends JFrame {
 		Alterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-			
+
 				textFieldNome.setEditable(true);
 				textFieldCpf.setEditable(true);
 				textFieldRg.setEditable(true);
 				textFieldTel.setEditable(true);
-				textFieldNome.setText((table.getValueAt(table.getSelectedRow(), 0)
-						.toString()));
-				textFieldCpf.setText((table.getValueAt(table.getSelectedRow(), 1)
-						.toString()));
+				textFieldNome.setText((table.getValueAt(table.getSelectedRow(),
+						0).toString()));
+				textFieldCpf.setText((table.getValueAt(table.getSelectedRow(),
+						1).toString()));
 				textFieldRg.setText((table.getValueAt(table.getSelectedRow(), 2)
 						.toString()));
-				textFieldTel.setText((table.getValueAt(table.getSelectedRow(), 3)
-						.toString()));
-				CadastroBarbeiro.setOldCpf((table.getValueAt(table.getSelectedRow(), 1)).toString());
+				textFieldTel.setText((table.getValueAt(table.getSelectedRow(),
+						3).toString()));
+				CadastroBarbeiro.setOldCpf((table.getValueAt(
+						table.getSelectedRow(), 1)).toString());
 			}
 		});
 
@@ -150,14 +150,34 @@ public class CadastroBarbeiro extends JFrame {
 				textFieldTel.setEditable(false);
 
 				barbeiro = new Barbeiro();
-				barbeiro.setNome(table.getValueAt(table.getSelectedRow(), 0)
-						.toString());
-				barbeiro.setCpf(table.getValueAt(table.getSelectedRow(), 1)
-						.toString());
+				try {
+					try {
+						barbeiro.setNome(table.getValueAt(
+								table.getSelectedRow(), 0).toString());
+					} catch (BarbeiroException e1) {
+						e1.printStackTrace();
+					}
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+
+				try {
+					barbeiro.setCpf(table.getValueAt(table.getSelectedRow(), 1)
+							.toString());
+				} catch (BarbeiroException e1) {
+					e1.printStackTrace();
+				}
+
 				barbeiro.setRg(table.getValueAt(table.getSelectedRow(), 2)
 						.toString());
-				barbeiro.setTelefone(table
-						.getValueAt(table.getSelectedRow(), 3).toString());
+
+				try {
+					barbeiro.setTelefone(table.getValueAt(
+							table.getSelectedRow(), 3).toString());
+				} catch (BarbeiroException e1) {
+					e1.printStackTrace();
+				}
+
 				BarbeiroController barbeiroController = BarbeiroController
 						.getInstance();
 
@@ -166,9 +186,7 @@ public class CadastroBarbeiro extends JFrame {
 				} catch (SQLException k) {
 					k.printStackTrace();
 				}
-			
-			
-				
+
 			}
 		});
 
@@ -221,8 +239,8 @@ public class CadastroBarbeiro extends JFrame {
 		textFieldTel.setColumns(10);
 		textFieldTel.setEditable(false);
 
-		JButton btnNewButton_4 = new JButton("Concluir");
-		btnNewButton_4.addMouseListener(new MouseAdapter() {
+		JButton btnConcluir = new JButton("Concluir");
+		btnConcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				TelaOpcoes frame = new TelaOpcoes();
@@ -232,13 +250,13 @@ public class CadastroBarbeiro extends JFrame {
 			}
 
 		});
-		btnNewButton_4.setIcon(new ImageIcon(CadastroBarbeiro.class
+		btnConcluir.setIcon(new ImageIcon(CadastroBarbeiro.class
 				.getResource("/resources/ButtonAccept.png")));
-		btnNewButton_4.setBounds(327, 314, 150, 57);
-		contentPane.add(btnNewButton_4);
+		btnConcluir.setBounds(327, 314, 150, 57);
+		contentPane.add(btnConcluir);
 
-		JButton btnNewButton_5 = new JButton("Limpar Campos");
-		btnNewButton_5.addMouseListener(new MouseAdapter() {
+		JButton btnLimparCampos = new JButton("Limpar Campos");
+		btnLimparCampos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				textFieldNome.setText("");
@@ -247,39 +265,54 @@ public class CadastroBarbeiro extends JFrame {
 				textFieldTel.setText("");
 			}
 		});
-		btnNewButton_5.setIcon(null);
-		btnNewButton_5.setBounds(487, 314, 164, 57);
-		contentPane.add(btnNewButton_5);
+		btnLimparCampos.setIcon(null);
+		btnLimparCampos.setBounds(487, 314, 164, 57);
+		contentPane.add(btnLimparCampos);
 
 		JButton Salvar = new JButton("Salvar");
 		Salvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if (this.validarCadastro() == false) {
+				if (!this.validarCadastro()) {
 					return;
-				} else if (this.validarCadastro() == true) {
+				} else {
 
-				
-						barbeiro = new Barbeiro();
+					barbeiro = new Barbeiro();
+
+					try {
 						barbeiro.setNome(textFieldNome.getText());
+					} catch (BarbeiroException e) {
+						e.printStackTrace();
+					}
+
+					try {
 						barbeiro.setCpf(textFieldCpf.getText());
-						barbeiro.setRg(textFieldRg.getText());
+					} catch (BarbeiroException e) {
+						e.printStackTrace();
+					}
+
+					barbeiro.setRg(textFieldRg.getText());
+
+					try {
 						barbeiro.setTelefone(textFieldTel.getText());
+					} catch (BarbeiroException e) {
+						e.printStackTrace();
+					}
 
-						BarbeiroController barbeiroController = BarbeiroController
-								.getInstance();
+					BarbeiroController barbeiroController = BarbeiroController
+							.getInstance();
 
-						try {
-							barbeiroController.inserir(barbeiro);
-						} catch (SQLException e1) {
-							e1.printStackTrace();
-						}
+					try {
+						barbeiroController.inserir(barbeiro);
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
 
-						JOptionPane.showMessageDialog(null, "Barbeiro "
-								+ textFieldNome.getText()
-								+ " foi inserido com sucesso");
+					JOptionPane.showMessageDialog(null, "Barbeiro "
+							+ textFieldNome.getText()
+							+ " foi inserido com sucesso");
 				}
-				
+
 				textFieldNome.setText("");
 				textFieldCpf.setText("");
 				textFieldRg.setText("");
@@ -290,29 +323,27 @@ public class CadastroBarbeiro extends JFrame {
 				textFieldTel.setEditable(false);
 			}
 
-			
-
 			public boolean validarCadastro() {
 				if (textFieldNome.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de Nome não pode estar em branco");
+					this.mostrarMensagemDeErro("O campo de Nome não pode estar em branco.");
 					textFieldNome.requestFocus();
 					return false;
 				}
 
 				if (textFieldCpf.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de CPF não pode estar em branco");
+					this.mostrarMensagemDeErro("O campo de CPF não pode estar em branco.");
 					textFieldNome.requestFocus();
 					return false;
 				}
 
 				if (textFieldRg.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de RG não pode estar em branco");
+					this.mostrarMensagemDeErro("O campo de RG não pode estar em branco.");
 					textFieldNome.requestFocus();
 					return false;
 				}
 
 				if (textFieldTel.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de Telefone não pode estar em branco");
+					this.mostrarMensagemDeErro("O campo de Telefone não pode estar em branco.");
 					textFieldNome.requestFocus();
 					return false;
 				}
@@ -321,16 +352,16 @@ public class CadastroBarbeiro extends JFrame {
 			}
 
 			private void mostrarMensagemDeErro(String informacao) {
-				JOptionPane.showMessageDialog(null, informacao, "Atencao",
+				JOptionPane.showMessageDialog(null, informacao, "Atenção",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
-
 		});
+		
 		Salvar.setBounds(153, 11, 117, 34);
 		contentPane.add(Salvar);
-		
-		JButton btnNewButton = new JButton("Renovar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+
+		JButton btnRenew = new JButton("Renovar");
+		btnRenew.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
@@ -339,51 +370,63 @@ public class CadastroBarbeiro extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnNewButton.setBounds(280, 11, 117, 34);
-		contentPane.add(btnNewButton);
-		
-		JButton btnNewButtonSaveA = new JButton("Salvar Altera\u00E7\u00F5es");
-		btnNewButtonSaveA.addMouseListener(new MouseAdapter() {
+		btnRenew.setBounds(280, 11, 117, 34);
+		contentPane.add(btnRenew);
+
+		JButton btnSaveA = new JButton("Salvar Altera\u00E7\u00F5es");
+		btnSaveA.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (this.validarCadastro() == false) {
 					return;
 				} else if (this.validarCadastro() == true) {
-				barbeiro = new Barbeiro();
-				barbeiro.setNome(textFieldNome.getText());
-				barbeiro.setCpf(textFieldCpf.getText());
-				barbeiro.setRg(textFieldRg.getText());
-				barbeiro.setTelefone(textFieldTel.getText());
-				BarbeiroController barbeiroController = BarbeiroController
-						.getInstance();
+					barbeiro = new Barbeiro();
 
-				try {
-					barbeiroController.alterar(barbeiro);
-				} catch (SQLException k) {
-					k.printStackTrace();
-				}
-				
-				
-				
-				JOptionPane.showMessageDialog(null, "Barbeiro "
-						+ textFieldNome.getText()
-						+ " foi alterado com sucesso");
-			
-				
+					try {
+						barbeiro.setNome(textFieldNome.getText());
+					} catch (BarbeiroException e1) {
+						e1.printStackTrace();
+					}
 
-				textFieldNome.setText("");
-				textFieldCpf.setText("");
-				textFieldRg.setText("");
-				textFieldTel.setText("");
-				textFieldNome.setEnabled(false);
-				textFieldCpf.setEnabled(false);
-				textFieldRg.setEnabled(false);
-				textFieldTel.setEnabled(false);
-				
-					
+					try {
+						barbeiro.setCpf(textFieldCpf.getText());
+					} catch (BarbeiroException e1) {
+						e1.printStackTrace();
+					}
+
+					barbeiro.setRg(textFieldRg.getText());
+
+					try {
+						barbeiro.setTelefone(textFieldTel.getText());
+					} catch (BarbeiroException e1) {
+						e1.printStackTrace();
+					}
+
+					BarbeiroController barbeiroController = BarbeiroController
+							.getInstance();
+
+					try {
+						barbeiroController.alterar(barbeiro);
+					} catch (SQLException k) {
+						k.printStackTrace();
+					}
+
+					JOptionPane.showMessageDialog(null, "Barbeiro "
+							+ textFieldNome.getText()
+							+ " foi alterado com sucesso");
+
+					textFieldNome.setText("");
+					textFieldCpf.setText("");
+					textFieldRg.setText("");
+					textFieldTel.setText("");
+					textFieldNome.setEnabled(false);
+					textFieldCpf.setEnabled(false);
+					textFieldRg.setEnabled(false);
+					textFieldTel.setEnabled(false);
+
 				}
 			}
-			
+
 			public boolean validarCadastro() {
 				if (textFieldNome.getText().trim().length() == 0) {
 					this.mostrarMensagemDeErro("O campo de Nome não pode estar em branco");
@@ -415,16 +458,17 @@ public class CadastroBarbeiro extends JFrame {
 			private void mostrarMensagemDeErro(String informacao) {
 				JOptionPane.showMessageDialog(null, informacao, "Atencao",
 						JOptionPane.INFORMATION_MESSAGE);
-			}	
-			
+			}
+
 		});
-		btnNewButtonSaveA.setBounds(167, 314, 150, 57);
-		contentPane.add(btnNewButtonSaveA);
+		btnSaveA.setBounds(167, 314, 150, 57);
+		contentPane.add(btnSaveA);
 	}
 
 	public static String getOldCpf() {
 		return oldCpf;
 	}
+
 	public static void setOldCpf(String oldCpf) {
 		CadastroBarbeiro.oldCpf = oldCpf;
 	}
