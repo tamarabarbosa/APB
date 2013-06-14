@@ -6,17 +6,20 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
-public class Agenda extends JFrame {
+public class AlterarContato extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
 
 	/**
 	 * Launch the application.
@@ -25,7 +28,7 @@ public class Agenda extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Agenda frame = new Agenda();
+					AlterarContato frame = new AlterarContato();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,8 +40,8 @@ public class Agenda extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Agenda() {
-		setTitle("Agenda de Contatos");
+	public AlterarContato() {
+		setTitle("Alterar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -47,7 +50,7 @@ public class Agenda extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 21, 310, 230);
+		scrollPane.setBounds(10, 22, 414, 57);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -70,16 +73,40 @@ public class Agenda extends JFrame {
 		table.getColumnModel().getColumn(2).setResizable(false);
 		scrollPane.setViewportView(table);
 		
-		JButton btnNovoContato = new JButton("Novo");
-		btnNovoContato.setBounds(330, 24, 94, 23);
-		contentPane.add(btnNovoContato);
-		
-		JButton btnPesquisarContato = new JButton("Pesquisar");
-		btnPesquisarContato.setBounds(330, 58, 94, 23);
-		contentPane.add(btnPesquisarContato);
+		JButton btnSalvarAlterao = new JButton("Salvar Altera\u00E7\u00E3o");
+		btnSalvarAlterao.setBounds(83, 220, 121, 31);
+		contentPane.add(btnSalvarAlterao);
 		
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(330, 228, 94, 23);
+		btnVoltar.setBounds(259, 220, 104, 31);
 		contentPane.add(btnVoltar);
+		
+		textField = new JTextField();
+		textField.setBounds(83, 90, 341, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(83, 121, 341, 20);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setBounds(83, 152, 341, 41);
+		contentPane.add(textField_2);
+		textField_2.setColumns(10);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(11, 93, 46, 14);
+		contentPane.add(lblNome);
+		
+		JLabel lblTelefone = new JLabel("Telefone:");
+		lblTelefone.setBounds(10, 124, 46, 14);
+		contentPane.add(lblTelefone);
+		
+		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o:");
+		lblDescrio.setBounds(10, 152, 63, 14);
+		contentPane.add(lblDescrio);
 	}
+
 }

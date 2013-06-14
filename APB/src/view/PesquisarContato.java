@@ -7,16 +7,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
+import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Agenda extends JFrame {
+public class PesquisarContato extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -25,7 +28,7 @@ public class Agenda extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Agenda frame = new Agenda();
+					PesquisarContato frame = new PesquisarContato();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,8 +40,7 @@ public class Agenda extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Agenda() {
-		setTitle("Agenda de Contatos");
+	public PesquisarContato() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -47,7 +49,7 @@ public class Agenda extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 21, 310, 230);
+		scrollPane.setBounds(10, 11, 414, 115);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -70,16 +72,34 @@ public class Agenda extends JFrame {
 		table.getColumnModel().getColumn(2).setResizable(false);
 		scrollPane.setViewportView(table);
 		
-		JButton btnNovoContato = new JButton("Novo");
-		btnNovoContato.setBounds(330, 24, 94, 23);
-		contentPane.add(btnNovoContato);
+		textField = new JTextField();
+		textField.setBounds(82, 137, 342, 20);
+		contentPane.add(textField);
+		textField.setColumns(10);
 		
-		JButton btnPesquisarContato = new JButton("Pesquisar");
-		btnPesquisarContato.setBounds(330, 58, 94, 23);
-		contentPane.add(btnPesquisarContato);
+		JLabel lblPesquisar = new JLabel("Pesquisar:");
+		lblPesquisar.setBounds(20, 137, 66, 14);
+		contentPane.add(lblPesquisar);
+		
+		JButton btnPesquisarNome = new JButton("Pesquisar Nome");
+		btnPesquisarNome.setBounds(119, 168, 123, 23);
+		contentPane.add(btnPesquisarNome);
+		
+		JButton btnPesquisarTelefone = new JButton("Pesquisar Telefone");
+		btnPesquisarTelefone.setBounds(283, 168, 123, 23);
+		contentPane.add(btnPesquisarTelefone);
+		
+		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.setBounds(98, 228, 89, 23);
+		contentPane.add(btnAlterar);
+		
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.setBounds(216, 228, 89, 23);
+		contentPane.add(btnRemover);
 		
 		JButton btnVoltar = new JButton("Voltar");
-		btnVoltar.setBounds(330, 228, 94, 23);
+		btnVoltar.setBounds(335, 228, 89, 23);
 		contentPane.add(btnVoltar);
 	}
+
 }
