@@ -12,6 +12,7 @@ import javax.swing.JButton;
 
 import model.Barbeiro;
 import control.BarbeiroController;
+import exception.BarbeiroException;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -108,10 +109,22 @@ public class NovoBarbeiro extends JFrame {
 
 				
 						Barbeiro barbeiro = new Barbeiro();
-						barbeiro.setNome(textFieldNome.getText());
-						barbeiro.setCpf(textFieldCpf.getText());
+						try {
+							barbeiro.setNome(textFieldNome.getText());
+						} catch (BarbeiroException e2) {
+							e2.printStackTrace();
+						}
+						try {
+							barbeiro.setCpf(textFieldCpf.getText());
+						} catch (BarbeiroException e2) {
+							e2.printStackTrace();
+						}
 						barbeiro.setRg(textFieldRg.getText());
-						barbeiro.setTelefone(textFieldTel.getText());
+						try {
+							barbeiro.setTelefone(textFieldTel.getText());
+						} catch (BarbeiroException e2) {
+							e2.printStackTrace();
+						}
 
 						BarbeiroController barbeiroController = BarbeiroController
 								.getInstance();
