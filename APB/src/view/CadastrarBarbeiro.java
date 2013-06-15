@@ -71,7 +71,6 @@ public class CadastrarBarbeiro extends JFrame {
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
 

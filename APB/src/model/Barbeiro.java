@@ -73,6 +73,7 @@ public class Barbeiro {
 	}
 
 	public void setCpf(String cpf) throws BarbeiroException {
+		//Exemplo CPF válido: 493.751.185-84
 		try {
 			if ("".equals(cpf))
 				throw new BarbeiroException(CPF_BRANCO);

@@ -133,7 +133,7 @@ public class NovoBarbeiro extends JFrame {
 				} catch (BarbeiroException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException k) {
-					k.printStackTrace();
+					mostrarMensagemDeErro(k.getMessage());
 				}
 			}
 

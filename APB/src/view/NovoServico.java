@@ -27,9 +27,6 @@ public class NovoServico extends JFrame {
 	private JTextField textValor;
 	private JTextField textData;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -111,7 +108,7 @@ public class NovoServico extends JFrame {
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					mostrarMensagemDeErro(e1.getMessage());
 				}
 			}
 
@@ -137,6 +134,15 @@ public class NovoServico extends JFrame {
 		contentPane.add(botaoLimparCampos);
 
 		JButton botaoVoltar = new JButton("Voltar");
+		botaoVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				CadastrarServico frame = new CadastrarServico();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
 		botaoVoltar.setBounds(329, 129, 89, 23);
 		contentPane.add(botaoVoltar);
 	}

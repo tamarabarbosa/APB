@@ -35,7 +35,7 @@ public class CadastrarServico extends JFrame {
 	 * Create the frame.
 	 */
 	public CadastrarServico() {
-		setTitle("Barbeiro");
+		setTitle("Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 756, 543);
 		contentPane = new JPanel();
