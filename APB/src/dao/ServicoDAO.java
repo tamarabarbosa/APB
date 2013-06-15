@@ -24,7 +24,7 @@ public class ServicoDAO {
 					"servico (nome, preco, barbeiro, date) VALUES (" +
 					"\"" + servico.getNome() + "\", " +
 					"\"" + servico.getPreco() + "\", " +
-					"\"" + servico.getNomeDoBarbeiro()+ "\", " +
+					"\"" + servico.getNomeBarbeiro()+ "\", " +
 					"\"" + servico.getData() + "\"); "
 				);
 	
