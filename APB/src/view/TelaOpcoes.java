@@ -57,7 +57,7 @@ public class TelaOpcoes extends JFrame {
 		btnBarbeiro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				CadastroBarbeiro frame = new CadastroBarbeiro();
+				CadastrarBarbeiro frame = new CadastrarBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();

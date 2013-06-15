@@ -48,11 +48,11 @@ public class NovoBarbeiro extends JFrame {
 	}
 
 	public NovoBarbeiro() {
-		setTitle("Cadastrar Barbeiro");
 		inicializarComponentes();
 	}
 
 	public void inicializarComponentes() {
+		setTitle("Cadastrar Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 253);
 		contentPane = new JPanel();
@@ -165,7 +165,7 @@ public class NovoBarbeiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastroBarbeiro frame = new CadastroBarbeiro();
+				CadastrarBarbeiro frame = new CadastrarBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 
