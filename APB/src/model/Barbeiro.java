@@ -8,26 +8,26 @@ public class Barbeiro {
 	private String cpf;
 	private String rg;
 	private String telefone;
-	private int cadeira;
+	private String cadeira;
 	private Servico servicos[];
 
-	private final String NOME_INVALIDO = "Nome Inválido.";
-	private final String NOME_BRANCO = "Nome em Branco.";
-	private final String CPF_INVALIDO = "CPF Inválido.";
-	private final String CPF_BRANCO = "CPF em Branco.";
-	private final String RG_BRANCO = "RG em Branco.";
-	private final String RG_INVALIDO = "RG Inválido.";
-	private final String TELEFONE_INVALIDO = "Telefone Inválido.";
-	private final String TELEFONE_BRANCO = "Telefone em Branco.";
-	private final String CADEIRA_BRANCO = "Cadeira em Branco.";
-	private final String CADEIRA_INVALIDA = "Cadeira Inválida.";
+	private final String NOME_INVALIDO = "Nome Inválido";
+	private final String NOME_BRANCO = "Nome em Branco";
+	private final String CPF_INVALIDO = "CPF Inválido";
+	private final String CPF_BRANCO = "CPF em Branco";
+	private final String RG_BRANCO = "RG em Branco";
+	private final String RG_INVALIDO = "RG Inválido";
+	private final String TELEFONE_INVALIDO = "Telefone Inválido";
+	private final String TELEFONE_BRANCO = "Telefone em Branco";
+	private final String CADEIRA_INVALIDA = "Cadeira Inválida";
+	private final String CADEIRA_BRANCO = "Campo Cadeira em Branco";
 
 	public Barbeiro() {
 
 	}
 
 	public Barbeiro(String nome, String cpf, String rg, String telefone,
-			int cadeira) throws BarbeiroException {
+			String cadeira) throws BarbeiroException {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.rg = rg;
@@ -51,7 +51,7 @@ public class Barbeiro {
 		return telefone;
 	}
 
-	public int getCadeira() {
+	public String getCadeira() {
 		return cadeira;
 	}
 
@@ -73,6 +73,7 @@ public class Barbeiro {
 	}
 
 	public void setCpf(String cpf) throws BarbeiroException {
+		//Exemplo CPF válido: 493.751.185-84
 		try {
 			if ("".equals(cpf))
 				throw new BarbeiroException(CPF_BRANCO);
@@ -110,8 +111,7 @@ public class Barbeiro {
 		try {
 			if ("".equals(telefone))
 				throw new BarbeiroException(TELEFONE_BRANCO);
-			else if (telefone
-					.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+			else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 				this.telefone = telefone;
 			else
 				throw new BarbeiroException(TELEFONE_INVALIDO);
@@ -120,13 +120,17 @@ public class Barbeiro {
 		}
 	}
 
-	public void setCadeira(int cadeira) throws BarbeiroException {
+	public void setCadeira(String cadeira) throws BarbeiroException {
 		try {
 			if ("".equals(cadeira))
 				throw new BarbeiroException(CADEIRA_BRANCO);
-			else
+			else if ("0".equals(cadeira) || cadeira.matches("[a-zA-Z\\s]+"))
+				throw new BarbeiroException(CADEIRA_INVALIDA);
+			else if (cadeira.matches(".+"))
 				this.cadeira = cadeira;
-		} catch (NumberFormatException e) {
+			else 
+				throw new BarbeiroException(CADEIRA_INVALIDA);
+		} catch (IllegalArgumentException e) {
 			throw new BarbeiroException(CADEIRA_INVALIDA);
 		}
 	}
@@ -141,8 +145,7 @@ public class Barbeiro {
 		int digitoCPF;
 		String result;
 
-		d1 = d2 = 0;
-		digito1 = digito2 = resto = 0;
+		d1 = d2 = digito1 = digito2 = resto = 0;
 
 		for (int nCount = 1; nCount < cpf.length() - 1; nCount++) {
 			digitoCPF = Integer.valueOf(cpf.substring(nCount - 1, nCount))
@@ -150,8 +153,7 @@ public class Barbeiro {
 
 			d1 = d1 + (11 - nCount) * digitoCPF;
 			d2 = d2 + (12 - nCount) * digitoCPF;
-		}
-		;
+		};
 
 		resto = d1 % 11;
 

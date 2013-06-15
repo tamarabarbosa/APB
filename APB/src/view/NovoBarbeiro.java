@@ -96,6 +96,15 @@ public class NovoBarbeiro extends JFrame {
 		JLabel lblTel = new JLabel("Telefone:");
 		lblTel.setBounds(21, 107, 61, 14);
 		getContentPane().add(lblTel);
+		
+		textFieldCadeira = new JTextField();
+		textFieldCadeira.setBounds(92, 133, 354, 20);
+		contentPane.add(textFieldCadeira);
+		textFieldCadeira.setColumns(10);
+
+		lblCadeira = new JLabel("Cadeira:");
+		lblCadeira.setBounds(21, 136, 61, 14);
+		contentPane.add(lblCadeira);
 
 		botaoSalvar = new JButton("Salvar");
 		botaoSalvar.addMouseListener(new MouseAdapter() {
@@ -107,7 +116,7 @@ public class NovoBarbeiro extends JFrame {
 					barbeiro.setCpf(textFieldCpf.getText());
 					barbeiro.setRg(textFieldRg.getText());
 					barbeiro.setTelefone(textFieldTel.getText());
-					barbeiro.setCadeira(Integer.parseInt(textFieldCadeira.getText()));
+					barbeiro.setCadeira(textFieldCadeira.getText());
 
 					BarbeiroController barbeiroController = BarbeiroController.getInstance();
 					barbeiroController.inserir(barbeiro);
@@ -124,7 +133,7 @@ public class NovoBarbeiro extends JFrame {
 				} catch (BarbeiroException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException k) {
-					k.printStackTrace();
+					mostrarMensagemDeErro(k.getMessage());
 				}
 			}
 
@@ -151,6 +160,7 @@ public class NovoBarbeiro extends JFrame {
 		botaoLimparCampos.setBounds(308, 177, 138, 23);
 		contentPane.add(botaoLimparCampos);
 
+<<<<<<< HEAD
 		textFieldCadeira = new JTextField();
 		textFieldCadeira.setBounds(92, 133, 354, 20);
 		contentPane.add(textFieldCadeira);
@@ -160,6 +170,8 @@ public class NovoBarbeiro extends JFrame {
 		lblCadeira.setBounds(21, 136, 61, 14);
 		contentPane.add(lblCadeira);
 
+=======
+>>>>>>> 1b07c99d7984491cc4daa224aaf24a5cc97a04b7
 		botaoVoltar = new JButton("Voltar");
 		botaoVoltar.addMouseListener(new MouseAdapter() {
 			@Override

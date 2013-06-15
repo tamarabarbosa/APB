@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.EventQueue;
-import java.text.*;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -15,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import control.ServicoController;
+import exception.ServicoException;
 import model.Servico;
 import java.sql.SQLException;
 
@@ -27,9 +27,6 @@ public class NovoServico extends JFrame {
 	private JTextField textValor;
 	private JTextField textData;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,9 +40,6 @@ public class NovoServico extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public NovoServico() {
 		setTitle("Cadastrar novo servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,11 +50,11 @@ public class NovoServico extends JFrame {
 		contentPane.setLayout(null);
 
 		textServico = new JTextField();
-		textServico.setBounds(83, 22, 335, 20);
+		textServico.setBounds(129, 22, 289, 20);
 		contentPane.add(textServico);
 		textServico.setColumns(10);
 
-		JLabel lblServico = new JLabel("Servico:");
+		JLabel lblServico = new JLabel("Servi\u00E7o:");
 		lblServico.setBounds(27, 25, 46, 14);
 		contentPane.add(lblServico);
 
@@ -68,12 +62,12 @@ public class NovoServico extends JFrame {
 		lblRealizadoPor.setBounds(27, 56, 92, 14);
 		contentPane.add(lblRealizadoPor);
 
-		JLabel lblValor = new JLabel("Valor:");
-		lblValor.setBounds(27, 87, 46, 14);
-		contentPane.add(lblValor);
+		JLabel lblPreco = new JLabel("Pre\u00E7o (R$):");
+		lblPreco.setBounds(27, 87, 71, 14);
+		contentPane.add(lblPreco);
 
 		JLabel lblData = new JLabel("Data:");
-		lblData.setBounds(232, 87, 46, 14);
+		lblData.setBounds(267, 87, 46, 14);
 		contentPane.add(lblData);
 
 		textBarbeiro = new JTextField();
@@ -82,12 +76,12 @@ public class NovoServico extends JFrame {
 		textBarbeiro.setColumns(10);
 
 		textValor = new JTextField();
-		textValor.setBounds(83, 84, 114, 20);
+		textValor.setBounds(129, 84, 114, 20);
 		contentPane.add(textValor);
 		textValor.setColumns(10);
 
 		textData = new JTextField();
-		textData.setBounds(288, 84, 130, 20);
+		textData.setBounds(312, 84, 106, 20);
 		contentPane.add(textData);
 		textData.setColumns(10);
 
@@ -95,58 +89,60 @@ public class NovoServico extends JFrame {
 		botaoSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Servico servico = new Servico();
-				SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-				java.sql.Date data = null;
 				try {
-					data = new java.sql.Date(format.parse(textData.getText())
-							.getTime());
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+					Servico servico = new Servico();
+					servico.setNome(textServico.getText());
+					servico.setNomeBarbeiro(textBarbeiro.getText());
+					servico.setPreco(textValor.getText());
+					servico.setData(textData.getText());
 
-				servico.setNome(textServico.getText());
-				servico.setPreco(textValor.getText());
-				servico.setNomeDoBarbeiro(textBarbeiro.getText());
-				servico.setData(data);
-
-				if (textServico.getText().isEmpty()
-						|| textValor.getText().isEmpty()
-						|| textBarbeiro.getText().isEmpty()
-						|| textData.getText().isEmpty()) {
-					JOptionPane.showMessageDialog(null,
-							"Todos os campos são obrigatorios");
-				} else {
-
-					ServicoController servicoController = ServicoController
-							.getInstance();
-
-					try {
-						servicoController.inserir(servico);
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					ServicoController servicoController = ServicoController.getInstance();
+					servicoController.inserir(servico);
 
 					JOptionPane.showMessageDialog(null, "Servico "
 							+ textServico.getText() + " inserido com sucesso");
 
+					/*dispose();
+					CadastrarServico frame = new CadastrarServico();
+					frame.setVisible(true);*/
+				} catch (ServicoException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (SQLException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
 				}
+			}
 
-				dispose();
-				CadastrarServico frame = new CadastrarServico();
-				frame.setVisible(true);
+			private void mostrarMensagemDeErro(String informacao) {
+				JOptionPane.showMessageDialog(null, informacao, "Atenção",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		botaoSalvar.setBounds(27, 129, 89, 23);
 		contentPane.add(botaoSalvar);
 
 		JButton botaoLimparCampos = new JButton("Limpar Campos");
+		botaoLimparCampos.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				textServico.setText("");
+				textValor.setText("");
+				textBarbeiro.setText("");
+				textData.setText("");
+			}
+		});
 		botaoLimparCampos.setBounds(152, 129, 148, 23);
 		contentPane.add(botaoLimparCampos);
 
 		JButton botaoVoltar = new JButton("Voltar");
+		botaoVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				CadastrarServico frame = new CadastrarServico();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
 		botaoVoltar.setBounds(329, 129, 89, 23);
 		contentPane.add(botaoVoltar);
 	}

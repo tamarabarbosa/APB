@@ -39,7 +39,7 @@ public class TelaOpcoes extends JFrame {
 	public TelaOpcoes() {
 		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 166);
+		setBounds(100, 100, 541, 198);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -49,7 +49,7 @@ public class TelaOpcoes extends JFrame {
 		panel.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "Op\u00E7\u00F5es",
 				TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 11, 414, 117);
+		panel.setBounds(10, 11, 505, 138);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -57,13 +57,13 @@ public class TelaOpcoes extends JFrame {
 		btnBarbeiro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				CadastroBarbeiro frame = new CadastroBarbeiro();
+				CadastrarBarbeiro frame = new CadastrarBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
 			}
 		});
-		btnBarbeiro.setBounds(22, 39, 157, 37);
+		btnBarbeiro.setBounds(12, 66, 157, 37);
 		panel.add(btnBarbeiro);
 
 		JButton btnServico = new JButton("Servi\u00E7o");
@@ -76,7 +76,20 @@ public class TelaOpcoes extends JFrame {
 				dispose();
 			}
 		});
-		btnServico.setBounds(238, 39, 149, 37);
+		btnServico.setBounds(346, 66, 149, 37);
 		panel.add(btnServico);
+		
+		JButton btnAgenda = new JButton("Agenda");
+		btnAgenda.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				CadastrarAgenda frame = new CadastrarAgenda();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		btnAgenda.setBounds(179, 66, 157, 37);
+		panel.add(btnAgenda);
 	}
 }
