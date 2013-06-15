@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.Toolkit;
 
 @SuppressWarnings("serial")
 public class APB extends JFrame {
