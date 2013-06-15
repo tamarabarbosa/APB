@@ -79,7 +79,7 @@ public class CadastrarBarbeiro extends JFrame {
 		JButton botaoNovoBarbeirp = new JButton("Novo");
 		botaoNovoBarbeirp.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent e) {
 				dispose();
 				NovoBarbeiro frame = new NovoBarbeiro();
 				frame.setVisible(true);
@@ -97,6 +97,7 @@ public class CadastrarBarbeiro extends JFrame {
 				TelaOpcoes frame = new TelaOpcoes();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+<<<<<<< HEAD
 				
 			}
 		});
@@ -115,5 +116,22 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 		botaoRemover.setBounds(526, 65, 204, 43);
 		contentPane.add(botaoRemover);
+=======
+			
+			}
+		});
+		
+		botaoConcluir.setBounds(526, 450, 204, 43);
+		contentPane.add(botaoConcluir);
+
+		JButton btnNewButton = new JButton("Pesquisar");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
+		btnNewButton.setBounds(526, 65, 204, 43);
+		contentPane.add(btnNewButton);
+>>>>>>> 8a295cb40a08894970ea340430900c372a626eef
 	}
 }

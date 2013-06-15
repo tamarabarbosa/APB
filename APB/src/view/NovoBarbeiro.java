@@ -160,6 +160,18 @@ public class NovoBarbeiro extends JFrame {
 		botaoLimparCampos.setBounds(308, 177, 138, 23);
 		contentPane.add(botaoLimparCampos);
 
+<<<<<<< HEAD
+		textFieldCadeira = new JTextField();
+		textFieldCadeira.setBounds(92, 133, 354, 20);
+		contentPane.add(textFieldCadeira);
+		textFieldCadeira.setColumns(10);
+
+		lblCadeira = new JLabel("Cadeira:");
+		lblCadeira.setBounds(21, 136, 61, 14);
+		contentPane.add(lblCadeira);
+
+=======
+>>>>>>> 1b07c99d7984491cc4daa224aaf24a5cc97a04b7
 		botaoVoltar = new JButton("Voltar");
 		botaoVoltar.addMouseListener(new MouseAdapter() {
 			@Override
