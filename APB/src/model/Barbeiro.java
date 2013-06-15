@@ -15,6 +15,7 @@ public class Barbeiro {
 	private final String NOME_BRANCO = "Nome em Branco.";
 	private final String CPF_INVALIDO = "CPF Inválido.";
 	private final String CPF_BRANCO = "CPF em Branco.";
+	private final String RG_BRANCO = "RG em Branco.";
 	private final String TELEFONE_INVALIDO = "Telefone Inválido.";
 	private final String TELEFONE_BRANCO = "Telefone em Branco.";
 
@@ -29,10 +30,6 @@ public class Barbeiro {
 		this.rg = rg;
 		this.telefone = telefone;
 		this.cadeira = cadeira;
-	}
-
-	public Servico[] getServicos() {
-		return servicos;
 	}
 
 	public String getNome() {
@@ -53,6 +50,10 @@ public class Barbeiro {
 
 	public int getCadeira() {
 		return cadeira;
+	}
+
+	public Servico[] getServicos() {
+		return servicos;
 	}
 
 	public void setNome(String nome) throws BarbeiroException {
@@ -76,7 +77,6 @@ public class Barbeiro {
 					.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$")) {
 				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]
 						+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
-
 			}
 
 			if (this.validarCpf(cpf))
@@ -91,8 +91,11 @@ public class Barbeiro {
 		}
 	}
 
-	public void setRg(String rg) {
-		this.rg = rg;
+	public void setRg(String rg) throws BarbeiroException {
+		if ("".equals(rg))
+			throw new BarbeiroException(RG_BRANCO);
+		else
+			this.rg = rg;
 	}
 
 	public void setTelefone(String telefone) throws BarbeiroException {

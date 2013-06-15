@@ -166,8 +166,12 @@ public class CadastroBarbeiro extends JFrame {
 					e1.printStackTrace();
 				}
 
-				barbeiro.setRg(table.getValueAt(table.getSelectedRow(), 2)
-						.toString());
+				try {
+					barbeiro.setRg(table.getValueAt(table.getSelectedRow(), 2)
+							.toString());
+				} catch (BarbeiroException e2) {
+					e2.printStackTrace();
+				}
 
 				try {
 					barbeiro.setTelefone(table.getValueAt(
@@ -271,86 +275,37 @@ public class CadastroBarbeiro extends JFrame {
 		Salvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if (!this.validarCadastro()) {
-					return;
-				} else {
-
+				try {
 					barbeiro = new Barbeiro();
-
-					try {
-						barbeiro.setNome(textFieldNome.getText());
-					} catch (BarbeiroException e) {
-						e.printStackTrace();
-					}
-
-					try {
-						barbeiro.setCpf(textFieldCpf.getText());
-					} catch (BarbeiroException e) {
-						e.printStackTrace();
-					}
-
+					barbeiro.setNome(textFieldNome.getText());
+					barbeiro.setCpf(textFieldCpf.getText());
 					barbeiro.setRg(textFieldRg.getText());
+					barbeiro.setTelefone(textFieldTel.getText());
 
-					try {
-						barbeiro.setTelefone(textFieldTel.getText());
-					} catch (BarbeiroException e) {
-						e.printStackTrace();
-					}
+					BarbeiroController barbeiroController = BarbeiroController.getInstance();
+					barbeiroController.inserir(barbeiro);
 
-					BarbeiroController barbeiroController = BarbeiroController
-							.getInstance();
-
-					try {
-						barbeiroController.inserir(barbeiro);
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
-
-					JOptionPane.showMessageDialog(null, "Barbeiro "
+					JOptionPane.showMessageDialog(null, "Barbeiro"
 							+ textFieldNome.getText()
 							+ " foi inserido com sucesso");
+
+					textFieldNome.setText("");
+					textFieldCpf.setText("");
+					textFieldRg.setText("");
+					textFieldTel.setText("");
+					textFieldNome.setEditable(false);
+					textFieldCpf.setEditable(false);
+					textFieldRg.setEditable(false);
+					textFieldTel.setEditable(false);
+				} catch (BarbeiroException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (SQLException e1) {
+					e1.printStackTrace();
 				}
-
-				textFieldNome.setText("");
-				textFieldCpf.setText("");
-				textFieldRg.setText("");
-				textFieldTel.setText("");
-				textFieldNome.setEditable(false);
-				textFieldCpf.setEditable(false);
-				textFieldRg.setEditable(false);
-				textFieldTel.setEditable(false);
-			}
-
-			public boolean validarCadastro() {
-				if (textFieldNome.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de Nome não pode estar em branco.");
-					textFieldNome.requestFocus();
-					return false;
-				}
-
-				if (textFieldCpf.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de CPF não pode estar em branco.");
-					textFieldNome.requestFocus();
-					return false;
-				}
-
-				if (textFieldRg.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de RG não pode estar em branco.");
-					textFieldNome.requestFocus();
-					return false;
-				}
-
-				if (textFieldTel.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de Telefone não pode estar em branco.");
-					textFieldNome.requestFocus();
-					return false;
-				}
-
-				return true;
 			}
 
 			private void mostrarMensagemDeErro(String informacao) {
-				JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.showMessageDialog(null, informacao, "Erro",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -375,39 +330,15 @@ public class CadastroBarbeiro extends JFrame {
 		btnSaveA.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (this.validarCadastro() == false) {
-					return;
-				} else if (this.validarCadastro() == true) {
+				try {
 					barbeiro = new Barbeiro();
-
-					try {
-						barbeiro.setNome(textFieldNome.getText());
-					} catch (BarbeiroException e1) {
-						e1.printStackTrace();
-					}
-
-					try {
-						barbeiro.setCpf(textFieldCpf.getText());
-					} catch (BarbeiroException e1) {
-						e1.printStackTrace();
-					}
-
+					barbeiro.setNome(textFieldNome.getText());
+					barbeiro.setCpf(textFieldCpf.getText());
 					barbeiro.setRg(textFieldRg.getText());
+					barbeiro.setTelefone(textFieldTel.getText());
 
-					try {
-						barbeiro.setTelefone(textFieldTel.getText());
-					} catch (BarbeiroException e1) {
-						e1.printStackTrace();
-					}
-
-					BarbeiroController barbeiroController = BarbeiroController
-							.getInstance();
-
-					try {
-						barbeiroController.alterar(barbeiro);
-					} catch (SQLException k) {
-						k.printStackTrace();
-					}
+					BarbeiroController barbeiroController = BarbeiroController.getInstance();
+					barbeiroController.alterar(barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 							+ textFieldNome.getText()
@@ -421,43 +352,17 @@ public class CadastroBarbeiro extends JFrame {
 					textFieldCpf.setEnabled(false);
 					textFieldRg.setEnabled(false);
 					textFieldTel.setEnabled(false);
-
+				} catch (BarbeiroException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				} catch (SQLException k) {
+					k.printStackTrace();
 				}
-			}
-
-			public boolean validarCadastro() {
-				if (textFieldNome.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de Nome não pode estar em branco");
-					textFieldNome.requestFocus();
-					return false;
-				}
-
-				if (textFieldCpf.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de CPF não pode estar em branco");
-					textFieldNome.requestFocus();
-					return false;
-				}
-
-				if (textFieldRg.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de RG não pode estar em branco");
-					textFieldNome.requestFocus();
-					return false;
-				}
-
-				if (textFieldTel.getText().trim().length() == 0) {
-					this.mostrarMensagemDeErro("O campo de Telefone não pode estar em branco");
-					textFieldNome.requestFocus();
-					return false;
-				}
-
-				return true;
 			}
 
 			private void mostrarMensagemDeErro(String informacao) {
 				JOptionPane.showMessageDialog(null, informacao, "Atencao",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
-
 		});
 		btnSaveA.setBounds(167, 314, 150, 57);
 		contentPane.add(btnSaveA);
