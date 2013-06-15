@@ -94,7 +94,7 @@ public class NovoBarbeiro extends JFrame {
 		textFieldTel.setColumns(10);
 
 		JLabel lblTel = new JLabel("Telefone:");
-		lblTel.setBounds(21, 107, 46, 14);
+		lblTel.setBounds(21, 107, 61, 14);
 		getContentPane().add(lblTel);
 
 		botaoSalvar = new JButton("Salvar");
@@ -157,7 +157,7 @@ public class NovoBarbeiro extends JFrame {
 		textFieldCadeira.setColumns(10);
 
 		lblCadeira = new JLabel("Cadeira:");
-		lblCadeira.setBounds(21, 136, 46, 14);
+		lblCadeira.setBounds(21, 136, 61, 14);
 		contentPane.add(lblCadeira);
 
 		botaoVoltar = new JButton("Voltar");
@@ -165,7 +165,7 @@ public class NovoBarbeiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastroBarbeiro frame = new CadastroBarbeiro();
+				CadastrarBarbeiro frame = new CadastrarBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 

@@ -71,7 +71,6 @@ public class CadastrarBarbeiro extends JFrame {
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 		}
 
@@ -80,7 +79,7 @@ public class CadastrarBarbeiro extends JFrame {
 		JButton botaoNovoBarbeirp = new JButton("Novo");
 		botaoNovoBarbeirp.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent e) {
 				dispose();
 				NovoBarbeiro frame = new NovoBarbeiro();
 				frame.setVisible(true);
@@ -91,10 +90,26 @@ public class CadastrarBarbeiro extends JFrame {
 		contentPane.add(botaoNovoBarbeirp);
 
 		JButton botaoConcluir = new JButton("Voltar");
+		botaoConcluir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				TelaOpcoes frame = new TelaOpcoes();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			
+			}
+		});
+		
 		botaoConcluir.setBounds(526, 450, 204, 43);
 		contentPane.add(botaoConcluir);
 
 		JButton btnNewButton = new JButton("Pesquisar");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		btnNewButton.setBounds(526, 65, 204, 43);
 		contentPane.add(btnNewButton);
 	}
