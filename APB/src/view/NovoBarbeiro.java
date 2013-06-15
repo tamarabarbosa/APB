@@ -32,9 +32,7 @@ public class NovoBarbeiro extends JFrame {
 	private JButton botaoVoltar;
 	private Barbeiro barbeiro;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -50,6 +48,7 @@ public class NovoBarbeiro extends JFrame {
 	}
 
 	public NovoBarbeiro() {
+		setTitle("Cadastrar Barbeiro");
 		inicializarComponentes();
 	}
 
@@ -85,18 +84,18 @@ public class NovoBarbeiro extends JFrame {
 		getContentPane().add(textFieldRg);
 		textFieldRg.setColumns(10);
 
-		JLabel lblNewLabel = new JLabel("RG:");
-		lblNewLabel.setBounds(21, 76, 46, 14);
-		getContentPane().add(lblNewLabel);
+		JLabel lblRg = new JLabel("RG:");
+		lblRg.setBounds(21, 76, 46, 14);
+		getContentPane().add(lblRg);
 
 		textFieldTel = new JTextField();
-		textFieldTel.setBounds(92, 133, 354, 20);
+		textFieldTel.setBounds(92, 104, 354, 20);
 		getContentPane().add(textFieldTel);
 		textFieldTel.setColumns(10);
 
-		JLabel lblTelefone = new JLabel("Tel:");
-		lblTelefone.setBounds(21, 136, 46, 14);
-		getContentPane().add(lblTelefone);
+		JLabel lblTel = new JLabel("Telefone:");
+		lblTel.setBounds(21, 107, 46, 14);
+		getContentPane().add(lblTel);
 
 		botaoSalvar = new JButton("Salvar");
 		botaoSalvar.addMouseListener(new MouseAdapter() {
@@ -108,9 +107,10 @@ public class NovoBarbeiro extends JFrame {
 					barbeiro.setCpf(textFieldCpf.getText());
 					barbeiro.setRg(textFieldRg.getText());
 					barbeiro.setTelefone(textFieldTel.getText());
+					barbeiro.setCadeira(Integer.parseInt(textFieldCadeira.getText()));
 
 					BarbeiroController barbeiroController = BarbeiroController.getInstance();
-					barbeiroController.alterar(barbeiro);
+					barbeiroController.inserir(barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 							+ textFieldNome.getText()
@@ -120,10 +120,7 @@ public class NovoBarbeiro extends JFrame {
 					textFieldCpf.setText("");
 					textFieldRg.setText("");
 					textFieldTel.setText("");
-					textFieldNome.setEnabled(false);
-					textFieldCpf.setEnabled(false);
-					textFieldRg.setEnabled(false);
-					textFieldTel.setEnabled(false);
+					textFieldCadeira.setText("");
 				} catch (BarbeiroException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException k) {
@@ -132,7 +129,7 @@ public class NovoBarbeiro extends JFrame {
 			}
 
 			private void mostrarMensagemDeErro(String informacao) {
-				JOptionPane.showMessageDialog(null, informacao, "Atencao",
+				JOptionPane.showMessageDialog(null, informacao, "Atenção",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 
@@ -155,12 +152,12 @@ public class NovoBarbeiro extends JFrame {
 		contentPane.add(botaoLimparCampos);
 
 		textFieldCadeira = new JTextField();
-		textFieldCadeira.setBounds(92, 104, 354, 20);
+		textFieldCadeira.setBounds(92, 133, 354, 20);
 		contentPane.add(textFieldCadeira);
 		textFieldCadeira.setColumns(10);
 
-		lblCadeira = new JLabel("Cadeira");
-		lblCadeira.setBounds(21, 111, 46, 14);
+		lblCadeira = new JLabel("Cadeira:");
+		lblCadeira.setBounds(21, 136, 46, 14);
 		contentPane.add(lblCadeira);
 
 		botaoVoltar = new JButton("Voltar");

@@ -16,8 +16,11 @@ public class Barbeiro {
 	private final String CPF_INVALIDO = "CPF Inválido.";
 	private final String CPF_BRANCO = "CPF em Branco.";
 	private final String RG_BRANCO = "RG em Branco.";
+	private final String RG_INVALIDO = "RG Inválido.";
 	private final String TELEFONE_INVALIDO = "Telefone Inválido.";
 	private final String TELEFONE_BRANCO = "Telefone em Branco.";
+	private final String CADEIRA_BRANCO = "Cadeira em Branco.";
+	private final String CADEIRA_INVALIDA = "Cadeira Inválida.";
 
 	public Barbeiro() {
 
@@ -73,11 +76,8 @@ public class Barbeiro {
 		try {
 			if ("".equals(cpf))
 				throw new BarbeiroException(CPF_BRANCO);
-			else if (cpf
-					.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$")) {
-				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]
-						+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
-			}
+			else if (cpf.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
+				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]	+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
 
 			if (this.validarCpf(cpf))
 				this.cpf = cpf;
@@ -92,10 +92,18 @@ public class Barbeiro {
 	}
 
 	public void setRg(String rg) throws BarbeiroException {
-		if ("".equals(rg))
-			throw new BarbeiroException(RG_BRANCO);
-		else
-			this.rg = rg;
+		try {
+			if ("".equals(rg))
+				throw new BarbeiroException(RG_BRANCO);
+			else if (rg.matches("[\\d]{1,2}.[\\d]{3}.[\\d]{3}"))
+				this.rg = rg;
+			else
+				throw new BarbeiroException(RG_INVALIDO);
+		} catch (StringIndexOutOfBoundsException e) {
+			throw new BarbeiroException(RG_INVALIDO);
+		} catch (NumberFormatException e) {
+			throw new BarbeiroException(RG_INVALIDO);
+		}
 	}
 
 	public void setTelefone(String telefone) throws BarbeiroException {
@@ -112,8 +120,15 @@ public class Barbeiro {
 		}
 	}
 
-	public void setCadeira(int cadeira) {
-		this.cadeira = cadeira;
+	public void setCadeira(int cadeira) throws BarbeiroException {
+		try {
+			if ("".equals(cadeira))
+				throw new BarbeiroException(CADEIRA_BRANCO);
+			else
+				this.cadeira = cadeira;
+		} catch (NumberFormatException e) {
+			throw new BarbeiroException(CADEIRA_INVALIDA);
+		}
 	}
 
 	public void setServicos(Servico[] servicos) {
