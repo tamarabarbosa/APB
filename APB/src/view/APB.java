@@ -39,11 +39,7 @@ public class APB extends JFrame {
 	 * Create the frame.
 	 */
 	public APB() {
-		setIconImage(Toolkit
-				.getDefaultToolkit()
-				.getImage(
-						APB.class
-								.getResource("/com/sun/java/swing/plaf/windows/icons/image-delayed.png")));
+		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 423, 266);
 		contentPane = new JPanel();
