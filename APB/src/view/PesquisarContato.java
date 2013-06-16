@@ -12,6 +12,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class PesquisarContato extends JFrame {
@@ -32,8 +34,13 @@ public class PesquisarContato extends JFrame {
 			}
 		});
 	}
-
+	
 	public PesquisarContato() {
+		inicializarComponentes();
+	}
+
+	public void inicializarComponentes() {
+		setTitle("Pesquisar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -75,11 +82,11 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(lblPesquisar);
 		
 		JButton btnPesquisarNome = new JButton("Pesquisar Nome");
-		btnPesquisarNome.setBounds(119, 168, 123, 23);
+		btnPesquisarNome.setBounds(82, 168, 160, 23);
 		contentPane.add(btnPesquisarNome);
 		
 		JButton btnPesquisarTelefone = new JButton("Pesquisar Telefone");
-		btnPesquisarTelefone.setBounds(283, 168, 123, 23);
+		btnPesquisarTelefone.setBounds(264, 168, 160, 23);
 		contentPane.add(btnPesquisarTelefone);
 		
 		JButton btnAlterar = new JButton("Alterar");
@@ -91,6 +98,15 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(btnRemover);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				CadastrarAgenda frame = new CadastrarAgenda();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
 		btnVoltar.setBounds(335, 228, 89, 23);
 		contentPane.add(btnVoltar);
 	}

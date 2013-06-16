@@ -97,7 +97,7 @@ public class CadastrarBarbeiro extends JFrame {
 				TelaOpcoes frame = new TelaOpcoes();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-<<<<<<< HEAD
+
 				
 			}
 		});
@@ -116,11 +116,8 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 		botaoRemover.setBounds(526, 65, 204, 43);
 		contentPane.add(botaoRemover);
-=======
-			
-			}
-		});
-		
+
+	
 		botaoConcluir.setBounds(526, 450, 204, 43);
 		contentPane.add(botaoConcluir);
 
@@ -132,6 +129,5 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 		btnNewButton.setBounds(526, 65, 204, 43);
 		contentPane.add(btnNewButton);
->>>>>>> 8a295cb40a08894970ea340430900c372a626eef
 	}
 }

@@ -98,7 +98,7 @@ public class CadastrarAgenda extends JFrame {
 		JButton btnPesquisarContato = new JButton("Pesquisar");
 		btnPesquisarContato.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(MouseEvent e) {
 				dispose();
 				PesquisarContato frame = new PesquisarContato();
 				frame.setVisible(true);
