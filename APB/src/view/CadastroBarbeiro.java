@@ -149,46 +149,27 @@ public class CadastroBarbeiro extends JFrame {
 
 				barbeiro = new Barbeiro();
 				try {
-					try {
-						barbeiro.setNome(table.getValueAt(
-								table.getSelectedRow(), 0).toString());
-					} catch (BarbeiroException e1) {
-						e1.printStackTrace();
-					}
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
+					barbeiro.setNome(table.getValueAt(table.getSelectedRow(), 0).toString());
+					barbeiro.setCpf(table.getValueAt(table.getSelectedRow(), 1).toString());
+					barbeiro.setRg(table.getValueAt(table.getSelectedRow(), 2).toString());
+					barbeiro.setTelefone(table.getValueAt(table.getSelectedRow(), 3).toString());
 
-				try {
-					barbeiro.setCpf(table.getValueAt(table.getSelectedRow(), 1)
-							.toString());
-				} catch (BarbeiroException e1) {
-					e1.printStackTrace();
-				}
-
-				try {
-					barbeiro.setRg(table.getValueAt(table.getSelectedRow(), 2)
-							.toString());
-				} catch (BarbeiroException e2) {
-					e2.printStackTrace();
-				}
-
-				try {
-					barbeiro.setTelefone(table.getValueAt(
-							table.getSelectedRow(), 3).toString());
-				} catch (BarbeiroException e1) {
-					e1.printStackTrace();
-				}
-
-				BarbeiroController barbeiroController = BarbeiroController
-						.getInstance();
-
-				try {
+					BarbeiroController barbeiroController = BarbeiroController.getInstance();
 					barbeiroController.excluir(barbeiro);
+					
+					JOptionPane.showMessageDialog(null, "Barbeiro"
+							+ textFieldNome.getText()
+							+ " foi removido");
 				} catch (SQLException k) {
-					k.printStackTrace();
+					mostrarMensagemDeErro(k.getMessage());
+				} catch (BarbeiroException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
 				}
-
+			}
+			
+			private void mostrarMensagemDeErro(String informacao) {
+				JOptionPane.showMessageDialog(null, informacao, "Atenção",
+						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 
@@ -282,7 +263,8 @@ public class CadastroBarbeiro extends JFrame {
 					barbeiro.setRg(textFieldRg.getText());
 					barbeiro.setTelefone(textFieldTel.getText());
 
-					BarbeiroController barbeiroController = BarbeiroController.getInstance();
+					BarbeiroController barbeiroController = BarbeiroController
+							.getInstance();
 					barbeiroController.inserir(barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro"
@@ -300,12 +282,12 @@ public class CadastroBarbeiro extends JFrame {
 				} catch (BarbeiroException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e1) {
-					e1.printStackTrace();
+					mostrarMensagemDeErro(e1.getMessage());
 				}
 			}
 
 			private void mostrarMensagemDeErro(String informacao) {
-				JOptionPane.showMessageDialog(null, informacao, "Erro",
+				JOptionPane.showMessageDialog(null, informacao, "Atenção",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
@@ -337,7 +319,8 @@ public class CadastroBarbeiro extends JFrame {
 					barbeiro.setRg(textFieldRg.getText());
 					barbeiro.setTelefone(textFieldTel.getText());
 
-					BarbeiroController barbeiroController = BarbeiroController.getInstance();
+					BarbeiroController barbeiroController = BarbeiroController
+							.getInstance();
 					barbeiroController.alterar(barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "

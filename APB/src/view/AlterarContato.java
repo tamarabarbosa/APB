@@ -20,9 +20,6 @@ public class AlterarContato extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -36,9 +33,6 @@ public class AlterarContato extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public AlterarContato() {
 		setTitle("Alterar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

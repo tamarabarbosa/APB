@@ -15,9 +15,6 @@ public class CadastrarServico extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -31,9 +28,6 @@ public class CadastrarServico extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public CadastrarServico() {
 		setTitle("Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
