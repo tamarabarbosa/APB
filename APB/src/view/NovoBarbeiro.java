@@ -96,11 +96,6 @@ public class NovoBarbeiro extends JFrame {
 		JLabel lblTel = new JLabel("Telefone:");
 		lblTel.setBounds(21, 107, 61, 14);
 		getContentPane().add(lblTel);
-		
-		textFieldCadeira = new JTextField();
-		textFieldCadeira.setBounds(92, 133, 354, 20);
-		contentPane.add(textFieldCadeira);
-		textFieldCadeira.setColumns(10);
 
 		lblCadeira = new JLabel("Cadeira:");
 		lblCadeira.setBounds(21, 136, 61, 14);
