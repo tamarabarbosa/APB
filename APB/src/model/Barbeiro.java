@@ -126,7 +126,7 @@ public class Barbeiro {
 				throw new BarbeiroException(CADEIRA_BRANCO);
 			else if ("0".equals(cadeira) || cadeira.matches("[a-zA-Z\\s]+"))
 				throw new BarbeiroException(CADEIRA_INVALIDA);
-			else if (cadeira.matches(".+"))
+			else if (cadeira.matches("^[0-9]*$"))
 				this.cadeira = cadeira;
 			else 
 				throw new BarbeiroException(CADEIRA_INVALIDA);

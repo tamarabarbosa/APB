@@ -8,6 +8,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class CadastrarServico extends JFrame {
@@ -54,6 +56,15 @@ public class CadastrarServico extends JFrame {
 		scrollPane.setViewportView(table);
 
 		JButton botaoNovoServico = new JButton("Novo");
+		botaoNovoServico.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				NovoServico frame = new NovoServico();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
 		botaoNovoServico.setBounds(526, 11, 204, 43);
 		contentPane.add(botaoNovoServico);
 
@@ -66,6 +77,15 @@ public class CadastrarServico extends JFrame {
 		contentPane.add(botaoRemoverServico);
 
 		JButton botaoConcluir = new JButton("Voltar");
+		botaoConcluir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+				TelaOpcoes frame = new TelaOpcoes();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
 		botaoConcluir.setBounds(526, 450, 204, 43);
 		contentPane.add(botaoConcluir);
 
