@@ -28,7 +28,7 @@ public class BarbeiroDAO {
 					"\"" + barbeiro.getNome() + "\", " +
 					"\"" + barbeiro.getCpf()+ "\", " +
 					"\"" + barbeiro.getRg() + "\", " +
-					"\"" + barbeiro.getTelefone() + "\" +" +
+					"\"" + barbeiro.getTelefone() + "\", " +
 					"\"" + barbeiro.getCadeira() + "\"); "
 				);
 	
