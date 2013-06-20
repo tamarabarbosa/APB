@@ -118,7 +118,7 @@ public class NovoBarbeiro extends JFrame {
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 							+ textFieldNome.getText()
-							+ " foi alterado com sucesso");
+							+ " foi cadastrado com sucesso");
 
 					textFieldNome.setText("");
 					textFieldCpf.setText("");
