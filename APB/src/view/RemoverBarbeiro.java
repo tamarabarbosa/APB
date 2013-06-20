@@ -4,6 +4,7 @@ package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
@@ -73,6 +74,15 @@ public class RemoverBarbeiro extends JFrame {
 				BarbeiroController barbeiroController = BarbeiroController
 						.getInstance();
 
+				JOptionPane.showMessageDialog(null, "Barbeiro "
+						+ textFieldNome.getText()
+						+ " foi removido com sucesso");
+				
+				dispose();
+				CadastrarBarbeiro frame =  new CadastrarBarbeiro();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				
 				try {
 					barbeiroController.excluir(barbeiro);
 				} catch (SQLException k) {
