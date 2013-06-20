@@ -25,7 +25,7 @@ public class AgendaDAO {
 		this.updateQuery("INSERT INTO " +
 				"Agenda (nome, telefone, descricao) VALUES (" +
 				"\"" + agenda.getNome() + "\", " +
-				"\"" + agenda.getTelefone() + "\" +" +
+				"\"" + agenda.getTelefone() + "\", " +
 				"\"" + agenda.getDescricao() + "\"); "
 			);
 	}
