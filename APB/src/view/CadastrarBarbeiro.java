@@ -55,19 +55,20 @@ public class CadastrarBarbeiro extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Nome", "CPF", "RG", "Telefone" });
+				new String[] { "Nome", "CPF", "RG", "Telefone", "Cadeira" });
 		final JTable table = new JTable(modelo);
-		table.getTableHeader().setReorderingAllowed(false);
+		
 		try {
 			connection = FactoryConnection.getInstance().getConnection();
 			ResultSet rs = connection.createStatement().executeQuery(
-					"Select nome, cpf, rg, telefone from barbeiro");
+					"Select nome, cpf, rg, telefone, cadeira from barbeiro;");
 			while (rs.next()) {
-				String[] dados = new String[4];
+				String[] dados = new String[5];
 				dados[0] = rs.getString("nome");
 				dados[1] = rs.getString("cpf");
 				dados[2] = rs.getString("rg");
 				dados[3] = rs.getString("telefone");
+				dados[4] = rs.getString("cadeira");
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
