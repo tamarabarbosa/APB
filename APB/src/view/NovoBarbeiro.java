@@ -30,7 +30,6 @@ public class NovoBarbeiro extends JFrame {
 	private JTextField textFieldCadeira;
 	private JLabel lblCadeira;
 	private JButton botaoVoltar;
-	private Barbeiro barbeiro;
 
 	
 	public static void main(String[] args) {
@@ -106,7 +105,7 @@ public class NovoBarbeiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					barbeiro = new Barbeiro();
+					Barbeiro barbeiro = new Barbeiro();
 					barbeiro.setNome(textFieldNome.getText());
 					barbeiro.setCpf(textFieldCpf.getText());
 					barbeiro.setRg(textFieldRg.getText());
@@ -130,11 +129,6 @@ public class NovoBarbeiro extends JFrame {
 				} catch (SQLException k) {
 					mostrarMensagemDeErro(k.getMessage());
 				}
-			}
-
-			private void mostrarMensagemDeErro(String informacao) {
-				JOptionPane.showMessageDialog(null, informacao, "Atenção",
-						JOptionPane.INFORMATION_MESSAGE);
 			}
 
 		});
@@ -179,5 +173,10 @@ public class NovoBarbeiro extends JFrame {
 		botaoVoltar.setBounds(158, 177, 125, 23);
 		contentPane.add(botaoVoltar);
 
+	}
+	
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

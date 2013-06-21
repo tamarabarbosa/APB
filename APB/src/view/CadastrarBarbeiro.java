@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JTable;
@@ -72,7 +73,7 @@ public class CadastrarBarbeiro extends JFrame {
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			mostrarMensagemDeErro(e.getMessage());
 		}
 
 		scrollPane.setViewportView(table);
@@ -130,5 +131,10 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 		btnNewButton.setBounds(526, 65, 204, 43);
 		contentPane.add(btnNewButton);
+	}
+	
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

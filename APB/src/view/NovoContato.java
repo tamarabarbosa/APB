@@ -22,9 +22,9 @@ import java.sql.SQLException;
 public class NovoContato extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldNomeContato;
-	private JTextField textFieldTelefoneContato;
-	private JTextField textFieldDescricaoContato;
+	private JTextField textFieldNome;
+	private JTextField textFieldTelefone;
+	private JTextField textFieldDescricao;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -52,45 +52,41 @@ public class NovoContato extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JButton btnSalvarContato = new JButton("Salvar");
-		btnSalvarContato.addMouseListener(new MouseAdapter() {
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
 					Agenda agenda = new Agenda();
-					agenda.setNome(textFieldNomeContato.getText());
-					agenda.setTelefone(textFieldTelefoneContato.getText());
-					agenda.setDescricao(textFieldDescricaoContato.getText());
+					agenda.setNome(textFieldNome.getText());
+					agenda.setTelefone(textFieldTelefone.getText());
+					agenda.setDescricao(textFieldDescricao.getText());
 
 					AgendaController agendaController = AgendaController.getInstance();
 					agendaController.incluir(agenda);
 
 					JOptionPane.showMessageDialog(null, "Contato "
-							+ textFieldNomeContato.getText()
-							+ " foi alterado com sucesso");
+							+ textFieldNome.getText()
+							+ " foi adicionado com sucesso");
+					
+					textFieldNome.setText("");
+					textFieldTelefone.setText("");
+					textFieldDescricao.setText("");
 					
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (BarbeiroException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				}
-
-				textFieldNomeContato.setText("");
-				textFieldTelefoneContato.setText("");
-				textFieldDescricaoContato.setText("");
 			}
 
-			private void mostrarMensagemDeErro(String informacao) {
-				JOptionPane.showMessageDialog(null, informacao, "Atenção",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
 		});
 
-		btnSalvarContato.setBounds(26, 218, 109, 33);
-		contentPane.add(btnSalvarContato);
+		btnSalvar.setBounds(26, 218, 109, 33);
+		contentPane.add(btnSalvar);
 
-		JButton btnVoltarAgenda = new JButton("Voltar");
-		btnVoltarAgenda.addMouseListener(new MouseAdapter() {
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
@@ -100,36 +96,36 @@ public class NovoContato extends JFrame {
 			}
 		});
 
-		btnVoltarAgenda.setBounds(166, 218, 100, 33);
-		contentPane.add(btnVoltarAgenda);
+		btnVoltar.setBounds(166, 218, 100, 33);
+		contentPane.add(btnVoltar);
 
 		JButton btnLimparCampos = new JButton("Limpar Campos");
 		btnLimparCampos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				textFieldNomeContato.setText("");
-				textFieldTelefoneContato.setText("");
-				textFieldDescricaoContato.setText("");
+				textFieldNome.setText("");
+				textFieldTelefone.setText("");
+				textFieldDescricao.setText("");
 			}
 		});
 
 		btnLimparCampos.setBounds(287, 218, 125, 33);
 		contentPane.add(btnLimparCampos);
 
-		textFieldNomeContato = new JTextField();
-		textFieldNomeContato.setBounds(85, 23, 327, 20);
-		contentPane.add(textFieldNomeContato);
-		textFieldNomeContato.setColumns(10);
+		textFieldNome = new JTextField();
+		textFieldNome.setBounds(85, 23, 327, 20);
+		contentPane.add(textFieldNome);
+		textFieldNome.setColumns(10);
 
-		textFieldTelefoneContato = new JTextField();
-		textFieldTelefoneContato.setBounds(85, 67, 327, 20);
-		contentPane.add(textFieldTelefoneContato);
-		textFieldTelefoneContato.setColumns(10);
+		textFieldTelefone = new JTextField();
+		textFieldTelefone.setBounds(85, 67, 327, 20);
+		contentPane.add(textFieldTelefone);
+		textFieldTelefone.setColumns(10);
 
-		textFieldDescricaoContato = new JTextField();
-		textFieldDescricaoContato.setBounds(85, 117, 327, 44);
-		contentPane.add(textFieldDescricaoContato);
-		textFieldDescricaoContato.setColumns(10);
+		textFieldDescricao = new JTextField();
+		textFieldDescricao.setBounds(85, 117, 327, 44);
+		contentPane.add(textFieldDescricao);
+		textFieldDescricao.setColumns(10);
 
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setBounds(22, 26, 46, 14);
@@ -139,8 +135,13 @@ public class NovoContato extends JFrame {
 		lblTelefone.setBounds(22, 70, 64, 14);
 		contentPane.add(lblTelefone);
 
-		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o:");
-		lblDescrio.setBounds(22, 117, 64, 14);
-		contentPane.add(lblDescrio);
+		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
+		lblDescricao.setBounds(22, 117, 64, 14);
+		contentPane.add(lblDescricao);
+	}
+	
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
