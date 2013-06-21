@@ -2,6 +2,10 @@ package view;
 
 import java.awt.EventQueue;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,17 +14,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import dao.FactoryConnection;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
+
 @SuppressWarnings("serial")
 public class CadastrarServico extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,28 +50,32 @@ public class CadastrarServico extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 21, 360, 230);
-		contentPane.add(scrollPane);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Servi\u00E7o", "Realizado por", "Valor", "Data"
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 11, 360, 240);
+		contentPane.add(scrollPane);
+
+		final DefaultTableModel modelo = new DefaultTableModel(null,
+				new String[] { "Serviço", "Realizado por", "Valor", "Data"});
+		final JTable table = new JTable(modelo);
+		
+		try {
+			connection = FactoryConnection.getInstance().getConnection();
+			ResultSet rs = connection.createStatement().executeQuery(
+					"Select nome, preco, barbeiro, data from servico;");
+			
+			while (rs.next()) {
+				String[] dados = new String[4];
+				dados[0] = rs.getString("nome");
+				dados[1] = rs.getString("barbeiro");
+				dados[2] = rs.getString("preco");
+				dados[3] = rs.getString("data");
+				modelo.addRow(dados);
 			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				true, true, true, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(1).setPreferredWidth(88);
-		table.getColumnModel().getColumn(2).setPreferredWidth(59);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		scrollPane.setViewportView(table);
 
 		JButton btnNovoContato = new JButton("Novo");
@@ -92,10 +103,10 @@ public class CadastrarServico extends JFrame {
 		btnPesquisarContato.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				dispose();
 				PesquisarServico frame = new PesquisarServico();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+				dispose();
 			}
 		});
 		btnPesquisarContato.setBounds(380, 58, 94, 23);
