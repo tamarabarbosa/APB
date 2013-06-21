@@ -90,6 +90,7 @@ public class NovoServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
+					
 					Servico servico = new Servico();
 					servico.setNome(textServico.getText());
 					servico.setNomeBarbeiro(textBarbeiro.getText());
@@ -102,9 +103,11 @@ public class NovoServico extends JFrame {
 					JOptionPane.showMessageDialog(null, "Servico "
 							+ textServico.getText() + " inserido com sucesso");
 
-					/*dispose();
-					CadastrarServico frame = new CadastrarServico();
-					frame.setVisible(true);*/
+					textServico.setText("");
+					textBarbeiro.setText("");
+					textValor.setText("");
+					textData.setText("");
+					
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e1) {
