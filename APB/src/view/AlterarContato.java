@@ -82,6 +82,11 @@ public class AlterarContato extends JFrame {
 					
 					AgendaController contatoController = AgendaController.getInstance();
 					contatoController.alterar(contato);
+					
+					JOptionPane.showMessageDialog(null, "Contato "
+							+ textFieldNome.getText()
+							+ " foi alterado com sucesso");
+					
 				} catch (BarbeiroException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
@@ -120,9 +125,9 @@ public class AlterarContato extends JFrame {
 		lblTelefone.setBounds(10, 124, 46, 14);
 		contentPane.add(lblTelefone);
 
-		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o:");
-		lblDescrio.setBounds(10, 152, 63, 14);
-		contentPane.add(lblDescrio);
+		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
+		lblDescricao.setBounds(10, 152, 63, 14);
+		contentPane.add(lblDescricao);
 	}
 	
 	private void mostrarMensagemDeErro(String informacao) {

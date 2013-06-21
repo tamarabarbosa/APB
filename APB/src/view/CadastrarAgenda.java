@@ -60,8 +60,8 @@ public class CadastrarAgenda extends JFrame {
 		table.getColumnModel().getColumn(2).setResizable(false);
 		scrollPane.setViewportView(table);
 
-		JButton btnNovoContato = new JButton("Novo");
-		btnNovoContato.addMouseListener(new MouseAdapter() {
+		JButton btnNovo = new JButton("Novo");
+		btnNovo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
@@ -70,11 +70,11 @@ public class CadastrarAgenda extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnNovoContato.setBounds(330, 24, 94, 23);
-		contentPane.add(btnNovoContato);
+		btnNovo.setBounds(330, 24, 94, 23);
+		contentPane.add(btnNovo);
 
-		JButton btnPesquisarContato = new JButton("Pesquisar");
-		btnPesquisarContato.addMouseListener(new MouseAdapter() {
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
@@ -83,8 +83,8 @@ public class CadastrarAgenda extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnPesquisarContato.setBounds(330, 58, 94, 23);
-		contentPane.add(btnPesquisarContato);
+		btnPesquisar.setBounds(330, 58, 94, 23);
+		contentPane.add(btnPesquisar);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
