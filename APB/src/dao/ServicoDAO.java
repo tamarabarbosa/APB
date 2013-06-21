@@ -21,7 +21,7 @@ public class ServicoDAO {
 	
 	public void incluir(Servico servico) throws SQLException{
 		this.updateQuery("INSERT INTO " +
-					"servico (nome, preco, barbeiro, date) VALUES (" +
+					"servico (nome, preco, barbeiro, data) VALUES (" +
 					"\"" + servico.getNome() + "\", " +
 					"\"" + servico.getPreco() + "\", " +
 					"\"" + servico.getNomeBarbeiro()+ "\", " +
