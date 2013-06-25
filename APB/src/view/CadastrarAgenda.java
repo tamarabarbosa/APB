@@ -10,15 +10,20 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import dao.FactoryConnection;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 @SuppressWarnings("serial")
 public class CadastrarAgenda extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
+	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -46,18 +51,35 @@ public class CadastrarAgenda extends JFrame {
 		scrollPane.setBounds(10, 21, 310, 230);
 		contentPane.add(scrollPane);
 
-		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] {
+		final DefaultTableModel modelo = new DefaultTableModel(null, new String[] {
 				"Nome", "Telefone", "Descri\u00E7\u00E3o" }) {
 			boolean[] columnEditables = new boolean[] { false, false, false };
 
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
-		});
+		};
+		final JTable table = new JTable(modelo);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
+		scrollPane.setViewportView(table);
+		
+		try {
+			connection = FactoryConnection.getInstance().getConnection();
+			ResultSet rs = connection.createStatement().executeQuery(
+					"Select nome, telefone, descricao from agenda;");
+			while (rs.next()) {
+				String[] dados = new String[3];
+				dados[0] = rs.getString("nome");
+				dados[1] = rs.getString("telefone");
+				dados[2] = rs.getString("descricao");
+				modelo.addRow(dados);
+			}
+		} catch (SQLException e) {
+
+		}
+
 		scrollPane.setViewportView(table);
 
 		JButton btnNovo = new JButton("Novo");
