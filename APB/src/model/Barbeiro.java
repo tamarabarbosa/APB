@@ -34,21 +34,21 @@ public class Barbeiro {
 		this.telefone = telefone;
 		this.cadeira = cadeira;
 
-		if (this.nome == null) {
-			throw new IllegalArgumentException("Nome não pode ser nulo");
-		}
-		if (this.cpf == null) {
-			throw new IllegalArgumentException("CPF não pode ser nulo");
-		}
-		if (this.rg == null) {
-			throw new IllegalArgumentException("RG não pode ser nulo");
-		}
-		if (this.telefone == null) {
-			throw new IllegalArgumentException("Telefone não pode ser nulo");
-		}
-		if (this.cadeira == null) {
-			throw new IllegalArgumentException("Cadeira não pode ser nulo");
-		}
+		if (this.nome == null)
+			throw new IllegalArgumentException(NOME_BRANCO);
+			
+		if (this.cpf == null)
+			throw new IllegalArgumentException(CPF_BRANCO);
+		
+		if (this.rg == null)
+			throw new IllegalArgumentException(RG_BRANCO);
+		
+		if (this.telefone == null)
+			throw new IllegalArgumentException(TELEFONE_BRANCO);
+		
+		if (this.cadeira == null)
+			throw new IllegalArgumentException(CADEIRA_BRANCO);
+		
 	}
 
 	public String getNome() {
@@ -78,12 +78,12 @@ public class Barbeiro {
 	public void setNome(String nome) throws BarbeiroException,
 			NullPointerException {
 		if (nome == null) {
-			throw new NullPointerException("Nome não pode ser nullo");
+			throw new NullPointerException(NOME_BRANCO);
 		}
 		try {
 			if ("".equals(nome))
 				throw new BarbeiroException(NOME_BRANCO);
-			else if (nome.matches("[a-zA-Z\\s]+"))
+			else if (nome.matches("^[[ ]|\\p{L}*]+$")) //inclui letras acentuadas
 				this.nome = nome;
 			else
 				throw new BarbeiroException(NOME_INVALIDO);
@@ -94,18 +94,14 @@ public class Barbeiro {
 
 	public void setCpf(String cpf) throws BarbeiroException {
 		// Exemplo CPF válido: 493.751.185-84
-
-		if (cpf == null) {
-			throw new NullPointerException("CPF não pode ser nullo");
-		}
-
 		try {
-			if ("".equals(cpf))
+			if (cpf == null)
+				throw new NullPointerException(CPF_BRANCO);
+			else if ("".equals(cpf))
 				throw new BarbeiroException(CPF_BRANCO);
-			else if (cpf
-					.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
-				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]
-						+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
+			else if (cpf.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
+				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1] +
+				cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
 
 			if (this.validarCpf(cpf))
 				this.cpf = cpf;
@@ -120,13 +116,11 @@ public class Barbeiro {
 	}
 
 	public void setRg(String rg) throws BarbeiroException {
-
-		if (rg == null) {
-			throw new NullPointerException("RG não pode ser nullo");
-		}
-
 		try {
-			if ("".equals(rg))
+			if (rg == null)
+				throw new NullPointerException(RG_BRANCO);
+
+			else if ("".equals(rg))
 				throw new BarbeiroException(RG_BRANCO);
 			else if (rg.matches("[\\d]{1,2}.[\\d]{3}.[\\d]{3}"))
 				this.rg = rg;
@@ -140,15 +134,12 @@ public class Barbeiro {
 	}
 
 	public void setTelefone(String telefone) throws BarbeiroException {
-		if (telefone == null) {
-			throw new NullPointerException("Telefone não pode ser nullo");
-		}
-
 		try {
-			if ("".equals(telefone))
+			if (telefone == null)
+				throw new NullPointerException(TELEFONE_BRANCO);
+			else if ("".equals(telefone))
 				throw new BarbeiroException(TELEFONE_BRANCO);
-			else if (telefone
-					.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+			else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 				this.telefone = telefone;
 			else
 				throw new BarbeiroException(TELEFONE_INVALIDO);
@@ -158,13 +149,10 @@ public class Barbeiro {
 	}
 
 	public void setCadeira(String cadeira) throws BarbeiroException {
-
-		if (cadeira == null) {
-			throw new NullPointerException("Cadeira não pode ser nullo");
-		}
-
 		try {
-			if ("".equals(cadeira))
+			if (cadeira == null)
+				throw new NullPointerException(CADEIRA_BRANCO);
+			else if ("".equals(cadeira))
 				throw new BarbeiroException(CADEIRA_BRANCO);
 			else if ("0".equals(cadeira) || cadeira.matches("[a-zA-Z\\s]+"))
 				throw new BarbeiroException(CADEIRA_INVALIDA);

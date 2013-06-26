@@ -78,8 +78,8 @@ public class CadastrarBarbeiro extends JFrame {
 
 		scrollPane.setViewportView(table);
 
-		JButton botaoNovoBarbeirp = new JButton("Novo");
-		botaoNovoBarbeirp.addMouseListener(new MouseAdapter() {
+		JButton botaoNovo = new JButton("Novo");
+		botaoNovo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
@@ -88,8 +88,8 @@ public class CadastrarBarbeiro extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		botaoNovoBarbeirp.setBounds(385, 11, 158, 28);
-		contentPane.add(botaoNovoBarbeirp);
+		botaoNovo.setBounds(385, 11, 158, 28);
+		contentPane.add(botaoNovo);
 		
 		JButton botaoRemover = new JButton("Remover");
 		botaoRemover.addMouseListener(new MouseAdapter() {
