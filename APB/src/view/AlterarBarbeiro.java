@@ -107,7 +107,8 @@ public class AlterarBarbeiro extends JFrame {
 					barbeiro.setTelefone(textFieldTelefone.getText());
 					barbeiro.setCadeira(textFieldCadeira.getText());
 
-					BarbeiroController barbeiroController = BarbeiroController.getInstance();
+					BarbeiroController barbeiroController = BarbeiroController
+							.getInstance();
 					barbeiroController.alterar(barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "

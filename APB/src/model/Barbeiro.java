@@ -33,6 +33,22 @@ public class Barbeiro {
 		this.rg = rg;
 		this.telefone = telefone;
 		this.cadeira = cadeira;
+
+		if (this.nome == null) {
+			throw new IllegalArgumentException("Nome não pode ser nulo");
+		}
+		if (this.cpf == null) {
+			throw new IllegalArgumentException("CPF não pode ser nulo");
+		}
+		if (this.rg == null) {
+			throw new IllegalArgumentException("RG não pode ser nulo");
+		}
+		if (this.telefone == null) {
+			throw new IllegalArgumentException("Telefone não pode ser nulo");
+		}
+		if (this.cadeira == null) {
+			throw new IllegalArgumentException("Cadeira não pode ser nulo");
+		}
 	}
 
 	public String getNome() {
@@ -59,7 +75,11 @@ public class Barbeiro {
 		return servicos;
 	}
 
-	public void setNome(String nome) throws BarbeiroException {
+	public void setNome(String nome) throws BarbeiroException,
+			NullPointerException {
+		if (nome == null) {
+			throw new NullPointerException("Nome não pode ser nullo");
+		}
 		try {
 			if ("".equals(nome))
 				throw new BarbeiroException(NOME_BRANCO);
@@ -73,12 +93,19 @@ public class Barbeiro {
 	}
 
 	public void setCpf(String cpf) throws BarbeiroException {
-		//Exemplo CPF válido: 493.751.185-84
+		// Exemplo CPF válido: 493.751.185-84
+
+		if (cpf == null) {
+			throw new NullPointerException("CPF não pode ser nullo");
+		}
+
 		try {
 			if ("".equals(cpf))
 				throw new BarbeiroException(CPF_BRANCO);
-			else if (cpf.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
-				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]	+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
+			else if (cpf
+					.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
+				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]
+						+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
 
 			if (this.validarCpf(cpf))
 				this.cpf = cpf;
@@ -93,6 +120,11 @@ public class Barbeiro {
 	}
 
 	public void setRg(String rg) throws BarbeiroException {
+
+		if (rg == null) {
+			throw new NullPointerException("RG não pode ser nullo");
+		}
+
 		try {
 			if ("".equals(rg))
 				throw new BarbeiroException(RG_BRANCO);
@@ -108,10 +140,15 @@ public class Barbeiro {
 	}
 
 	public void setTelefone(String telefone) throws BarbeiroException {
+		if (telefone == null) {
+			throw new NullPointerException("Telefone não pode ser nullo");
+		}
+
 		try {
 			if ("".equals(telefone))
 				throw new BarbeiroException(TELEFONE_BRANCO);
-			else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+			else if (telefone
+					.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 				this.telefone = telefone;
 			else
 				throw new BarbeiroException(TELEFONE_INVALIDO);
@@ -121,6 +158,11 @@ public class Barbeiro {
 	}
 
 	public void setCadeira(String cadeira) throws BarbeiroException {
+
+		if (cadeira == null) {
+			throw new NullPointerException("Cadeira não pode ser nullo");
+		}
+
 		try {
 			if ("".equals(cadeira))
 				throw new BarbeiroException(CADEIRA_BRANCO);
@@ -128,7 +170,7 @@ public class Barbeiro {
 				throw new BarbeiroException(CADEIRA_INVALIDA);
 			else if (cadeira.matches("^[0-9]*$"))
 				this.cadeira = cadeira;
-			else 
+			else
 				throw new BarbeiroException(CADEIRA_INVALIDA);
 		} catch (IllegalArgumentException e) {
 			throw new BarbeiroException(CADEIRA_INVALIDA);
@@ -153,7 +195,8 @@ public class Barbeiro {
 
 			d1 = d1 + (11 - nCount) * digitoCPF;
 			d2 = d2 + (12 - nCount) * digitoCPF;
-		};
+		}
+		;
 
 		resto = d1 % 11;
 
