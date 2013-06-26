@@ -45,14 +45,14 @@ public class CadastrarBarbeiro extends JFrame {
 	public void inicializarComponentes() {
 		setTitle("Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 756, 543);
+		setBounds(100, 100, 566, 345);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 506, 482);
+		scrollPane.setBounds(10, 11, 365, 286);
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
@@ -88,23 +88,8 @@ public class CadastrarBarbeiro extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		botaoNovoBarbeirp.setBounds(526, 11, 204, 43);
+		botaoNovoBarbeirp.setBounds(385, 11, 158, 28);
 		contentPane.add(botaoNovoBarbeirp);
-
-		JButton botaoConcluir = new JButton("Voltar");
-		botaoConcluir.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-				TelaOpcoes frame = new TelaOpcoes();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-
-				
-			}
-		});
-		botaoConcluir.setBounds(526, 450, 204, 43);
-		contentPane.add(botaoConcluir);
 		
 		JButton botaoRemover = new JButton("Remover");
 		botaoRemover.addMouseListener(new MouseAdapter() {
@@ -116,21 +101,30 @@ public class CadastrarBarbeiro extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		botaoRemover.setBounds(526, 65, 204, 43);
+		botaoRemover.setBounds(385, 50, 158, 28);
 		contentPane.add(botaoRemover);
 
-	
-		botaoConcluir.setBounds(526, 450, 204, 43);
-		contentPane.add(botaoConcluir);
-
-		JButton btnNewButton = new JButton("Pesquisar");
-		btnNewButton.addMouseListener(new MouseAdapter() {
+		JButton botaoPesquisar = new JButton("Pesquisar");
+		botaoPesquisar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 			}
 		});
-		btnNewButton.setBounds(526, 65, 204, 43);
-		contentPane.add(btnNewButton);
+		botaoPesquisar.setBounds(385, 89, 158, 28);
+		contentPane.add(botaoPesquisar);
+		
+		JButton botaoVoltar = new JButton("Voltar");
+		botaoVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				TelaOpcoes frame = new TelaOpcoes();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		botaoVoltar.setBounds(385, 267, 158, 28);
+		contentPane.add(botaoVoltar);
 	}
 	
 	private void mostrarMensagemDeErro(String informacao) {
