@@ -120,7 +120,19 @@ public class BarbeiroTeste {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
+		
+	@Test(expected = AssertionError.class)
+	public void cpfNaoPodePassarQuandoInvalido(){
+			Barbeiro barbeiro = new Barbeiro();
+			try {
+				barbeiro.setCpf("000000000");
+				fail();
+			} catch (BarbeiroException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+	}
+
 
 }

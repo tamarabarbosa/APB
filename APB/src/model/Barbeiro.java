@@ -92,13 +92,13 @@ public class Barbeiro {
 		}
 	}
 
-	public void setCpf(String cpf) throws BarbeiroException {
+	public void setCpf(String cpf) throws BarbeiroException{
 		// Exemplo CPF válido: 493.751.185-84
 		try {
 			if (cpf == null)
 				throw new NullPointerException(CPF_BRANCO);
 			else if ("".equals(cpf))
-				throw new BarbeiroException(CPF_BRANCO);
+				throw new AssertionError(CPF_BRANCO);
 			else if (cpf.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
 				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1] +
 				cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
@@ -111,6 +111,8 @@ public class Barbeiro {
 		} catch (StringIndexOutOfBoundsException e) {
 			throw new BarbeiroException(CPF_INVALIDO);
 		} catch (NumberFormatException e) {
+			throw new BarbeiroException(CPF_INVALIDO);
+		}	catch (AssertionError e){
 			throw new BarbeiroException(CPF_INVALIDO);
 		}
 	}
