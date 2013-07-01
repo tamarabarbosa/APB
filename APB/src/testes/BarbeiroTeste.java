@@ -3,18 +3,17 @@ package testes;
 import static org.junit.Assert.*;
 import exception.BarbeiroException;
 import model.Barbeiro;
-
 import org.junit.Test;
 
 public class BarbeiroTeste {
 
+	Barbeiro barbeiro = new Barbeiro();
+
 	@Test(expected = NullPointerException.class)
 	public void barbeiroNaoPodePossuirNomeNuloPassandoPeloSetter() {
-		Barbeiro barbeiro = new Barbeiro();
 		try {
 			barbeiro.setNome(null);
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -22,11 +21,9 @@ public class BarbeiroTeste {
 
 	@Test(expected = NullPointerException.class)
 	public void barbeiroNaoPodePossuirCPFNuloPassandoPeloSetter() {
-		Barbeiro barbeiro = new Barbeiro();
 		try {
 			barbeiro.setCpf(null);
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -34,11 +31,9 @@ public class BarbeiroTeste {
 
 	@Test(expected = NullPointerException.class)
 	public void barbeiroNaoPodePossuirRGNuloPassandoPeloSetter() {
-		Barbeiro barbeiro = new Barbeiro();
 		try {
 			barbeiro.setRg(null);
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -46,11 +41,9 @@ public class BarbeiroTeste {
 
 	@Test(expected = NullPointerException.class)
 	public void barbeiroNaoPodePossuirTelefoneNuloPassandoPeloSetter() {
-		Barbeiro barbeiro = new Barbeiro();
 		try {
 			barbeiro.setTelefone(null);
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -58,11 +51,9 @@ public class BarbeiroTeste {
 
 	@Test(expected = NullPointerException.class)
 	public void barbeiroNaoPodePossuirCadeiraNuloPassandoPeloSetter() {
-		Barbeiro barbeiro = new Barbeiro();
 		try {
 			barbeiro.setCadeira(null);
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -73,7 +64,6 @@ public class BarbeiroTeste {
 		try {
 			new Barbeiro(null, "493.751.185-84", "2258256", "3389-9085", "5");
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -84,7 +74,6 @@ public class BarbeiroTeste {
 		try {
 			new Barbeiro("Alessandro", null, "2258256", "3389-9085", "5");
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -95,7 +84,6 @@ public class BarbeiroTeste {
 		try {
 			new Barbeiro("Alessandro", "493.751.185-84", null, "3389-9085", "5");
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -106,7 +94,6 @@ public class BarbeiroTeste {
 		try {
 			new Barbeiro("Alessandro", "493.751.185-84", "2258256", null, "5");
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -114,25 +101,44 @@ public class BarbeiroTeste {
 	@Test(expected = IllegalArgumentException.class)
 	public void contrutorDeBarbeiroNaoPodePassarComCadeiraNulo() {
 		try {
-			new Barbeiro("Alessandro", "493.751.185-84", "2258256",
-					"3389-9085", null);
+			new Barbeiro("Alessandro", "493.751.185-84", "2258256",	"3389-9085", null);
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-		
+
 	@Test(expected = AssertionError.class)
-	public void cpfNaoPodePassarQuandoInvalido(){
-			Barbeiro barbeiro = new Barbeiro();
-			try {
-				barbeiro.setCpf("000000000");
-				fail();
-			} catch (BarbeiroException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+	public void nomeInvalido() {
+		try {
+			barbeiro.setNome("M4R14");
+			fail();
+		} catch (BarbeiroException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void cpfNaoPodePassarQuandoInvalido() {
+		try {
+			barbeiro.setCpf("000");
+			fail();
+		} catch (BarbeiroException e) {
+			e.printStackTrace();
+		}
 	}
 
+	@Test(expected = AssertionError.class)
+	public void RgInvalido() {
+		try {
+			barbeiro.setRg("2.222.22S");
+			fail();
+		} catch (BarbeiroException e) {
+			e.printStackTrace();
+		} catch (AssertionError e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 }

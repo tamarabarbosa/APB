@@ -47,9 +47,12 @@ public class Servico {
 
 	public void setNome(String nome) throws ServicoException {
 		try {
-			if ("".equals(nome))
+			if (nome == null)
+				throw new NullPointerException(NOME_BRANCO);
+			else if ("".equals(nome))
 				throw new ServicoException(NOME_BRANCO);
-			else if (nome.matches("[a-zA-Z\\s]+"))
+			else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras
+														// acentuadas
 				this.nome = nome;
 			else
 				throw new ServicoException(NOME_INVALIDO);
@@ -60,9 +63,11 @@ public class Servico {
 
 	public void setNomeBarbeiro(String nomeBarbeiro) throws ServicoException {
 		try {
-			if ("".equals(nomeBarbeiro))
+			if (nome == null)
+				throw new NullPointerException(BARBEIRO_BRANCO);
+			else if ("".equals(nomeBarbeiro))
 				throw new ServicoException(BARBEIRO_BRANCO);
-			else if (nomeBarbeiro.matches("[a-zA-Z\\s]+"))
+			else if (nomeBarbeiro.matches("^[[ ]|\\p{L}*]+$"))
 				this.nomeBarbeiro = nomeBarbeiro;
 			else
 				throw new ServicoException(BARBEIRO_INVALIDO);
@@ -73,7 +78,9 @@ public class Servico {
 
 	public void setPreco(String preco) throws ServicoException {
 		try {
-			if ("".equals(preco))
+			if (preco == null)
+				throw new NullPointerException(PRECO_INVALIDO);
+			else if ("".equals(preco))
 				throw new ServicoException(PRECO_BRANCO);
 			else if (preco.matches("[\\d]{1,3},[\\d]{1,2}"))
 				this.preco = preco;
@@ -86,7 +93,9 @@ public class Servico {
 
 	public void setData(String data) throws ServicoException {
 		try {
-			if ("".equals(data))
+			if (data == null)
+				throw new NullPointerException(DATA_INVALIDA);
+			else if ("".equals(data))
 				throw new ServicoException(DATA_BRANCO);
 			else if (data.matches("[\\d]{2}/[\\d]{2}/[\\d]{2,4}"))
 				this.data = data;

@@ -74,14 +74,16 @@ public class NovoServico extends JFrame {
 		textData.setBounds(312, 84, 106, 20);
 		contentPane.add(textData);
 		textData.setColumns(10);
-		
+
 		JComboBox comboBoxBarbeiro = new JComboBox();
-		comboBoxBarbeiro.setModel(new DefaultComboBoxModel(new String[] {"Selecione um barbeiro"}));
+		comboBoxBarbeiro.setModel(new DefaultComboBoxModel(new String[] { "Selecione um barbeiro" }));
 		comboBoxBarbeiro.setBounds(129, 53, 289, 20);
 		contentPane.add(comboBoxBarbeiro);
-		
+
 		final JComboBox comboBoxServico = new JComboBox();
-		comboBoxServico.setModel(new DefaultComboBoxModel(new String[] {"Selecione um tipo de servi\u00E7o", "Barba", "Corte Adulto", "Corte Infantil"}));
+		comboBoxServico.setModel(new DefaultComboBoxModel(new String[] {
+				"Selecione um tipo de servi\u00E7o", "Barba", "Corte Adulto",
+				"Corte Infantil" }));
 		comboBoxServico.setMaximumRowCount(4);
 		comboBoxServico.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxServico);
@@ -91,7 +93,6 @@ public class NovoServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					
 					Servico servico = new Servico();
 					servico.setNome(comboBoxServico.get);
 					servico.setNomeBarbeiro(textBarbeiro.getText());
@@ -102,12 +103,12 @@ public class NovoServico extends JFrame {
 					servicoController.inserir(servico);
 
 					JOptionPane.showMessageDialog(null, "Servico "
-							+ comboBoxServico.getSelectedIndex() + " inserido com sucesso");
-
+							+ comboBoxServico.getSelectedIndex()
+							+ " inserido com sucesso");
 
 					textValor.setText("");
 					textData.setText("");
-					
+
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e1) {
@@ -146,6 +147,6 @@ public class NovoServico extends JFrame {
 		});
 		botaoVoltar.setBounds(329, 129, 89, 23);
 		contentPane.add(botaoVoltar);
-		
+
 	}
 }

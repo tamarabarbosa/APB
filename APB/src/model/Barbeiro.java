@@ -77,11 +77,10 @@ public class Barbeiro {
 
 	public void setNome(String nome) throws BarbeiroException,
 			NullPointerException {
-		if (nome == null) {
-			throw new NullPointerException(NOME_BRANCO);
-		}
 		try {
-			if ("".equals(nome))
+			if (nome == null)
+				throw new NullPointerException(NOME_BRANCO);
+			else if ("".equals(nome))
 				throw new BarbeiroException(NOME_BRANCO);
 			else if (nome.matches("^[[ ]|\\p{L}*]+$")) //inclui letras acentuadas
 				this.nome = nome;
