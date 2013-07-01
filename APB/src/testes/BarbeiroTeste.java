@@ -101,7 +101,8 @@ public class BarbeiroTeste {
 	@Test(expected = IllegalArgumentException.class)
 	public void contrutorDeBarbeiroNaoPodePassarComCadeiraNulo() {
 		try {
-			new Barbeiro("Alessandro", "493.751.185-84", "2258256",	"3389-9085", null);
+			new Barbeiro("Alessandro", "493.751.185-84", "2258256",
+					"3389-9085", null);
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
@@ -116,7 +117,6 @@ public class BarbeiroTeste {
 			e.printStackTrace();
 		}
 	}
-<<<<<<< HEAD
 
 	@Test(expected = AssertionError.class)
 	public void cpfNaoPodePassarQuandoInvalido() {
@@ -126,21 +126,10 @@ public class BarbeiroTeste {
 			fail();
 		} catch (BarbeiroException e) {
 			// TODO Auto-generated catch block
-=======
-	
-	@Test(expected = AssertionError.class)
-	public void cpfNaoPodePassarQuandoInvalido() {
-		try {
-			barbeiro.setCpf("000");
-			fail();
-		} catch (BarbeiroException e) {
->>>>>>> 8a7445c1c0d7accee2d31fb6ecdf26e76b8886cb
-			e.printStackTrace();
 		}
 	}
 
 	@Test(expected = AssertionError.class)
-<<<<<<< HEAD
 	public void nomeNãoPodeConterNumeros() {
 		Barbeiro barbeiro = new Barbeiro();
 
@@ -168,11 +157,11 @@ public class BarbeiroTeste {
 		}
 
 	}
-	
+
 	@Test(expected = AssertionError.class)
-	public void numeroDaCadeiraNaoPoseSerUmaLetra(){
+	public void numeroDaCadeiraNaoPoseSerUmaLetra() {
 		Barbeiro barbeiro = new Barbeiro();
-		
+
 		try {
 			barbeiro.setCadeira("asd");
 		} catch (BarbeiroException e) {
@@ -180,11 +169,11 @@ public class BarbeiroTeste {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test(expected = AssertionError.class)
-	public void numeroDoTelefoneNaoPodeConterLetras(){
+	public void numeroDoTelefoneNaoPodeConterLetras() {
 		Barbeiro barbeiro = new Barbeiro();
-		
+
 		try {
 			barbeiro.setTelefone("65465a4");
 		} catch (BarbeiroException e) {
@@ -192,19 +181,5 @@ public class BarbeiroTeste {
 			e.printStackTrace();
 		}
 	}
-=======
-	public void RgInvalido() {
-		try {
-			barbeiro.setRg("2.222.22S");
-			fail();
-		} catch (BarbeiroException e) {
-			e.printStackTrace();
-		} catch (AssertionError e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
->>>>>>> 8a7445c1c0d7accee2d31fb6ecdf26e76b8886cb
 
 }
