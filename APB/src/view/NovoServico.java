@@ -94,8 +94,8 @@ public class NovoServico extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					Servico servico = new Servico();
-					servico.setNome(comboBoxServico.get);
-					servico.setNomeBarbeiro(textBarbeiro.getText());
+				//	servico.setNome(comboBoxServico.get);
+				//servico.setNomeBarbeiro(textBarbeiro.getText());
 					servico.setPreco(textValor.getText());
 					servico.setData(textData.getText());
 
