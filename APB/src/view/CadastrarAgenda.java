@@ -1,11 +1,10 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -14,10 +13,10 @@ import dao.FactoryConnection;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 @SuppressWarnings("serial")
 public class CadastrarAgenda extends JFrame {
@@ -51,20 +50,21 @@ public class CadastrarAgenda extends JFrame {
 		scrollPane.setBounds(10, 21, 310, 230);
 		contentPane.add(scrollPane);
 
-		final DefaultTableModel modelo = new DefaultTableModel(null, new String[] {
-				"Nome", "Telefone", "Descri\u00E7\u00E3o" }) {
+		final DefaultTableModel modelo = new DefaultTableModel(null,
+				new String[] { "Nome", "Telefone", "Descri\u00E7\u00E3o" }) {
 			boolean[] columnEditables = new boolean[] { false, false, false };
 
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		};
+		
 		final JTable table = new JTable(modelo);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		scrollPane.setViewportView(table);
-		
+
 		try {
 			connection = FactoryConnection.getInstance().getConnection();
 			ResultSet rs = connection.createStatement().executeQuery(
@@ -77,7 +77,7 @@ public class CadastrarAgenda extends JFrame {
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
-
+			mostrarMensagemDeErro(e.getMessage());
 		}
 
 		scrollPane.setViewportView(table);
@@ -120,5 +120,10 @@ public class CadastrarAgenda extends JFrame {
 		});
 		btnVoltar.setBounds(330, 228, 94, 23);
 		contentPane.add(btnVoltar);
+	}
+
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

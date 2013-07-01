@@ -17,13 +17,13 @@ import control.ServicoController;
 import exception.ServicoException;
 import model.Servico;
 import java.sql.SQLException;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 @SuppressWarnings("serial")
 public class NovoServico extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textServico;
-	private JTextField textBarbeiro;
 	private JTextField textValor;
 	private JTextField textData;
 
@@ -49,11 +49,6 @@ public class NovoServico extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		textServico = new JTextField();
-		textServico.setBounds(129, 22, 289, 20);
-		contentPane.add(textServico);
-		textServico.setColumns(10);
-
 		JLabel lblServico = new JLabel("Servi\u00E7o:");
 		lblServico.setBounds(27, 25, 46, 14);
 		contentPane.add(lblServico);
@@ -70,11 +65,6 @@ public class NovoServico extends JFrame {
 		lblData.setBounds(267, 87, 46, 14);
 		contentPane.add(lblData);
 
-		textBarbeiro = new JTextField();
-		textBarbeiro.setBounds(129, 53, 289, 20);
-		contentPane.add(textBarbeiro);
-		textBarbeiro.setColumns(10);
-
 		textValor = new JTextField();
 		textValor.setBounds(129, 84, 114, 20);
 		contentPane.add(textValor);
@@ -85,14 +75,26 @@ public class NovoServico extends JFrame {
 		contentPane.add(textData);
 		textData.setColumns(10);
 
+		JComboBox comboBoxBarbeiro = new JComboBox();
+		comboBoxBarbeiro.setModel(new DefaultComboBoxModel(new String[] { "Selecione um barbeiro" }));
+		comboBoxBarbeiro.setBounds(129, 53, 289, 20);
+		contentPane.add(comboBoxBarbeiro);
+
+		final JComboBox comboBoxServico = new JComboBox();
+		comboBoxServico.setModel(new DefaultComboBoxModel(new String[] {
+				"Selecione um tipo de servi\u00E7o", "Barba", "Corte Adulto",
+				"Corte Infantil" }));
+		comboBoxServico.setMaximumRowCount(4);
+		comboBoxServico.setBounds(129, 22, 289, 20);
+		contentPane.add(comboBoxServico);
+
 		JButton botaoSalvar = new JButton("Salvar");
 		botaoSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					
 					Servico servico = new Servico();
-					servico.setNome(textServico.getText());
+					servico.setNome(comboBoxServico.get);
 					servico.setNomeBarbeiro(textBarbeiro.getText());
 					servico.setPreco(textValor.getText());
 					servico.setData(textData.getText());
@@ -101,13 +103,12 @@ public class NovoServico extends JFrame {
 					servicoController.inserir(servico);
 
 					JOptionPane.showMessageDialog(null, "Servico "
-							+ textServico.getText() + " inserido com sucesso");
+							+ comboBoxServico.getSelectedIndex()
+							+ " inserido com sucesso");
 
-					textServico.setText("");
-					textBarbeiro.setText("");
 					textValor.setText("");
 					textData.setText("");
-					
+
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e1) {
@@ -127,9 +128,7 @@ public class NovoServico extends JFrame {
 		botaoLimparCampos.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				textServico.setText("");
 				textValor.setText("");
-				textBarbeiro.setText("");
 				textData.setText("");
 			}
 		});
@@ -148,5 +147,6 @@ public class NovoServico extends JFrame {
 		});
 		botaoVoltar.setBounds(329, 129, 89, 23);
 		contentPane.add(botaoVoltar);
+
 	}
 }

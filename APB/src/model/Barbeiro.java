@@ -75,12 +75,19 @@ public class Barbeiro {
 		return servicos;
 	}
 
+<<<<<<< HEAD
 	public void setNome(String nome) throws BarbeiroException {
 		if (nome == null) {
 			throw new NullPointerException(NOME_BRANCO);
 		}
+=======
+	public void setNome(String nome) throws BarbeiroException,
+			NullPointerException {
+>>>>>>> 8a7445c1c0d7accee2d31fb6ecdf26e76b8886cb
 		try {
-			if ("".equals(nome))
+			if (nome == null)
+				throw new NullPointerException(NOME_BRANCO);
+			else if ("".equals(nome))
 				throw new BarbeiroException(NOME_BRANCO);
 			else if (nome.matches("^[[ ]|\\p{L}*]+$")) //inclui letras acentuadas
 				this.nome = nome;
