@@ -75,8 +75,7 @@ public class Barbeiro {
 		return servicos;
 	}
 
-	public void setNome(String nome) throws BarbeiroException,
-			NullPointerException {
+	public void setNome(String nome) throws BarbeiroException {
 		if (nome == null) {
 			throw new NullPointerException(NOME_BRANCO);
 		}
@@ -86,7 +85,7 @@ public class Barbeiro {
 			else if (nome.matches("^[[ ]|\\p{L}*]+$")) //inclui letras acentuadas
 				this.nome = nome;
 			else
-				throw new BarbeiroException(NOME_INVALIDO);
+				throw new AssertionError(NOME_INVALIDO);
 		} catch (StringIndexOutOfBoundsException e) {
 			throw new BarbeiroException(NOME_INVALIDO);
 		}
@@ -127,7 +126,7 @@ public class Barbeiro {
 			else if (rg.matches("[\\d]{1,2}.[\\d]{3}.[\\d]{3}"))
 				this.rg = rg;
 			else
-				throw new BarbeiroException(RG_INVALIDO);
+				throw new AssertionError(RG_INVALIDO);
 		} catch (StringIndexOutOfBoundsException e) {
 			throw new BarbeiroException(RG_INVALIDO);
 		} catch (NumberFormatException e) {
@@ -144,7 +143,7 @@ public class Barbeiro {
 			else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 				this.telefone = telefone;
 			else
-				throw new BarbeiroException(TELEFONE_INVALIDO);
+				throw new AssertionError(TELEFONE_INVALIDO);
 		} catch (StringIndexOutOfBoundsException e) {
 			throw new BarbeiroException(TELEFONE_INVALIDO);
 		}
@@ -157,7 +156,7 @@ public class Barbeiro {
 			else if ("".equals(cadeira))
 				throw new BarbeiroException(CADEIRA_BRANCO);
 			else if ("0".equals(cadeira) || cadeira.matches("[a-zA-Z\\s]+"))
-				throw new BarbeiroException(CADEIRA_INVALIDA);
+				throw new AssertionError(CADEIRA_INVALIDA);
 			else if (cadeira.matches("^[0-9]*$"))
 				this.cadeira = cadeira;
 			else

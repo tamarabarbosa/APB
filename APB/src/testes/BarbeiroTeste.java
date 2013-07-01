@@ -121,18 +121,70 @@ public class BarbeiroTeste {
 			e.printStackTrace();
 		}
 	}
-		
+
 	@Test(expected = AssertionError.class)
-	public void cpfNaoPodePassarQuandoInvalido(){
-			Barbeiro barbeiro = new Barbeiro();
-			try {
-				barbeiro.setCpf("000000000");
-				fail();
-			} catch (BarbeiroException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+	public void cpfNaoPodePassarQuandoInvalido() {
+		Barbeiro barbeiro = new Barbeiro();
+		try {
+			barbeiro.setCpf("000000000");
+			fail();
+		} catch (BarbeiroException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
+	@Test(expected = AssertionError.class)
+	public void nomeNãoPodeConterNumeros() {
+		Barbeiro barbeiro = new Barbeiro();
+
+		try {
+			barbeiro.setNome("456");
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BarbeiroException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test(expected = AssertionError.class)
+	public void rgNaoPodeConterLetras() {
+		Barbeiro barbeiro = new Barbeiro();
+
+		try {
+			barbeiro.setRg("4654654ASD");
+		} catch (BarbeiroException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void numeroDaCadeiraNaoPoseSerUmaLetra(){
+		Barbeiro barbeiro = new Barbeiro();
+		
+		try {
+			barbeiro.setCadeira("asd");
+		} catch (BarbeiroException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test(expected = AssertionError.class)
+	public void numeroDoTelefoneNaoPodeConterLetras(){
+		Barbeiro barbeiro = new Barbeiro();
+		
+		try {
+			barbeiro.setTelefone("65465a4");
+		} catch (BarbeiroException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
