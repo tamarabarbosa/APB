@@ -254,10 +254,9 @@ public class BarbeiroTeste {
 			e.printStackTrace();
 		}
 
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
+		BarbeiroController barbeiroController = BarbeiroController.getInstance();
 		try {
-			barbeiroController.excluir(barbeiro);
+			barbeiroController.alterar(barbeiro);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
