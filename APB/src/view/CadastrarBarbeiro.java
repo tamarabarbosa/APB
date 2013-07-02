@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
 import dao.FactoryConnection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class CadastrarBarbeiro extends JFrame {
@@ -92,6 +94,10 @@ public class CadastrarBarbeiro extends JFrame {
 		contentPane.add(botaoNovo);
 		
 		JButton botaoRemover = new JButton("Remover");
+		botaoRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		botaoRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
@@ -104,14 +110,18 @@ public class CadastrarBarbeiro extends JFrame {
 		botaoRemover.setBounds(385, 50, 158, 28);
 		contentPane.add(botaoRemover);
 
-		JButton botaoPesquisar = new JButton("Pesquisar");
-		botaoPesquisar.addMouseListener(new MouseAdapter() {
+		JButton botaoAlterar = new JButton("Alterar");
+		botaoAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				AlterarBarbeiro frame = new AlterarBarbeiro();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
 			}
 		});
-		botaoPesquisar.setBounds(385, 89, 158, 28);
-		contentPane.add(botaoPesquisar);
+		botaoAlterar.setBounds(385, 89, 158, 28);
+		contentPane.add(botaoAlterar);
 		
 		JButton botaoVoltar = new JButton("Voltar");
 		botaoVoltar.addMouseListener(new MouseAdapter() {
