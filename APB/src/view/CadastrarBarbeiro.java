@@ -17,8 +17,6 @@ import javax.swing.table.DefaultTableModel;
 import dao.FactoryConnection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class CadastrarBarbeiro extends JFrame {
@@ -60,7 +58,7 @@ public class CadastrarBarbeiro extends JFrame {
 		final DefaultTableModel modelo = new DefaultTableModel(null,
 				new String[] { "Nome", "CPF", "RG", "Telefone", "Cadeira" });
 		final JTable table = new JTable(modelo);
-		
+
 		try {
 			connection = FactoryConnection.getInstance().getConnection();
 			ResultSet rs = connection.createStatement().executeQuery(
@@ -92,17 +90,13 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 		botaoNovo.setBounds(385, 11, 158, 28);
 		contentPane.add(botaoNovo);
-		
+
 		JButton botaoRemover = new JButton("Remover");
-		botaoRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		botaoRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				RemoverBarbeiro frame =  new RemoverBarbeiro();
+				RemoverBarbeiro frame = new RemoverBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -122,7 +116,7 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 		botaoAlterar.setBounds(385, 89, 158, 28);
 		contentPane.add(botaoAlterar);
-		
+
 		JButton botaoVoltar = new JButton("Voltar");
 		botaoVoltar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -136,7 +130,7 @@ public class CadastrarBarbeiro extends JFrame {
 		botaoVoltar.setBounds(385, 267, 158, 28);
 		contentPane.add(botaoVoltar);
 	}
-	
+
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);

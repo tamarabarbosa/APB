@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import dao.FactoryConnection;
 import exception.BarbeiroException;
 import model.Barbeiro;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import control.BarbeiroController;
@@ -17,6 +20,63 @@ public class BarbeiroTeste {
 
 	Barbeiro barbeiro = new Barbeiro();
 	private Connection connection;
+
+	@Before
+	public void setUp() {
+		Barbeiro barbeiro = new Barbeiro();
+		try {
+			barbeiro.setNome("Alessandro");
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		} catch (BarbeiroException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			barbeiro.setRg("418757896");
+			barbeiro.setTelefone("3389-9085");
+			barbeiro.setCpf("02919594150");
+		} catch (BarbeiroException e) {
+			e.printStackTrace();
+		}
+
+		BarbeiroController barbeiroController = BarbeiroController
+				.getInstance();
+		try {
+			barbeiroController.inserir(barbeiro);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@After
+	public void tearDown() {
+		Barbeiro barbeiro = new Barbeiro();
+		try {
+			barbeiro.setNome("Alessandro");
+		} catch (NullPointerException e) {
+
+			e.printStackTrace();
+		} catch (BarbeiroException e) {
+			e.printStackTrace();
+		}
+		try {
+			barbeiro.setRg("418757896");
+			barbeiro.setTelefone("3389-9085");
+			barbeiro.setCpf("02919594150");
+		} catch (BarbeiroException e) {
+			e.printStackTrace();
+		}
+		BarbeiroController barbeiroController = BarbeiroController
+				.getInstance();
+		try {
+			barbeiroController.excluir(barbeiro);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	@Test(expected = NullPointerException.class)
 	public void barbeiroNaoPodePossuirNomeNuloPassandoPeloSetter() {
@@ -124,7 +184,6 @@ public class BarbeiroTeste {
 			barbeiro.setCpf("000000000");
 			fail();
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 		}
 	}
 
@@ -135,10 +194,8 @@ public class BarbeiroTeste {
 		try {
 			barbeiro.setNome("456");
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -151,7 +208,6 @@ public class BarbeiroTeste {
 		try {
 			barbeiro.setRg("4654654ASD");
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -164,7 +220,6 @@ public class BarbeiroTeste {
 		try {
 			barbeiro.setCadeira("asd");
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -176,65 +231,10 @@ public class BarbeiroTeste {
 		try {
 			barbeiro.setTelefone("65465a4");
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	@Test
-	public void umBarbeiroDeveSerCadastrado() {
-		Barbeiro barbeiro = new Barbeiro();
-		String nome = null;
-		try {
-			barbeiro.setNome("Alessandro");
-		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			barbeiro.setCpf("02919594150");
-		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			barbeiro.setRg("418757896");
-		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			barbeiro.setTelefone("3389-9085");
-		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
-		try {
-			barbeiroController.inserir(barbeiro);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery(
-					"SELECT nome FROM barbeiro WHERE nome LIKE"
-							+ barbeiro.getNome());
-			nome = rs.getString("nome");
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		assertEquals(nome, nome);
-	}
-	
 	@Test
 	public void umBarbeiroDeveSerAlterado() {
 		Barbeiro barbeiro = new Barbeiro();
@@ -242,28 +242,15 @@ public class BarbeiroTeste {
 		try {
 			barbeiro.setNome("Luciano");
 		} catch (NullPointerException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			barbeiro.setCpf("02919594150");
-		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
 			barbeiro.setRg("418757896");
-		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
 			barbeiro.setTelefone("3389-9085");
+			barbeiro.setCpf("02919594150");
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -272,7 +259,6 @@ public class BarbeiroTeste {
 		try {
 			barbeiroController.excluir(barbeiro);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		try {
@@ -282,11 +268,10 @@ public class BarbeiroTeste {
 							+ barbeiro.getNome());
 			nome = rs.getString("nome");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		assertEquals(nome, nome);
+		assertEquals("Alessandro", nome);
 	}
 
 }
