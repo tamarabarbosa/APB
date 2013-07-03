@@ -16,9 +16,15 @@ import java.awt.event.MouseEvent;
 import control.ServicoController;
 import exception.ServicoException;
 import model.Servico;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+
+import dao.FactoryConnection;
+
 
 @SuppressWarnings("serial")
 public class NovoServico extends JFrame {
@@ -26,6 +32,7 @@ public class NovoServico extends JFrame {
 	private JPanel contentPane;
 	private JTextField textValor;
 	private JTextField textData;
+	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -75,7 +82,7 @@ public class NovoServico extends JFrame {
 		contentPane.add(textData);
 		textData.setColumns(10);
 
-		JComboBox comboBoxBarbeiro = new JComboBox();
+		final JComboBox comboBoxBarbeiro = new JComboBox();
 		comboBoxBarbeiro.setModel(new DefaultComboBoxModel(new String[] { "Selecione um barbeiro" }));
 		comboBoxBarbeiro.setBounds(129, 53, 289, 20);
 		contentPane.add(comboBoxBarbeiro);
@@ -87,6 +94,19 @@ public class NovoServico extends JFrame {
 		comboBoxServico.setMaximumRowCount(4);
 		comboBoxServico.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxServico);
+		
+		try{
+			Connection connection = FactoryConnection.getInstance().getConnection();
+			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT nome FROM barbeiro;");
+			ResultSet rs = pst.executeQuery();
+			
+			while (rs.next()){
+				String nome = rs.getString("nome");
+				comboBoxBarbeiro.addItem(nome);
+			}
+		 } catch (SQLException e){
+			 
+		 }
 
 		JButton botaoSalvar = new JButton("Salvar");
 		botaoSalvar.addMouseListener(new MouseAdapter() {
@@ -94,8 +114,8 @@ public class NovoServico extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					Servico servico = new Servico();
-				//	servico.setNome(comboBoxServico.get);
-				//servico.setNomeBarbeiro(textBarbeiro.getText());
+					servico.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
+					servico.setNome(comboBoxServico.getSelectedItem().toString());
 					servico.setPreco(textValor.getText());
 					servico.setData(textData.getText());
 
@@ -103,7 +123,7 @@ public class NovoServico extends JFrame {
 					servicoController.inserir(servico);
 
 					JOptionPane.showMessageDialog(null, "Servico "
-							+ comboBoxServico.getSelectedIndex()
+							+ comboBoxServico.getSelectedItem().toString()
 							+ " inserido com sucesso");
 
 					textValor.setText("");
@@ -147,6 +167,5 @@ public class NovoServico extends JFrame {
 		});
 		botaoVoltar.setBounds(329, 129, 89, 23);
 		contentPane.add(botaoVoltar);
-
-	}
+		}
 }

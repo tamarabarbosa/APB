@@ -63,7 +63,7 @@ public class Servico {
 
 	public void setNomeBarbeiro(String nomeBarbeiro) throws ServicoException {
 		try {
-			if (nome == null)
+			if (nomeBarbeiro == null)
 				throw new NullPointerException(BARBEIRO_BRANCO);
 			else if ("".equals(nomeBarbeiro))
 				throw new ServicoException(BARBEIRO_BRANCO);
