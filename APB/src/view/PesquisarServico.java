@@ -2,6 +2,7 @@ package view;
 
 
 import java.awt.EventQueue;
+import model.Servico;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,10 +13,17 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import dao.FactoryConnection;
+import exception.ServicoException;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 public class PesquisarServico extends JFrame {
@@ -23,6 +31,7 @@ public class PesquisarServico extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTable table;
+	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -54,22 +63,9 @@ public class PesquisarServico extends JFrame {
 		scrollPane.setBounds(10, 11, 464, 115);
 		contentPane.add(scrollPane);
 		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Servi\u00E7o", "Realizado por", "Valor (R$)", "Data"
-			}
-		) {
-			boolean[] columnEditables = new boolean[] {
-				false, true, true, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(1).setPreferredWidth(95);
+		final DefaultTableModel modelo = new DefaultTableModel(null,
+				new String[] { "Serviço", "Realizado por", "Valor", "Data" });
+		final JTable table = new JTable(modelo);
 		scrollPane.setViewportView(table);
 		
 		textField = new JTextField();
@@ -84,12 +80,74 @@ public class PesquisarServico extends JFrame {
 		JButton btnPesquisarServico = new JButton("Pesquisar Serviço");
 		btnPesquisarServico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
+				try {
+					Servico servico = new Servico();
+					try {
+						servico.setNome(textField.getText());
+					} catch (ServicoException e) {
+						e.printStackTrace();
+					}
+					
+					connection = FactoryConnection.getInstance().getConnection();
+					ResultSet rs = connection.createStatement().executeQuery(
+							"Select nome, preco, barbeiro, data from servico where nome = '"+ servico.getNome() +"';");
+					
+					
+
+					while (rs.next()) {
+						String[] dados = new String[4];
+						dados[0] = rs.getString("nome");
+						dados[1] = rs.getString("barbeiro");
+						dados[2] = rs.getString("preco");
+						dados[3] = rs.getString("data");
+						modelo.addRow(dados);
+					}
+					
+				} catch (SQLException e) {
+					//mostrarMensagemDeErro(e.getMessage());
+				}
+
+				
 			}
 		});
 		btnPesquisarServico.setBounds(10, 168, 148, 23);
 		contentPane.add(btnPesquisarServico);
 		
 		JButton btnPesquisarBarbeiro = new JButton("Pesquisar Barbeiro");
+		btnPesquisarBarbeiro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				try {
+					Servico servico = new Servico();
+					try {
+						servico.setNomeBarbeiro(textField.getText());
+					} catch (ServicoException e) {
+						e.printStackTrace();
+					}
+					
+					connection = FactoryConnection.getInstance().getConnection();
+					ResultSet rs = connection.createStatement().executeQuery(
+							"Select nome, preco, barbeiro, data from servico where barbeiro = '"+ servico.getNomeBarbeiro() +"';");
+					
+					
+
+					while (rs.next()) {
+						String[] dados = new String[4];
+						dados[0] = rs.getString("nome");
+						dados[1] = rs.getString("barbeiro");
+						dados[2] = rs.getString("preco");
+						dados[3] = rs.getString("data");
+						modelo.addRow(dados);
+					}
+					
+				} catch (SQLException e) {
+					//mostrarMensagemDeErro(e.getMessage());
+				}
+				
+			}
+		});
 		btnPesquisarBarbeiro.setBounds(168, 168, 148, 23);
 		contentPane.add(btnPesquisarBarbeiro);
 		
@@ -119,6 +177,39 @@ public class PesquisarServico extends JFrame {
 		contentPane.add(btnVoltar);
 		
 		JButton btnPesquisarData = new JButton("Pesquisar Data");
+		btnPesquisarData.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				try {
+					Servico servico = new Servico();
+					try {
+						servico.setData(textField.getText());
+					} catch (ServicoException e) {
+						e.printStackTrace();
+					}
+					
+					connection = FactoryConnection.getInstance().getConnection();
+					ResultSet rs = connection.createStatement().executeQuery(
+							"Select nome, preco, barbeiro, data from servico where data = '"+ servico.getData() +"';");
+					
+					
+
+					while (rs.next()) {
+						String[] dados = new String[4];
+						dados[0] = rs.getString("nome");
+						dados[1] = rs.getString("barbeiro");
+						dados[2] = rs.getString("preco");
+						dados[3] = rs.getString("data");
+						modelo.addRow(dados);
+					}
+					
+				} catch (SQLException e) {
+					//mostrarMensagemDeErro(e.getMessage());
+				}
+				
+			}
+		});
 		btnPesquisarData.setBounds(326, 168, 148, 23);
 		contentPane.add(btnPesquisarData);
 	}
