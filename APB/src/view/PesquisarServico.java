@@ -34,6 +34,7 @@ public class PesquisarServico extends JFrame {
 	private JTextField textField;
 	private JTable table;
 	private Connection connection;
+	private static String tempNome;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -99,7 +100,11 @@ public class PesquisarServico extends JFrame {
 						dados[2] = rs.getString("preco");
 						dados[3] = rs.getString("data");
 						modelo.addRow(dados);
+						
 					}
+					
+					
+					
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
@@ -146,6 +151,16 @@ public class PesquisarServico extends JFrame {
 		contentPane.add(btnPesquisarBarbeiro);
 
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
+				AlterarServico frame = new AlterarServico();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
 		btnAlterar.setBounds(98, 228, 89, 23);
 		contentPane.add(btnAlterar);
 
@@ -235,5 +250,9 @@ public class PesquisarServico extends JFrame {
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public static String getTempNome() {
+		return tempNome;
 	}
 }
