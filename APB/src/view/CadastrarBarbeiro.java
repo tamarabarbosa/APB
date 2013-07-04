@@ -18,15 +18,6 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Barbeiro;
 import control.BarbeiroController;
-
-import dao.FactoryConnection;
-import exception.BarbeiroException;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import control.BarbeiroController;
-import model.Barbeiro;
 import dao.FactoryConnection;
 import exception.BarbeiroException;
 
@@ -108,54 +99,15 @@ public class CadastrarBarbeiro extends JFrame {
 		botaoRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
-				Barbeiro barbeiro = new Barbeiro();
 				try {
-					barbeiro.setNome(modelo.getValueAt(table.getSelectedRow(),
-							0).toString());
-				} catch (NullPointerException e) {
-					e.printStackTrace();
-				} catch (BarbeiroException e) {
-					e.printStackTrace();
-				}
-				try {
-					barbeiro.setCpf(modelo
-							.getValueAt(table.getSelectedRow(), 1).toString());
-					barbeiro.setRg(modelo.getValueAt(table.getSelectedRow(), 2)
-							.toString());
-					barbeiro.setTelefone(modelo.getValueAt(
-							table.getSelectedRow(), 3).toString());
-					barbeiro.setCadeira(modelo.getValueAt(
-							table.getSelectedRow(), 4).toString());
-				} catch (BarbeiroException e) {
-					e.printStackTrace();
-				}
-				JOptionPane.showConfirmDialog(null,
-						"Tem certeza que deseja excluir o barbeiro: "
-								+ modelo.getValueAt(table.getSelectedRow(), 0)
-										.toString() + "?");
-				BarbeiroController barbeiroController = BarbeiroController
-						.getInstance();
-				try {
-					barbeiroController.excluir(barbeiro);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-
-				/*
-				 * dispose(); RemoverBarbeiro frame = new RemoverBarbeiro();
-				 * frame.setVisible(true); frame.setLocationRelativeTo(null);
-				 */
-
-				try {
-					String nome = (String) table.getValueAt(
-							table.getSelectedRow(), 0);
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					Barbeiro barbeiro = new Barbeiro();
 					barbeiro.setNome(nome);
 
-					int confirmacao = JOptionPane.showConfirmDialog(null,
-							"Remover " + nome + " da lista?");
-
+					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover " + nome + " da lista?");
+					
 					if (confirmacao == JOptionPane.YES_OPTION) {
+						BarbeiroController barbeiroController = BarbeiroController.getInstance();
 						barbeiroController.excluir(barbeiro);
 
 						dispose();
@@ -163,12 +115,13 @@ public class CadastrarBarbeiro extends JFrame {
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
+				} catch (ArrayIndexOutOfBoundsException e) {
+					mostrarMensagemDeErro("Selecione um Barbeiro para remover");
 				} catch (BarbeiroException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
-
 			}
 		});
 		botaoRemover.setBounds(385, 50, 158, 28);
@@ -178,8 +131,7 @@ public class CadastrarBarbeiro extends JFrame {
 		botaoAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tempNome = modelo.getValueAt(table.getSelectedRow(), 0)
-						.toString();
+				tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
 				AlterarBarbeiro frame = new AlterarBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
