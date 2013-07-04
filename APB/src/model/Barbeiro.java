@@ -120,7 +120,9 @@ public class Barbeiro {
 				throw new NullPointerException(RG_BRANCO);
 			else if ("".equals(rg))
 				throw new BarbeiroException(RG_BRANCO);
-			else if (rg.matches("[\\d]{1,2}.[\\d]{3}.[\\d]{3}"))
+			else if (rg.matches("[a-zA-Z\\s]+"))
+				throw new AssertionError(RG_INVALIDO);
+			else if (rg.matches("^[0-9]*$"))
 				this.rg = rg;
 			else
 				throw new AssertionError(RG_INVALIDO);
