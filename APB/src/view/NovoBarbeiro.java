@@ -135,10 +135,6 @@ public class NovoBarbeiro extends JFrame {
 		textFieldCadeira.setBounds(92, 133, 354, 20);
 		contentPane.add(textFieldCadeira);
 		textFieldCadeira.setColumns(10);
-
-		lblCadeira = new JLabel("Cadeira:");
-		lblCadeira.setBounds(21, 136, 61, 14);
-		contentPane.add(lblCadeira);
 		botaoSalvar.setBounds(10, 177, 125, 23);
 		contentPane.add(botaoSalvar);
 

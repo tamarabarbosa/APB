@@ -34,6 +34,8 @@ public class ServicoDAO {
 		this.updateQuery("UPDATE servico SET " +
 				"nome = \"" + servico_alterado.getNome() + "\", " +
 				"preco = \"" + servico_alterado.getPreco() + "\", " +
+				"barbeiro = \"" + servico_alterado.getNomeBarbeiro() + "\", " +
+				"data = \"" + servico_alterado.getData() + "\", " +
 				" WHERE " +
 				"servico.preco = \"" + servico.getPreco() + "\";"
 				);
