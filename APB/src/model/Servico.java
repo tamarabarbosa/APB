@@ -51,8 +51,7 @@ public class Servico {
 				throw new NullPointerException(NOME_BRANCO);
 			else if ("".equals(nome))
 				throw new ServicoException(NOME_BRANCO);
-			else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras
-														// acentuadas
+			else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
 				this.nome = nome;
 			else
 				throw new ServicoException(NOME_INVALIDO);

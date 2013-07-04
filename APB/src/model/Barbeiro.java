@@ -48,7 +48,6 @@ public class Barbeiro {
 
 		if (this.cadeira == null)
 			throw new IllegalArgumentException(CADEIRA_BRANCO);
-
 	}
 
 	public String getNome() {
@@ -82,8 +81,7 @@ public class Barbeiro {
 				throw new NullPointerException(NOME_BRANCO);
 			else if ("".equals(nome))
 				throw new BarbeiroException(NOME_BRANCO);
-			else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras
-														// acentuadas
+			else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
 				this.nome = nome;
 			else
 				throw new AssertionError(NOME_INVALIDO);
@@ -99,8 +97,7 @@ public class Barbeiro {
 				throw new NullPointerException(CPF_BRANCO);
 			else if ("".equals(cpf))
 				throw new AssertionError(CPF_BRANCO);
-			else if (cpf
-					.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
+			else if (cpf.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
 				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]
 						+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
 
@@ -108,7 +105,6 @@ public class Barbeiro {
 				this.cpf = cpf;
 			else
 				throw new BarbeiroException(CPF_INVALIDO);
-
 		} catch (StringIndexOutOfBoundsException e) {
 			throw new BarbeiroException(CPF_INVALIDO);
 		} catch (NumberFormatException e) {
@@ -122,7 +118,6 @@ public class Barbeiro {
 		try {
 			if (rg == null)
 				throw new NullPointerException(RG_BRANCO);
-
 			else if ("".equals(rg))
 				throw new BarbeiroException(RG_BRANCO);
 			else if (rg.matches("[\\d]{1,2}.[\\d]{3}.[\\d]{3}"))
@@ -142,8 +137,7 @@ public class Barbeiro {
 				throw new NullPointerException(TELEFONE_BRANCO);
 			else if ("".equals(telefone))
 				throw new BarbeiroException(TELEFONE_BRANCO);
-			else if (telefone
-					.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+			else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 				this.telefone = telefone;
 			else
 				throw new AssertionError(TELEFONE_INVALIDO);

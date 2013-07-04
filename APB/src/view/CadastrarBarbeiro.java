@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.EventQueue;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,9 +16,10 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import control.BarbeiroController;
+import model.Barbeiro;
 import dao.FactoryConnection;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import exception.BarbeiroException;
 
 @SuppressWarnings("serial")
 public class CadastrarBarbeiro extends JFrame {
@@ -95,10 +98,27 @@ public class CadastrarBarbeiro extends JFrame {
 		botaoRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				dispose();
-				RemoverBarbeiro frame = new RemoverBarbeiro();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
+				try {
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					Barbeiro barbeiro = new Barbeiro();
+					barbeiro.setNome(nome);
+
+					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover " + nome + " da lista?");
+					
+					if (confirmacao == JOptionPane.YES_OPTION) {
+						BarbeiroController barbeiroController = BarbeiroController.getInstance();
+						barbeiroController.excluir(barbeiro);
+
+						dispose();
+						CadastrarBarbeiro frame = new CadastrarBarbeiro();
+						frame.setVisible(true);
+						frame.setLocationRelativeTo(null);
+					}
+				} catch (BarbeiroException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				}
 			}
 		});
 		botaoRemover.setBounds(385, 50, 158, 28);

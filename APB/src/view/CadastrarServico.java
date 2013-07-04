@@ -1,7 +1,10 @@
 package view;
 
 import java.awt.EventQueue;
-
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,10 +18,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import control.ServicoController;
+import model.Servico;
 import dao.FactoryConnection;
+import exception.ServicoException;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+
 
 @SuppressWarnings("serial")
 public class CadastrarServico extends JFrame {
@@ -88,6 +93,35 @@ public class CadastrarServico extends JFrame {
 		btnNovoContato.setBounds(380, 24, 94, 23);
 		contentPane.add(btnNovoContato);
 
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					Servico servico = new Servico();
+					servico.setNome(nome);
+
+					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover " + nome + " da lista?");
+
+					if (confirmacao == JOptionPane.YES_OPTION) {
+						ServicoController servicoController = ServicoController.getInstance();
+						servicoController.excluir(servico);
+						
+						dispose();
+						CadastrarServico frame = new CadastrarServico();
+						frame.setVisible(true);
+						frame.setLocationRelativeTo(null);
+					}
+				} catch (ServicoException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				}
+			}
+		});
+		btnRemover.setBounds(380, 58, 94, 23);
+		contentPane.add(btnRemover);
+
 		JButton btnPesquisarContato = new JButton("Pesquisar");
 		btnPesquisarContato.addMouseListener(new MouseAdapter() {
 			@Override
@@ -98,7 +132,7 @@ public class CadastrarServico extends JFrame {
 				dispose();
 			}
 		});
-		btnPesquisarContato.setBounds(380, 58, 94, 23);
+		btnPesquisarContato.setBounds(380, 92, 94, 23);
 		contentPane.add(btnPesquisarContato);
 
 		JButton btnVoltar = new JButton("Voltar");
@@ -114,7 +148,7 @@ public class CadastrarServico extends JFrame {
 		btnVoltar.setBounds(380, 228, 94, 23);
 		contentPane.add(btnVoltar);
 	}
-	
+
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
