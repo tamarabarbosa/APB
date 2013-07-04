@@ -14,6 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import control.ServicoController;
+
 import dao.FactoryConnection;
 import exception.ServicoException;
 
@@ -148,6 +150,34 @@ public class PesquisarServico extends JFrame {
 		contentPane.add(btnAlterar);
 
 		JButton btnRemover = new JButton("Remover");
+		btnRemover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				try {
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					Servico servico = new Servico();
+					servico.setNome(nome);
+
+					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover esse serviço da lista?");
+					
+					if (confirmacao == JOptionPane.YES_OPTION) {
+						ServicoController barbeiroController = ServicoController.getInstance();
+						barbeiroController.excluir(servico);
+
+						dispose();
+						CadastrarServico frame = new CadastrarServico();
+						frame.setVisible(true);
+						frame.setLocationRelativeTo(null);
+					}
+				} catch (ServicoException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				}
+				
+			}
+		});
 		btnRemover.setBounds(216, 228, 89, 23);
 		contentPane.add(btnRemover);
 

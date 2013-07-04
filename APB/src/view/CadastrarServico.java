@@ -93,35 +93,6 @@ public class CadastrarServico extends JFrame {
 		btnNovoContato.setBounds(380, 24, 94, 23);
 		contentPane.add(btnNovoContato);
 
-		JButton btnRemover = new JButton("Remover");
-		btnRemover.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				try {
-					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
-					Servico servico = new Servico();
-					servico.setNome(nome);
-
-					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover " + nome + " da lista?");
-
-					if (confirmacao == JOptionPane.YES_OPTION) {
-						ServicoController servicoController = ServicoController.getInstance();
-						servicoController.excluir(servico);
-						
-						dispose();
-						CadastrarServico frame = new CadastrarServico();
-						frame.setVisible(true);
-						frame.setLocationRelativeTo(null);
-					}
-				} catch (ServicoException e) {
-					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e) {
-					mostrarMensagemDeErro(e.getMessage());
-				}
-			}
-		});
-		btnRemover.setBounds(380, 58, 94, 23);
-		contentPane.add(btnRemover);
-
 		JButton btnPesquisarContato = new JButton("Pesquisar");
 		btnPesquisarContato.addMouseListener(new MouseAdapter() {
 			@Override
@@ -132,7 +103,7 @@ public class CadastrarServico extends JFrame {
 				dispose();
 			}
 		});
-		btnPesquisarContato.setBounds(380, 92, 94, 23);
+		btnPesquisarContato.setBounds(380, 58, 94, 23);
 		contentPane.add(btnPesquisarContato);
 
 		JButton btnVoltar = new JButton("Voltar");
