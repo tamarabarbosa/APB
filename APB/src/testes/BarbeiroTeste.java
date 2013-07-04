@@ -2,28 +2,20 @@ package testes;
 
 import static org.junit.Assert.*;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import dao.FactoryConnection;
+
 import exception.BarbeiroException;
 import model.Barbeiro;
-
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import control.BarbeiroController;
 
 public class BarbeiroTeste {
 
-	Barbeiro barbeiro = new Barbeiro();
-	private Connection connection;
-
+	Barbeiro barbeiro =  new Barbeiro();
+	
 	@Before
 	public void setUp() {
-		Barbeiro barbeiro = new Barbeiro();
 		try {
 			barbeiro.setNome("Alessandro");
 		} catch (NullPointerException e) {
@@ -36,47 +28,13 @@ public class BarbeiroTeste {
 			barbeiro.setRg("418757896");
 			barbeiro.setTelefone("3389-9085");
 			barbeiro.setCpf("02919594150");
+			barbeiro.setCadeira("5");
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
-
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
-		try {
-			barbeiroController.inserir(barbeiro);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
 	}
 
-	@After
-	public void tearDown() {
-		Barbeiro barbeiro = new Barbeiro();
-		try {
-			barbeiro.setNome("Alessandro");
-		} catch (NullPointerException e) {
-
-			e.printStackTrace();
-		} catch (BarbeiroException e) {
-			e.printStackTrace();
-		}
-		try {
-			barbeiro.setRg("418757896");
-			barbeiro.setTelefone("3389-9085");
-			barbeiro.setCpf("02919594150");
-		} catch (BarbeiroException e) {
-			e.printStackTrace();
-		}
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
-		try {
-			barbeiroController.excluir(barbeiro);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-	}
+		
 
 	@Test(expected = NullPointerException.class)
 	public void barbeiroNaoPodePossuirNomeNuloPassandoPeloSetter() {
@@ -236,41 +194,28 @@ public class BarbeiroTeste {
 	}
 
 	@Test
-	public void umBarbeiroDeveSerAlterado() {
-		Barbeiro barbeiro = new Barbeiro();
-		String nome = null;
-		try {
-			barbeiro.setNome("Luciano");
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (BarbeiroException e) {
-			e.printStackTrace();
-		}
-		try {
-			barbeiro.setRg("418757896");
-			barbeiro.setTelefone("3389-9085");
-			barbeiro.setCpf("02919594150");
-		} catch (BarbeiroException e) {
-			e.printStackTrace();
-		}
-
-		BarbeiroController barbeiroController = BarbeiroController.getInstance();
-		try {
-			barbeiroController.alterar(barbeiro);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		try {
-			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery(
-					"SELECT nome FROM barbeiro WHERE nome LIKE"
-							+ barbeiro.getNome());
-			nome = rs.getString("nome");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		assertEquals("Alessandro", nome);
+	public void testeParaGetterDeNomeDeBarbeiro() {
+		assertEquals("Alessandro",barbeiro.getNome());
 	}
-
+	
+	
+	@Test
+	public void testeParaGetterDeCPFDeBarbeiro() {
+		assertEquals("02919594150",barbeiro.getCpf());
+	}
+	
+	@Test
+	public void testeParaGetterDeRGDeBarbeiro() {
+		assertEquals("418757896",barbeiro.getRg());
+	}
+	
+	@Test
+	public void testeParaGetterDeTelefoneDeBarbeiro() {
+		assertEquals("3389-9085",barbeiro.getTelefone());
+	}
+	
+	@Test
+	public void testeParaGetterDeCadeiraDeBarbeiro() {
+		assertEquals("5",barbeiro.getCadeira());
+	}
 }

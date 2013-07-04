@@ -8,17 +8,33 @@ public class BarbeiroController {
 
 	private static BarbeiroController instance;
 
-	public void inserir(Barbeiro barbeiro) throws SQLException {
-		BarbeiroDAO.getInstance().incluir(barbeiro);
+	public boolean inserir(Barbeiro barbeiro) throws SQLException {
+		if (barbeiro == null) {
+			return false;
+		} else {
+			BarbeiroDAO.getInstance().incluir(barbeiro);
+			return true;
+		}
 	}
 
-	public void alterar(Barbeiro barbeiro) throws SQLException {
-		Barbeiro barbeiro_alterado = barbeiro;
-		BarbeiroDAO.getInstance().alterar(barbeiro_alterado, barbeiro);
+	public boolean alterar(Barbeiro barbeiro) throws SQLException {
+		if (barbeiro == null) {
+			return false;
+		} else {
+			Barbeiro barbeiro_alterado = barbeiro;
+			BarbeiroDAO.getInstance().alterar(barbeiro_alterado, barbeiro);
+			return true;
+		}
 	}
 
-	public void excluir(Barbeiro barbeiro) throws SQLException {
-		BarbeiroDAO.getInstance().excluir(barbeiro);
+	public boolean excluir(Barbeiro barbeiro) throws SQLException {
+
+		if (barbeiro == null) {
+			return false;
+		} else {
+			BarbeiroDAO.getInstance().excluir(barbeiro);
+			return true;
+		}
 	}
 
 	private BarbeiroController() {

@@ -11,12 +11,15 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import control.BarbeiroController;
+import dao.FactoryConnection;
 import exception.BarbeiroException;
 
 import model.Barbeiro;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
@@ -95,6 +98,23 @@ public class AlterarBarbeiro extends JFrame {
 		JLabel labelCadeira = new JLabel("Cadeira:");
 		labelCadeira.setBounds(21, 136, 61, 14);
 		contentPane.add(labelCadeira);
+
+
+		try {
+			Connection connection = FactoryConnection.getInstance().getConnection();
+			ResultSet rs = connection.createStatement().executeQuery(
+					"DELETE FROM barbeiro WHERE "
+							+ "barbeiro.nome = \"" + CadastrarBarbeiro.getTempNome() + "\";");
+				
+				textFieldNome.setText(rs.getString("nome"));
+				textFieldCpf.setText(rs.getString("cpf"));
+				textFieldRg.setText(rs.getString("rg"));
+				textFieldTelefone.setText(rs.getString("telefone"));
+				textFieldCadeira.setText(rs.getString("cadeira"));
+		} catch (SQLException e) {
+			mostrarMensagemDeErro(e.getMessage());
+		}
+
 
 		JButton buttonSalvar = new JButton("Salvar");
 		buttonSalvar.addActionListener(new ActionListener() {
