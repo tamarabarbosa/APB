@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import control.BarbeiroController;
 import dao.FactoryConnection;
 import exception.BarbeiroException;
@@ -102,10 +104,12 @@ public class AlterarBarbeiro extends JFrame {
 
 		try {
 			Connection connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery(
-					"DELETE FROM barbeiro WHERE "
-							+ "barbeiro.nome = \"" + CadastrarBarbeiro.getTempNome() + "\";");
+			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM barbeiro WHERE "
+					+ "nome = '" + CadastrarBarbeiro.getTempNome() + "';");
+			ResultSet rs = pst.executeQuery();
 				
+			rs.next(); 
+			
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldCpf.setText(rs.getString("cpf"));
 				textFieldRg.setText(rs.getString("rg"));
