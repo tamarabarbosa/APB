@@ -41,13 +41,13 @@ public class BarbeiroDAO {
 		if (barbeiro_alterado == null || barbeiro == null) {
 			return false;
 		} else {
-			this.updateQuery("UPDATE barbeiro SET " + "nome = \""
-					+ barbeiro_alterado.getNome() + "\", " + "cpf = \""
-					+ barbeiro_alterado.getCpf() + "\", " + "rg = \""
-					+ barbeiro_alterado.getRg() + "\", " + "telefone = \""
-					+ barbeiro_alterado.getTelefone() + "\"" + "cadeira = \""
-					+ barbeiro_alterado.getCadeira() + "\"" + " WHERE "
-					+ " barbeiro.cpf = \"" + barbeiro.getCpf() + "\";");
+			this.updateQuery("UPDATE barbeiro SET nome = '"
+					+ barbeiro_alterado.getNome() + "', " + "cpf = '"
+					+ barbeiro_alterado.getCpf() + "', " + "rg = '"
+					+ barbeiro_alterado.getRg() + "', " + "telefone = '"
+					+ barbeiro_alterado.getTelefone() + "', " + "cadeira = '"
+					+ barbeiro_alterado.getCadeira() + "' WHERE"
+					+ " cpf = '" + barbeiro.getCpf() + "';");
 
 			return true;
 		}
