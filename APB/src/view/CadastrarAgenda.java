@@ -9,7 +9,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import control.AgendaController;
+
+import model.Agenda;
+
 import dao.FactoryConnection;
+import exception.BarbeiroException;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -17,6 +22,8 @@ import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class CadastrarAgenda extends JFrame {
@@ -92,7 +99,7 @@ public class CadastrarAgenda extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnNovo.setBounds(330, 24, 94, 23);
+		btnNovo.setBounds(330, 21, 94, 23);
 		contentPane.add(btnNovo);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -105,8 +112,39 @@ public class CadastrarAgenda extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnPesquisar.setBounds(330, 58, 94, 23);
+		btnPesquisar.setBounds(330, 55, 94, 23);
 		contentPane.add(btnPesquisar);
+		
+		JButton botaoRemover = new JButton("Remover");
+		botaoRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					Agenda contato = new Agenda();
+					contato.setNome(nome);
+					
+					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover " + nome + " da lista?");
+					
+					if (confirmacao == JOptionPane.YES_OPTION) {
+						AgendaController contatoController = AgendaController.getInstance();
+						contatoController.excluir(contato);
+						
+						dispose();
+						CadastrarAgenda frame = new CadastrarAgenda();
+						frame.setVisible(true);
+						frame.setLocationRelativeTo(null);
+					}
+				} catch (ArrayIndexOutOfBoundsException e) {
+					mostrarMensagemDeErro("Selecione um Contato para remover");
+				} catch (BarbeiroException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				}
+			}
+		});
+		botaoRemover.setBounds(330, 89, 94, 23);
+		contentPane.add(botaoRemover);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {

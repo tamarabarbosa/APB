@@ -105,7 +105,7 @@ public class AlterarServico extends JFrame {
 				textData.setText(rs.getString("data"));
 
 		} catch (SQLException e) {
-			//mostrarMensagemDeErro(e.getMessage());
+			mostrarMensagemDeErro(e.getMessage());
 		}
 
 
@@ -115,27 +115,22 @@ public class AlterarServico extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					Servico servico = new Servico();
-					servico.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem()
-							.toString());
-					servico.setNome(comboBoxServico.getSelectedItem()
-							.toString());
+					servico.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
+					servico.setNome(comboBoxServico.getSelectedItem().toString());
 					servico.setPreco(textValor.getText());
 					servico.setData(textData.getText());
 
 					if (comboBoxServico.getSelectedIndex() == 0) {
 
-						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um tipo de serviço.");
+						JOptionPane.showMessageDialog(null, "Você deve selecionar um tipo de serviço.");
 
 					} else if (comboBoxBarbeiro.getSelectedIndex() == 0) {
 
-						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um barbeiro.");
+						JOptionPane.showMessageDialog(null, "Você deve selecionar um barbeiro.");
 
 					} else {
 
-						ServicoController servicoController = ServicoController
-								.getInstance();
+						ServicoController servicoController = ServicoController.getInstance();
 						servicoController.alterar(servico);
 
 						JOptionPane.showMessageDialog(null, "Servico "
@@ -152,14 +147,9 @@ public class AlterarServico extends JFrame {
 
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e1) {
-					mostrarMensagemDeErro(e1.getMessage());
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
 				}
-			}
-
-			private void mostrarMensagemDeErro(String informacao) {
-				JOptionPane.showMessageDialog(null, informacao, "Atenção",
-						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		botaoSalvar.setBounds(129, 129, 89, 23);
@@ -177,6 +167,11 @@ public class AlterarServico extends JFrame {
 		});
 		botaoVoltar.setBounds(253, 129, 89, 23);
 		contentPane.add(botaoVoltar);
+	}
+	
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 }

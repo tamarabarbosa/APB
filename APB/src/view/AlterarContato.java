@@ -86,7 +86,6 @@ public class AlterarContato extends JFrame {
 					JOptionPane.showMessageDialog(null, "Contato "
 							+ textFieldNome.getText()
 							+ " foi alterado com sucesso");
-					
 				} catch (BarbeiroException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {

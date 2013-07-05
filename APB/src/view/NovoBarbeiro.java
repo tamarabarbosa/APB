@@ -102,7 +102,7 @@ public class NovoBarbeiro extends JFrame {
 		botaoSalvar = new JButton("Salvar");
 		botaoSalvar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent k) {
 				try {
 					Barbeiro barbeiro = new Barbeiro();
 					barbeiro.setNome(textFieldNome.getText());
@@ -122,10 +122,10 @@ public class NovoBarbeiro extends JFrame {
 					CadastrarBarbeiro frame = new CadastrarBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-				} catch (BarbeiroException e1) {
-					mostrarMensagemDeErro(e1.getMessage());
-				} catch (SQLException k) {
-					mostrarMensagemDeErro(k.getMessage());
+				} catch (BarbeiroException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
 				}
 			}
 

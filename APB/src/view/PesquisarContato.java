@@ -57,9 +57,7 @@ public class PesquisarContato extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"Nome", "Telefone", "Descri\u00E7\u00E3o"
-			}
-		) {
+				"Nome", "Telefone", "Descri\u00E7\u00E3o" }) {
 			boolean[] columnEditables = new boolean[] {
 				false, false, false
 			};
@@ -110,5 +108,4 @@ public class PesquisarContato extends JFrame {
 		btnVoltar.setBounds(335, 228, 89, 23);
 		contentPane.add(btnVoltar);
 	}
-
 }

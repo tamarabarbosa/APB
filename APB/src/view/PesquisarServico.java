@@ -32,7 +32,6 @@ public class PesquisarServico extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private JTable table;
 	private Connection connection;
 	private static String tempNome;
 
@@ -87,8 +86,7 @@ public class PesquisarServico extends JFrame {
 					Servico servico = new Servico();
 					servico.setNome(textField.getText());
 
-					connection = FactoryConnection.getInstance()
-							.getConnection();
+					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
 							"Select nome, preco, barbeiro, data from servico where nome = '"
 									+ servico.getNome() + "';");
@@ -100,11 +98,7 @@ public class PesquisarServico extends JFrame {
 						dados[2] = rs.getString("preco");
 						dados[3] = rs.getString("data");
 						modelo.addRow(dados);
-						
 					}
-					
-					
-					
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
@@ -122,11 +116,7 @@ public class PesquisarServico extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					Servico servico = new Servico();
-					try {
-						servico.setNomeBarbeiro(textField.getText());
-					} catch (ServicoException e) {
-						e.printStackTrace();
-					}
+					servico.setNomeBarbeiro(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
@@ -141,10 +131,12 @@ public class PesquisarServico extends JFrame {
 						dados[3] = rs.getString("data");
 						modelo.addRow(dados);
 					}
-
+				} catch (ServicoException e) {
+					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
+
 			}
 		});
 		btnPesquisarBarbeiro.setBounds(168, 168, 148, 23);
@@ -168,14 +160,13 @@ public class PesquisarServico extends JFrame {
 		btnRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
 				try {
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
 					Servico servico = new Servico();
 					servico.setNome(nome);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover esse serviço da lista?");
-					
+
 					if (confirmacao == JOptionPane.YES_OPTION) {
 						ServicoController barbeiroController = ServicoController.getInstance();
 						barbeiroController.excluir(servico);
@@ -190,7 +181,7 @@ public class PesquisarServico extends JFrame {
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
-				
+
 			}
 		});
 		btnRemover.setBounds(216, 228, 89, 23);
@@ -213,17 +204,11 @@ public class PesquisarServico extends JFrame {
 		btnPesquisarData.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
 				try {
 					Servico servico = new Servico();
-					try {
-						servico.setData(textField.getText());
-					} catch (ServicoException e) {
-						e.printStackTrace();
-					}
+					servico.setData(textField.getText());
 
-					connection = FactoryConnection.getInstance()
-							.getConnection();
+					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
 							"Select nome, preco, barbeiro, data from servico where data = '"
 									+ servico.getData() + "';");
@@ -236,7 +221,8 @@ public class PesquisarServico extends JFrame {
 						dados[3] = rs.getString("data");
 						modelo.addRow(dados);
 					}
-
+				} catch (ServicoException e) {
+					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
@@ -251,7 +237,7 @@ public class PesquisarServico extends JFrame {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
-	
+
 	public static String getTempNome() {
 		return tempNome;
 	}

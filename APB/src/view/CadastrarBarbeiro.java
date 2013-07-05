@@ -109,17 +109,6 @@ public class CadastrarBarbeiro extends JFrame {
 		botaoAlterar.setBounds(385, 50, 158, 28);
 		contentPane.add(botaoAlterar);
 
-		JButton botaoVoltar = new JButton("Voltar");
-		botaoVoltar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Administrativo frame = new Administrativo();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
-			}
-		});
-
 		JButton botaoRemover = new JButton("Remover");
 		botaoRemover.addMouseListener(new MouseAdapter() {
 			@Override
@@ -152,6 +141,17 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 		botaoRemover.setBounds(385, 89, 158, 28);
 		contentPane.add(botaoRemover);
+		
+		JButton botaoVoltar = new JButton("Voltar");
+		botaoVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Administrativo frame = new Administrativo();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
 		botaoVoltar.setBounds(385, 267, 158, 28);
 		contentPane.add(botaoVoltar);
 	}

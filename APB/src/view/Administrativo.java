@@ -82,7 +82,6 @@ public class Administrativo extends JFrame {
 				CadastrarAgenda frame = new CadastrarAgenda();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				
 			}
 		});
 		btnAgenda.setBounds(179, 45, 157, 37);

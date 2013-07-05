@@ -96,10 +96,8 @@ public class NovoServico extends JFrame {
 		contentPane.add(comboBoxServico);
 
 		try {
-			Connection connection = FactoryConnection.getInstance()
-					.getConnection();
-			java.sql.PreparedStatement pst = connection
-					.prepareStatement("SELECT nome FROM barbeiro;");
+			Connection connection = FactoryConnection.getInstance().getConnection();
+			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT nome FROM barbeiro;");
 			ResultSet rs = pst.executeQuery();
 
 			while (rs.next()) {
@@ -107,7 +105,7 @@ public class NovoServico extends JFrame {
 				comboBoxBarbeiro.addItem(nome);
 			}
 		} catch (SQLException e) {
-
+			mostrarMensagemDeErro(e.getMessage());
 		}
 
 		JButton botaoSalvar = new JButton("Salvar");
@@ -123,20 +121,12 @@ public class NovoServico extends JFrame {
 					servico.setPreco(textValor.getText());
 					servico.setData(textData.getText());
 
-					if (comboBoxServico.getSelectedIndex() == 0) {
-
-						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um tipo de serviço.");
-
-					} else if (comboBoxBarbeiro.getSelectedIndex() == 0) {
-
-						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um barbeiro.");
-
-					} else {
-
-						ServicoController servicoController = ServicoController
-								.getInstance();
+					if (comboBoxServico.getSelectedIndex() == 0)
+						JOptionPane.showMessageDialog(null, "Você deve selecionar um tipo de serviço.");
+					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
+						JOptionPane.showMessageDialog(null,	"Você deve selecionar um barbeiro.");
+					else {
+						ServicoController servicoController = ServicoController.getInstance();
 						servicoController.inserir(servico);
 
 						JOptionPane.showMessageDialog(null, "Servico "
@@ -148,19 +138,12 @@ public class NovoServico extends JFrame {
 
 						textValor.setText("");
 						textData.setText("");
-
 					}
-
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e1) {
-					mostrarMensagemDeErro(e1.getMessage());
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
 				}
-			}
-
-			private void mostrarMensagemDeErro(String informacao) {
-				JOptionPane.showMessageDialog(null, informacao, "Atenção",
-						JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		botaoSalvar.setBounds(27, 129, 89, 23);
@@ -189,5 +172,10 @@ public class NovoServico extends JFrame {
 		});
 		botaoVoltar.setBounds(329, 129, 89, 23);
 		contentPane.add(botaoVoltar);
+	}
+	
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
