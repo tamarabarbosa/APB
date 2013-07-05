@@ -113,7 +113,7 @@ public class CadastrarAgenda extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				TelaOpcoes frame = new TelaOpcoes();
+				Administrativo frame = new Administrativo();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

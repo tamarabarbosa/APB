@@ -182,7 +182,7 @@ public class NovoServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				CadastrarServico frame = new CadastrarServico();
+				ServicosPrestados frame = new ServicosPrestados();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

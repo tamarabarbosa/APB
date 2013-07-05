@@ -10,10 +10,12 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.UIManager;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 @SuppressWarnings("serial")
-public class TelaOpcoes extends JFrame {
+public class Administrativo extends JFrame {
 
 	private JPanel contentPane;
 
@@ -24,7 +26,7 @@ public class TelaOpcoes extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaOpcoes frame = new TelaOpcoes();
+					Administrativo frame = new Administrativo();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -37,10 +39,10 @@ public class TelaOpcoes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaOpcoes() {
+	public Administrativo() {
 		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 541, 198);
+		setBounds(100, 100, 540, 200);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -48,7 +50,7 @@ public class TelaOpcoes extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Op\u00E7\u00F5es",
+				.getBorder("TitledBorder.border"), "Administrativo",
 				TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 11, 505, 138);
 		contentPane.add(panel);
@@ -58,39 +60,44 @@ public class TelaOpcoes extends JFrame {
 		btnBarbeiro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				dispose();
 				CadastrarBarbeiro frame = new CadastrarBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				dispose();
+				
 			}
 		});
-		btnBarbeiro.setBounds(12, 66, 157, 37);
+		btnBarbeiro.setBounds(10, 45, 157, 37);
 		panel.add(btnBarbeiro);
 
-		JButton btnServico = new JButton("Servi\u00E7o");
-		btnServico.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				CadastrarServico frame = new CadastrarServico();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
-			}
-		});
-		btnServico.setBounds(346, 66, 149, 37);
-		panel.add(btnServico);
+		JButton btnTipoServico = new JButton("Tipo de Servi\u00E7o");
+		btnTipoServico.setBounds(346, 45, 149, 37);
+		panel.add(btnTipoServico);
 		
 		JButton btnAgenda = new JButton("Agenda");
 		btnAgenda.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				dispose();
 				CadastrarAgenda frame = new CadastrarAgenda();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				dispose();
+				
 			}
 		});
-		btnAgenda.setBounds(179, 66, 157, 37);
+		btnAgenda.setBounds(179, 45, 157, 37);
 		panel.add(btnAgenda);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				dispose();
+				MenuPrincipal frame = new MenuPrincipal();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
+		btnVoltar.setBounds(211, 104, 89, 23);
+		panel.add(btnVoltar);
 	}
 }

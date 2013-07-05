@@ -181,7 +181,7 @@ public class PesquisarServico extends JFrame {
 						barbeiroController.excluir(servico);
 
 						dispose();
-						CadastrarServico frame = new CadastrarServico();
+						ServicosPrestados frame = new ServicosPrestados();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
@@ -201,7 +201,7 @@ public class PesquisarServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarServico frame = new CadastrarServico();
+				ServicosPrestados frame = new ServicosPrestados();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
