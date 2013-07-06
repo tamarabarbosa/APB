@@ -1,19 +1,31 @@
 package view;
 
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import dao.FactoryConnection;
+import exception.BarbeiroException;
+
+import model.Agenda;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 public class PesquisarContato extends JFrame {
@@ -21,6 +33,7 @@ public class PesquisarContato extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textField;
+	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -34,7 +47,7 @@ public class PesquisarContato extends JFrame {
 			}
 		});
 	}
-	
+
 	public PesquisarContato() {
 		inicializarComponentes();
 	}
@@ -47,54 +60,80 @@ public class PesquisarContato extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 414, 115);
 		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nome", "Telefone", "Descri\u00E7\u00E3o" }) {
-			boolean[] columnEditables = new boolean[] {
-				false, false, false
-			};
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
+
+		final DefaultTableModel modelo = new DefaultTableModel(null,
+				new String[] { "Nome", "Telefone", "Descrição" });
+		final JTable table = new JTable(modelo);
+
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		scrollPane.setViewportView(table);
-		
+
 		textField = new JTextField();
 		textField.setBounds(82, 137, 342, 20);
 		contentPane.add(textField);
 		textField.setColumns(10);
-		
+
 		JLabel lblPesquisar = new JLabel("Pesquisar:");
 		lblPesquisar.setBounds(20, 137, 66, 14);
 		contentPane.add(lblPesquisar);
-		
+
 		JButton btnPesquisarNome = new JButton("Pesquisar Nome");
+		btnPesquisarNome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				try {
+					Agenda agenda = new Agenda();
+					agenda.setNome(textField.getText());
+
+					connection = FactoryConnection.getInstance()
+							.getConnection();
+					PreparedStatement pst = connection
+							.prepareStatement("Select nome, telefone, descricao "
+									+ "from agenda where nome = '"
+									+ agenda.getNome() + "';");
+					ResultSet rs = pst.executeQuery();
+
+					while (rs.next()) {
+						String[] dados = new String[3];
+						dados[0] = rs.getString("nome");
+						dados[1] = rs.getString("telefone");
+						dados[2] = rs.getString("descricao");
+						modelo.addRow(dados);
+
+					}
+
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (BarbeiroException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				}
+			}
+		});
+		btnPesquisarNome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnPesquisarNome.setBounds(82, 168, 160, 23);
 		contentPane.add(btnPesquisarNome);
-		
+
 		JButton btnPesquisarTelefone = new JButton("Pesquisar Telefone");
 		btnPesquisarTelefone.setBounds(264, 168, 160, 23);
 		contentPane.add(btnPesquisarTelefone);
-		
+
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.setBounds(98, 228, 89, 23);
 		contentPane.add(btnAlterar);
-		
+
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.setBounds(216, 228, 89, 23);
 		contentPane.add(btnRemover);
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -107,5 +146,10 @@ public class PesquisarContato extends JFrame {
 		});
 		btnVoltar.setBounds(335, 228, 89, 23);
 		contentPane.add(btnVoltar);
+	}
+
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
