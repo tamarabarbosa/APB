@@ -119,11 +119,11 @@ public class CadastrarAgenda extends JFrame {
 		botaoRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					String telefone = (table.getValueAt(table.getSelectedRow(), 1).toString());
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
 					Agenda contato = new Agenda();
-					contato.setTelefone(telefone);
+					contato.setNome(nome);
 					
-					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover " + telefone + " da lista?");
+					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover " + nome + " da lista?");
 					
 					if (confirmacao == JOptionPane.YES_OPTION) {
 						AgendaController contatoController = AgendaController.getInstance();
