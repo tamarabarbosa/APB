@@ -10,8 +10,13 @@ public class ServicoController {
 	
 private static ServicoController instance;
 	
-	public void inserir(Servico servico) throws SQLException {
+	public boolean inserir(Servico servico) throws SQLException {
 		ServicoDAO.getInstance().incluir(servico);
+		if(ServicoDAO.getInstance().incluir(servico) == true){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 	public void alterar(Servico servico) throws SQLException {

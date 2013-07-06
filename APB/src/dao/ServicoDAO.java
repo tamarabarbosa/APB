@@ -19,7 +19,8 @@ public class ServicoDAO {
 	
 	}
 	
-	public void incluir(Servico servico) throws SQLException{
+	public boolean incluir(Servico servico) throws SQLException{
+		if(servico != null){
 		this.updateQuery("INSERT INTO " +
 					"servico (nome, preco, barbeiro, data) VALUES (" +
 					"\"" + servico.getNome() + "\", " +
@@ -27,6 +28,10 @@ public class ServicoDAO {
 					"\"" + servico.getNomeBarbeiro()+ "\", " +
 					"\"" + servico.getData() + "\"); "
 				);
+		return true;
+		}else{
+			return false;
+		}
 	
 	}
 	
