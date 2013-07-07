@@ -16,7 +16,7 @@ import java.awt.event.MouseEvent;
 
 import control.ServicoController;
 import exception.ServicoException;
-import model.Servico;
+import model.ServicoPrestado;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -114,7 +114,7 @@ public class AlterarServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Servico servico = new Servico();
+					ServicoPrestado servico = new ServicoPrestado();
 					servico.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
 					servico.setNome(comboBoxServico.getSelectedItem().toString());
 					servico.setPreco(textValor.getText());

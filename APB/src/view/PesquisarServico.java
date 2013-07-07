@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
-import model.Servico;
+import model.ServicoPrestado;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -83,7 +83,7 @@ public class PesquisarServico extends JFrame {
 		btnPesquisarServico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Servico servico = new Servico();
+					ServicoPrestado servico = new ServicoPrestado();
 					servico.setNome(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
@@ -115,7 +115,7 @@ public class PesquisarServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Servico servico = new Servico();
+					ServicoPrestado servico = new ServicoPrestado();
 					servico.setNomeBarbeiro(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
@@ -162,7 +162,7 @@ public class PesquisarServico extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
-					Servico servico = new Servico();
+					ServicoPrestado servico = new ServicoPrestado();
 					servico.setNome(nome);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover esse serviço da lista?");
@@ -172,7 +172,7 @@ public class PesquisarServico extends JFrame {
 						barbeiroController.excluir(servico);
 
 						dispose();
-						ServicosPrestados frame = new ServicosPrestados();
+						CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
@@ -192,7 +192,7 @@ public class PesquisarServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				ServicosPrestados frame = new ServicosPrestados();
+				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -205,7 +205,7 @@ public class PesquisarServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Servico servico = new Servico();
+					ServicoPrestado servico = new ServicoPrestado();
 					servico.setData(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();

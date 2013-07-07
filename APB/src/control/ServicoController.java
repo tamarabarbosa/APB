@@ -2,7 +2,7 @@ package control;
 
 import java.sql.SQLException;
 import dao.ServicoDAO;
-import model.Servico;
+import model.ServicoPrestado;
 
 
 
@@ -10,7 +10,7 @@ public class ServicoController {
 	
 private static ServicoController instance;
 	
-	public boolean inserir(Servico servico) throws SQLException {
+	public boolean inserir(ServicoPrestado servico) throws SQLException {
 		ServicoDAO.getInstance().incluir(servico);
 		if(ServicoDAO.getInstance().incluir(servico) == true){
 			return true;
@@ -19,12 +19,12 @@ private static ServicoController instance;
 		}
 	}
 	
-	public void alterar(Servico servico) throws SQLException {
-		Servico servico_alterado = servico;
+	public void alterar(ServicoPrestado servico) throws SQLException {
+		ServicoPrestado servico_alterado = servico;
 		ServicoDAO.getInstance().alterar(servico_alterado, servico);
 	}
 
-	public void excluir(Servico servico) throws SQLException {
+	public void excluir(ServicoPrestado servico) throws SQLException {
 		ServicoDAO.getInstance().excluir(servico);
 	}
 	

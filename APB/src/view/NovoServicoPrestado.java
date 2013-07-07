@@ -15,7 +15,7 @@ import java.awt.event.MouseEvent;
 
 import control.ServicoController;
 import exception.ServicoException;
-import model.Servico;
+import model.ServicoPrestado;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -26,7 +26,7 @@ import javax.swing.DefaultComboBoxModel;
 import dao.FactoryConnection;
 
 @SuppressWarnings("serial")
-public class NovoServico extends JFrame {
+public class NovoServicoPrestado extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textValor;
@@ -37,7 +37,7 @@ public class NovoServico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovoServico frame = new NovoServico();
+					NovoServicoPrestado frame = new NovoServicoPrestado();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,8 +46,8 @@ public class NovoServico extends JFrame {
 		});
 	}
 
-	public NovoServico() {
-		setTitle("Cadastrar novo servi\u00E7o");
+	public NovoServicoPrestado() {
+		setTitle("Criar nova presta\u00E7\u00E3o de servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 214);
 		contentPane = new JPanel();
@@ -113,11 +113,9 @@ public class NovoServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Servico servico = new Servico();
-					servico.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem()
-							.toString());
-					servico.setNome(comboBoxServico.getSelectedItem()
-							.toString());
+					ServicoPrestado servico = new ServicoPrestado();
+					servico.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
+					servico.setNome(comboBoxServico.getSelectedItem().toString());
 					servico.setPreco(textValor.getText());
 					servico.setData(textData.getText());
 
@@ -165,7 +163,7 @@ public class NovoServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				ServicosPrestados frame = new ServicosPrestados();
+				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

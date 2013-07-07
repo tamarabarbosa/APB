@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 
-import model.Servico;
+import model.ServicoPrestado;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import dao.ServicoDAO;
 import exception.ServicoException;
 
 public class ServicoControllerTest {
-	Servico servico =  new Servico();
+	ServicoPrestado servico =  new ServicoPrestado();
 	ServicoController servicoController =  ServicoController.getInstance();
 	
 	@Before

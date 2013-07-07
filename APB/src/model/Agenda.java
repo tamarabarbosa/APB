@@ -41,30 +41,21 @@ public class Agenda {
 	}
 
 	public void setNome(String nome) throws BarbeiroException {
-		try {
-			if ("".equals(nome))
-				throw new BarbeiroException(NOME_BRANCO);
-			else if (nome.matches("[a-zA-Z\\s]+"))
-				this.nome = nome;
-			else
-				throw new BarbeiroException(NOME_INVALIDO);
-		} catch (StringIndexOutOfBoundsException e) {
+		if ("".equals(nome))
+			throw new BarbeiroException(NOME_BRANCO);
+		else if (nome.matches("[a-zA-Z\\s]+"))
+			this.nome = nome;
+		else
 			throw new BarbeiroException(NOME_INVALIDO);
-		}
 	}
 
 	public void setTelefone(String telefone) throws BarbeiroException {
-		try {
-			if ("".equals(telefone))
-				throw new BarbeiroException(TELEFONE_BRANCO);
-			else if (telefone
-					.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
-				this.telefone = telefone;
-			else
-				throw new BarbeiroException(TELEFONE_INVALIDO);
-		} catch (StringIndexOutOfBoundsException e) {
+		if ("".equals(telefone))
+			throw new BarbeiroException(TELEFONE_BRANCO);
+		else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+			this.telefone = telefone;
+		else
 			throw new BarbeiroException(TELEFONE_INVALIDO);
-		}
 	}
 
 	public void setDescricao(String descricao) {
@@ -72,17 +63,12 @@ public class Agenda {
 	}
 
 	public void setOldTelefone(String oldTelefone) throws BarbeiroException {
-		try {
-			if ("".equals(telefone))
-				throw new BarbeiroException(TELEFONE_BRANCO);
-			else if (telefone
-					.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
-				Agenda.oldTelefone = oldTelefone;
-			else
-				throw new BarbeiroException(TELEFONE_INVALIDO);
-		} catch (StringIndexOutOfBoundsException e) {
+		if ("".equals(oldTelefone))
+			throw new BarbeiroException(TELEFONE_BRANCO);
+		else if (oldTelefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+			Agenda.oldTelefone = oldTelefone;
+		else
 			throw new BarbeiroException(TELEFONE_INVALIDO);
-		}
 	}
 
 }

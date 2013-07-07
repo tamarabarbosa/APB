@@ -69,7 +69,7 @@ public class MenuPrincipal extends JFrame {
 		btnServicosPrestados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				ServicosPrestados frame = new ServicosPrestados();
+				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

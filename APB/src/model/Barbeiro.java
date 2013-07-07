@@ -9,7 +9,7 @@ public class Barbeiro {
 	private String rg;
 	private String telefone;
 	private String cadeira;
-	private Servico servicos[];
+	private ServicoPrestado servicos[];
 
 	private final String NOME_INVALIDO = "Nome Inválido";
 	private final String NOME_BRANCO = "Nome em Branco";
@@ -70,24 +70,20 @@ public class Barbeiro {
 		return cadeira;
 	}
 
-	public Servico[] getServicos() {
+	public ServicoPrestado[] getServicos() {
 		return servicos;
 	}
 
 	public void setNome(String nome) throws BarbeiroException,
 			NullPointerException {
-		try {
-			if (nome == null)
-				throw new NullPointerException(NOME_BRANCO);
-			else if ("".equals(nome))
-				throw new BarbeiroException(NOME_BRANCO);
-			else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
-				this.nome = nome;
-			else
-				throw new AssertionError(NOME_INVALIDO);
-		} catch (StringIndexOutOfBoundsException e) {
-			throw new BarbeiroException(NOME_INVALIDO);
-		}
+		if (nome == null)
+			throw new NullPointerException(NOME_BRANCO);
+		else if ("".equals(nome))
+			throw new BarbeiroException(NOME_BRANCO);
+		else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
+			this.nome = nome;
+		else
+			throw new AssertionError(NOME_INVALIDO);
 	}
 
 	public void setCpf(String cpf) throws BarbeiroException {
@@ -105,47 +101,34 @@ public class Barbeiro {
 				this.cpf = cpf;
 			else
 				throw new BarbeiroException(CPF_INVALIDO);
-		} catch (StringIndexOutOfBoundsException e) {
-			throw new BarbeiroException(CPF_INVALIDO);
-		} catch (NumberFormatException e) {
-			throw new BarbeiroException(CPF_INVALIDO);
 		} catch (AssertionError e) {
 			throw new BarbeiroException(CPF_INVALIDO);
 		}
 	}
 
 	public void setRg(String rg) throws BarbeiroException {
-		try {
-			if (rg == null)
-				throw new NullPointerException(RG_BRANCO);
-			else if ("".equals(rg))
-				throw new BarbeiroException(RG_BRANCO);
-			else if (rg.matches("[a-zA-Z\\s]+"))
-				throw new AssertionError(RG_INVALIDO);
-			else if (rg.matches("^[0-9]*$"))
-				this.rg = rg;
-			else
-				throw new AssertionError(RG_INVALIDO);
-		} catch (StringIndexOutOfBoundsException e) {
-			throw new BarbeiroException(RG_INVALIDO);
-		} catch (NumberFormatException e) {
-			throw new BarbeiroException(RG_INVALIDO);
-		}
+		if (rg == null)
+			throw new NullPointerException(RG_BRANCO);
+		else if ("".equals(rg))
+			throw new BarbeiroException(RG_BRANCO);
+		else if (rg.matches("^[[ ]|\\p{L}*]+$"))
+			throw new AssertionError(RG_INVALIDO);
+		else if (rg.matches("^[0-9]*$"))
+			this.rg = rg;
+		else
+			throw new AssertionError(RG_INVALIDO);
 	}
 
 	public void setTelefone(String telefone) throws BarbeiroException {
-		try {
-			if (telefone == null)
-				throw new NullPointerException(TELEFONE_BRANCO);
-			else if ("".equals(telefone))
-				throw new BarbeiroException(TELEFONE_BRANCO);
-			else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
-				this.telefone = telefone;
-			else
-				throw new AssertionError(TELEFONE_INVALIDO);
-		} catch (StringIndexOutOfBoundsException e) {
-			throw new BarbeiroException(TELEFONE_INVALIDO);
-		}
+		if (telefone == null)
+			throw new NullPointerException(TELEFONE_BRANCO);
+		else if ("".equals(telefone))
+			throw new BarbeiroException(TELEFONE_BRANCO);
+		else if (telefone
+				.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+			this.telefone = telefone;
+		else
+			throw new AssertionError(TELEFONE_INVALIDO);
 	}
 
 	public void setCadeira(String cadeira) throws BarbeiroException {
@@ -154,7 +137,7 @@ public class Barbeiro {
 				throw new NullPointerException(CADEIRA_BRANCO);
 			else if ("".equals(cadeira))
 				throw new BarbeiroException(CADEIRA_BRANCO);
-			else if ("0".equals(cadeira) || cadeira.matches("[a-zA-Z\\s]+"))
+			else if ("0".equals(cadeira) || cadeira.matches("^[[ ]|\\p{L}*]+$"))
 				throw new AssertionError(CADEIRA_INVALIDA);
 			else if (cadeira.matches("^[0-9]*$"))
 				this.cadeira = cadeira;
@@ -165,7 +148,7 @@ public class Barbeiro {
 		}
 	}
 
-	public void setServicos(Servico[] servicos) {
+	public void setServicos(ServicoPrestado[] servicos) {
 		this.servicos = servicos;
 	}
 
@@ -206,5 +189,4 @@ public class Barbeiro {
 
 		return verific.equals(result);
 	}
-
 }

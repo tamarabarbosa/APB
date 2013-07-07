@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import dao.FactoryConnection;
 
 @SuppressWarnings("serial")
-public class ServicosPrestados extends JFrame {
+public class CadastrarServicoPrestado extends JFrame {
 
 	private JPanel contentPane;
 	private Connection connection;
@@ -28,7 +28,7 @@ public class ServicosPrestados extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ServicosPrestados frame = new ServicosPrestados();
+					CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class ServicosPrestados extends JFrame {
 		});
 	}
 
-	public ServicosPrestados() {
+	public CadastrarServicoPrestado() {
 		setTitle("Servi\u00E7os Prestados");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
@@ -78,7 +78,7 @@ public class ServicosPrestados extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				NovoServico frame = new NovoServico();
+				NovoServicoPrestado frame = new NovoServicoPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

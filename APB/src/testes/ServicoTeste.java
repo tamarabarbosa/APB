@@ -3,7 +3,7 @@ package testes;
 import static org.junit.Assert.*;
 import junit.framework.Assert;
 
-import model.Servico;
+import model.ServicoPrestado;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import exception.ServicoException;
 
 public class ServicoTeste {
 
-	Servico servico = new Servico();
+	ServicoPrestado servico = new ServicoPrestado();
 	@Test (expected = NullPointerException.class)
 	public void testeSetNomeNaoNulo() throws ServicoException {
 		servico.setNome(null);

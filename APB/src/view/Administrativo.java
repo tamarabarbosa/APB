@@ -64,13 +64,20 @@ public class Administrativo extends JFrame {
 				CadastrarBarbeiro frame = new CadastrarBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				
 			}
 		});
 		btnBarbeiro.setBounds(10, 45, 157, 37);
 		panel.add(btnBarbeiro);
 
 		JButton btnTipoServico = new JButton("Tipo de Servi\u00E7o");
+		btnTipoServico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				CadastrarTipoServico frame = new CadastrarTipoServico();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
 		btnTipoServico.setBounds(346, 45, 149, 37);
 		panel.add(btnTipoServico);
 		

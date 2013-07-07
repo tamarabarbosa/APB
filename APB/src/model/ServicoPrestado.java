@@ -2,7 +2,7 @@ package model;
 
 import exception.ServicoException;
 
-public class Servico {
+public class ServicoPrestado {
 
 	private String nome;
 	private String nomeBarbeiro;
@@ -18,11 +18,11 @@ public class Servico {
 	private final String DATA_INVALIDA = "Data Inválida";
 	private final String DATA_BRANCO = "Data em Branco";
 
-	public Servico() {
+	public ServicoPrestado() {
 
 	}
 
-	public Servico(String nome, String preco, String nomeBarbeiro, String data) {
+	public ServicoPrestado(String nome, String preco, String nomeBarbeiro, String data) {
 		this.nome = nome;
 		this.preco = preco;
 		this.data = data;
@@ -46,7 +46,6 @@ public class Servico {
 	}
 
 	public void setNome(String nome) throws ServicoException {
-		try {
 			if (nome == null)
 				throw new NullPointerException(NOME_BRANCO);
 			else if ("".equals(nome))
@@ -55,13 +54,9 @@ public class Servico {
 				this.nome = nome;
 			else
 				throw new ServicoException(NOME_INVALIDO);
-		} catch (StringIndexOutOfBoundsException e) {
-			throw new ServicoException(NOME_INVALIDO);
-		}
 	}
 
 	public void setNomeBarbeiro(String nomeBarbeiro) throws ServicoException {
-		try {
 			if (nomeBarbeiro == null)
 				throw new NullPointerException(BARBEIRO_BRANCO);
 			else if ("".equals(nomeBarbeiro))
@@ -70,9 +65,6 @@ public class Servico {
 				this.nomeBarbeiro = nomeBarbeiro;
 			else
 				throw new ServicoException(BARBEIRO_INVALIDO);
-		} catch (StringIndexOutOfBoundsException e) {
-			throw new ServicoException(BARBEIRO_INVALIDO);
-		}
 	}
 
 	public void setPreco(String preco) throws ServicoException {

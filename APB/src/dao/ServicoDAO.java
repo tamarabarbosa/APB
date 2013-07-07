@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import model.Servico;
+import model.ServicoPrestado;
 
 public class ServicoDAO {
 	
@@ -19,7 +19,7 @@ public class ServicoDAO {
 	
 	}
 	
-	public boolean incluir(Servico servico) throws SQLException{
+	public boolean incluir(ServicoPrestado servico) throws SQLException{
 		if(servico != null){
 		this.updateQuery("INSERT INTO " +
 					"servico (nome, preco, barbeiro, data) VALUES (" +
@@ -35,7 +35,7 @@ public class ServicoDAO {
 	
 	}
 	
-	public void alterar(Servico servico_alterado, Servico servico) throws SQLException {			
+	public void alterar(ServicoPrestado servico_alterado, ServicoPrestado servico) throws SQLException {			
 		this.updateQuery("UPDATE servico SET " +
 				"nome = \"" + servico_alterado.getNome() + "\", " +
 				"preco = \"" + servico_alterado.getPreco() + "\", " +
@@ -46,7 +46,7 @@ public class ServicoDAO {
 				);
 	}
 
-	public void excluir(Servico servico) throws SQLException {
+	public void excluir(ServicoPrestado servico) throws SQLException {
 		this.updateQuery("DELETE FROM servico WHERE " +
 				"servico.nome = \"" + servico.getNome() + "\";"
 				);
