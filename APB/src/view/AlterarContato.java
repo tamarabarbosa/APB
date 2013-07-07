@@ -13,19 +13,27 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import control.AgendaController;
+import control.AgendaController;
+import control.AgendaController;
+import dao.FactoryConnection;
+import exception.AgendaException;
+import exception.AgendaException;
 import exception.BarbeiroException;
 
+import model.Agenda;
+import model.Agenda;
 import model.Agenda;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 public class AlterarContato extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	private JTextField textFieldNome;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldDescricao;
@@ -51,45 +59,47 @@ public class AlterarContato extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 22, 414, 57);
-		contentPane.add(scrollPane);
-
-		table = new JTable();
-		table.setModel(new DefaultTableModel(new Object[][] {}, new String[] {
-				"Nome", "Telefone", "Descri\u00E7\u00E3o" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false };
-
-			public boolean isCellEditable(int row, int column) {
-				return columnEditables[column];
-			}
-		});
-		table.getColumnModel().getColumn(0).setResizable(false);
-		table.getColumnModel().getColumn(1).setResizable(false);
-		table.getColumnModel().getColumn(2).setResizable(false);
-		scrollPane.setViewportView(table);
+		
+		try {
+			Connection connection = FactoryConnection.getInstance().getConnection();
+			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM agenda WHERE "
+					+ "nome = '" + PesquisarContato.getTempNome() + "';");
+			ResultSet rs = pst.executeQuery();
+				
+			rs.next(); 
+			
+				textFieldNome.setText(rs.getString("nome"));
+				textFieldTelefone.setText(rs.getString("telefone"));
+				textFieldDescricao.setText(rs.getString("descricao"));
+		} catch (SQLException e) {
+			mostrarMensagemDeErro(e.getMessage());
+		}
 
 		JButton btnSalvarAlteracao = new JButton("Salvar Altera\u00E7\u00E3o");
 		btnSalvarAlteracao.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Agenda contato = new Agenda();
-					contato.setNome(textFieldNome.getText());
-					contato.setNome(textFieldTelefone.getText());
-					contato.setNome(textFieldDescricao.getText());
-					
-					AgendaController contatoController = AgendaController.getInstance();
-					contatoController.alterar(contato);
-					
-					JOptionPane.showMessageDialog(null, "Contato "
+					Agenda Agenda = new Agenda();
+					Agenda.setNome(textFieldNome.getText());
+					Agenda.setTelefone(textFieldTelefone.getText());
+					Agenda.setDescricao(textFieldDescricao.getText());
+
+					AgendaController AgendaController = control.AgendaController.getInstance();
+					AgendaController.alterar(Agenda);
+
+					JOptionPane.showMessageDialog(null, "Agenda "
 							+ textFieldNome.getText()
 							+ " foi alterado com sucesso");
-				} catch (BarbeiroException e) {
-					mostrarMensagemDeErro(e.getMessage());
-				} catch (SQLException e) {
-					mostrarMensagemDeErro(e.getMessage());
+
+					dispose();
+					CadastrarAgenda frame = new CadastrarAgenda();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+				} catch (BarbeiroException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				} catch (SQLException k) {
+					mostrarMensagemDeErro(k.getMessage());
 				}
 			}
 			
@@ -98,34 +108,45 @@ public class AlterarContato extends JFrame {
 		contentPane.add(btnSalvarAlteracao);
 
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				dispose();
+				CadastrarAgenda frame = new CadastrarAgenda();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				
+			}
+		});
 		btnVoltar.setBounds(259, 220, 104, 31);
 		contentPane.add(btnVoltar);
 
 		textFieldNome = new JTextField();
-		textFieldNome.setBounds(83, 90, 341, 20);
+		textFieldNome.setBounds(83, 22, 341, 20);
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
 		textFieldTelefone = new JTextField();
-		textFieldTelefone.setBounds(83, 121, 341, 20);
+		textFieldTelefone.setBounds(83, 76, 341, 20);
 		contentPane.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 
 		textFieldDescricao = new JTextField();
-		textFieldDescricao.setBounds(83, 152, 341, 41);
+		textFieldDescricao.setBounds(83, 123, 341, 41);
 		contentPane.add(textFieldDescricao);
 		textFieldDescricao.setColumns(10);
 
 		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(11, 93, 46, 14);
+		lblNome.setBounds(10, 25, 46, 14);
 		contentPane.add(lblNome);
 
 		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(10, 124, 46, 14);
+		lblTelefone.setBounds(10, 79, 46, 14);
 		contentPane.add(lblTelefone);
 
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
-		lblDescricao.setBounds(10, 152, 63, 14);
+		lblDescricao.setBounds(10, 123, 63, 14);
 		contentPane.add(lblDescricao);
 	}
 	

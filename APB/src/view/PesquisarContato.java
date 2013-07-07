@@ -38,6 +38,7 @@ public class PesquisarContato extends JFrame {
 	private JTable table;
 	private JTextField textField;
 	private Connection connection;
+	private static String tempNome;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -164,6 +165,16 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(btnPesquisarTelefone);
 
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
+				AlterarContato frame = new AlterarContato();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
 		btnAlterar.setBounds(98, 228, 89, 23);
 		contentPane.add(btnAlterar);
 
@@ -220,4 +231,7 @@ public class PesquisarContato extends JFrame {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+	public static String getTempNome() {
+		return tempNome;
+	}	
 }
