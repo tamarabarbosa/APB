@@ -123,6 +123,39 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(btnPesquisarNome);
 
 		JButton btnPesquisarTelefone = new JButton("Pesquisar Telefone");
+		btnPesquisarTelefone.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				try {
+					Agenda agenda = new Agenda();
+					agenda.setTelefone(textField.getText());
+
+					connection = FactoryConnection.getInstance()
+							.getConnection();
+					PreparedStatement pst = connection
+							.prepareStatement("Select nome, telefone, descricao "
+									+ "from agenda where telefone = '"
+									+ agenda.getTelefone() + "';");
+					ResultSet rs = pst.executeQuery();
+
+					while (rs.next()) {
+						String[] dados = new String[3];
+						dados[0] = rs.getString("nome");
+						dados[1] = rs.getString("telefone");
+						dados[2] = rs.getString("descricao");
+						modelo.addRow(dados);
+
+					}
+
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (BarbeiroException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				}
+				
+			}
+		});
 		btnPesquisarTelefone.setBounds(264, 168, 160, 23);
 		contentPane.add(btnPesquisarTelefone);
 
