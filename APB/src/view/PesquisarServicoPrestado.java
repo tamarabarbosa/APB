@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.ServicoController;
+import control.ServicoPrestadoController;
 
 import dao.FactoryConnection;
 import exception.ServicoException;
@@ -28,7 +28,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
-public class PesquisarServico extends JFrame {
+public class PesquisarServicoPrestado extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -39,7 +39,7 @@ public class PesquisarServico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PesquisarServico frame = new PesquisarServico();
+					PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class PesquisarServico extends JFrame {
 		});
 	}
 
-	public PesquisarServico() {
+	public PesquisarServicoPrestado() {
 		inicializarComponentes();
 	}
 
@@ -84,12 +84,12 @@ public class PesquisarServico extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNome(textField.getText());
+					servico.setNomeServico(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"Select nome, preco, barbeiro, data from servico where nome = '"
-									+ servico.getNome() + "';");
+							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE nome = '"
+									+ servico.getNomeServico() + "';");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
@@ -120,7 +120,7 @@ public class PesquisarServico extends JFrame {
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"Select nome, preco, barbeiro, data from servico where barbeiro = '"
+							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE barbeiro = '"
 									+ servico.getNomeBarbeiro() + "';");
 
 					while (rs.next()) {
@@ -147,7 +147,7 @@ public class PesquisarServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
-				AlterarServico frame = new AlterarServico();
+				AlterarServicoPrestado frame = new AlterarServicoPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
@@ -163,12 +163,12 @@ public class PesquisarServico extends JFrame {
 				try {
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
 					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNome(nome);
+					servico.setNomeServico(nome);
 
-					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover esse serviço da lista?");
+					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover o serviço " + nome + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						ServicoController barbeiroController = ServicoController.getInstance();
+						ServicoPrestadoController barbeiroController = ServicoPrestadoController.getInstance();
 						barbeiroController.excluir(servico);
 
 						dispose();
@@ -210,7 +210,7 @@ public class PesquisarServico extends JFrame {
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"Select nome, preco, barbeiro, data from servico where data = '"
+							"Select nome, preco, barbeiro, data from servicoprestado where data = '"
 									+ servico.getData() + "';");
 
 					while (rs.next()) {

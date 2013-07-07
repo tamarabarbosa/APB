@@ -57,7 +57,7 @@ public class CadastrarServicoPrestado extends JFrame {
 		try {
 			connection = FactoryConnection.getInstance().getConnection();
 			ResultSet rs = connection.createStatement().executeQuery(
-					"Select nome, preco, barbeiro, data from servico;");
+					"SELECT nome, preco, barbeiro, data FROM servicoprestado;");
 
 			while (rs.next()) {
 				String[] dados = new String[4];
@@ -90,7 +90,7 @@ public class CadastrarServicoPrestado extends JFrame {
 		btnPesquisarContato.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PesquisarServico frame = new PesquisarServico();
+				PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();

@@ -9,18 +9,16 @@ import model.ServicoPrestado;
 import org.junit.Before;
 import org.junit.Test;
 
-import control.BarbeiroController;
-import control.ServicoController;
-import dao.ServicoDAO;
+import control.ServicoPrestadoController;
 import exception.ServicoException;
 
-public class ServicoControllerTest {
+public class ServicoPrestadoControllerTeste {
 	ServicoPrestado servico =  new ServicoPrestado();
-	ServicoController servicoController =  ServicoController.getInstance();
+	ServicoPrestadoController servicoController =  ServicoPrestadoController.getInstance();
 	
 	@Before
 	public void setUp() throws ServicoException{
-		servico.setNome("Corte");
+		servico.setNomeServico("Corte");
 		servico.setNomeBarbeiro("Joao");
 		servico.setPreco("125,23");
 		servico.setData("20/12/13");

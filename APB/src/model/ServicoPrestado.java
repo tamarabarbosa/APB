@@ -4,7 +4,7 @@ import exception.ServicoException;
 
 public class ServicoPrestado {
 
-	private String nome;
+	private String nomeServico;
 	private String nomeBarbeiro;
 	private String preco;
 	private String data;
@@ -22,15 +22,15 @@ public class ServicoPrestado {
 
 	}
 
-	public ServicoPrestado(String nome, String preco, String nomeBarbeiro, String data) {
-		this.nome = nome;
+	public ServicoPrestado(String nomeServico, String preco, String nomeBarbeiro, String data) {
+		this.nomeServico = nomeServico;
 		this.preco = preco;
 		this.data = data;
 		this.nomeBarbeiro = nomeBarbeiro;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getNomeServico() {
+		return nomeServico;
 	}
 
 	public String getNomeBarbeiro() {
@@ -45,13 +45,13 @@ public class ServicoPrestado {
 		return data;
 	}
 
-	public void setNome(String nome) throws ServicoException {
-			if (nome == null)
+	public void setNomeServico(String nomeServico) throws ServicoException {
+			if (nomeServico == null)
 				throw new NullPointerException(NOME_BRANCO);
-			else if ("".equals(nome))
+			else if ("".equals(nomeServico))
 				throw new ServicoException(NOME_BRANCO);
-			else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
-				this.nome = nome;
+			else if (nomeServico.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
+				this.nomeServico = nomeServico;
 			else
 				throw new ServicoException(NOME_INVALIDO);
 	}
@@ -99,5 +99,4 @@ public class ServicoPrestado {
 		}
 
 	}
-
 }

@@ -2,7 +2,6 @@ package view;
 
 import java.awt.EventQueue;
 
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import control.ServicoController;
+import control.ServicoPrestadoController;
 import exception.ServicoException;
 import model.ServicoPrestado;
 
@@ -25,20 +24,21 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 import dao.FactoryConnection;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class AlterarServico extends JFrame {
+public class AlterarServicoPrestado extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textValor;
 	private JTextField textData;
-	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlterarServico frame = new AlterarServico();
+					AlterarServicoPrestado frame = new AlterarServicoPrestado();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,8 @@ public class AlterarServico extends JFrame {
 		});
 	}
 
-	public AlterarServico() {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public AlterarServicoPrestado() {
 		setTitle("Cadastrar novo servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 214);
@@ -83,55 +84,46 @@ public class AlterarServico extends JFrame {
 		textData.setColumns(10);
 
 		final JComboBox comboBoxBarbeiro = new JComboBox();
-		comboBoxBarbeiro.setModel(new DefaultComboBoxModel(
-				new String[] { "Selecione um barbeiro" }));
+		comboBoxBarbeiro.setModel(new DefaultComboBoxModel(new String[] { "Selecione um barbeiro" }));
 		comboBoxBarbeiro.setBounds(129, 53, 289, 20);
 		contentPane.add(comboBoxBarbeiro);
 
 		final JComboBox comboBoxServico = new JComboBox();
 		comboBoxServico.setModel(new DefaultComboBoxModel(new String[] {
-				"Selecione um tipo de servi\u00E7o", "Barba", "Corte Adulto",
-				"Corte Infantil" }));
+				"Selecione um tipo de servi\u00E7o", "Barba", "Corte Adulto", "Corte Infantil" }));
 		comboBoxServico.setMaximumRowCount(4);
 		comboBoxServico.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxServico);
-		
+
 		try {
 			Connection connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery("DELETE FROM servico WHERE "
-							+ "nome = '" + PesquisarServico.getTempNome() + "';");
-			
-				textValor.setText(rs.getString("preco"));
-				textData.setText(rs.getString("data"));
+			ResultSet rs = connection.createStatement().executeQuery(
+					"DELETE FROM servico WHERE " + "nome = '"
+							+ PesquisarServicoPrestado.getTempNome() + "';");
 
+			textValor.setText(rs.getString("preco"));
+			textData.setText(rs.getString("data"));
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
 
-
 		JButton botaoSalvar = new JButton("Salvar");
-		botaoSalvar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
+		botaoSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				try {
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
-					servico.setNome(comboBoxServico.getSelectedItem().toString());
-					servico.setPreco(textValor.getText());
-					servico.setData(textData.getText());
+					ServicoPrestado servico_prestado = new ServicoPrestado();
+					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
+					servico_prestado.setNomeServico(comboBoxServico.getSelectedItem().toString());
+					servico_prestado.setPreco(textValor.getText());
+					servico_prestado.setData(textData.getText());
 
-					if (comboBoxServico.getSelectedIndex() == 0) {
-
+					if (comboBoxServico.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null, "Você deve selecionar um tipo de serviço.");
-
-					} else if (comboBoxBarbeiro.getSelectedIndex() == 0) {
-
+					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null, "Você deve selecionar um barbeiro.");
-
-					} else {
-
-						ServicoController servicoController = ServicoController.getInstance();
-						servicoController.alterar(servico);
+					else {
+						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+						servicoController.alterar(servico_prestado);
 
 						JOptionPane.showMessageDialog(null, "Servico "
 								+ comboBoxServico.getSelectedItem().toString()
@@ -142,9 +134,7 @@ public class AlterarServico extends JFrame {
 
 						textValor.setText("");
 						textData.setText("");
-
 					}
-
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
@@ -160,7 +150,7 @@ public class AlterarServico extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				PesquisarServico frame = new PesquisarServico();
+				PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -168,10 +158,9 @@ public class AlterarServico extends JFrame {
 		botaoVoltar.setBounds(253, 129, 89, 23);
 		contentPane.add(botaoVoltar);
 	}
-	
+
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
-	
 }

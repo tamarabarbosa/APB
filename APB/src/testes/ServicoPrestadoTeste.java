@@ -9,12 +9,12 @@ import org.junit.Test;
 
 import exception.ServicoException;
 
-public class ServicoTeste {
+public class ServicoPrestadoTeste {
 
 	ServicoPrestado servico = new ServicoPrestado();
 	@Test (expected = NullPointerException.class)
 	public void testeSetNomeNaoNulo() throws ServicoException {
-		servico.setNome(null);
+		servico.setNomeServico(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
@@ -41,7 +41,6 @@ public class ServicoTeste {
 		try {
 			servico.setPreco("123,45");
 		} catch (ServicoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			Assert.fail("Não deve lançar exceção");
 		}

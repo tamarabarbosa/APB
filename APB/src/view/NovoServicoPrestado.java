@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import control.ServicoController;
+import control.ServicoPrestadoController;
 import exception.ServicoException;
 import model.ServicoPrestado;
 
@@ -46,6 +46,7 @@ public class NovoServicoPrestado extends JFrame {
 		});
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public NovoServicoPrestado() {
 		setTitle("Criar nova presta\u00E7\u00E3o de servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,11 +71,11 @@ public class NovoServicoPrestado extends JFrame {
 		JLabel lblData = new JLabel("Data:");
 		lblData.setBounds(267, 87, 46, 14);
 		contentPane.add(lblData);
-
+		
 		textValor = new JTextField();
+		textValor.setColumns(10);
 		textValor.setBounds(129, 84, 114, 20);
 		contentPane.add(textValor);
-		textValor.setColumns(10);
 
 		textData = new JTextField();
 		textData.setBounds(312, 84, 106, 20);
@@ -104,6 +105,7 @@ public class NovoServicoPrestado extends JFrame {
 				String nome = rs.getString("nome");
 				comboBoxBarbeiro.addItem(nome);
 			}
+			
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
@@ -113,23 +115,21 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
-					servico.setNome(comboBoxServico.getSelectedItem().toString());
-					servico.setPreco(textValor.getText());
-					servico.setData(textData.getText());
+					ServicoPrestado servico_prestado = new ServicoPrestado();
+					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
+					servico_prestado.setNomeServico(comboBoxServico.getSelectedItem().toString());
+					servico_prestado.setPreco(textValor.getText());
+					servico_prestado.setData(textData.getText());
 
 					if (comboBoxServico.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null, "Você deve selecionar um tipo de serviço.");
 					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,	"Você deve selecionar um barbeiro.");
 					else {
-						ServicoController servicoController = ServicoController.getInstance();
-						servicoController.inserir(servico);
+						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+						servicoController.inserir(servico_prestado);
 
-						JOptionPane.showMessageDialog(null, "Servico "
-								+ comboBoxServico.getSelectedItem().toString()
-								+ " inserido com sucesso");
+						JOptionPane.showMessageDialog(null, "Servico criado com sucesso");
 
 						comboBoxBarbeiro.setSelectedIndex(0);
 						comboBoxServico.setSelectedIndex(0);
