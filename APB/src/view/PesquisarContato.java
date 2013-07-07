@@ -13,10 +13,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import control.AgendaController;
+import control.BarbeiroController;
+
 import dao.FactoryConnection;
 import exception.BarbeiroException;
 
 import model.Agenda;
+import model.Barbeiro;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -164,6 +168,37 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(btnAlterar);
 
 		JButton btnRemover = new JButton("Remover");
+		btnRemover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					Agenda agenda = new Agenda();
+					agenda.setNome(nome);
+
+					int confirmacao = JOptionPane.showConfirmDialog(null,
+							"Remover " + nome + " da lista?");
+
+					if (confirmacao == JOptionPane.YES_OPTION) {
+						AgendaController agendaController = AgendaController.getInstance();
+						AgendaController.excluir(agenda);
+
+						dispose();
+						PesquisarContato frame = new PesquisarContato();
+						frame.setVisible(true);
+						frame.setLocationRelativeTo(null);
+					}
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					mostrarMensagemDeErro("Selecione um contato para remover");
+				} catch (BarbeiroException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				} catch (SQLException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				}
+				
+			}
+		});
 		btnRemover.setBounds(216, 228, 89, 23);
 		contentPane.add(btnRemover);
 

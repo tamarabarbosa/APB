@@ -2,6 +2,7 @@ package control;
 
 import java.sql.SQLException;
 import dao.AgendaDAO;
+import dao.BarbeiroDAO;
 import model.Agenda;
 
 public class AgendaController {
@@ -17,8 +18,13 @@ private static AgendaController instance;
 		AgendaDAO.getInstance().alterar(agenda_alterado, agenda);
 	}
 
-	public void excluir(Agenda agenda) throws SQLException {
-		AgendaDAO.getInstance().excluir(agenda);
+	public static boolean excluir(Agenda agenda) throws SQLException {
+		if (agenda == null) {
+			return false;
+		} else {
+			AgendaDAO.getInstance().excluir(agenda);
+			return true;
+		}
 	}
 	
 	private AgendaController() {}
