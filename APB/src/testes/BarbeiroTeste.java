@@ -1,6 +1,7 @@
 package testes;
 
 import static org.junit.Assert.*;
+import junit.framework.Assert;
 
 
 
@@ -217,5 +218,66 @@ public class BarbeiroTeste {
 	@Test
 	public void testeParaGetterDeCadeiraDeBarbeiro() {
 		assertEquals("5",barbeiro.getCadeira());
+	}
+	
+	@Test
+	public void setDeBarbeiroDeveFuncionar(){
+		Barbeiro barbeiro =  new Barbeiro();
+		try {
+			barbeiro.setNome("Alessandrô");
+		} catch (NullPointerException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (BarbeiroException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals("Alessandrô", barbeiro.getNome());
+	}
+	
+	@Test(expected =  BarbeiroException.class)
+	public void cpfPassadoEmBranco() throws BarbeiroException{
+		barbeiro.setCpf("");
+		Assert.fail("Deve lançar uma exceção");
+	}
+	
+	@Test(expected =  BarbeiroException.class)
+	public void cpfInvalido() throws BarbeiroException{
+		barbeiro.setCpf("123.654.456-75");
+		Assert.fail("Deve lançar uma exceção");
+	}
+	
+	@Test(expected =  AssertionError.class)
+	public void rgPassadoComLetras() throws BarbeiroException{
+		barbeiro.setRg("asasa");
+		Assert.fail("Deve lançar uma exceção");
+	}
+	@Test(expected =  BarbeiroException.class)
+	public void rgPassadoEmBrancro() throws BarbeiroException{
+		barbeiro.setRg("");
+		Assert.fail("Deve lançar uma exceção");
+	}
+	
+	@Test(expected =  BarbeiroException.class)
+	public void nomePassadoEmBrancro() throws BarbeiroException{
+		barbeiro.setNome("");
+		Assert.fail("Deve lançar uma exceção");
+	}
+	
+	@Test(expected =  BarbeiroException.class)
+	public void telefonePassadoEmBrancro() throws BarbeiroException{
+		barbeiro.setTelefone("");
+		Assert.fail("Deve lançar uma exceção");
+	}
+	
+	@Test(expected =  BarbeiroException.class)
+	public void cadeiraPassadoEmBrancro() throws BarbeiroException{
+		barbeiro.setCadeira("");
+		Assert.fail("Deve lançar uma exceção");
+	}
+	@Test(expected =  AssertionError.class)
+	public void cadeiraPassadoComoZero() throws BarbeiroException{
+		barbeiro.setCadeira("0");
+		Assert.fail("Deve lançar uma exceção");
 	}
 }

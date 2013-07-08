@@ -119,6 +119,7 @@ public class Barbeiro {
 			throw new AssertionError(RG_INVALIDO);
 	}
 
+	
 	public void setTelefone(String telefone) throws BarbeiroException {
 		if (telefone == null)
 			throw new NullPointerException(TELEFONE_BRANCO);

@@ -12,6 +12,10 @@ public class TipoServico {
 	private final String PRECO_INVALIDO = "Preço Inválido";
 	private final String PRECO_BRANCO = "Preço em Branco";
 
+	
+	public TipoServico(){
+	}
+	
 	public String getNomeTipoServico() {
 		return nomeTipoServico;
 	}
@@ -20,12 +24,14 @@ public class TipoServico {
 		return preco;
 	}
 
-	public void setNomeTipoServico(String nomeTipoServico) throws ServicoException {
+	public void setNomeTipoServico(String nomeTipoServico)
+			throws ServicoException {
 		if (nomeTipoServico == null)
 			throw new NullPointerException(NOME_BRANCO);
 		else if ("".equals(nomeTipoServico))
 			throw new ServicoException(NOME_BRANCO);
-		else if (nomeTipoServico.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
+		else if (nomeTipoServico.matches("^[[ ]|\\p{L}*]+$")) // inclui letras
+																// acentuadas
 			this.nomeTipoServico = nomeTipoServico;
 		else
 			throw new ServicoException(NOME_INVALIDO);

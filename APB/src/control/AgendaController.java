@@ -18,7 +18,7 @@ private static AgendaController instance;
 		AgendaDAO.getInstance().alterar(agenda_alterado, agenda);
 	}
 
-	public static boolean excluir(Agenda agenda) throws SQLException {
+	public  boolean excluir(Agenda agenda) throws SQLException {
 		if (agenda == null) {
 			return false;
 		} else {
