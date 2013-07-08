@@ -36,17 +36,17 @@ public class ServicoPrestadoDAO {
 	}
 
 	public void alterar(ServicoPrestado servico_alterado, ServicoPrestado servico) throws SQLException {
-		this.updateQuery("UPDATE servico SET " + "nome = \""
+		this.updateQuery("UPDATE servicoprestado SET " + "nome = \""
 				+ servico_alterado.getNomeServico() + "\", " + "preco = \""
 				+ servico_alterado.getPreco() + "\", " + "barbeiro = \""
 				+ servico_alterado.getNomeBarbeiro() + "\", " + "data = \""
-				+ servico_alterado.getData() + "\", " + " WHERE servico.preco = \"" 
+				+ servico_alterado.getData() + "\", " + " WHERE servicoprestado.preco = \"" 
 				+ servico.getPreco() + "\";"
 				);
 	}
 
 	public void excluir(ServicoPrestado servico) throws SQLException {
-		this.updateQuery("DELETE FROM servico WHERE " + "servico.nome = \""
+		this.updateQuery("DELETE FROM servicoprestado WHERE " + "servicoprestado.nome = \""
 				+ servico.getNomeServico() + "\";");
 	}
 

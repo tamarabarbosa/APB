@@ -46,57 +46,46 @@ public class ServicoPrestado {
 	}
 
 	public void setNomeServico(String nomeServico) throws ServicoException {
-			if (nomeServico == null)
-				throw new NullPointerException(NOME_BRANCO);
-			else if ("".equals(nomeServico))
-				throw new ServicoException(NOME_BRANCO);
-			else if (nomeServico.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
-				this.nomeServico = nomeServico;
-			else
-				throw new ServicoException(NOME_INVALIDO);
+		if (nomeServico == null)
+			throw new NullPointerException(NOME_BRANCO);
+		else if ("".equals(nomeServico))
+			throw new ServicoException(NOME_BRANCO);
+		else if (nomeServico.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
+			this.nomeServico = nomeServico;
+		else
+			throw new ServicoException(NOME_INVALIDO);
 	}
 
 	public void setNomeBarbeiro(String nomeBarbeiro) throws ServicoException {
-			if (nomeBarbeiro == null)
-				throw new NullPointerException(BARBEIRO_BRANCO);
-			else if ("".equals(nomeBarbeiro))
-				throw new ServicoException(BARBEIRO_BRANCO);
-			else if (nomeBarbeiro.matches("^[[ ]|\\p{L}*]+$"))
-				this.nomeBarbeiro = nomeBarbeiro;
-			else
-				throw new ServicoException(BARBEIRO_INVALIDO);
+		if (nomeBarbeiro == null)
+			throw new NullPointerException(BARBEIRO_BRANCO);
+		else if ("".equals(nomeBarbeiro))
+			throw new ServicoException(BARBEIRO_BRANCO);
+		else if (nomeBarbeiro.matches("^[[ ]|\\p{L}*]+$"))
+			this.nomeBarbeiro = nomeBarbeiro;
+		else
+			throw new ServicoException(BARBEIRO_INVALIDO);
 	}
 
 	public void setPreco(String preco) throws ServicoException {
-		try {
-			if (preco == null)
-				throw new NullPointerException(PRECO_INVALIDO);
-			else if ("".equals(preco))
-				throw new ServicoException(PRECO_BRANCO);
-			else if (preco.matches("[\\d]{1,3},[\\d]{1,2}"))
-				this.preco = preco;
-			else
-				throw new ServicoException(PRECO_INVALIDO);
-		} catch (IllegalArgumentException e) {
+		if (preco == null)
+			throw new NullPointerException(PRECO_BRANCO);
+		else if ("".equals(preco))
+			throw new ServicoException(PRECO_BRANCO);
+		else if (preco.matches("[\\d]{1,3},[\\d]{1,2}"))
+			this.preco = preco;
+		else
 			throw new ServicoException(PRECO_INVALIDO);
-		}
 	}
 
 	public void setData(String data) throws ServicoException {
-		try {
-			if (data == null)
-				throw new NullPointerException(DATA_INVALIDA);
-			else if ("".equals(data))
-				throw new ServicoException(DATA_BRANCO);
-			else if (data.matches("[\\d]{2}/[\\d]{2}/[\\d]{2,4}"))
-				this.data = data;
-			else
-				throw new ServicoException(DATA_INVALIDA);
-		} catch (StringIndexOutOfBoundsException e) {
+		if (data == null)
+			throw new NullPointerException(DATA_BRANCO);
+		else if ("".equals(data))
+			throw new ServicoException(DATA_BRANCO);
+		else if (data.matches("[\\d]{2}/[\\d]{2}/[\\d]{2,4}"))
+			this.data = data;
+		else
 			throw new ServicoException(DATA_INVALIDA);
-		} catch (NumberFormatException e) {
-			throw new ServicoException(DATA_INVALIDA);
-		}
-
 	}
 }

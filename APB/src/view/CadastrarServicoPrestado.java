@@ -16,7 +16,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import control.ServicoPrestadoController;
+
+import model.ServicoPrestado;
+
 import dao.FactoryConnection;
+import exception.ServicoException;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class CadastrarServicoPrestado extends JFrame {
@@ -73,8 +81,8 @@ public class CadastrarServicoPrestado extends JFrame {
 
 		scrollPane.setViewportView(table);
 
-		JButton btnNovoContato = new JButton("Novo");
-		btnNovoContato.addMouseListener(new MouseAdapter() {
+		JButton btnNovo = new JButton("Novo");
+		btnNovo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
@@ -83,11 +91,11 @@ public class CadastrarServicoPrestado extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnNovoContato.setBounds(380, 24, 94, 23);
-		contentPane.add(btnNovoContato);
+		btnNovo.setBounds(380, 24, 94, 23);
+		contentPane.add(btnNovo);
 
-		JButton btnPesquisarContato = new JButton("Pesquisar");
-		btnPesquisarContato.addMouseListener(new MouseAdapter() {
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
@@ -96,9 +104,41 @@ public class CadastrarServicoPrestado extends JFrame {
 				dispose();
 			}
 		});
-		btnPesquisarContato.setBounds(380, 58, 94, 23);
-		contentPane.add(btnPesquisarContato);
+		btnPesquisar.setBounds(380, 58, 94, 23);
+		contentPane.add(btnPesquisar);
+		
+		JButton btnRemover = new JButton("Remover");
+		btnRemover.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					ServicoPrestado servico = new ServicoPrestado();
+					servico.setNomeServico(nome);
 
+					int confirmacao = JOptionPane.showConfirmDialog(null,
+							"Remover " + nome + " da lista?");
+
+					if (confirmacao == JOptionPane.YES_OPTION) {
+						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+						servicoController.excluir(servico);
+
+						dispose();
+						CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+						frame.setVisible(true);
+						frame.setLocationRelativeTo(null);
+					}
+				} catch (ArrayIndexOutOfBoundsException e) {
+					mostrarMensagemDeErro("Selecione um Serviço para remover");
+				} catch (ServicoException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				}
+			}
+		});
+		btnRemover.setBounds(380, 92, 94, 23);
+		contentPane.add(btnRemover);
+		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override

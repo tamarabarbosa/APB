@@ -15,8 +15,6 @@ public class ServicoPrestadoController {
 	private static ServicoPrestadoController instance;
 
 	public boolean inserir(ServicoPrestado servico) throws SQLException {
-		ServicoPrestadoDAO.getInstance().incluir(servico);
-
 		if (ServicoPrestadoDAO.getInstance().incluir(servico))
 			return true;
 
