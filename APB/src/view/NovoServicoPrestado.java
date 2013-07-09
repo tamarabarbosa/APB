@@ -90,8 +90,7 @@ public class NovoServicoPrestado extends JFrame {
 
 		final JComboBox comboBoxServico = new JComboBox();
 		comboBoxServico.setModel(new DefaultComboBoxModel(new String[] {
-				"Selecione um tipo de servi\u00E7o", "Barba", "Corte Adulto",
-				"Corte Infantil" }));
+				"Selecione um tipo de servi\u00E7o" }));
 		comboBoxServico.setMaximumRowCount(4);
 		comboBoxServico.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxServico);
@@ -99,11 +98,17 @@ public class NovoServicoPrestado extends JFrame {
 		try {
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT nome FROM barbeiro;");
+			java.sql.PreparedStatement pst2 = connection.prepareStatement("SELECT nome FROM tiposervico;");
 			ResultSet rs = pst.executeQuery();
+			ResultSet rs2 = pst2.executeQuery();
 
 			while (rs.next()) {
 				String nome = rs.getString("nome");
 				comboBoxBarbeiro.addItem(nome);
+			}
+			while (rs2.next()) {
+				String nome = rs2.getString("nome");
+				comboBoxServico.addItem(nome);
 			}
 			
 		} catch (SQLException e) {
