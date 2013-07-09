@@ -14,14 +14,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import control.AgendaController;
-import control.BarbeiroController;
-
 import dao.FactoryConnection;
 import exception.BarbeiroException;
-
 import model.Agenda;
-import model.Barbeiro;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
@@ -35,7 +30,6 @@ import java.sql.SQLException;
 public class PesquisarContato extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table;
 	private JTextField textField;
 	private Connection connection;
 	private static String tempNome;
@@ -149,6 +143,7 @@ public class PesquisarContato extends JFrame {
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("telefone");
 						dados[2] = rs.getString("descricao");
+						tempNome = rs.getString("nome");
 						modelo.addRow(dados);
 
 					}
@@ -168,12 +163,11 @@ public class PesquisarContato extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
 				AlterarContato frame = new AlterarContato();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
-			}
+				}
 		});
 		btnAlterar.setBounds(98, 228, 89, 23);
 		contentPane.add(btnAlterar);
