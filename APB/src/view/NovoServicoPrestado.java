@@ -145,6 +145,8 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				textValor.setText("");
+				comboBoxBarbeiro.setSelectedIndex(0);
+				comboBoxServico.setSelectedIndex(0);
 			}
 		});
 		botaoLimparCampos.setBounds(152, 129, 148, 23);
