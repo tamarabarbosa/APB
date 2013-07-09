@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class CadastrarTipoServico extends JFrame {
@@ -57,6 +59,17 @@ public class CadastrarTipoServico extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnNovo = new JButton("Novo");
+		btnNovo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				
+				dispose();
+				NovoTipoServico frame = new NovoTipoServico();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				
+			}
+		});
 		btnNovo.setBounds(380, 24, 94, 23);
 		contentPane.add(btnNovo);
 		
