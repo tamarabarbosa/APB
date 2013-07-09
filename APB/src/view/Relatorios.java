@@ -15,6 +15,8 @@ import java.awt.Button;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class Relatorios extends JFrame {
@@ -70,14 +72,32 @@ public class Relatorios extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PesquisarRelatorio frame = new PesquisarRelatorio();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnPesquisar.setBounds(680, 13, 94, 23);
+		btnPesquisar.setBounds(680, 13, 94, 62);
 		contentPane.add(btnPesquisar);
 		
 		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MenuPrincipal frame = new MenuPrincipal();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
