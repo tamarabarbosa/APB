@@ -89,7 +89,7 @@ public class PesquisarContato extends JFrame {
 				try {
 					Agenda agenda = new Agenda();
 					agenda.setNome(textField.getText());
-
+					PesquisarContato.setTempNome(textField.getText());
 					connection = FactoryConnection.getInstance()
 							.getConnection();
 					PreparedStatement pst = connection
@@ -142,8 +142,7 @@ public class PesquisarContato extends JFrame {
 						String[] dados = new String[3];
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("telefone");
-						dados[2] = rs.getString("descricao");
-						tempNome = rs.getString("nome");
+						dados[2] = rs.getString("descricao");;
 						modelo.addRow(dados);
 
 					}
@@ -179,8 +178,10 @@ public class PesquisarContato extends JFrame {
 				
 				try {
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					String telefone = (String) table.getValueAt(table.getSelectedRow(), 1);
 					Agenda agenda = new Agenda();
 					agenda.setNome(nome);
+					agenda.setTelefone(telefone);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
@@ -227,5 +228,10 @@ public class PesquisarContato extends JFrame {
 	}
 	public static String getTempNome() {
 		return tempNome;
+	}
+
+	public static void setTempNome(String tempNome) {
+		PesquisarContato.tempNome = tempNome;
 	}	
+	
 }
