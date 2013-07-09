@@ -6,10 +6,21 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import control.TipoServicoController;
+
+import exception.ServicoException;
+
+import model.TipoServico;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 public class NovoTipoServico extends JFrame {
@@ -65,13 +76,43 @@ public class NovoTipoServico extends JFrame {
 		contentPane.add(lblPreco);
 		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				TipoServico tipoServico =  new TipoServico();
+				try {
+					tipoServico.setNomeTipoServico(textFieldServico.getText());
+				} catch (ServicoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				try {
+					tipoServico.setPreco(textFieldPreco.getText());
+				} catch (ServicoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				TipoServicoController tipoServicoController =  TipoServicoController.getInstance();
+				try {
+					tipoServicoController.inserir(tipoServico);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null, "Servico "
+						+ textFieldServico.getText()
+						+ " foi cadastrado com sucesso");
+
+			}
+		});
 		btnSalvar.setBounds(29, 108, 89, 23);
 		contentPane.add(btnSalvar);
 		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Administrativo frame = new Administrativo();
+				CadastrarTipoServico frame = new CadastrarTipoServico();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();

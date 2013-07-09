@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import control.TipoServicoController;
 import view.AlterarTipoServico;
 
+import model.Barbeiro;
 import model.TipoServico;
 
 
@@ -29,8 +30,9 @@ public class TipoServicoDAO {
 			return false;
 		} else {
 			this.updateQuery("INSERT INTO "
-					+ "tipoServico (nomeTipoServico, preco) VALUES ("
-					+ "\"" + tipoServico.getNomeTipoServico() + "\"); ");
+					+ "tipoServico (nome, preco) VALUES ("
+					+ "\"" + tipoServico.getNomeTipoServico() + "\", " + "\""
+					+ tipoServico.getPreco() + "\"); ");
 
 			return true;
 		}
@@ -41,10 +43,10 @@ public class TipoServicoDAO {
 		if (tipoServico_alterado == null || tipoServico == null) {
 			return false;
 		} else {
-			this.updateQuery("UPDATE tipoServico SET nomeTipoServico = '"
+			this.updateQuery("UPDATE tipoServico SET nome = '"
 					+ tipoServico_alterado.getNomeTipoServico() + "', " + "preco = '"
 					+ tipoServico_alterado.getPreco()  + "' WHERE"
-					+ " preco = '" + AlterarTipoServico.getNomeTipoServicoAntigo() + "';");
+					+ " nome = '" + AlterarTipoServico.getNomeTipoServicoAntigo() + "';");
 
 			return true;
 		}
@@ -55,7 +57,7 @@ public class TipoServicoDAO {
 			return false;
 		} else {
 			this.updateQuery("DELETE FROM tipoServico WHERE "
-					+ "tipoServico.nomeTipoServico = \"" + tipoServico.getNomeTipoServico() + "\";");
+					+ "tipoServico.nome = \"" + tipoServico.getNomeTipoServico() + "\";");
 			return true;
 
 		}
