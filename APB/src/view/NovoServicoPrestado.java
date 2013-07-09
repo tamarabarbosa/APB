@@ -30,7 +30,6 @@ public class NovoServicoPrestado extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textValor;
-	private JTextField textData;
 	private Connection connection;
 
 	public static void main(String[] args) {
@@ -67,20 +66,11 @@ public class NovoServicoPrestado extends JFrame {
 		JLabel lblPreco = new JLabel("Pre\u00E7o (R$):");
 		lblPreco.setBounds(27, 87, 71, 14);
 		contentPane.add(lblPreco);
-
-		JLabel lblData = new JLabel("Data:");
-		lblData.setBounds(267, 87, 46, 14);
-		contentPane.add(lblData);
 		
 		textValor = new JTextField();
 		textValor.setColumns(10);
 		textValor.setBounds(129, 84, 114, 20);
 		contentPane.add(textValor);
-
-		textData = new JTextField();
-		textData.setBounds(312, 84, 106, 20);
-		contentPane.add(textData);
-		textData.setColumns(10);
 
 		final JComboBox comboBoxBarbeiro = new JComboBox();
 		comboBoxBarbeiro.setModel(new DefaultComboBoxModel(
@@ -124,7 +114,6 @@ public class NovoServicoPrestado extends JFrame {
 					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
 					servico_prestado.setNomeServico(comboBoxServico.getSelectedItem().toString());
 					servico_prestado.setPreco(textValor.getText());
-					servico_prestado.setData(textData.getText());
 
 					if (comboBoxServico.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null, "Você deve selecionar um tipo de serviço.");
@@ -140,7 +129,6 @@ public class NovoServicoPrestado extends JFrame {
 						comboBoxServico.setSelectedIndex(0);
 
 						textValor.setText("");
-						textData.setText("");
 					}
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -157,7 +145,6 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				textValor.setText("");
-				textData.setText("");
 			}
 		});
 		botaoLimparCampos.setBounds(152, 129, 148, 23);
