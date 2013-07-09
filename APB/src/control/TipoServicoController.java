@@ -1,38 +1,38 @@
 package control;
 
 import java.sql.SQLException;
-import dao.BarbeiroDAO;
-import model.Barbeiro;
+import dao.TipoServicoDAO;
+import model.TipoServico;
 
 public class TipoServicoController {
 
 	private static TipoServicoController instance;
 
-	public boolean inserir(Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null) {
+	public boolean inserir(TipoServico tipoServico) throws SQLException {
+		if (tipoServico == null) {
 			return false;
 		} else {
-			BarbeiroDAO.getInstance().incluir(barbeiro);
+			TipoServicoDAO.getInstance().incluir(tipoServico);
 			return true;
 		}
 	}
 
-	public boolean alterar(Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null) {
+	public boolean alterar(TipoServico tipoServico) throws SQLException {
+		if (tipoServico == null) {
 			return false;
 		} else {
-			Barbeiro barbeiro_alterado = barbeiro;
-			BarbeiroDAO.getInstance().alterar(barbeiro_alterado, barbeiro);
+			TipoServico tipoServico_alterado = tipoServico;
+			TipoServicoDAO.getInstance().alterar(tipoServico_alterado, tipoServico);
 			return true;
 		}
 	}
 
-	public boolean excluir(Barbeiro barbeiro) throws SQLException {
+	public boolean excluir(TipoServico tipoServico) throws SQLException {
 
-		if (barbeiro == null) {
+		if (tipoServico == null) {
 			return false;
 		} else {
-			BarbeiroDAO.getInstance().excluir(barbeiro);
+			TipoServicoDAO.getInstance().excluir(tipoServico);
 			return true;
 		}
 	}
