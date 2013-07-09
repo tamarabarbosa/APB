@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import view.AlterarContato;
+
 import model.Agenda;
 import dao.FactoryConnection;
 
@@ -36,7 +38,7 @@ public class AgendaDAO {
 				"telefone = \"" + agenda_alterado.getTelefone() + "\""+
 				"descricao = \"" + agenda_alterado.getDescricao() + "\""+
 				" WHERE " +
-				" agenda.telefone = \"" + Agenda.getOldTelefone() + "\";"
+				" agenda.telefone = \"" + AlterarContato.getTelefoneAntigo() + "\";"
 				);
 	}
 	

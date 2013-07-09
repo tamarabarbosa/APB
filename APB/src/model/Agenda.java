@@ -7,7 +7,6 @@ public class Agenda {
 	private String nome;
 	private String telefone;
 	private String descricao;
-	private static String oldTelefone;
 
 	private final String NOME_INVALIDO = "Nome Inválido";
 	private final String NOME_BRANCO = "Nome em Branco";
@@ -36,9 +35,6 @@ public class Agenda {
 		return descricao;
 	}
 
-	public static String getOldTelefone() {
-		return oldTelefone;
-	}
 
 	public void setNome(String nome) throws BarbeiroException {
 		if ("".equals(nome))
@@ -62,13 +58,5 @@ public class Agenda {
 		this.descricao = descricao;
 	}
 
-	public void setOldTelefone(String oldTelefone) throws BarbeiroException {
-		if ("".equals(oldTelefone))
-			throw new BarbeiroException(TELEFONE_BRANCO);
-		else if (oldTelefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
-			Agenda.oldTelefone = oldTelefone;
-		else
-			throw new BarbeiroException(TELEFONE_INVALIDO);
-	}
 
 }

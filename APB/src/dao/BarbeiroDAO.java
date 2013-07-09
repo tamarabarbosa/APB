@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import view.AlterarBarbeiro;
+
 import model.Barbeiro;
 
 
@@ -47,7 +49,7 @@ public class BarbeiroDAO {
 					+ barbeiro_alterado.getRg() + "', " + "telefone = '"
 					+ barbeiro_alterado.getTelefone() + "', " + "cadeira = '"
 					+ barbeiro_alterado.getCadeira() + "' WHERE"
-					+ " cpf = '" + barbeiro.getCpf() + "';");
+					+ " cpf = '" + AlterarBarbeiro.getCpfAntigo() + "';");
 
 			return true;
 		}

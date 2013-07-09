@@ -51,16 +51,6 @@ public class AgendaTeste {
 		assertEquals("ASDAS", contato.getDescricao());
 	}
 	
-	@Test
-	public void getterDeTelefoneAntigoDeveFuncionar(){
-		try {
-			contato.setOldTelefone("4566-4566");
-		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		assertEquals("4566-4566", Agenda.getOldTelefone());
-	}
 	
 	@Test(expected = BarbeiroException.class)
 	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
@@ -86,15 +76,5 @@ public class AgendaTeste {
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	@Test(expected = BarbeiroException.class)
-	public void telefoneAntigoDoBarbeiroNaoPodePassarQuandoForaDeFormato() throws BarbeiroException{
-		contato.setOldTelefone("45645aa-a54654");
-		Assert.fail("Deve lançar uma exceção");
-	}
-	@Test(expected = BarbeiroException.class)
-	public void telefoneAntigoDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
-		contato.setOldTelefone("");
-		Assert.fail("Deve lançar uma exceção");
-	}
-	
+
 }

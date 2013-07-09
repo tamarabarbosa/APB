@@ -4,25 +4,21 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
+
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
+
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import control.AgendaController;
-import control.AgendaController;
-import control.AgendaController;
+
 import dao.FactoryConnection;
-import exception.AgendaException;
-import exception.AgendaException;
+
 import exception.BarbeiroException;
 
 import model.Agenda;
-import model.Agenda;
-import model.Agenda;
+
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,6 +33,7 @@ public class AlterarContato extends JFrame {
 	private JTextField textFieldNome;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldDescricao;
+	private static String telefoneAntigo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -70,6 +67,7 @@ public class AlterarContato extends JFrame {
 			
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldTelefone.setText(rs.getString("telefone"));
+				AlterarContato.setTelefoneAntigo(rs.getString("telefone"));
 				textFieldDescricao.setText(rs.getString("descricao"));
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
@@ -80,13 +78,13 @@ public class AlterarContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Agenda Agenda = new Agenda();
-					Agenda.setNome(textFieldNome.getText());
-					Agenda.setTelefone(textFieldTelefone.getText());
-					Agenda.setDescricao(textFieldDescricao.getText());
+					Agenda agenda = new Agenda();
+					agenda.setNome(textFieldNome.getText());
+					agenda.setTelefone(textFieldTelefone.getText());
+					agenda.setDescricao(textFieldDescricao.getText());
 
 					AgendaController AgendaController = control.AgendaController.getInstance();
-					AgendaController.alterar(Agenda);
+					AgendaController.alterar(agenda);
 
 					JOptionPane.showMessageDialog(null, "Agenda "
 							+ textFieldNome.getText()
@@ -150,6 +148,15 @@ public class AlterarContato extends JFrame {
 		contentPane.add(lblDescricao);
 	}
 	
+	
+	public static String getTelefoneAntigo() {
+		return telefoneAntigo;
+	}
+
+	public static void setTelefoneAntigo(String telefoneAntigo) {
+		AlterarContato.telefoneAntigo = telefoneAntigo;
+	}
+
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);

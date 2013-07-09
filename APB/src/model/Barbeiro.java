@@ -9,7 +9,6 @@ public class Barbeiro {
 	private String rg;
 	private String telefone;
 	private String cadeira;
-	private ServicoPrestado servicos[];
 
 	private final String NOME_INVALIDO = "Nome Inválido";
 	private final String NOME_BRANCO = "Nome em Branco";
@@ -68,10 +67,6 @@ public class Barbeiro {
 
 	public String getCadeira() {
 		return cadeira;
-	}
-
-	public ServicoPrestado[] getServicos() {
-		return servicos;
 	}
 
 	public void setNome(String nome) throws BarbeiroException,
@@ -149,9 +144,7 @@ public class Barbeiro {
 		}
 	}
 
-	public void setServicos(ServicoPrestado[] servicos) {
-		this.servicos = servicos;
-	}
+
 
 	private boolean validarCpf(String cpf) {
 		int d1, d2;

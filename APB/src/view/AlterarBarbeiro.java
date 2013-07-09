@@ -33,6 +33,7 @@ public class AlterarBarbeiro extends JFrame {
 	private JTextField textFieldRg;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldCadeira;
+	private static String cpfAntigo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -112,6 +113,7 @@ public class AlterarBarbeiro extends JFrame {
 			
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldCpf.setText(rs.getString("cpf"));
+				AlterarBarbeiro.setCpfAntigo(rs.getString("cpf"));
 				textFieldRg.setText(rs.getString("rg"));
 				textFieldTelefone.setText(rs.getString("telefone"));
 				textFieldCadeira.setText(rs.getString("cadeira"));
@@ -176,6 +178,16 @@ public class AlterarBarbeiro extends JFrame {
 		});
 		buttonVoltar.setBounds(158, 177, 125, 23);
 		contentPane.add(buttonVoltar);
+	}
+	
+	
+
+	public static String getCpfAntigo() {
+		return cpfAntigo;
+	}
+
+	public static void setCpfAntigo(String cpfAntigo) {
+		AlterarBarbeiro.cpfAntigo = cpfAntigo;
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
