@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
 public class MenuPrincipal extends JFrame {
@@ -78,6 +80,15 @@ public class MenuPrincipal extends JFrame {
 		panel.add(btnServicosPrestados);
 		
 		JButton btnRelatorios = new JButton("Relat\u00F3rios");
+		btnRelatorios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Relatorios frame = new Relatorios();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
 		/*btnRelatorios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();

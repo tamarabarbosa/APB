@@ -1,4 +1,3 @@
-//Fazer botão Voltar e Concluir
 
 package view;
 
@@ -16,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
+import java.awt.Toolkit;
 
 public class PesquisarRelatorio extends JFrame {
 
@@ -45,6 +46,7 @@ public class PesquisarRelatorio extends JFrame {
 	 * Create the frame.
 	 */
 	public PesquisarRelatorio() {
+		setTitle("Tipo de Pesquisa do Relat\u00F3rio");
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -119,6 +121,23 @@ public class PesquisarRelatorio extends JFrame {
 		Checkbox checkServico = new Checkbox("Ativar");
 		checkServico.setBounds(6, 23, 59, 23);
 		panelServico.add(checkServico);
+		
+		JButton btnConcluir = new JButton("Concluir");
+		btnConcluir.setBounds(241, 11, 105, 62);
+		contentPane.add(btnConcluir);
+		
+		JButton btnVoltar = new JButton("Voltar");
+		btnVoltar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				Relatorios frame = new Relatorios();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+				dispose();
+			}
+		});
+		btnVoltar.setBounds(241, 228, 105, 23);
+		contentPane.add(btnVoltar);
 	}
 	public boolean action(Event evento, Object arg){
 		return false;
