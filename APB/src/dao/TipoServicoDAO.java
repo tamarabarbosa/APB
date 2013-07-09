@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import view.AlterarBarbeiro;
+import control.TipoServicoController;
+import view.AlterarTipoServico;
 
 import model.TipoServico;
 
@@ -14,53 +15,47 @@ public class TipoServicoDAO {
 
 	private static TipoServicoDAO instance;
 
-/*	private TipoServicoDAO() {
+	private TipoServicoDAO() {
 	}
 
-	public static BarbeiroDAO getInstance() {
+	public static TipoServicoDAO getInstance() {
 		if (instance == null)
 			instance = new TipoServicoDAO();
 		return instance;
 	}
 
 	public boolean incluir(TipoServico tipoServico) throws SQLException {
-		if (barbeiro == null) {
+		if (tipoServico == null) {
 			return false;
 		} else {
 			this.updateQuery("INSERT INTO "
-					+ "barbeiro (nome, cpf, rg, telefone, cadeira) VALUES ("
-					+ "\"" + barbeiro.getNome() + "\", " + "\""
-					+ barbeiro.getCpf() + "\", " + "\"" + barbeiro.getRg()
-					+ "\", " + "\"" + barbeiro.getTelefone() + "\", " + "\""
-					+ barbeiro.getCadeira() + "\"); ");
+					+ "tipoServico (nomeTipoServico, preco) VALUES ("
+					+ "\"" + tipoServico.getNomeTipoServico() + "\"); ");
 
 			return true;
 		}
 	}
 
-	public boolean alterar(TipoServico barbeiro_alterado, TipoServico barbeiro)
+	public boolean alterar(TipoServico tipoServico_alterado, TipoServico tipoServico)
 			throws SQLException {
-		if (barbeiro_alterado == null || barbeiro == null) {
+		if (tipoServico_alterado == null || tipoServico == null) {
 			return false;
 		} else {
-			this.updateQuery("UPDATE barbeiro SET nome = '"
-					+ barbeiro_alterado.getNome() + "', " + "cpf = '"
-					+ barbeiro_alterado.getCpf() + "', " + "rg = '"
-					+ barbeiro_alterado.getRg() + "', " + "telefone = '"
-					+ barbeiro_alterado.getTelefone() + "', " + "cadeira = '"
-					+ barbeiro_alterado.getCadeira() + "' WHERE"
-					+ " cpf = '" + AlterarBarbeiro.getCpfAntigo() + "';");
+			this.updateQuery("UPDATE tipoServico SET nomeTipoServico = '"
+					+ tipoServico_alterado.getNomeTipoServico() + "', " + "preco = '"
+					+ tipoServico_alterado.getPreco()  + "' WHERE"
+					+ " preco = '" + AlterarTipoServico.getNomeTipoServicoAntigo() + "';");
 
 			return true;
 		}
 	}
 
-	public boolean excluir(Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null) {
+	public boolean excluir(TipoServico tipoServico) throws SQLException {
+		if (tipoServico == null) {
 			return false;
 		} else {
-			this.updateQuery("DELETE FROM barbeiro WHERE "
-					+ "barbeiro.nome = \"" + barbeiro.getNome() + "\";");
+			this.updateQuery("DELETE FROM tipoServico WHERE "
+					+ "tipoServico.nomeTipoServico = \"" + tipoServico.getNomeTipoServico() + "\";");
 			return true;
 
 		}
@@ -73,7 +68,7 @@ public class TipoServicoDAO {
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 		connection.close();
-	}*/
+	}
 
 }
 

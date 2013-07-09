@@ -21,18 +21,18 @@ public class TipoServicoController {
 		if (tipoServico == null) {
 			return false;
 		} else {
-			Barbeiro barbeiro_alterado = barbeiro;
-			TipoServicoDAO.getInstance().alterar(barbeiro_alterado, tipoServico);
+			TipoServico tipoServico_alterado = tipoServico;
+			TipoServicoDAO.getInstance().alterar(tipoServico_alterado, tipoServico);
 			return true;
 		}
 	}
 
-	public boolean excluir(Barbeiro barbeiro) throws SQLException {
+	public boolean excluir(TipoServico tipoServico) throws SQLException {
 
-		if (barbeiro == null) {
+		if (tipoServico == null) {
 			return false;
 		} else {
-			TipoServicoDAO.getInstance().excluir(barbeiro);
+			TipoServicoDAO.getInstance().excluir(tipoServico);
 			return true;
 		}
 	}
