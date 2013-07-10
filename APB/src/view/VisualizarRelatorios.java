@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -10,13 +9,15 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
-import java.awt.ScrollPane;
-import java.awt.Button;
-import javax.swing.border.TitledBorder;
+
+import control.RelatorioController;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import view.PesquisarRelatorio;
 
 @SuppressWarnings("serial")
 public class VisualizarRelatorios extends JFrame {
@@ -25,7 +26,7 @@ public class VisualizarRelatorios extends JFrame {
 	 * Launch the application.
 	 */
 	private JPanel contentPane;
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -55,22 +56,49 @@ public class VisualizarRelatorios extends JFrame {
 		scrollPane.setBounds(10, 10, 660, 540);
 		contentPane.add(scrollPane);
 
+		RelatorioController relatorio = RelatorioController.getInstance();
+		
+		if (PesquisarRelatorio.tipoBusca == 1) {
+			relatorio.pesquisarPorBarbeiro(PesquisarRelatorio.barbeiro);
+			
+		}
+		if (PesquisarRelatorio.tipoBusca == 2) {
+
+		}
+		if (PesquisarRelatorio.tipoBusca == 3) {
+
+		}
+		if (PesquisarRelatorio.tipoBusca == 4) {
+
+		}
+		if (PesquisarRelatorio.tipoBusca == 5) {
+
+		}
+		if (PesquisarRelatorio.tipoBusca == 6) {
+
+		}
+		if (PesquisarRelatorio.tipoBusca == 7) {
+
+		}
+
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Barbeiro Responsável", "Tipo de Serviço", "Valor", "Data" }) {
-			boolean[] columnEditables = new boolean[] { false, false, false, false };
+				new String[] { "Barbeiro Responsável", "Tipo de Serviço",
+						"Valor", "Data" }) {
+			boolean[] columnEditables = new boolean[] { false, false, false,
+					false };
 
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		};
-		
+
 		final JTable table = new JTable(modelo);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
 		table.getColumnModel().getColumn(2).setResizable(false);
 		table.getColumnModel().getColumn(3).setResizable(false);
 		scrollPane.setViewportView(table);
-		
+
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -87,7 +115,7 @@ public class VisualizarRelatorios extends JFrame {
 		});
 		btnPesquisar.setBounds(680, 13, 94, 62);
 		contentPane.add(btnPesquisar);
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -104,6 +132,6 @@ public class VisualizarRelatorios extends JFrame {
 		});
 		btnVoltar.setBounds(680, 527, 94, 23);
 		contentPane.add(btnVoltar);
-		
+
 	}
 }
