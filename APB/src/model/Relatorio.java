@@ -45,9 +45,5 @@ public class Relatorio {
 	public void setTipoServico(String tipoServico) {
 		this.tipoServico = tipoServico;
 	}
-	
-	
-	
-	
 
 }

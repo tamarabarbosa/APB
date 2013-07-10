@@ -89,14 +89,6 @@ public class MenuPrincipal extends JFrame {
 				dispose();
 			}
 		});
-		/*btnRelatorios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				Relatorios frame = new Relatorios();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-			}
-		});*/
 		btnRelatorios.setBounds(346, 60, 149, 37);
 		panel.add(btnRelatorios);
 	}
