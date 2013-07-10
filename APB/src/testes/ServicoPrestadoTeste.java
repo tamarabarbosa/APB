@@ -117,11 +117,8 @@ public class ServicoPrestadoTeste {
 	
 	@Test
 	public void testeDataValida() {
-		try {
 			servico.setData("01/01/01");
-		} catch (ServicoException e) {
-			Assert.fail("Não deve lançar exceção");
-		}
+		
 		assertEquals("01/01/01", servico.getData());
 	}
 }

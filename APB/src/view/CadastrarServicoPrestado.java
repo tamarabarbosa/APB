@@ -65,7 +65,7 @@ public class CadastrarServicoPrestado extends JFrame {
 		try {
 			connection = FactoryConnection.getInstance().getConnection();
 			ResultSet rs = connection.createStatement().executeQuery(
-					"SELECT nome, preco, barbeiro, data FROM servicoprestado;");
+					"SELECT nome, preco, barbeiro, data FROM servicoprestado ORDER BY data;");
 
 			while (rs.next()) {
 				String[] dados = new String[4];

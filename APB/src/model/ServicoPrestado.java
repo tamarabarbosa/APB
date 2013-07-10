@@ -1,6 +1,11 @@
 package model;
 
+import java.util.Date;
+
 import exception.ServicoException;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 public class ServicoPrestado {
 
@@ -42,8 +47,12 @@ public class ServicoPrestado {
 	}
 
 	public String getData() {
-		return data;
-	}
+        DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        data = formato.format(date);
+        return data;
+    }
+
 
 	public void setNomeServico(String nomeServico) throws ServicoException {
 		if (nomeServico == null)
@@ -78,14 +87,7 @@ public class ServicoPrestado {
 			throw new ServicoException(PRECO_INVALIDO);
 	}
 
-	public void setData(String data) throws ServicoException {
-		if (data == null)
-			throw new NullPointerException(DATA_BRANCO);
-		else if ("".equals(data))
-			throw new ServicoException(DATA_BRANCO);
-		else if (data.matches("[\\d]{2}/[\\d]{2}/[\\d]{2,4}"))
-			this.data = data;
-		else
-			throw new ServicoException(DATA_INVALIDA);
+	public void setData(String data) {
+		this.data = data;
 	}
 }

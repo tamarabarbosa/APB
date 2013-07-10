@@ -110,10 +110,13 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
+					String data;
 					ServicoPrestado servico_prestado = new ServicoPrestado();
 					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
 					servico_prestado.setNomeServico(comboBoxServico.getSelectedItem().toString());
 					servico_prestado.setPreco(textValor.getText());
+					data = servico_prestado.getData();
+					servico_prestado.setData(data);
 
 					if (comboBoxServico.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null, "Você deve selecionar um tipo de serviço.");
