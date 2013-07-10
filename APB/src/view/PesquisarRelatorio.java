@@ -15,7 +15,10 @@ import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
-import java.awt.Toolkit;
+
+
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class PesquisarRelatorio extends JFrame {
 
@@ -83,31 +86,19 @@ public class PesquisarRelatorio extends JFrame {
 		lblDataInicial.setBounds(10, 53, 86, 14);
 		panelData.add(lblDataInicial);
 
-		Checkbox checkPorData = new Checkbox("Ativar");
-		checkPorData.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-			}
-
-			@Override
-			public void mouseExited(MouseEvent e) {
-
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				if (estadoData % 2 == 0) {
+		final Checkbox checkPorData = new Checkbox("Ativar");
+		checkPorData.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (checkPorData.getState() == false) {
 					txtDataInicial.setEnabled(false);
 					txtDataFinal.setEnabled(false);
 					txtDataInicial.setText("dd/MM/aaaa\r\n");
 					txtDataFinal.setText("dd/MM/aaaa\r\n");
-					estadoData++;
 				} else {
 					txtDataInicial.setEnabled(true);
 					txtDataFinal.setEnabled(true);
 					txtDataInicial.setText("");
 					txtDataFinal.setText("");
-					estadoData++;
 				}
 			}
 		});
@@ -133,21 +124,19 @@ public class PesquisarRelatorio extends JFrame {
 		txtBarbeiro.setBounds(71, 23, 140, 20);
 		panelBarbeiro.add(txtBarbeiro);
 
-		Checkbox checkBarbeiro = new Checkbox("Ativar");
-		checkBarbeiro.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if (estadoBarbeiro % 2 == 0) {
+		final Checkbox checkBarbeiro = new Checkbox("Ativar");
+		checkBarbeiro.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (checkBarbeiro.getState() == false) {
 					txtBarbeiro.setEnabled(false);
 					txtBarbeiro.setText("Nome do barbeiro");
-					estadoBarbeiro++;
 				} else {
 					txtBarbeiro.setEnabled(true);
 					txtBarbeiro.setText("");
-					estadoBarbeiro++;
 				}
 			}
 		});
+
 		checkBarbeiro.setBounds(6, 23, 59, 23);
 		panelBarbeiro.add(checkBarbeiro);
 
@@ -166,18 +155,15 @@ public class PesquisarRelatorio extends JFrame {
 		txtServico.setBounds(71, 23, 140, 20);
 		panelServico.add(txtServico);
 
-		Checkbox checkServico = new Checkbox("Ativar");
-		checkServico.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				if (estadoServico % 2 == 0) {
+		final Checkbox checkServico = new Checkbox("Ativar");
+		checkServico.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (checkServico.getState() == false) {
 					txtServico.setEnabled(false);
 					txtServico.setText("Tipo de Servi\u00E7o");
-					estadoServico++;
 				} else {
 					txtServico.setEnabled(true);
 					txtServico.setText("");
-					estadoServico++;
 				}
 			}
 		});
@@ -185,14 +171,22 @@ public class PesquisarRelatorio extends JFrame {
 		panelServico.add(checkServico);
 
 		JButton btnConcluir = new JButton("Concluir");
+		btnConcluir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				if (checkPorData.getState() == true){
+
+				}
+			}
+		});
 		btnConcluir.setBounds(241, 11, 105, 62);
 		contentPane.add(btnConcluir);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				Relatorios frame = new Relatorios();
+			public void mouseClicked(MouseEvent e) {
+				VisualizarRelatorios frame = new VisualizarRelatorios();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
