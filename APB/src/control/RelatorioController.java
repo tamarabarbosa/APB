@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -12,61 +13,33 @@ private static RelatorioController instance;
 
 	private RelatorioController() {}
 	
-	public boolean pesquisarPorData(Relatorio relatorio) throws SQLException {
-		if (relatorio == null) {
-			return false;
-		} else {
-			RelatorioDAO.getInstance().pesquisarPorData(relatorio);
-			return true;
-		}
+	public ResultSet pesquisarPorData(Relatorio relatorio) throws SQLException {
+		
+		return RelatorioDAO.getInstance().pesquisarPorData(relatorio);
 	}
-	public boolean pesquisarPorDataEBarbeiro(Relatorio relatorio) throws SQLException {
-		if (relatorio == null) {
-			return false;
-		} else {
-			RelatorioDAO.getInstance().pesquisarPorDataEBArbeiro(relatorio);
-			return true;
-		}
+	public ResultSet pesquisarPorDataEBarbeiro(Relatorio relatorio) throws SQLException {
+		
+		return RelatorioDAO.getInstance().pesquisarPorDataEBArbeiro(relatorio);
 	}
-	public boolean pesquisarPorDataEServico(Relatorio relatorio) throws SQLException {
-		if (relatorio == null) {
-			return false;
-		} else {
-			RelatorioDAO.getInstance().pesquisarPorDataEServico(relatorio);
-			return true;
-		}
+	public ResultSet pesquisarPorDataEServico(Relatorio relatorio) throws SQLException {
+		
+		return RelatorioDAO.getInstance().pesquisarPorDataEServico(relatorio);
 	}
-	public boolean pesquisarPorBarbeiro(Relatorio relatorio) throws SQLException {
-		if (relatorio == null) {
-			return false;
-		} else {
-			RelatorioDAO.getInstance().pesquisarPorBArbeiro(relatorio);
-			return true;
-		}
+	public ResultSet pesquisarPorBarbeiro(Relatorio relatorio) throws SQLException {
+		
+		return RelatorioDAO.getInstance().pesquisarPorBArbeiro(relatorio);
 	}
-	public boolean pesquisarPorBarbeiroEServico(Relatorio relatorio) throws SQLException {
-		if (relatorio == null) {
-			return false;
-		} else {
-			RelatorioDAO.getInstance().pesquisarPorBArbeiroEServico(relatorio);
-			return true;
-		}
+	public ResultSet pesquisarPorBarbeiroEServico(Relatorio relatorio) throws SQLException {
+		
+		return RelatorioDAO.getInstance().pesquisarPorBArbeiroEServico(relatorio);
 	}
-	public boolean pesquisarPorServico(Relatorio relatorio) throws SQLException {
-		if (relatorio == null) {
-			return false;
-		} else {
-			RelatorioDAO.getInstance().pesquisarPorServico(relatorio);
-			return true;
-		}
+	public ResultSet pesquisarPorServico(Relatorio relatorio) throws SQLException {
+		
+		return RelatorioDAO.getInstance().pesquisarPorServico(relatorio);
 	}
-	public boolean pesquisarPorDataBarbeiroEServico(Relatorio relatorio) throws SQLException {
-		if (relatorio == null) {
-			return false;
-		} else {
-			RelatorioDAO.getInstance().pesquisarPorDataBarbeiroEServico(relatorio);
-			return true;
-		}
+	public ResultSet pesquisarPorDataBarbeiroEServico(Relatorio relatorio) throws SQLException {	
+		
+		return RelatorioDAO.getInstance().pesquisarPorDataBarbeiroEServico(relatorio);
 	}
 	
 	public static RelatorioController getInstance() {

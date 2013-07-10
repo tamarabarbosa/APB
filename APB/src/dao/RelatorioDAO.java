@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Relatorio;
@@ -18,43 +19,72 @@ public class RelatorioDAO {
 		return instance;
 	}
 
-	public void pesquisarPorData(Relatorio relatorio)
+	public ResultSet pesquisarPorData(Relatorio relatorio)
 			throws SQLException {
-		this.updateQuery("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-			+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"';");
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"';");
+		ResultSet rs = pst.executeQuery();
+		
+		return rs;
 	}
-	public void pesquisarPorDataEBArbeiro(Relatorio relatorio)
+	public ResultSet pesquisarPorDataEBArbeiro(Relatorio relatorio)
 			throws SQLException {
-		this.updateQuery("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-			+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"' AND barbeiro = '"
-			+relatorio.getBarbeiro()+"';");
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"' AND barbeiro = '"
+				+relatorio.getBarbeiro()+"';");
+		ResultSet rs = pst.executeQuery();
+		
+		return rs;
 	}
-	public void pesquisarPorDataEServico(Relatorio relatorio)
+	public ResultSet pesquisarPorDataEServico(Relatorio relatorio)
 			throws SQLException {
-		this.updateQuery("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
 				+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"' AND nome = '"
 				+relatorio.getTipoServico()+"';");
+		ResultSet rs = pst.executeQuery();
+		
+		return rs;
+	
 	}
-	public void pesquisarPorBArbeiro(Relatorio relatorio)
+	public ResultSet pesquisarPorBArbeiro(Relatorio relatorio)
 			throws SQLException {
-		this.updateQuery("SELECT * FROM servicoprestado WHERE barbeiro = '"
-			+relatorio.getBarbeiro()+"';");
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
+				+relatorio.getBarbeiro()+"';");
+		ResultSet rs = pst.executeQuery();
+		
+		return rs;
 	}
-	public void pesquisarPorBArbeiroEServico(Relatorio relatorio)
+	public ResultSet pesquisarPorBArbeiroEServico(Relatorio relatorio)
 			throws SQLException {
-		this.updateQuery("SELECT * FROM servicoprestado WHERE barbeiro = '"
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
 				+relatorio.getBarbeiro()+"' AND nome = '"+relatorio.getTipoServico()+"';");
+		ResultSet rs = pst.executeQuery();
+		
+		return rs;
 	}
-	public void pesquisarPorServico(Relatorio relatorio)
+	public ResultSet pesquisarPorServico(Relatorio relatorio)
 			throws SQLException {
-		this.updateQuery("SELECT * FROM servicoprestado WHERE nome = '"
-			+relatorio.getTipoServico()+"';");
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE nome = '"
+				+relatorio.getTipoServico()+"';");
+		ResultSet rs = pst.executeQuery();
+		
+		return rs;
 	}
-	public void pesquisarPorDataBarbeiroEServico(Relatorio relatorio)
+	public ResultSet pesquisarPorDataBarbeiroEServico(Relatorio relatorio)
 			throws SQLException {
-		this.updateQuery("SELECT * FROM servicoprestado WHERE data BETWEEN '"
-			+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"' AND barbeiro = '"
-			+relatorio.getBarbeiro()+"' AND servico = '"+relatorio.getTipoServico()+"';");
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"' AND barbeiro = '"
+				+relatorio.getBarbeiro()+"' AND servico = '"+relatorio.getTipoServico()+"';");
+		ResultSet rs = pst.executeQuery();
+		
+		return rs;
 	}
 
 	public void updateQuery(String message) throws SQLException {

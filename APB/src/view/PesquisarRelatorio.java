@@ -230,10 +230,15 @@ public class PesquisarRelatorio extends JFrame {
 				if (tipoBusca == 0) {
 					JOptionPane.showMessageDialog(null, "Selecione uma opção de busca");
 				} else {
-					VisualizarRelatorios frame = new VisualizarRelatorios();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-					dispose();
+					try {
+						VisualizarRelatorios frame = new VisualizarRelatorios();
+						frame.setVisible(true);
+						frame.setLocationRelativeTo(null);
+						dispose();
+					} catch (SQLException e) {
+						mostrarMensagemDeErro(e.getMessage());
+					}
+					
 				}
 				
 			}
@@ -245,10 +250,14 @@ public class PesquisarRelatorio extends JFrame {
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				VisualizarRelatorios frame = new VisualizarRelatorios();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
+				try {
+					VisualizarRelatorios frame = new VisualizarRelatorios();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
+				} catch (SQLException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				}
 			}
 		});
 		btnVoltar.setBounds(241, 228, 105, 23);

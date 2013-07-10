@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 
 @SuppressWarnings("serial")
 public class MenuPrincipal extends JFrame {
@@ -83,13 +85,23 @@ public class MenuPrincipal extends JFrame {
 		btnRelatorios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				VisualizarRelatorios frame = new VisualizarRelatorios();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
+				try {
+					PesquisarRelatorio.tipoBusca = 0;
+					VisualizarRelatorios frame = new VisualizarRelatorios();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
+				} catch (SQLException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				}
 			}
 		});
 		btnRelatorios.setBounds(346, 60, 149, 37);
 		panel.add(btnRelatorios);
+	}
+	
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

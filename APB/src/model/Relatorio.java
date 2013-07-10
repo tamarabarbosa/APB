@@ -42,9 +42,9 @@ public class Relatorio {
 		}
 	}
 
-	public void setDataBra(String dataInicial) {
+	public void setDataInicial(String dataInicial) {
 
-		formatoDaData = new SimpleDateFormat("dd/MM/yyyy");
+		/*formatoDaData = new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
 			data = formatoDaData.parse(dataInicial);
@@ -52,7 +52,8 @@ public class Relatorio {
 		} catch (ParseException e) {
 			e.printStackTrace();
 			this.dataInicial = ("Parse Date Error");
-		}
+		}*/
+		this.dataInicial = dataInicial;
 	}
 
 	public String getDataFinal() {
@@ -60,7 +61,7 @@ public class Relatorio {
 	}
 
 	public void setDataFinal(String dataFinal) {
-		formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
+		/*formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
 
 		try {
 			data = formatoDaData.parse(dataFinal);
@@ -68,7 +69,8 @@ public class Relatorio {
 		} catch (ParseException e) {
 			e.printStackTrace();
 			this.dataFinal = ("Parse Date Error");
-		}
+		}*/
+		this.dataFinal = dataFinal;
 	}
 
 	public String getBarbeiro() {
