@@ -19,7 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 @SuppressWarnings("serial")
-public class Relatorios extends JFrame {
+public class VisualizarRelatorios extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -30,7 +30,7 @@ public class Relatorios extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Relatorios frame = new Relatorios();
+					VisualizarRelatorios frame = new VisualizarRelatorios();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class Relatorios extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Relatorios() {
+	public VisualizarRelatorios() {
 		setTitle("Relat\u00F3rios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);

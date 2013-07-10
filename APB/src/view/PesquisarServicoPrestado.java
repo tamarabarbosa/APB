@@ -89,7 +89,7 @@ public class PesquisarServicoPrestado extends JFrame {
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
 							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE nome = '"
-									+ servico.getNomeServico() + "';");
+									+ servico.getNomeServico() + "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
@@ -121,7 +121,7 @@ public class PesquisarServicoPrestado extends JFrame {
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
 							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE barbeiro = '"
-									+ servico.getNomeBarbeiro() + "';");
+									+ servico.getNomeBarbeiro() + "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
@@ -211,7 +211,7 @@ public class PesquisarServicoPrestado extends JFrame {
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
 							"Select nome, preco, barbeiro, data from servicoprestado where data = '"
-									+ servico.getData() + "';");
+									+ servico.getData() + "' order by data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
@@ -221,8 +221,6 @@ public class PesquisarServicoPrestado extends JFrame {
 						dados[3] = rs.getString("data");
 						modelo.addRow(dados);
 					}
-				} catch (ServicoException e) {
-					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}

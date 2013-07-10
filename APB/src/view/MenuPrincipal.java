@@ -83,7 +83,7 @@ public class MenuPrincipal extends JFrame {
 		btnRelatorios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Relatorios frame = new Relatorios();
+				VisualizarRelatorios frame = new VisualizarRelatorios();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
