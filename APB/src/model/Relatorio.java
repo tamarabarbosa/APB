@@ -29,9 +29,22 @@ public class Relatorio {
 		return dataInicial;
 	}
 
-	public void setDataInicial(String dataInicial) {
+	public void setDataIso(String dataInicial) {
 
 		formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
+
+		try {
+			data = formatoDaData.parse(dataInicial);
+			this.dataInicial = (formatoDaData.format(data));
+		} catch (ParseException e) {
+			e.printStackTrace();
+			this.dataInicial = ("Parse Date Error");
+		}
+	}
+
+	public void setDataBra(String dataInicial) {
+
+		formatoDaData = new SimpleDateFormat("dd/MM/yyyy");
 
 		try {
 			data = formatoDaData.parse(dataInicial);
