@@ -5,6 +5,7 @@ import java.awt.Event;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
@@ -16,9 +17,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
+import control.RelatorioController;
+
+import model.Relatorio;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PesquisarRelatorio extends JFrame {
 
@@ -27,9 +35,11 @@ public class PesquisarRelatorio extends JFrame {
 	private JTextField txtDataFinal;
 	private JTextField txtBarbeiro;
 	private JTextField txtServico;
-	private int estadoData = 1;
-	private int estadoBarbeiro = 1;
-	private int estadoServico = 1;
+	public static int tipoBusca = 0;
+	public static String servico = null;
+	public static String barbeiro = null;
+	public static String dataInicial = null;
+	public static String dataFinal = null;
 
 	/**
 	 * Launch the application.
@@ -171,12 +181,61 @@ public class PesquisarRelatorio extends JFrame {
 		panelServico.add(checkServico);
 
 		JButton btnConcluir = new JButton("Concluir");
+		btnConcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnConcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if (checkPorData.getState() == true){
-
+				
+				
+				if (checkBarbeiro.getState() == true) {
+					barbeiro = txtBarbeiro.getText();
+					tipoBusca = 1;
 				}
+				if (checkBarbeiro.getState() == true && checkServico.getState() == true) {
+					barbeiro = txtBarbeiro.getText();
+					servico = txtServico.getText();
+					tipoBusca = 2;
+				}
+				if (checkBarbeiro.getState() == true && checkPorData.getState() == true) {
+					barbeiro = txtBarbeiro.getText();
+					dataInicial = txtDataInicial.getText();
+					dataFinal = txtDataFinal.getText();
+					tipoBusca = 3;
+				}
+				if (checkBarbeiro.getState() == true && checkPorData.getState() == true && checkServico.getState() == true) {
+					barbeiro = txtBarbeiro.getText();
+					dataInicial = txtDataInicial.getText();
+					dataFinal = txtDataFinal.getText();
+					servico = txtServico.getText();
+					tipoBusca = 4;
+				}
+				if (checkServico.getState() == true) {
+					servico = txtServico.getText();
+					tipoBusca = 5;
+				}
+				if (checkServico.getState() == true && checkPorData.getState() == true) {
+					dataInicial = txtDataInicial.getText();
+					dataFinal = txtDataFinal.getText();
+					servico = txtServico.getText();
+					tipoBusca = 6;
+				}
+				if (checkPorData.getState() == true) {
+					dataInicial = txtDataInicial.getText();
+					dataFinal = txtDataFinal.getText();
+					tipoBusca = 7;
+				}
+				if (tipoBusca == 0) {
+					JOptionPane.showMessageDialog(null, "Selecione uma opção de busca");
+				} else {
+					VisualizarRelatorios frame = new VisualizarRelatorios();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
+				}
+				
 			}
 		});
 		btnConcluir.setBounds(241, 11, 105, 62);
@@ -199,4 +258,10 @@ public class PesquisarRelatorio extends JFrame {
 	public boolean action(Event evento, Object arg) {
 		return false;
 	}
+
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+
 }
