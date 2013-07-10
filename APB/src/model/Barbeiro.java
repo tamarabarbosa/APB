@@ -128,23 +128,17 @@ public class Barbeiro {
 	}
 
 	public void setCadeira(String cadeira) throws BarbeiroException {
-		try {
-			if (cadeira == null)
-				throw new NullPointerException(CADEIRA_BRANCO);
-			else if ("".equals(cadeira))
-				throw new BarbeiroException(CADEIRA_BRANCO);
-			else if ("0".equals(cadeira) || cadeira.matches("^[[ ]|\\p{L}*]+$"))
-				throw new AssertionError(CADEIRA_INVALIDA);
-			else if (cadeira.matches("^[0-9]*$"))
-				this.cadeira = cadeira;
-			else
-				throw new BarbeiroException(CADEIRA_INVALIDA);
-		} catch (IllegalArgumentException e) {
+		if (cadeira == null)
+			throw new NullPointerException(CADEIRA_BRANCO);
+		else if ("".equals(cadeira))
+			throw new BarbeiroException(CADEIRA_BRANCO);
+		else if ("0".equals(cadeira) || cadeira.matches("^[[ ]|\\p{L}*]+$"))
+			throw new AssertionError(CADEIRA_INVALIDA);
+		else if (cadeira.matches("^[0-9]{0,2}$"))
+			this.cadeira = cadeira;
+		else
 			throw new BarbeiroException(CADEIRA_INVALIDA);
-		}
 	}
-
-
 
 	private boolean validarCpf(String cpf) {
 		int d1, d2;

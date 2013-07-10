@@ -38,17 +38,13 @@ public class TipoServico {
 	}
 
 	public void setPreco(String preco) throws ServicoException {
-		try {
-			if (preco == null)
-				throw new NullPointerException(PRECO_INVALIDO);
-			else if ("".equals(preco))
-				throw new ServicoException(PRECO_BRANCO);
-			else if (preco.matches("[\\d]{1,3},[\\d]{1,2}"))
-				this.preco = preco;
-			else
-				throw new ServicoException(PRECO_INVALIDO);
-		} catch (IllegalArgumentException e) {
+		if (preco == null)
+			throw new NullPointerException(PRECO_INVALIDO);
+		else if ("".equals(preco))
+			throw new ServicoException(PRECO_BRANCO);
+		else if (preco.matches("[\\d]{1,3},[\\d]{1,2}"))
+			this.preco = preco;
+		else
 			throw new ServicoException(PRECO_INVALIDO);
-		}
 	}
 }
