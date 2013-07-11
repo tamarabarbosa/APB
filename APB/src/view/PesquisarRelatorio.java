@@ -190,16 +190,16 @@ public class PesquisarRelatorio extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				
 				
-				if (checkBarbeiro.getState() == true) {
+				if (checkBarbeiro.getState() == true && checkPorData.getState() == false && checkServico.getState() == false) {
 					barbeiro = txtBarbeiro.getText();
 					tipoBusca = 1;
 				}
-				if (checkBarbeiro.getState() == true && checkServico.getState() == true) {
+				if (checkBarbeiro.getState() == true && checkPorData.getState() == false && checkServico.getState() == true) {
 					barbeiro = txtBarbeiro.getText();
 					servico = txtServico.getText();
 					tipoBusca = 2;
 				}
-				if (checkBarbeiro.getState() == true && checkPorData.getState() == true) {
+				if (checkBarbeiro.getState() == true && checkPorData.getState() == true && checkServico.getState() == false) {
 					barbeiro = txtBarbeiro.getText();
 					dataInicial = txtDataInicial.getText();
 					dataFinal = txtDataFinal.getText();
@@ -212,17 +212,17 @@ public class PesquisarRelatorio extends JFrame {
 					servico = txtServico.getText();
 					tipoBusca = 4;
 				}
-				if (checkServico.getState() == true) {
+				if (checkBarbeiro.getState() == false && checkPorData.getState() == false && checkServico.getState() == true) {
 					servico = txtServico.getText();
 					tipoBusca = 5;
 				}
-				if (checkServico.getState() == true && checkPorData.getState() == true) {
+				if (checkBarbeiro.getState() == false && checkPorData.getState() == true && checkServico.getState() == true) {
 					dataInicial = txtDataInicial.getText();
 					dataFinal = txtDataFinal.getText();
 					servico = txtServico.getText();
 					tipoBusca = 6;
 				}
-				if (checkPorData.getState() == true) {
+				if (checkBarbeiro.getState() == false && checkPorData.getState() == true && checkServico.getState() == false) {
 					dataInicial = txtDataInicial.getText();
 					dataFinal = txtDataFinal.getText();
 					tipoBusca = 7;
