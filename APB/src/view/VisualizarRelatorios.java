@@ -20,8 +20,11 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 
 import view.PesquisarRelatorio;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class VisualizarRelatorios extends JFrame {
@@ -30,6 +33,8 @@ public class VisualizarRelatorios extends JFrame {
 	 * Launch the application.
 	 */
 	private JPanel contentPane;
+	private double total = 0;
+	private String numero;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -59,7 +64,7 @@ public class VisualizarRelatorios extends JFrame {
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 10, 660, 540);
+		scrollPane.setBounds(10, 10, 660, 508);
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
@@ -101,6 +106,9 @@ public class VisualizarRelatorios extends JFrame {
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
 					dados[3] = rs.getString("data");
+					numero = rs.getString("preco").replace(",", ".");
+					double valor = Double.parseDouble(numero);
+					total = total + valor;
 					modelo.addRow(dados);
 				}
 			}
@@ -114,6 +122,9 @@ public class VisualizarRelatorios extends JFrame {
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
 					dados[3] = rs.getString("data");
+					numero = rs.getString("preco").replace(",", ".");
+					double valor = Double.parseDouble(numero);
+					total = total + valor;
 					modelo.addRow(dados);
 				}
 			}
@@ -127,6 +138,9 @@ public class VisualizarRelatorios extends JFrame {
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
 					dados[3] = rs.getString("data");
+					numero = rs.getString("preco").replace(",", ".");
+					double valor = Double.parseDouble(numero);
+					total = total + valor;
 					modelo.addRow(dados);
 				}
 			}
@@ -140,8 +154,12 @@ public class VisualizarRelatorios extends JFrame {
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
 					dados[3] = rs.getString("data");
+					numero = rs.getString("preco").replace(",", ".");
+					double valor = Double.parseDouble(numero);
+					total = total + valor;
 					modelo.addRow(dados);
 				}
+
 			}
 			if (PesquisarRelatorio.tipoBusca == 5) {
 				ResultSet rs = relatorioController
@@ -153,6 +171,9 @@ public class VisualizarRelatorios extends JFrame {
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
 					dados[3] = rs.getString("data");
+					numero = rs.getString("preco").replace(",", ".");
+					double valor = Double.parseDouble(numero);
+					total = total + valor;
 					modelo.addRow(dados);
 				}
 			}
@@ -166,6 +187,9 @@ public class VisualizarRelatorios extends JFrame {
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
 					dados[3] = rs.getString("data");
+					numero = rs.getString("preco").replace(",", ".");
+					double valor = Double.parseDouble(numero);
+					total = total + valor;
 					modelo.addRow(dados);
 				}
 			}
@@ -178,6 +202,9 @@ public class VisualizarRelatorios extends JFrame {
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
 					dados[3] = rs.getString("data");
+					numero = rs.getString("preco").replace(",", ".");
+					double valor = Double.parseDouble(numero);
+					total = total + valor;
 					modelo.addRow(dados);
 				}
 			}
@@ -218,5 +245,22 @@ public class VisualizarRelatorios extends JFrame {
 		btnVoltar.setBounds(680, 527, 94, 23);
 		contentPane.add(btnVoltar);
 
+		JPanel panel = new JPanel();
+		panel.setBounds(10, 529, 660, 22);
+		contentPane.add(panel);
+		panel.setLayout(null);
+
+		JLabel lblLucroTotal = new JLabel("Valor total pesquisado:");
+		lblLucroTotal.setBounds(6, 4, 138, 14);
+		panel.add(lblLucroTotal);
+
+		DecimalFormat decimal = new DecimalFormat("##0.00");
+
+		JLabel lblValor = new JLabel("R$ "
+				+ String.valueOf(decimal.format(total)));
+		lblValor.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblValor.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblValor.setBounds(476, 4, 174, 14);
+		panel.add(lblValor);
 	}
 }
