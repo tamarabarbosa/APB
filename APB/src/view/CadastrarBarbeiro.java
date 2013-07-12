@@ -99,11 +99,16 @@ public class CadastrarBarbeiro extends JFrame {
 		botaoAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
+				try{
+					tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
+				
 				AlterarBarbeiro frame = new AlterarBarbeiro();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					mostrarMensagemDeErro("Selecione um Barbeiro para Alterar");
+			}
 			}
 		});
 		botaoAlterar.setBounds(385, 50, 158, 28);
