@@ -144,6 +144,8 @@ public class AlterarBarbeiro extends JFrame {
 					CadastrarBarbeiro frame = new CadastrarBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					mostrarMensagemDeErro("Selecione um Barbeiro para alterar");
 				} catch (BarbeiroException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException k) {
