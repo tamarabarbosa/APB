@@ -2,13 +2,12 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import view.AlterarBarbeiro;
 
 import model.Barbeiro;
-
-
 
 public class BarbeiroDAO {
 
@@ -48,8 +47,8 @@ public class BarbeiroDAO {
 					+ barbeiro_alterado.getCpf() + "', " + "rg = '"
 					+ barbeiro_alterado.getRg() + "', " + "telefone = '"
 					+ barbeiro_alterado.getTelefone() + "', " + "cadeira = '"
-					+ barbeiro_alterado.getCadeira() + "' WHERE"
-					+ " cpf = '" + AlterarBarbeiro.getCpfAntigo() + "';");
+					+ barbeiro_alterado.getCadeira() + "' WHERE" + " cpf = '"
+					+ AlterarBarbeiro.getCpfAntigo() + "';");
 
 			return true;
 		}
@@ -64,6 +63,15 @@ public class BarbeiroDAO {
 			return true;
 
 		}
+	}
+
+	public ResultSet pesquisar() throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement pst = connection
+				.prepareStatement("SELECT * FROM barbeiro;");
+		ResultSet rs = pst.executeQuery();
+
+		return rs;
 	}
 
 	public void updateQuery(String message) throws SQLException {

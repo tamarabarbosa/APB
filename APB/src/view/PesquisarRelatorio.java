@@ -181,10 +181,6 @@ public class PesquisarRelatorio extends JFrame {
 		panelServico.add(checkServico);
 
 		JButton btnConcluir = new JButton("Concluir");
-		btnConcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnConcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {

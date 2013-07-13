@@ -12,6 +12,7 @@ import javax.swing.JButton;
 
 import model.Relatorio;
 
+import control.BarbeiroController;
 import control.RelatorioController;
 
 import java.awt.event.ActionListener;
@@ -21,6 +22,8 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import view.PesquisarRelatorio;
 import javax.swing.JLabel;
@@ -42,9 +45,7 @@ public class VisualizarRelatorios extends JFrame {
 	private JPanel contentPane;
 	private double total = 0;
 	private String numero;
-	
-	JPanel painelGrafico = new JPanel();
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -271,50 +272,88 @@ public class VisualizarRelatorios extends JFrame {
 		lblValor.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblValor.setBounds(476, 4, 174, 14);
 		panel.add(lblValor);
-		
-		JButton btnGerarGrafico = new JButton("Gerar Gr\u00E1fico");
-		btnGerarGrafico.addMouseListener(new MouseAdapter() {
+
+		final JPanel painelGrafico = new JPanel();
+		painelGrafico.setBounds(10, 10, 660, 540);
+		contentPane.add(painelGrafico);
+		painelGrafico.setVisible(true);
+
+		JButton btnGrafico = new JButton("Gr\u00E1fico");
+		btnGrafico.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				criarGrafico();
+				try {
+					CategoryDataset cds;
+					cds = createDataset();
+					String titulo = "Gráfico de Teste";
+					String eixoy = "Valores";
+					String txt_legenda = "Ledenda:";
+					boolean legenda = true;
+					boolean tooltips = true;
+					boolean urls = true;
+					JFreeChart graf = ChartFactory.createBarChart3D(titulo,
+							txt_legenda, eixoy, cds, PlotOrientation.VERTICAL,
+							legenda, tooltips, urls);
+					ChartPanel myChartPanel = new ChartPanel(graf, true);
+					myChartPanel.setSize(painelGrafico.getWidth(),
+							painelGrafico.getHeight());
+					myChartPanel.setVisible(true);
+					painelGrafico.removeAll();
+					painelGrafico.add(myChartPanel);
+					painelGrafico.revalidate();
+					painelGrafico.repaint();
+					painelGrafico.setVisible(true);
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
 			}
 		});
-		btnGerarGrafico.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnGerarGrafico.setBounds(685, 134, 89, 68);
-		contentPane.add(btnGerarGrafico);
+		btnGrafico.setBounds(680, 86, 94, 54);
+		contentPane.add(btnGrafico);
 	}
-	
-	private CategoryDataset createDataset(){
+
+	private CategoryDataset createDataset() throws SQLException {
+
+		// Criar relatorio
+		Relatorio relatorio = new Relatorio();
+		relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
+		relatorio.setTipoServico(PesquisarRelatorio.servico);
+		relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
+		relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+
+		// Obter todos os barbeiros cadastrados
+		BarbeiroController barbeiroController = BarbeiroController
+				.getInstance();
+		ResultSet rs = barbeiroController.pesquisar();
+
+		// Preencher arraylist com todos os barbeiros cadastrados
+		List<String> barbeiros = new ArrayList<String>();
+		while (rs.next()) {
+			barbeiros.add(rs.getString("nome"));
+		}
+
+		rs = RelatorioController.getInstance().pesquisarPorData(relatorio);
+
+		double totalServico = 0;
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		dataset.addValue(10, "dia", "valor");
-		dataset.addValue(100, "dia", "valor");
-		dataset.addValue(30, "dia", "valor");
-		dataset.addValue(50, "dia", "valor");		
+		// Obter o valor total de cada barbeiro
+		for (int i = 0; i < barbeiros.size(); i++) {
+			rs.beforeFirst();
+			while (rs.next()) {
+				if (rs.getString("barbeiro").equals(barbeiros.get(i))) {
+					totalServico += Double.parseDouble(rs.getString("preco")
+							.replace(",", "."));
+				}
+			}
+
+			dataset.addValue(totalServico, barbeiros.get(i),
+					PesquisarRelatorio.dataInicial + " - "
+							+ PesquisarRelatorio.dataFinal);
+			totalServico = 0;
+		}
+
 		return dataset;
+
 	}
-	
-	public void criarGrafico(){
-		CategoryDataset grafico = createDataset();
-		String titulo = "Registro histórico";
-		String eixoy = "Valores";
-		String txt_legenda = "registro historico de valores arrecadados";
-		
-		boolean legenda = true;
-		boolean tooltips = true;
-		boolean urls = true;
-		
-		JFreeChart grafico_freeChart = ChartFactory.createBarChart3D(titulo, txt_legenda, eixoy, grafico, PlotOrientation.VERTICAL, legenda, tooltips, urls);
-		ChartPanel graficoHistorico = new ChartPanel(grafico_freeChart,true);
-		graficoHistorico.setSize(painelGrafico.getWidth(), painelGrafico.getHeight());
-		graficoHistorico.setVisible(true);
-		painelGrafico.removeAll();
-		painelGrafico.add(graficoHistorico);
-		painelGrafico.revalidate();
-		painelGrafico.repaint();
-		
-	}
-	
 }

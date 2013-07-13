@@ -1,5 +1,6 @@
 package control;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import dao.BarbeiroDAO;
 import model.Barbeiro;
@@ -36,7 +37,12 @@ public class BarbeiroController {
 			return true;
 		}
 	}
-
+	
+	public ResultSet pesquisar() throws SQLException {
+		
+		return BarbeiroDAO.getInstance().pesquisar();
+	}
+	
 	private BarbeiroController() {
 	}
 
