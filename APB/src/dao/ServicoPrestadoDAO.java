@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.ServicoPrestado;
@@ -36,11 +37,25 @@ public class ServicoPrestadoDAO {
 
 	public void excluir(ServicoPrestado servico) throws SQLException {
 		this.updateQuery("DELETE FROM servicoprestado WHERE "
-				+ "servicoprestado.nome = \"" + servico.getNomeServico()
-				+ "\" AND servicoprestado.preco = \"" + servico.getPreco()
-				+ "\" AND servicoprestado.barbeiro = \""
-				+ servico.getNomeBarbeiro() + "\" AND servicoprestado.data = \""
-				+ servico.getData() + "\";");
+				+ "servicoprestado.idservicoprestado = \"" + pesquisar(servico)+ "\";");
+				
+	}
+
+	private String pesquisar(ServicoPrestado servico) throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement preparedStatement = connection
+				.prepareStatement("SELECT * FROM servicoprestado WHERE "
+						+ "servicoprestado.nome = \""
+						+ servico.getNomeServico()
+						+ "\" AND servicoprestado.preco = \""
+						+ servico.getPreco()
+						+ "\" AND servicoprestado.barbeiro = \""
+						+ servico.getNomeBarbeiro()
+						+ "\" AND servicoprestado.data = \""
+						+ servico.getData() + "\";");
+		ResultSet rs = preparedStatement.executeQuery();
+		rs.next();
+		return rs.getString("idservicoprestado");
 	}
 
 	private void updateQuery(String message) throws SQLException {
