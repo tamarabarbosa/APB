@@ -10,8 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-
-
 import control.BarbeiroController;
 import dao.FactoryConnection;
 import exception.BarbeiroException;
@@ -102,25 +100,26 @@ public class AlterarBarbeiro extends JFrame {
 		labelCadeira.setBounds(21, 136, 61, 14);
 		contentPane.add(labelCadeira);
 
-
 		try {
-			Connection connection = FactoryConnection.getInstance().getConnection();
-			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM barbeiro WHERE "
-					+ "nome = '" + CadastrarBarbeiro.getTempNome() + "';");
+			Connection connection = FactoryConnection.getInstance()
+					.getConnection();
+			java.sql.PreparedStatement pst = connection
+					.prepareStatement("SELECT * FROM barbeiro WHERE "
+							+ "nome = '" + CadastrarBarbeiro.getTempNome()
+							+ "';");
 			ResultSet rs = pst.executeQuery();
-				
-			rs.next(); 
-			
-				textFieldNome.setText(rs.getString("nome"));
-				textFieldCpf.setText(rs.getString("cpf"));
-				AlterarBarbeiro.setCpfAntigo(rs.getString("cpf"));
-				textFieldRg.setText(rs.getString("rg"));
-				textFieldTelefone.setText(rs.getString("telefone"));
-				textFieldCadeira.setText(rs.getString("cadeira"));
+
+			rs.next();
+
+			textFieldNome.setText(rs.getString("nome"));
+			textFieldCpf.setText(rs.getString("cpf"));
+			AlterarBarbeiro.setCpfAntigo(rs.getString("cpf"));
+			textFieldRg.setText(rs.getString("rg"));
+			textFieldTelefone.setText(rs.getString("telefone"));
+			textFieldCadeira.setText(rs.getString("cadeira"));
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
-
 
 		JButton buttonSalvar = new JButton("Salvar");
 		buttonSalvar.addActionListener(new ActionListener() {
@@ -133,7 +132,8 @@ public class AlterarBarbeiro extends JFrame {
 					barbeiro.setTelefone(textFieldTelefone.getText());
 					barbeiro.setCadeira(textFieldCadeira.getText());
 
-					BarbeiroController barbeiroController = BarbeiroController.getInstance();
+					BarbeiroController barbeiroController = BarbeiroController
+							.getInstance();
 					barbeiroController.alterar(barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
@@ -144,7 +144,7 @@ public class AlterarBarbeiro extends JFrame {
 					CadastrarBarbeiro frame = new CadastrarBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-					
+
 				} catch (BarbeiroException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException k) {
@@ -180,8 +180,6 @@ public class AlterarBarbeiro extends JFrame {
 		buttonVoltar.setBounds(158, 177, 125, 23);
 		contentPane.add(buttonVoltar);
 	}
-	
-	
 
 	public static String getCpfAntigo() {
 		return cpfAntigo;

@@ -64,8 +64,10 @@ public class CadastrarServicoPrestado extends JFrame {
 
 		try {
 			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery(
-					"SELECT nome, preco, barbeiro, data FROM servicoprestado ORDER BY data;");
+			ResultSet rs = connection
+					.createStatement()
+					.executeQuery(
+							"SELECT nome, preco, barbeiro, data FROM servicoprestado ORDER BY data;");
 
 			while (rs.next()) {
 				String[] dados = new String[4];
@@ -106,20 +108,31 @@ public class CadastrarServicoPrestado extends JFrame {
 		});
 		btnPesquisar.setBounds(380, 58, 94, 23);
 		contentPane.add(btnPesquisar);
-		
+
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					String nome = (String) table.getValueAt(
+							table.getSelectedRow(), 0);
+					String barbeiro = (String) table.getValueAt(
+							table.getSelectedRow(), 1);
+					String valor = (String) table.getValueAt(
+							table.getSelectedRow(), 2);
+					String data = (String) table.getValueAt(
+							table.getSelectedRow(), 3);
 					ServicoPrestado servico = new ServicoPrestado();
 					servico.setNomeServico(nome);
+					servico.setNomeBarbeiro(barbeiro);
+					servico.setPreco(valor);
+					servico.setData(data);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+						ServicoPrestadoController servicoController = ServicoPrestadoController
+								.getInstance();
 						servicoController.excluir(servico);
 
 						dispose();
@@ -134,11 +147,12 @@ public class CadastrarServicoPrestado extends JFrame {
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
+
 			}
 		});
 		btnRemover.setBounds(380, 92, 94, 23);
 		contentPane.add(btnRemover);
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override

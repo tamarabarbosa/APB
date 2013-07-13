@@ -142,40 +142,35 @@ public class PesquisarServicoPrestado extends JFrame {
 		btnPesquisarBarbeiro.setBounds(168, 168, 148, 23);
 		contentPane.add(btnPesquisarBarbeiro);
 
-		JButton btnAlterar = new JButton("Alterar");
-		btnAlterar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
-				AlterarServicoPrestado frame = new AlterarServicoPrestado();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
-			}
-		});
-		btnAlterar.setBounds(98, 228, 89, 23);
-		contentPane.add(btnAlterar);
-
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					String barbeiro = (String) table.getValueAt(table.getSelectedRow(), 1);
+					String valor = (String) table.getValueAt(table.getSelectedRow(), 2);
+					String data = (String) table.getValueAt(table.getSelectedRow(), 3);
 					ServicoPrestado servico = new ServicoPrestado();
 					servico.setNomeServico(nome);
+					servico.setNomeBarbeiro(barbeiro);
+					servico.setPreco(valor);
+					servico.setData(data);
 
-					int confirmacao = JOptionPane.showConfirmDialog(null, "Remover o serviço " + nome + " da lista?");
+					int confirmacao = JOptionPane.showConfirmDialog(null,
+							"Remover " + nome + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						ServicoPrestadoController barbeiroController = ServicoPrestadoController.getInstance();
-						barbeiroController.excluir(servico);
+						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+						servicoController.excluir(servico);
 
 						dispose();
 						CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
+				} catch (ArrayIndexOutOfBoundsException e) {
+					mostrarMensagemDeErro("Selecione um Serviço para remover");
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
@@ -184,7 +179,7 @@ public class PesquisarServicoPrestado extends JFrame {
 
 			}
 		});
-		btnRemover.setBounds(216, 228, 89, 23);
+		btnRemover.setBounds(123, 228, 89, 23);
 		contentPane.add(btnRemover);
 
 		JButton btnVoltar = new JButton("Voltar");
@@ -197,7 +192,7 @@ public class PesquisarServicoPrestado extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnVoltar.setBounds(335, 228, 89, 23);
+		btnVoltar.setBounds(279, 228, 89, 23);
 		contentPane.add(btnVoltar);
 
 		JButton btnPesquisarData = new JButton("Pesquisar Data");

@@ -24,13 +24,14 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 import dao.FactoryConnection;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
 public class NovoServicoPrestado extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textValor;
-	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -66,7 +67,7 @@ public class NovoServicoPrestado extends JFrame {
 		JLabel lblPreco = new JLabel("Pre\u00E7o (R$):");
 		lblPreco.setBounds(27, 87, 71, 14);
 		contentPane.add(lblPreco);
-		
+
 		textValor = new JTextField();
 		textValor.setColumns(10);
 		textValor.setBounds(129, 84, 114, 20);
@@ -79,16 +80,38 @@ public class NovoServicoPrestado extends JFrame {
 		contentPane.add(comboBoxBarbeiro);
 
 		final JComboBox comboBoxServico = new JComboBox();
-		comboBoxServico.setModel(new DefaultComboBoxModel(new String[] {
-				"Selecione um tipo de servi\u00E7o" }));
+		comboBoxServico.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent arg0) {
+				Connection connection;
+				try {
+					connection = FactoryConnection.getInstance()
+							.getConnection();
+					java.sql.PreparedStatement pst = connection
+							.prepareStatement("SELECT preco FROM tipoServico WHERE "
+									+ " nome = \""
+									+ comboBoxServico.getSelectedItem()
+											.toString() + "\";");
+					ResultSet rs1 = pst.executeQuery();
+					rs1.next();
+					textValor.setText(rs1.getString("preco"));
+				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				}
+
+			}
+		});
+		comboBoxServico.setModel(new DefaultComboBoxModel(
+				new String[] { "Selecione um tipo de servi\u00E7o" }));
 		comboBoxServico.setMaximumRowCount(4);
 		comboBoxServico.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxServico);
-
 		try {
-			Connection connection = FactoryConnection.getInstance().getConnection();
-			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT nome FROM barbeiro;");
-			java.sql.PreparedStatement pst2 = connection.prepareStatement("SELECT nome FROM tiposervico;");
+			Connection connection = FactoryConnection.getInstance()
+					.getConnection();
+			java.sql.PreparedStatement pst = connection
+					.prepareStatement("SELECT nome FROM barbeiro;");
+			java.sql.PreparedStatement pst2 = connection
+					.prepareStatement("SELECT nome FROM tiposervico;");
 			ResultSet rs = pst.executeQuery();
 			ResultSet rs2 = pst2.executeQuery();
 
@@ -100,7 +123,7 @@ public class NovoServicoPrestado extends JFrame {
 				String nome = rs2.getString("nome");
 				comboBoxServico.addItem(nome);
 			}
-			
+
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
@@ -112,21 +135,27 @@ public class NovoServicoPrestado extends JFrame {
 				try {
 					String data;
 					ServicoPrestado servico_prestado = new ServicoPrestado();
-					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString());
-					servico_prestado.setNomeServico(comboBoxServico.getSelectedItem().toString());
+					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro
+							.getSelectedItem().toString());
+					servico_prestado.setNomeServico(comboBoxServico
+							.getSelectedItem().toString());
 					servico_prestado.setPreco(textValor.getText());
 					data = servico_prestado.getData();
 					servico_prestado.setData(data);
 
 					if (comboBoxServico.getSelectedIndex() == 0)
-						JOptionPane.showMessageDialog(null, "Você deve selecionar um tipo de serviço.");
+						JOptionPane.showMessageDialog(null,
+								"Você deve selecionar um tipo de serviço.");
 					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
-						JOptionPane.showMessageDialog(null,	"Você deve selecionar um barbeiro.");
+						JOptionPane.showMessageDialog(null,
+								"Você deve selecionar um barbeiro.");
 					else {
-						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+						ServicoPrestadoController servicoController = ServicoPrestadoController
+								.getInstance();
 						servicoController.inserir(servico_prestado);
 
-						JOptionPane.showMessageDialog(null, "Servico criado com sucesso");
+						JOptionPane.showMessageDialog(null,
+								"Servico criado com sucesso");
 
 						comboBoxBarbeiro.setSelectedIndex(0);
 						comboBoxServico.setSelectedIndex(0);
@@ -168,7 +197,7 @@ public class NovoServicoPrestado extends JFrame {
 		botaoVoltar.setBounds(329, 129, 89, 23);
 		contentPane.add(botaoVoltar);
 	}
-	
+
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);

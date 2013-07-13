@@ -21,11 +21,6 @@ public class ServicoPrestadoController {
 		return false;
 	}
 
-	public void alterar(ServicoPrestado servico_prestado) throws SQLException {
-		ServicoPrestado servico_alterado = servico_prestado;
-		ServicoPrestadoDAO.getInstance().alterar(servico_alterado, servico_prestado);
-	}
-
 	public void excluir(ServicoPrestado servico) throws SQLException {
 		ServicoPrestadoDAO.getInstance().excluir(servico);
 	}
