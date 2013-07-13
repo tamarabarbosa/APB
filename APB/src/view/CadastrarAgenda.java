@@ -15,6 +15,7 @@ import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 @SuppressWarnings("serial")
 public class CadastrarAgenda extends JFrame {
@@ -85,9 +86,16 @@ public class CadastrarAgenda extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				NovoContato frame = new NovoContato();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
+				NovoContato frame;
+				try {
+					frame = new NovoContato();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
 			}
 		});
 		btnNovo.setBounds(330, 21, 94, 23);

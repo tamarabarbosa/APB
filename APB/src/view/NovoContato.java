@@ -5,7 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -17,6 +19,7 @@ import model.Agenda;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 @SuppressWarnings("serial")
 public class NovoContato extends JFrame {
@@ -39,11 +42,11 @@ public class NovoContato extends JFrame {
 		});
 	}
 
-	public NovoContato() {
+	public NovoContato() throws ParseException {
 		inicializarComponentes();
 	}
 
-	public void inicializarComponentes() {
+	public void inicializarComponentes() throws ParseException {
 		setTitle("Novo Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -51,6 +54,7 @@ public class NovoContato extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		MaskFormatter mascraFormatTel = new MaskFormatter("(##)####-####");
 
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addMouseListener(new MouseAdapter() {
@@ -117,7 +121,7 @@ public class NovoContato extends JFrame {
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
-		textFieldTelefone = new JTextField();
+		textFieldTelefone = new JFormattedTextField(mascraFormatTel);
 		textFieldTelefone.setBounds(85, 67, 327, 20);
 		contentPane.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);

@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -87,9 +88,16 @@ public class CadastrarBarbeiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				NovoBarbeiro frame = new NovoBarbeiro();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
+				NovoBarbeiro frame;
+				try {
+					frame = new NovoBarbeiro();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+	
 			}
 		});
 		botaoNovo.setBounds(385, 11, 158, 28);

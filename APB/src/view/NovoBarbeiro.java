@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -16,6 +18,7 @@ import exception.BarbeiroException;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 @SuppressWarnings("serial")
 public class NovoBarbeiro extends JFrame {
@@ -45,11 +48,11 @@ public class NovoBarbeiro extends JFrame {
 		});
 	}
 
-	public NovoBarbeiro() {
+	public NovoBarbeiro() throws ParseException {
 		inicializarComponentes();
 	}
 
-	public void inicializarComponentes() {
+	public void inicializarComponentes() throws ParseException {
 		setTitle("Cadastrar Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 253);
@@ -58,6 +61,12 @@ public class NovoBarbeiro extends JFrame {
 		setContentPane(contentPane);
 		getContentPane().setLayout(null);
 		contentPane.setLayout(null);
+		
+
+	
+		MaskFormatter mascraFormatTel = new MaskFormatter("(##)####-####");
+		MaskFormatter mascraFormatCpf = new MaskFormatter("###.###.###-##");
+	
 
 		textFieldNome = new JTextField();
 		textFieldNome.setBounds(92, 11, 354, 20);
@@ -68,7 +77,7 @@ public class NovoBarbeiro extends JFrame {
 		lblNome.setBounds(21, 14, 46, 14);
 		getContentPane().add(lblNome);
 
-		textFieldCpf = new JTextField();
+		textFieldCpf = new JFormattedTextField(mascraFormatCpf);
 		textFieldCpf.setBounds(92, 42, 354, 20);
 		getContentPane().add(textFieldCpf);
 		textFieldCpf.setColumns(10);
@@ -86,7 +95,7 @@ public class NovoBarbeiro extends JFrame {
 		lblRg.setBounds(21, 76, 46, 14);
 		getContentPane().add(lblRg);
 
-		textFieldTelefone = new JTextField();
+		textFieldTelefone = new JFormattedTextField(mascraFormatTel);
 		textFieldTelefone.setBounds(92, 104, 354, 20);
 		getContentPane().add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
@@ -98,6 +107,9 @@ public class NovoBarbeiro extends JFrame {
 		lblCadeira = new JLabel("Cadeira:");
 		lblCadeira.setBounds(21, 136, 61, 14);
 		contentPane.add(lblCadeira);
+		
+
+	
 
 		botaoSalvar = new JButton("Salvar");
 		botaoSalvar.addMouseListener(new MouseAdapter() {

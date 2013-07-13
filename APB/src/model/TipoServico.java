@@ -45,6 +45,6 @@ public class TipoServico {
 		else if (preco.matches("[\\d]{1,3},[\\d]{1,2}"))
 			this.preco = preco;
 		else
-			throw new ServicoException(PRECO_INVALIDO);
+			throw new IllegalArgumentException("Preço deve ser no formato: **,** ");
 	}
 }

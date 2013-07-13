@@ -26,6 +26,13 @@ import view.PesquisarRelatorio;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 @SuppressWarnings("serial")
 public class VisualizarRelatorios extends JFrame {
 
@@ -35,7 +42,9 @@ public class VisualizarRelatorios extends JFrame {
 	private JPanel contentPane;
 	private double total = 0;
 	private String numero;
-
+	
+	JPanel painelGrafico = new JPanel();
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -262,5 +271,50 @@ public class VisualizarRelatorios extends JFrame {
 		lblValor.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblValor.setBounds(476, 4, 174, 14);
 		panel.add(lblValor);
+		
+		JButton btnGerarGrafico = new JButton("Gerar Gr\u00E1fico");
+		btnGerarGrafico.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				criarGrafico();
+			}
+		});
+		btnGerarGrafico.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnGerarGrafico.setBounds(685, 134, 89, 68);
+		contentPane.add(btnGerarGrafico);
 	}
+	
+	private CategoryDataset createDataset(){
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		dataset.addValue(10, "dia", "valor");
+		dataset.addValue(100, "dia", "valor");
+		dataset.addValue(30, "dia", "valor");
+		dataset.addValue(50, "dia", "valor");		
+		return dataset;
+	}
+	
+	public void criarGrafico(){
+		CategoryDataset grafico = createDataset();
+		String titulo = "Registro histórico";
+		String eixoy = "Valores";
+		String txt_legenda = "registro historico de valores arrecadados";
+		
+		boolean legenda = true;
+		boolean tooltips = true;
+		boolean urls = true;
+		
+		JFreeChart grafico_freeChart = ChartFactory.createBarChart3D(titulo, txt_legenda, eixoy, grafico, PlotOrientation.VERTICAL, legenda, tooltips, urls);
+		ChartPanel graficoHistorico = new ChartPanel(grafico_freeChart,true);
+		graficoHistorico.setSize(painelGrafico.getWidth(), painelGrafico.getHeight());
+		graficoHistorico.setVisible(true);
+		painelGrafico.removeAll();
+		painelGrafico.add(graficoHistorico);
+		painelGrafico.revalidate();
+		painelGrafico.repaint();
+		
+	}
+	
 }

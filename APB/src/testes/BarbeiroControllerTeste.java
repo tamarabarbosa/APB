@@ -58,7 +58,7 @@ public class BarbeiroControllerTeste {
 		BarbeiroController barbeiroController = BarbeiroController
 				.getInstance();
 		try {
-			assertTrue(barbeiroController.inserir(barbeiro));
+			assertTrue(barbeiroController.excluir(barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,7 +70,7 @@ public class BarbeiroControllerTeste {
 		BarbeiroController barbeiroController = BarbeiroController
 				.getInstance();
 		try {
-			assertTrue(barbeiroController.inserir(barbeiro));
+			assertTrue(barbeiroController.alterar(barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
