@@ -24,14 +24,14 @@ public class RelatorioDAOTeste {
 	Relatorio relatorio = new Relatorio();
 	
 	@Before
-	public void setUp() {
+	public void setUp() throws RelatorioException { //adicionado throws
 		
 		try{
 			relatorio.setBarbeiro("Luciano");
 			relatorio.setDataFinal("2013-09-09");
 			relatorio.setDataInicial("2013-01-01");
 			relatorio.setTipoServico("corte");
-			relatorio.setDataIso("2013-01-01");
+			//relatorio.setDataIso("2013-01-01");  // nao existe metodo setDataIso na Classe Relatorio
 		}catch(NullPointerException e){
 			e.printStackTrace();
 		}
