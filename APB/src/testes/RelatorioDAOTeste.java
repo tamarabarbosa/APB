@@ -24,14 +24,13 @@ public class RelatorioDAOTeste {
 	Relatorio relatorio = new Relatorio();
 	
 	@Before
-	public void setUp() throws RelatorioException { //adicionado throws
+	public void setUp() throws RelatorioException {
 		
 		try{
 			relatorio.setBarbeiro("Luciano");
 			relatorio.setDataFinal("2013-09-09");
 			relatorio.setDataInicial("2013-01-01");
 			relatorio.setTipoServico("corte");
-			//relatorio.setDataIso("2013-01-01");  // nao existe metodo setDataIso na Classe Relatorio
 		}catch(NullPointerException e){
 			e.printStackTrace();
 		}
@@ -44,17 +43,17 @@ public class RelatorioDAOTeste {
 		assertEquals(RelatorioDAO.getInstance(), relatorioDAO);
 	}
 	
-	/*@Test
+	@Test
 	public void procurarPorDataDeRelatorioDAODeveMostrarUmRelatorio(){
 		ResultSet rs;
 		RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
 		try {
 			rs = relatorioDAO.pesquisarPorData(relatorio);
-			rs.next();
+			//rs.next();
 			assertEquals(relatorioDAO.pesquisarPorData(relatorio), rs);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	}*/
+	}
 
 }
