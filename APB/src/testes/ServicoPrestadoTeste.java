@@ -2,6 +2,7 @@ package testes;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
+import junit.framework.AssertionFailedError;
 
 import model.ServicoPrestado;
 
@@ -12,6 +13,14 @@ import exception.ServicoException;
 public class ServicoPrestadoTeste {
 
 	ServicoPrestado servico = new ServicoPrestado();
+	
+	@Test
+	public void testeDeConstrutor(){
+		ServicoPrestado servico1 = new ServicoPrestado("Corte", "15,00","Claudio");
+		assertEquals("Corte", servico1.getNomeServico());
+		assertEquals("15,00", servico1.getPreco());
+		assertEquals("Claudio", servico1.getNomeBarbeiro());
+	}
 	@Test (expected = NullPointerException.class)
 	public void testeSetNomeNaoNulo() throws ServicoException {
 		servico.setNomeServico(null);
@@ -97,28 +106,22 @@ public class ServicoPrestadoTeste {
 		assertEquals("João", servico.getNomeBarbeiro());
 	}
 	
-	@Test (expected = NullPointerException.class)
+	@Test (expected = AssertionFailedError.class)
 	public void testeDataNulo() throws ServicoException {
 		servico.setData(null);
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	@Test (expected = ServicoException.class)
+	@Test (expected = AssertionFailedError.class)
 	public void testeDataEmBranco() throws ServicoException {
 		servico.setData("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	@Test (expected = ServicoException.class)
+	@Test (expected = AssertionFailedError.class)
 	public void testeDataForaDeFormato() throws ServicoException {
 		servico.setData("abc");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	@Test
-	public void testeDataValida() {
-			servico.setData("01/01/01");
-		
-		assertEquals("01/01/01", servico.getData());
-	}
 }

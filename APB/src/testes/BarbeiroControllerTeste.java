@@ -12,7 +12,6 @@ import exception.BarbeiroException;
 public class BarbeiroControllerTeste {
 
 	Barbeiro barbeiro = new Barbeiro();
-	BarbeiroDAO barbeiroDao = BarbeiroDAO.getInstance();
 
 	@Before
 	public void setUp() {
@@ -75,5 +74,41 @@ public class BarbeiroControllerTeste {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@Test
+	public void inserirBarbeiroNãoPodePassarBarbeiroNullo(){
+		BarbeiroController barbeiroController = BarbeiroController
+				.getInstance();
+		try {
+			assertFalse(barbeiroController.inserir(null));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void excluirBarbeiroNãoPodePassarBarbeiroNullo(){
+		BarbeiroController barbeiroController = BarbeiroController
+				.getInstance();
+		try {
+			assertFalse(barbeiroController.excluir(null));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void alterarBarbeiroNãoPodePassarBarbeiroNullo(){
+		BarbeiroController barbeiroController = BarbeiroController
+				.getInstance();
+		try {
+			assertFalse(barbeiroController.alterar(null));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -11,7 +11,7 @@ public class RelatorioController {
 	
 private static RelatorioController instance;
 
-	private RelatorioController() {}
+	public RelatorioController() {}
 	
 	public ResultSet pesquisarPorData(Relatorio relatorio) throws SQLException {
 		

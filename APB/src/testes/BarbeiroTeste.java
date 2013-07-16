@@ -12,11 +12,12 @@ import org.junit.Test;
 
 public class BarbeiroTeste {
 
-	Barbeiro barbeiro =  new Barbeiro();
+	Barbeiro barbeiro;
 	
 	@Before
 	public void setUp() {
 		try {
+			barbeiro =  new Barbeiro();
 			barbeiro.setNome("Alessandro");
 			barbeiro.setRg("418757896");
 			barbeiro.setTelefone("3389-9085");
@@ -28,7 +29,6 @@ public class BarbeiroTeste {
 			e.printStackTrace();
 		}
 	}	
-
 	
 	@Test (expected = NullPointerException.class)
 	public void barbeiroNaoPodePossuirNomeNuloPassandoPeloSetter() {
