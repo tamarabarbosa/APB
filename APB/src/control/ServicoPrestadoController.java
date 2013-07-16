@@ -15,25 +15,24 @@ public class ServicoPrestadoController {
 	private static ServicoPrestadoController instance;
 
 	public boolean inserir(ServicoPrestado servico) throws SQLException {
-		if (servico ==  null){
-			return false;
-		}else{
+		if (servico != null) {
 			ServicoPrestadoDAO.getInstance().incluir(servico);
 			return true;
-
 		}
+		
+		return false;
 	}
 
 	public boolean excluir(ServicoPrestado servico) throws SQLException {
-		if (servico ==  null){
-			return false;
-		}else{
+		if (servico !=  null) {
 			ServicoPrestadoDAO.getInstance().excluir(servico);
 			return true;
 
 		}
+		return false;	
 	}
 
 	private ServicoPrestadoController() {
+		
 	}
 }

@@ -35,10 +35,14 @@ public class ServicoPrestadoDAO {
 		return false;
 	}
 
-	public void excluir(ServicoPrestado servico) throws SQLException {
-		this.updateQuery("DELETE FROM servicoprestado WHERE "
+	public boolean excluir(ServicoPrestado servico) throws SQLException {
+		if (servico != null) {
+			this.updateQuery("DELETE FROM servicoprestado WHERE "
 				+ "servicoprestado.idservicoprestado = \"" + pesquisar(servico)+ "\";");
-				
+			return true;
+		}
+		
+		return false;
 	}
 
 	private String pesquisar(ServicoPrestado servico) throws SQLException {
