@@ -20,8 +20,6 @@ public class ServicoPrestado {
 	private final String BARBEIRO_BRANCO = "Insira um Barbeiro responsável pelo serviço";
 	private final String PRECO_INVALIDO = "Preço Inválido";
 	private final String PRECO_BRANCO = "Preço em Branco";
-	private final String DATA_BRANCO = "Data em Branco";
-
 
 
 	public ServicoPrestado() {
@@ -87,12 +85,7 @@ public class ServicoPrestado {
 			throw new ServicoException(PRECO_INVALIDO);
 	}
 
-	public void setData(String data) throws ServicoException {
-		if (data == null)
-			throw new NullPointerException(DATA_BRANCO);
-		else if ("".equals(data))
-			throw new AssertionError(DATA_BRANCO);
-		else
-			this.data = data;
+	public void setData(String data) {
+		this.data = data;
 	}
 }
