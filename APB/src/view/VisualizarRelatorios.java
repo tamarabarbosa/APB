@@ -36,6 +36,8 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
+import exception.RelatorioException;
+
 @SuppressWarnings("serial")
 public class VisualizarRelatorios extends JFrame {
 
@@ -63,8 +65,9 @@ public class VisualizarRelatorios extends JFrame {
 	 * Create the frame.
 	 * 
 	 * @throws SQLException
+	 * @throws RelatorioException 
 	 */
-	public VisualizarRelatorios() throws SQLException {
+	public VisualizarRelatorios() throws SQLException, RelatorioException {
 		setTitle("Relat\u00F3rios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -305,6 +308,9 @@ public class VisualizarRelatorios extends JFrame {
 					painelGrafico.setVisible(true);
 				} catch (SQLException e) {
 					e.printStackTrace();
+				} catch (RelatorioException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 
 			}
@@ -313,7 +319,7 @@ public class VisualizarRelatorios extends JFrame {
 		contentPane.add(btnGrafico);
 	}
 
-	private CategoryDataset createDataset() throws SQLException {
+	private CategoryDataset createDataset() throws SQLException, RelatorioException {
 
 		// Criar relatorio
 		Relatorio relatorio = new Relatorio();

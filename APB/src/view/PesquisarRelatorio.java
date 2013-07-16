@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
 import control.RelatorioController;
+import exception.RelatorioException;
 
 import model.Relatorio;
 
@@ -233,6 +234,9 @@ public class PesquisarRelatorio extends JFrame {
 						dispose();
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
+					} catch (RelatorioException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}
 					
 				}
@@ -253,6 +257,9 @@ public class PesquisarRelatorio extends JFrame {
 					dispose();
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
+				} catch (RelatorioException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 			}
 		});
