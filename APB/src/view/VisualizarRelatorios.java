@@ -65,7 +65,7 @@ public class VisualizarRelatorios extends JFrame {
 	 * Create the frame.
 	 * 
 	 * @throws SQLException
-	 * @throws RelatorioException 
+	 * @throws RelatorioException
 	 */
 	public VisualizarRelatorios() throws SQLException, RelatorioException {
 		setTitle("Relat\u00F3rios");
@@ -102,11 +102,12 @@ public class VisualizarRelatorios extends JFrame {
 				.getInstance();
 
 		Relatorio relatorio = new Relatorio();
-
-		relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
-		relatorio.setTipoServico(PesquisarRelatorio.servico);
-		relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
-		relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+		if (PesquisarRelatorio.tipoBusca != 0) {
+			relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
+			relatorio.setTipoServico(PesquisarRelatorio.servico);
+			relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
+			relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+		}
 
 		if (PesquisarRelatorio.tipoBusca != 0) {
 			if (PesquisarRelatorio.tipoBusca == 1) {
@@ -319,7 +320,8 @@ public class VisualizarRelatorios extends JFrame {
 		contentPane.add(btnGrafico);
 	}
 
-	private CategoryDataset createDataset() throws SQLException, RelatorioException {
+	private CategoryDataset createDataset() throws SQLException,
+			RelatorioException {
 
 		// Criar relatorio
 		Relatorio relatorio = new Relatorio();
