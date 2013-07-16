@@ -81,7 +81,7 @@ public class RelatorioDAO {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
 				+relatorio.getDataInicial()+"' AND '"+relatorio.getDataFinal()+"' AND barbeiro = '"
-				+relatorio.getBarbeiro()+"' AND servico = '"+relatorio.getTipoServico()+"';");
+				+relatorio.getBarbeiro()+"' AND nome = '"+relatorio.getTipoServico()+"';");
 		ResultSet rs = pst.executeQuery();
 		
 		return rs;
