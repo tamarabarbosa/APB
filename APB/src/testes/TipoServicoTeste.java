@@ -18,7 +18,6 @@ public class TipoServicoTeste {
 			servico.setNomeTipoServico("Corte");
 			servico.setPreco("14,50");
 		} catch (ServicoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

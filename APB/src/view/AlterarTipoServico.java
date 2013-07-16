@@ -12,10 +12,9 @@ import javax.swing.JButton;
 
 
 
-import control.BarbeiroController;
+
 import control.TipoServicoController;
 import dao.FactoryConnection;
-import exception.BarbeiroException;
 import exception.ServicoException;
 
 import model.Barbeiro;
