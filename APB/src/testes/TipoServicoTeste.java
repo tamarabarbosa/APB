@@ -50,7 +50,7 @@ public class TipoServicoTeste {
 		servico.setNomeTipoServico("Cor#tô");
 		Assert.fail("Deve lançar exceção");
 	}
-	@Test(expected = ServicoException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void setterDePrecoNãoPodeSerInvalido() throws ServicoException{
 		servico.setPreco("14.50%");
 		Assert.fail("Deve lançar exceção");

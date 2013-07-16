@@ -29,30 +29,10 @@ public class Relatorio {
 		return dataInicial;
 	}
 
-	public void setDataIso(String dataInicial) {
-
-		formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
-
-		try {
-			data = formatoDaData.parse(dataInicial);
-			this.dataInicial = (formatoDaData.format(data));
-		} catch (ParseException e) {
-			e.printStackTrace();
-			this.dataInicial = ("Parse Date Error");
-		}
-	}
 
 	public void setDataInicial(String dataInicial) {
 
-		/*formatoDaData = new SimpleDateFormat("dd/MM/yyyy");
-
-		try {
-			data = formatoDaData.parse(dataInicial);
-			this.dataInicial = (formatoDaData.format(data));
-		} catch (ParseException e) {
-			e.printStackTrace();
-			this.dataInicial = ("Parse Date Error");
-		}*/
+	
 		this.dataInicial = dataInicial;
 	}
 
@@ -61,15 +41,7 @@ public class Relatorio {
 	}
 
 	public void setDataFinal(String dataFinal) {
-		/*formatoDaData = new SimpleDateFormat("yyyy-MM-dd");
 
-		try {
-			data = formatoDaData.parse(dataFinal);
-			this.dataFinal = (formatoDaData.format(data));
-		} catch (ParseException e) {
-			e.printStackTrace();
-			this.dataFinal = ("Parse Date Error");
-		}*/
 		this.dataFinal = dataFinal;
 	}
 

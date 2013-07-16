@@ -20,17 +20,15 @@ public class ServicoPrestado {
 	private final String BARBEIRO_BRANCO = "Insira um Barbeiro responsável pelo serviço";
 	private final String PRECO_INVALIDO = "Preço Inválido";
 	private final String PRECO_BRANCO = "Preço em Branco";
-	private final String DATA_INVALIDA = "Data Inválida";
-	private final String DATA_BRANCO = "Data em Branco";
+
 
 	public ServicoPrestado() {
 
 	}
 
-	public ServicoPrestado(String nomeServico, String preco, String nomeBarbeiro, String data) {
+	public ServicoPrestado(String nomeServico, String preco, String nomeBarbeiro) {
 		this.nomeServico = nomeServico;
 		this.preco = preco;
-		this.data = data;
 		this.nomeBarbeiro = nomeBarbeiro;
 	}
 

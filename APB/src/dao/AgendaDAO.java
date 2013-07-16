@@ -10,29 +10,34 @@ import model.Agenda;
 import dao.FactoryConnection;
 
 public class AgendaDAO {
-	
+
 	private static AgendaDAO instance;
-	
-	private AgendaDAO(){
+
+	private AgendaDAO() {
 	}
-		
-		public static AgendaDAO getInstance(){
-			if(instance == null)
-				instance = new AgendaDAO();
-			return instance;
+
+	public static AgendaDAO getInstance() {
+		if (instance == null)
+			instance = new AgendaDAO();
+		return instance;
 	}
-		
-	public void incluir(Agenda agenda) throws SQLException{
-		
-		this.updateQuery("INSERT INTO " +
-				"Agenda (nome, telefone, descricao) VALUES (" +
-				"\"" + agenda.getNome() + "\", " +
-				"\"" + agenda.getTelefone() + "\", " +
-				"\"" + agenda.getDescricao() + "\"); "
-			);
+
+	public boolean incluir(Agenda agenda) throws SQLException {
+		if (agenda == null) {
+			return false;
+		} else {
+			this.updateQuery("INSERT INTO "
+					+ "Agenda (nome, telefone, descricao) VALUES (" + "\""
+					+ agenda.getNome() + "\", " + "\"" + agenda.getTelefone()
+					+ "\", " + "\"" + agenda.getDescricao() + "\"); ");
+			return true;
+		}
 	}
-		
-	public void alterar(Agenda agenda_alterado, Agenda agenda) throws SQLException {			
+
+	public boolean alterar(Agenda agenda_alterado, Agenda agenda) throws SQLException {	
+		if(agenda == null || agenda_alterado == null){
+			return false;
+		}else{
 		this.updateQuery("UPDATE agenda SET " +
 				"nome = \"" + agenda_alterado.getNome() + "\", " +
 				"telefone = \"" + agenda_alterado.getTelefone() + "\""+
@@ -40,20 +45,28 @@ public class AgendaDAO {
 				" WHERE " +
 				" agenda.telefone = \"" + AlterarContato.getTelefoneAntigo() + "\";"
 				);
+		
+		return true;
+		}
 	}
-	
-	public void excluir(Agenda agenda) throws SQLException {
-		this.updateQuery("DELETE FROM agenda WHERE " +
-				"agenda.telefone = \"" + agenda.getTelefone() + "\";"
-				);
+
+	public boolean excluir(Agenda agenda) throws SQLException {
+		if(agenda ==  null){
+			return false;
+		}else{
+		this.updateQuery("DELETE FROM agenda WHERE " + "agenda.telefone = \""
+				+ agenda.getTelefone() + "\";");
+			return true;
+		}
 	}
-	
-	public void updateQuery(String message) throws SQLException{
-		Connection connection =  FactoryConnection.getInstance().getConnection();
-		PreparedStatement preparedStatement = connection.prepareStatement(message);
-		preparedStatement.executeUpdate();		
+
+	public void updateQuery(String message) throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement preparedStatement = connection
+				.prepareStatement(message);
+		preparedStatement.executeUpdate();
 		preparedStatement.close();
 		connection.close();
 	}
-	
+
 }
