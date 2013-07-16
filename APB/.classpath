@@ -5,5 +5,11 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="C:/mysql-connector-java-5.1.25-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JFreeChart"/>
+	<classpathentry kind="lib" path="C:/jfreechart-1.0.15/lib/iText-2.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/jfreechart-1.0.15/lib/jcommon-1.0.18.jar"/>
+	<classpathentry kind="lib" path="C:/jfreechart-1.0.15/lib/jfreechart-1.0.15.jar"/>
+	<classpathentry kind="lib" path="C:/jfreechart-1.0.15/lib/jfreechart-1.0.15-experimental.jar"/>
+	<classpathentry kind="lib" path="C:/jfreechart-1.0.15/lib/jfreechart-1.0.15-swt.jar"/>
+	<classpathentry kind="lib" path="C:/jfreechart-1.0.15/lib/swtgraphics2d.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
