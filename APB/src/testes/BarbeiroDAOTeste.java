@@ -83,6 +83,7 @@ public class BarbeiroDAOTeste {
 					+ barbeiro.getNome() + "\";");
 			rs.next();
 			assertEquals("Alessandro", rs.getString("nome"));
+			rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -106,12 +107,14 @@ public class BarbeiroDAOTeste {
 					+ barbeiro.getNome() + "\";");
 			rs.next();
 			fail();
+			rs.close();
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	public void alterarDeBarbeiroControllerDeveEnviarUmBarbeiro() {
+	public void alterarDeBarbeiroDaoDeveAlterarUmBarbeiro() {
 		BarbeiroDAO barbeiroDAO = BarbeiroDAO.getInstance();
 		try {
 			assertTrue(barbeiroDAO.alterar(barbeiro, barbeiro2));
@@ -122,11 +125,15 @@ public class BarbeiroDAOTeste {
 			
 			barbeiroDAO.alterar(barbeiro2, barbeiro);
 			Connection connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery("SELECT nome FROM barbeiro WHERE "
-					+ " nome = \""
-					+ barbeiro.getNome() + "\";");
-			rs.next();
+			java.sql.PreparedStatement pst1 = connection
+					.prepareStatement("SELECT nome FROM barbeiro WHERE "
+							+ " nome = \""
+							+ barbeiro.getNome() + "\";");
+			
+			ResultSet rs = pst1.executeQuery();
+			while(rs.next()){
 			assertEquals("Luciano", rs.getString("nome"));
+			}rs.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
