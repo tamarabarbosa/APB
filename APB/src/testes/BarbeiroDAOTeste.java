@@ -2,6 +2,8 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Barbeiro;
@@ -9,9 +11,13 @@ import model.Barbeiro;
 import org.junit.Before;
 import org.junit.Test;
 
+import view.AlterarBarbeiro;
+import view.CadastrarBarbeiro;
+
 import control.BarbeiroController;
 
 import dao.BarbeiroDAO;
+import dao.FactoryConnection;
 
 import exception.BarbeiroException;
 
@@ -39,7 +45,17 @@ public class BarbeiroDAOTeste {
 			barbeiro2.setTelefone("3389-9085");
 			barbeiro2.setCpf("02919594150");
 			barbeiro2.setCadeira("5");
+			AlterarBarbeiro.setCpfAntigo("02919594150");
 		} catch (BarbeiroException e) {
+			e.printStackTrace();
+		}
+		
+		
+		try {
+			BarbeiroDAO barbeiroDao = BarbeiroDAO.getInstance();
+			barbeiroDao.incluir(barbeiro);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -58,16 +74,39 @@ public class BarbeiroDAOTeste {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		
+		
+		try {
+			Connection connection = FactoryConnection.getInstance().getConnection();
+			ResultSet rs = connection.createStatement().executeQuery("SELECT nome FROM barbeiro WHERE "
+					+ " nome = \""
+					+ barbeiro.getNome() + "\";");
+			rs.next();
+			assertEquals("Alessandro", rs.getString("nome"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 
-	@Test
+	@Test(expected = AssertionError.class)
 	public void excluirDeBarbeiroControllerDeveEnviarUmBarbeiro() {
 		BarbeiroDAO barbeiroDAO = BarbeiroDAO.getInstance();
 		try {
 			assertTrue(barbeiroDAO.excluir(barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		
+		try {
+			Connection connection = FactoryConnection.getInstance().getConnection();
+			ResultSet rs = connection.createStatement().executeQuery("SELECT nome FROM barbeiro WHERE "
+					+ " nome = \""
+					+ barbeiro.getNome() + "\";");
+			rs.next();
+			fail();
+		} catch (SQLException e) {
 		}
 	}
 	
@@ -77,6 +116,19 @@ public class BarbeiroDAOTeste {
 		try {
 			assertTrue(barbeiroDAO.alterar(barbeiro, barbeiro2));
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			
+			barbeiroDAO.alterar(barbeiro2, barbeiro);
+			Connection connection = FactoryConnection.getInstance().getConnection();
+			ResultSet rs = connection.createStatement().executeQuery("SELECT nome FROM barbeiro WHERE "
+					+ " nome = \""
+					+ barbeiro.getNome() + "\";");
+			rs.next();
+			assertEquals("Luciano", rs.getString("nome"));
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
