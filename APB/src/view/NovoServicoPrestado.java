@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
+import javax.xml.ws.Endpoint;
 
 import dao.FactoryConnection;
 import java.awt.event.ItemListener;
@@ -92,7 +93,7 @@ public class NovoServicoPrestado extends JFrame {
 								.prepareStatement("SELECT preco FROM tipoServico WHERE "
 										+ " nome = \""
 										+ comboBoxServico.getSelectedItem()
-												.toString() + "\";");
+												.toString().substring(4) + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
 						textValor.setText(rs1.getString("preco"));
@@ -113,19 +114,23 @@ public class NovoServicoPrestado extends JFrame {
 			Connection connection = FactoryConnection.getInstance()
 					.getConnection();
 			java.sql.PreparedStatement pst = connection
-					.prepareStatement("SELECT nome FROM barbeiro;");
+					.prepareStatement("SELECT nome, cadeira FROM barbeiro ORDER BY cadeira;");
 			java.sql.PreparedStatement pst2 = connection
 					.prepareStatement("SELECT nome FROM tiposervico;");
 			ResultSet rs = pst.executeQuery();
 			ResultSet rs2 = pst2.executeQuery();
+			
+			int cont = 0;
 
 			while (rs.next()) {
 				String nome = rs.getString("nome");
-				comboBoxBarbeiro.addItem(nome);
+				String cadeira = rs.getString("cadeira");
+				comboBoxBarbeiro.addItem(cadeira+" - "+nome);
 			}
 			while (rs2.next()) {
+				cont ++;
 				String nome = rs2.getString("nome");
-				comboBoxServico.addItem(nome);
+				comboBoxServico.addItem(cont+" - "+nome);
 			}
 
 		} catch (SQLException e) {
@@ -139,10 +144,8 @@ public class NovoServicoPrestado extends JFrame {
 				try {
 					String data;
 					ServicoPrestado servico_prestado = new ServicoPrestado();
-					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro
-							.getSelectedItem().toString());
-					servico_prestado.setNomeServico(comboBoxServico
-							.getSelectedItem().toString());
+					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro.getSelectedItem().toString().substring(4));
+					servico_prestado.setNomeServico(comboBoxServico.getSelectedItem().toString().substring(4));
 					servico_prestado.setPreco(textValor.getText());
 					data = servico_prestado.getData();
 					servico_prestado.setData(data);
