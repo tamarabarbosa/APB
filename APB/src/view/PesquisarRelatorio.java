@@ -37,10 +37,10 @@ public class PesquisarRelatorio extends JFrame {
 	private JTextField txtBarbeiro;
 	private JTextField txtServico;
 	public static int tipoBusca = 0;
-	public static String servico = "servico";
-	public static String barbeiro = "barbeiro";
-	public static String dataInicial = "dataInicial";
-	public static String dataFinal = "dataFinal";
+	public static String servico = null;
+	public static String barbeiro = null;
+	public static String dataInicial = null;
+	public static String dataFinal = null;
 
 	/**
 	 * Launch the application.
@@ -235,6 +235,7 @@ public class PesquisarRelatorio extends JFrame {
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
 					} catch (RelatorioException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					
