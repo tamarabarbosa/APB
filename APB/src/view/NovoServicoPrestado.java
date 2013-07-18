@@ -92,7 +92,7 @@ public class NovoServicoPrestado extends JFrame {
 								.prepareStatement("SELECT preco FROM tipoServico WHERE "
 										+ " nome = \""
 										+ comboBoxServico.getSelectedItem()
-												.toString() + "\";");
+												.toString().substring(4) + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
 						textValor.setText(rs1.getString("preco"));
@@ -110,10 +110,11 @@ public class NovoServicoPrestado extends JFrame {
 		comboBoxServico.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxServico);
 		try {
+			int cont = 0;
 			Connection connection = FactoryConnection.getInstance()
 					.getConnection();
 			java.sql.PreparedStatement pst = connection
-					.prepareStatement("SELECT nome FROM barbeiro;");
+					.prepareStatement("SELECT nome, cadeira FROM barbeiro ORDER BY cadeira;");
 			java.sql.PreparedStatement pst2 = connection
 					.prepareStatement("SELECT nome FROM tiposervico;");
 			ResultSet rs = pst.executeQuery();
@@ -121,11 +122,13 @@ public class NovoServicoPrestado extends JFrame {
 
 			while (rs.next()) {
 				String nome = rs.getString("nome");
-				comboBoxBarbeiro.addItem(nome);
+				String cadeira = rs.getString("cadeira");
+				comboBoxBarbeiro.addItem(cadeira+" - "+nome);
 			}
 			while (rs2.next()) {
+				cont ++;
 				String nome = rs2.getString("nome");
-				comboBoxServico.addItem(nome);
+				comboBoxServico.addItem(cont+" - "+nome);
 			}
 
 		} catch (SQLException e) {
