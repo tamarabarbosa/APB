@@ -1,6 +1,43 @@
 package view;
 
 import java.awt.EventQueue;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JButton;
+
+import model.Relatorio;
+
+import control.BarbeiroController;
+import control.RelatorioController;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import view.PesquisarRelatorio;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+import exception.RelatorioException;
+
 
 @SuppressWarnings("serial")
 public class VisualizarRelatorios extends JFrame {
