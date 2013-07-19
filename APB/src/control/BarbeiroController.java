@@ -10,6 +10,14 @@ public class BarbeiroController {
 
 	private static BarbeiroController instance;
 
+	private BarbeiroController() {}
+	
+	public static BarbeiroController getInstance() {
+		if (instance == null)
+			instance = new BarbeiroController();
+		return instance;
+	}
+	
 	public boolean inserir(Barbeiro barbeiro) throws SQLException {
 		if (barbeiro == null) 
 			return false;
@@ -37,15 +45,6 @@ public class BarbeiroController {
 	
 	public ResultSet pesquisar() throws SQLException {
 		return BarbeiroDAO.getInstance().pesquisar();
-	}
-	
-	private BarbeiroController() {
-	}
-
-	public static BarbeiroController getInstance() {
-		if (instance == null)
-			instance = new BarbeiroController();
-		return instance;
 	}
 	
 	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro) throws SQLException {

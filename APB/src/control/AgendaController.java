@@ -9,7 +9,9 @@ import model.Agenda;
 
 public class AgendaController {
 	
-private static AgendaController instance;
+	private static AgendaController instance;
+	
+	private AgendaController() {}
 	
 	public boolean incluir(Agenda agenda) throws SQLException {
 		if(agenda == null )
@@ -35,8 +37,6 @@ private static AgendaController instance;
 		AgendaDAO.getInstance().excluir(agenda);
 		return true;
 	}
-	
-	private AgendaController() {}
 	
 	public static AgendaController getInstance() {
 		if(instance == null)

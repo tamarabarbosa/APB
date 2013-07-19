@@ -98,4 +98,10 @@ public class BarbeiroControllerTeste {
 		ResultSet rs = barbeiroController.pesquisar();
 		while (rs.next());
 	}
+	
+	@Test
+	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
+		ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
+		while(rs.next());
+	}
 }

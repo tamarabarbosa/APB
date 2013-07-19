@@ -2,6 +2,7 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.TipoServico;
@@ -14,88 +15,82 @@ import exception.ServicoException;
 
 public class TipoServicoControllerTeste {
 
-	TipoServico tipoServico = new TipoServico();
+	TipoServico servico = new TipoServico();
+	TipoServicoController servicoController = TipoServicoController.getInstance();
 	
 	@Before
 	public void setUp(){
 		try {
-			tipoServico.setNomeTipoServico("Corte");
-			tipoServico.setPreco("15,00");
+			servico.setNomeTipoServico("Corte");
+			servico.setPreco("15,00");
 		} catch (ServicoException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Test
 	public void getInstanceDeTipoServicoControllerDeveRetornarInstanciaCorrente() {
-		TipoServicoController tipoServicoController = TipoServicoController.getInstance();
-		assertEquals(TipoServicoController.getInstance(), tipoServicoController);
+		assertEquals(TipoServicoController.getInstance(), servicoController);
 	}
 
 	@Test
 	public void inserirDeTipoServicoControllerDeveEnviarUmTipoServico() {
-		TipoServicoController tipoServicoController = TipoServicoController.getInstance();
 		try {
-			assertTrue(tipoServicoController.inserir(tipoServico));
+			assertTrue(servicoController.inserir(servico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
 	public void excluirDeTipoServicoControllerDeveRemoverUmTipoServico() {
-		TipoServicoController tipoServicoController = TipoServicoController.getInstance();
 		try {
-			assertTrue(tipoServicoController.excluir(tipoServico));
+			assertTrue(servicoController.excluir(servico));
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
 	}
 
 	@Test
 	public void alterarDeTipoServicoControllerDeveAlterarUmTipoServico() {
-		TipoServicoController tipoServicoController = TipoServicoController.getInstance();
 		try {
-			assertTrue(tipoServicoController.alterar(tipoServico));
+			assertTrue(servicoController.alterar(servico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
 	public void inserirTipoServicoNãoPodePassarTipoServicoNullo() {
-		TipoServicoController tipoServicoController = TipoServicoController.getInstance();
 		try {
-			assertFalse(tipoServicoController.inserir(null));
+			assertFalse(servicoController.inserir(null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Test
 	public void excluirTipoServicoNãoPodePassarTipoServicoNullo() {
-		TipoServicoController tipoServicoController = TipoServicoController.getInstance();
 		try {
-			assertFalse(tipoServicoController.excluir(null));
+			assertFalse(servicoController.excluir(null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Test
 	public void alterarTipoServicoNãoPodePassarTipoServicoNullo() {
-		TipoServicoController tipoServicoController = TipoServicoController.getInstance();
 		try {
-			assertFalse(tipoServicoController.alterar(null));
+			assertFalse(servicoController.alterar(null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
+		ResultSet rs = servicoController.mostrarTipoServicoCadastrados(servico);
+		while(rs.next());
 	}
 
 }
