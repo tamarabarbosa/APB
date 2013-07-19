@@ -2,7 +2,6 @@ package testes;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
-import junit.framework.AssertionFailedError;
 import exception.BarbeiroException;
 import model.Barbeiro;
 
@@ -139,18 +138,6 @@ public class BarbeiroTeste {
 	}
 
 	@Test (expected = AssertionError.class)
-	public void nomeNãoPodeConterNumeros() {
-		try {
-			barbeiro.setNome("456");
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		} catch (BarbeiroException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	@Test (expected = AssertionError.class)
 	public void rgNaoPodeConterLetras() {
 		try {
 			barbeiro.setRg("4654654ASD");
@@ -263,12 +250,9 @@ public class BarbeiroTeste {
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	@Test (expected = AssertionFailedError.class)
-	public void cadeiraPassadoComMaisDeDoisDigitos() {
-		try {
-			barbeiro.setCadeira("1000");
-		} catch (BarbeiroException e) {
-		}
+	@Test (expected = BarbeiroException.class)
+	public void cadeiraPassadoComMaisDeDoisDigitos() throws BarbeiroException {
+		barbeiro.setCadeira("1000");
 		Assert.fail("Deve lançar uma exceção");
 	}
 }

@@ -10,7 +10,6 @@ public class Barbeiro {
 	private String telefone;
 	private String cadeira;
 
-	private final String NOME_INVALIDO = "Nome Inválido";
 	private final String NOME_BRANCO = "Nome em Branco";
 	private final String CPF_INVALIDO = "CPF Inválido";
 	private final String CPF_BRANCO = "CPF em Branco";
@@ -69,16 +68,13 @@ public class Barbeiro {
 		return cadeira;
 	}
 
-	public void setNome(String nome) throws BarbeiroException,
-			NullPointerException {
+	public void setNome(String nome) throws BarbeiroException {
 		if (nome == null)
 			throw new NullPointerException(NOME_BRANCO);
 		else if ("".equals(nome))
 			throw new BarbeiroException(NOME_BRANCO);
-		else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
+		else 
 			this.nome = nome;
-		else
-			throw new AssertionError(NOME_INVALIDO);
 	}
 
 	public void setCpf(String cpf) throws BarbeiroException {
