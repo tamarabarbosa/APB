@@ -42,8 +42,7 @@ public class RelatorioControllerTeste {
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorServico(relatorio);
 		
-		while(rs.next()){
-		}
+		while(rs.next());
 	}
 	
 	@Test
@@ -51,8 +50,7 @@ public class RelatorioControllerTeste {
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorData(relatorio);
 		
-		while(rs.next()){
-		}
+		while(rs.next());
 	}
 	
 	@Test
@@ -60,8 +58,7 @@ public class RelatorioControllerTeste {
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorBarbeiroEServico(relatorio);
 		
-		while(rs.next()){
-		}
+		while(rs.next());
 	}
 	
 	@Test
@@ -69,8 +66,7 @@ public class RelatorioControllerTeste {
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorDataBarbeiroEServico(relatorio);
 		
-		while(rs.next()){
-		}
+		while(rs.next());
 	}
 	
 	@Test
@@ -78,8 +74,7 @@ public class RelatorioControllerTeste {
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorDataEBarbeiro(relatorio);
 		
-		while(rs.next()){
-		}
+		while(rs.next());
 	}
 	
 	@Test
@@ -87,8 +82,7 @@ public class RelatorioControllerTeste {
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorDataEServico(relatorio);
 		
-		while(rs.next()){
-		}
+		while(rs.next());
 	}
 	
 	@Test
@@ -96,8 +90,7 @@ public class RelatorioControllerTeste {
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorBarbeiro(relatorio);
 		
-		while(rs.next()){
-		}
+		while(rs.next());
 	}
 
 }

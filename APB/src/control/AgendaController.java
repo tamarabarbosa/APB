@@ -9,32 +9,28 @@ public class AgendaController {
 private static AgendaController instance;
 	
 	public boolean incluir(Agenda agenda) throws SQLException {
-		if(agenda == null ){
+		if(agenda == null )
 			return false;
-		}else{
-			AgendaDAO.getInstance().incluir(agenda);
-			return true;
-		}
+		
+		AgendaDAO.getInstance().incluir(agenda);
+		return true;
 	}
 	
 	public boolean alterar(Agenda agenda) throws SQLException {
-		if(agenda == null ){
+		if(agenda == null )
 			return false;
-		}else{
-			Agenda agenda_alterado = agenda;
-			AgendaDAO.getInstance().alterar(agenda_alterado, agenda);
-			return true;
-		}
 		
+		Agenda agenda_alterado = agenda;
+		AgendaDAO.getInstance().alterar(agenda_alterado, agenda);
+		return true;		
 	}
 
 	public  boolean excluir(Agenda agenda) throws SQLException {
-		if (agenda == null) {
+		if (agenda == null)
 			return false;
-		} else {
-			AgendaDAO.getInstance().excluir(agenda);
-			return true;
-		}
+		
+		AgendaDAO.getInstance().excluir(agenda);
+		return true;
 	}
 	
 	private AgendaController() {}
