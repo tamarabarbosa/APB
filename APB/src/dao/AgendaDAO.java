@@ -39,7 +39,7 @@ public class AgendaDAO {
 		
 		this.updateQuery("UPDATE agenda SET " +
 				"nome = \"" + agenda_alterado.getNome() + "\", " +
-				"telefone = \"" + agenda_alterado.getTelefone() + "\""+
+				"telefone = \"" + agenda_alterado.getTelefone() + "\", "+
 				"descricao = \"" + agenda_alterado.getDescricao() + "\""+
 				" WHERE " +
 				" agenda.telefone = \"" + AlterarContato.getTelefoneAntigo() + "\";");

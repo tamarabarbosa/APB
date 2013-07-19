@@ -26,57 +26,45 @@ public class ServicoPrestadoControllerTeste {
 
 	}
 
+	ServicoPrestadoController servicoprestadoController = ServicoPrestadoController.getInstance();
+	
 	@Test
 	public void getInstanceDeServicoPrestadoControllerDeveRetornarInstanciaCorrente() {
-		ServicoPrestadoController servicoprestadoController = ServicoPrestadoController
-				.getInstance();
-		assertEquals(ServicoPrestadoController.getInstance(),
-				servicoprestadoController);
+		assertEquals(ServicoPrestadoController.getInstance(), servicoprestadoController);
 	}
 
 	@Test
 	public void inserirDeServicoPrestadoControllerDeveEnviarUm() {
-		ServicoPrestadoController servicoprestadoController = ServicoPrestadoController
-				.getInstance();
 		try {
 			assertTrue(servicoprestadoController.inserir(servico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
 	public void excluirDeServicoPrestadoControllerDeveEnviarUmaservicoprestado() {
-		ServicoPrestadoController servicoprestadoController = ServicoPrestadoController
-				.getInstance();
 		try {
 			assertTrue(servicoprestadoController.excluir(servico));
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
 	}
 
 	@Test
 	public void inserirServicoPrestadoNãoPodePassarServicoPrestadoNullo() {
-		ServicoPrestadoController servicoprestadoController = ServicoPrestadoController
-				.getInstance();
 		try {
 			assertFalse(servicoprestadoController.inserir(null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Test
 	public void excluirServicoPrestadoNãoPodePassarServicoPrestadoNullo() {
-		ServicoPrestadoController servicoprestadoController = ServicoPrestadoController
-				.getInstance();
 		try {
 			assertFalse(servicoprestadoController.excluir(null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
