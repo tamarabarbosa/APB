@@ -9,10 +9,6 @@ import model.TipoServico;
 import org.junit.Before;
 import org.junit.Test;
 
-import view.AlterarContato;
-
-import control.AgendaController;
-import control.ServicoPrestadoController;
 import control.TipoServicoController;
 import exception.ServicoException;
 

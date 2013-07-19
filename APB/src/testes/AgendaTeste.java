@@ -7,9 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import exception.BarbeiroException;
-
 import model.Agenda;
 
+@SuppressWarnings("deprecation")
 public class AgendaTeste {
 	
 	Agenda contato = new Agenda();

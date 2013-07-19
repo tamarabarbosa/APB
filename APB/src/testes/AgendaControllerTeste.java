@@ -11,8 +11,6 @@ import org.junit.Test;
 
 import view.AlterarContato;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
-
 import control.AgendaController;
 import exception.BarbeiroException;
 

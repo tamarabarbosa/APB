@@ -10,14 +10,10 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-
-
-
 import control.TipoServicoController;
 import dao.FactoryConnection;
 import exception.ServicoException;
 
-import model.Barbeiro;
 import model.TipoServico;
 
 import java.awt.event.ActionListener;

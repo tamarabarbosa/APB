@@ -2,7 +2,6 @@ package control;
 
 import java.sql.SQLException;
 import dao.AgendaDAO;
-import dao.BarbeiroDAO;
 import model.Agenda;
 
 public class AgendaController {

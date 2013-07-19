@@ -3,13 +3,13 @@ package testes;
 import static org.junit.Assert.*;
 import junit.framework.Assert;
 import junit.framework.AssertionFailedError;
-
 import exception.BarbeiroException;
 import model.Barbeiro;
+
 import org.junit.Before;
 import org.junit.Test;
 
-
+@SuppressWarnings("deprecation")
 public class BarbeiroTeste {
 
 	Barbeiro barbeiro;

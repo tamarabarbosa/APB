@@ -3,13 +3,13 @@ package testes;
 import static org.junit.Assert.*;
 import junit.framework.Assert;
 import junit.framework.AssertionFailedError;
-
 import model.ServicoPrestado;
 
 import org.junit.Test;
 
 import exception.ServicoException;
 
+@SuppressWarnings("deprecation")
 public class ServicoPrestadoTeste {
 
 	ServicoPrestado servico = new ServicoPrestado();

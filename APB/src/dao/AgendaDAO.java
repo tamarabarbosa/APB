@@ -23,47 +23,42 @@ public class AgendaDAO {
 	}
 
 	public boolean incluir(Agenda agenda) throws SQLException {
-		if (agenda == null) {
+		if (agenda == null)
 			return false;
-		} else {
-			this.updateQuery("INSERT INTO "
-					+ "Agenda (nome, telefone, descricao) VALUES (" + "\""
-					+ agenda.getNome() + "\", " + "\"" + agenda.getTelefone()
-					+ "\", " + "\"" + agenda.getDescricao() + "\"); ");
-			return true;
-		}
+		
+		this.updateQuery("INSERT INTO "
+				+ "Agenda (nome, telefone, descricao) VALUES (" + "\""
+				+ agenda.getNome() + "\", " + "\"" + agenda.getTelefone()
+				+ "\", " + "\"" + agenda.getDescricao() + "\"); ");
+		return true;
 	}
 
 	public boolean alterar(Agenda agenda_alterado, Agenda agenda) throws SQLException {	
-		if(agenda == null || agenda_alterado == null){
+		if(agenda == null || agenda_alterado == null)
 			return false;
-		}else{
+		
 		this.updateQuery("UPDATE agenda SET " +
 				"nome = \"" + agenda_alterado.getNome() + "\", " +
 				"telefone = \"" + agenda_alterado.getTelefone() + "\""+
 				"descricao = \"" + agenda_alterado.getDescricao() + "\""+
 				" WHERE " +
-				" agenda.telefone = \"" + AlterarContato.getTelefoneAntigo() + "\";"
-				);
-		
+				" agenda.telefone = \"" + AlterarContato.getTelefoneAntigo() + "\";");
+			
 		return true;
-		}
 	}
 
 	public boolean excluir(Agenda agenda) throws SQLException {
-		if(agenda ==  null){
+		if(agenda ==  null)
 			return false;
-		}else{
+		
 		this.updateQuery("DELETE FROM agenda WHERE " + "agenda.telefone = \""
 				+ agenda.getTelefone() + "\";");
-			return true;
-		}
+		return true;
 	}
 
 	public void updateQuery(String message) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement preparedStatement = connection
-				.prepareStatement(message);
+		PreparedStatement preparedStatement = connection.prepareStatement(message);
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 		connection.close();

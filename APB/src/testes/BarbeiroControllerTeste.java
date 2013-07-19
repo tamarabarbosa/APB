@@ -6,7 +6,6 @@ import model.Barbeiro;
 import org.junit.Before;
 import org.junit.Test;
 import control.BarbeiroController;
-import dao.BarbeiroDAO;
 import exception.BarbeiroException;
 
 public class BarbeiroControllerTeste {

@@ -9,8 +9,6 @@ import model.ServicoPrestado;
 import org.junit.Before;
 import org.junit.Test;
 
-import view.AlterarContato;
-
 import control.ServicoPrestadoController;
 import exception.ServicoException;
 
