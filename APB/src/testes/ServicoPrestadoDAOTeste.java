@@ -59,5 +59,23 @@ public class ServicoPrestadoDAOTeste {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void inserirDeServicoPrestadoDAOPassandoUmServicoNulo() {
+		try {
+			assertFalse(servicoDAO.incluir(null));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void excluirDeServicoPrestadoDAOPassandoUmServicoNulo() {
+		try {
+			assertFalse(servicoDAO.excluir(null));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
