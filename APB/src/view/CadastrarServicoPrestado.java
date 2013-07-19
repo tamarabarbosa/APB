@@ -3,7 +3,6 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,10 +16,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import control.ServicoPrestadoController;
-
 import model.ServicoPrestado;
-
-import dao.FactoryConnection;
 import exception.ServicoException;
 
 import java.awt.event.ActionListener;
@@ -30,7 +26,6 @@ import java.awt.event.ActionEvent;
 public class CadastrarServicoPrestado extends JFrame {
 
 	private JPanel contentPane;
-	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -63,12 +58,9 @@ public class CadastrarServicoPrestado extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection
-					.createStatement()
-					.executeQuery(
-							"SELECT nome, preco, barbeiro, data FROM servicoprestado ORDER BY data;");
-
+			ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+			ServicoPrestado servico = new ServicoPrestado();
+			ResultSet rs = servicoController.mostrarServicosPrestadosCadastrados(servico);
 			while (rs.next()) {
 				String[] dados = new String[4];
 				dados[0] = rs.getString("nome");

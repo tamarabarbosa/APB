@@ -2,10 +2,10 @@ package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import view.AlterarTipoServico;
-
 import model.TipoServico;
 
 
@@ -62,6 +62,14 @@ public class TipoServicoDAO {
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 		connection.close();
+	}
+	
+	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico) throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		ResultSet rs = connection.createStatement().executeQuery(
+				"SELECT * FROM tiposervico;");
+		
+		return rs;
 	}
 
 }

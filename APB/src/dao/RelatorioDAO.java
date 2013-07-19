@@ -28,7 +28,7 @@ public class RelatorioDAO {
 		
 		return rs;
 	}
-	public ResultSet pesquisarPorDataEBArbeiro(Relatorio relatorio)
+	public ResultSet pesquisarPorDataEBarbeiro(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
@@ -49,7 +49,7 @@ public class RelatorioDAO {
 		return rs;
 	
 	}
-	public ResultSet pesquisarPorBArbeiro(Relatorio relatorio)
+	public ResultSet pesquisarPorBarbeiro(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
@@ -58,7 +58,7 @@ public class RelatorioDAO {
 		
 		return rs;
 	}
-	public ResultSet pesquisarPorBArbeiroEServico(Relatorio relatorio)
+	public ResultSet pesquisarPorBarbeiroEServico(Relatorio relatorio)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"

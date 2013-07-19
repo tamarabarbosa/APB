@@ -70,5 +70,13 @@ public class ServicoPrestadoDAO {
 		preparedStatement.close();
 		connection.close();
 	}
+	
+	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico) throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		ResultSet rs = connection.createStatement().executeQuery(
+						"SELECT nome, preco, barbeiro, data FROM servicoprestado ORDER BY data;");
+		
+		return rs;
+	}
 
 }

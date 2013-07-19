@@ -80,7 +80,6 @@ public class NovoTipoServico extends JFrame {
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
 				try {
 					TipoServico tipoServico = new TipoServico();
 					tipoServico.setNomeTipoServico(textFieldServico.getText());

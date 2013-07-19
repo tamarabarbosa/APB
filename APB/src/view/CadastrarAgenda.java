@@ -8,11 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import dao.FactoryConnection;
+
+import model.Agenda;
+import control.AgendaController;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.EventQueue;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -21,7 +23,6 @@ import java.text.ParseException;
 public class CadastrarAgenda extends JFrame {
 
 	private JPanel contentPane;
-	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,9 +66,9 @@ public class CadastrarAgenda extends JFrame {
 		scrollPane.setViewportView(table);
 
 		try {
-			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery(
-					"Select nome, telefone, descricao from agenda;");
+			AgendaController agendaController = AgendaController.getInstance();
+			Agenda contato = new Agenda();
+			ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
 			while (rs.next()) {
 				String[] dados = new String[3];
 				dados[0] = rs.getString("nome");
@@ -92,7 +93,6 @@ public class CadastrarAgenda extends JFrame {
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				

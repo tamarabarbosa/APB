@@ -1,8 +1,11 @@
 package control;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import dao.AgendaDAO;
 import model.Agenda;
+
 
 public class AgendaController {
 	
@@ -39,6 +42,10 @@ private static AgendaController instance;
 		if(instance == null)
 			instance = new AgendaController();
 		return instance;
+	}
+	
+	public ResultSet mostrarContatosCadastrados(Agenda contato) throws SQLException {
+		return AgendaDAO.getInstance().mostrarContatosCadastrados(contato);
 	}
 
 }

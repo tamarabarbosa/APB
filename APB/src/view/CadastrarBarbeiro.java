@@ -3,7 +3,6 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -19,14 +18,12 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Barbeiro;
 import control.BarbeiroController;
-import dao.FactoryConnection;
 import exception.BarbeiroException;
 
 @SuppressWarnings("serial")
 public class CadastrarBarbeiro extends JFrame {
 
 	private JPanel contentPane;
-	private Connection connection;
 	private static String tempNome;
 
 	public static void main(String[] args) {
@@ -65,9 +62,9 @@ public class CadastrarBarbeiro extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery(
-					"Select nome, cpf, rg, telefone, cadeira from barbeiro;");
+			BarbeiroController barbeiroController = BarbeiroController.getInstance();
+			Barbeiro barbeiro = new Barbeiro();
+			ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("nome");

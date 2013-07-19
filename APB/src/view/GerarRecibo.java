@@ -8,15 +8,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
 import control.BarbeiroController;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+@SuppressWarnings("serial")
 public class GerarRecibo extends JFrame {
 
 	private JPanel contentPane;
@@ -61,8 +64,7 @@ public class GerarRecibo extends JFrame {
 				comboBoxBarbeiros.addItem(rs.getString("cadeira")+" - "+rs.getString("nome"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			mostrarMensagemDeErro(e.getMessage());
 		}
 		
 		textFieldDataInicial = new JTextField();
@@ -105,5 +107,10 @@ public class GerarRecibo extends JFrame {
 		});
 		btnVoltar.setBounds(10, 175, 112, 35);
 		contentPane.add(btnVoltar);
+	}
+	
+	private void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

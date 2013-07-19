@@ -73,7 +73,7 @@ public class RelatorioDAOTeste {
 	public void pesquisarPorBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorBArbeiro(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorBarbeiro(relatorio);
 			
 			while(rs.next()) {
 				String nome = rs.getString("nome");
@@ -89,7 +89,7 @@ public class RelatorioDAOTeste {
 	public void pesquisarPorBArbeiroEServicoDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorBArbeiroEServico(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorBarbeiroEServico(relatorio);
 			
 			while(rs.next()) {
 				String nome = rs.getString("nome");
@@ -121,7 +121,7 @@ public class RelatorioDAOTeste {
 	public void pesquisarPorDataEBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorDataEBArbeiro(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorDataEBarbeiro(relatorio);
 			
 			while (rs.next()) {
 				String nome = rs.getString("nome");

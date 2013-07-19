@@ -226,6 +226,7 @@ public class PesquisarContato extends JFrame {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+	
 	public static String getTempNome() {
 		return tempNome;
 	}

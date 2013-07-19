@@ -1,11 +1,15 @@
 package control;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import dao.ServicoPrestadoDAO;
 import model.ServicoPrestado;
 
 public class ServicoPrestadoController {
 
+	private ServicoPrestadoController() {}
+	
 	public static ServicoPrestadoController getInstance() {
 		if (instance == null)
 			instance = new ServicoPrestadoController();
@@ -31,8 +35,10 @@ public class ServicoPrestadoController {
 		}
 		return false;	
 	}
-
-	private ServicoPrestadoController() {
-		
+	
+	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico) throws SQLException {
+		return ServicoPrestadoDAO.getInstance().mostrarServicosPrestadosCadastrados(servico);
 	}
+
+	
 }

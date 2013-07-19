@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import view.AlterarBarbeiro;
-
 import model.Barbeiro;
 
 public class BarbeiroDAO {
@@ -74,6 +73,14 @@ public class BarbeiroDAO {
 		preparedStatement.executeUpdate();
 		preparedStatement.close();
 		connection.close();
+	}
+	
+	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro) throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		ResultSet rs = connection.createStatement().executeQuery(
+				"Select nome, cpf, rg, telefone, cadeira from barbeiro;");
+		
+		return rs;
 	}
 
 }

@@ -1,6 +1,8 @@
 package control;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import dao.TipoServicoDAO;
 import model.TipoServico;
 
@@ -44,6 +46,10 @@ public class TipoServicoController {
 		if (instance == null)
 			instance = new TipoServicoController();
 		return instance;
+	}
+	
+	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico) throws SQLException {
+		return TipoServicoDAO.getInstance().mostrarTipoServicoCadastrados(servico);
 	}
 
 }

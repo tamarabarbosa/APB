@@ -10,11 +10,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+
 import java.awt.Color;
+
 import javax.swing.JLabel;
 import javax.swing.UIManager;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 
 import exception.RelatorioException;
@@ -23,6 +27,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 
+@SuppressWarnings("serial")
 public class PesquisarRelatorio extends JFrame {
 
 	private JPanel contentPane;
@@ -229,12 +234,9 @@ public class PesquisarRelatorio extends JFrame {
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
 					} catch (RelatorioException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
 				}
-				
 			}
 		});
 		btnConcluir.setBounds(241, 11, 105, 62);
@@ -252,7 +254,6 @@ public class PesquisarRelatorio extends JFrame {
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (RelatorioException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}

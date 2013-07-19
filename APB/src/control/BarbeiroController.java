@@ -2,6 +2,7 @@ package control;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import dao.BarbeiroDAO;
 import model.Barbeiro;
 
@@ -45,6 +46,10 @@ public class BarbeiroController {
 		if (instance == null)
 			instance = new BarbeiroController();
 		return instance;
+	}
+	
+	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro) throws SQLException {
+		return BarbeiroDAO.getInstance().mostrarBarbeirosCadastrados(barbeiro);
 	}
 
 }
