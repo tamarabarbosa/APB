@@ -20,8 +20,7 @@ public class Relatorio {
 	private final String BARBEIRO_BRANCO = "Barbeiro em Branco";
 	private final String TIPO_SERVICO_BRANCO = "Tipo do Serviço em Branco";
 
-	public Relatorio(String dataInicial, String dataFinal, String barbeiro,
-			String tipoServico) throws RelatorioException {
+	public Relatorio(String dataInicial, String dataFinal, String barbeiro, String tipoServico) throws RelatorioException {
 		//super();
 		this.dataInicial = dataInicial;
 		this.dataFinal = dataFinal;
@@ -37,10 +36,7 @@ public class Relatorio {
 		if (this.barbeiro == null)
 			throw new IllegalArgumentException(BARBEIRO_BRANCO);
 
-		if (this.barbeiro == null)
-			throw new IllegalArgumentException(BARBEIRO_BRANCO);
-
-		if (this.tipoServico== null)
+		if (this.tipoServico == null)
 			throw new IllegalArgumentException(TIPO_SERVICO_BRANCO);
 	}
 
@@ -53,7 +49,7 @@ public class Relatorio {
 
 
 
-	public void setDataInicial(String dataInicial) throws RelatorioException {
+	public void setDataInicial(String dataInicial) throws RelatorioException, NullPointerException {
 		if (dataInicial == null)
 			throw new NullPointerException(DATA_INICIAL_BRANCO);
 		else if ("".equals(dataInicial))
