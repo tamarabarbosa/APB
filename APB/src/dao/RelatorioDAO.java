@@ -87,13 +87,4 @@ public class RelatorioDAO {
 		return rs;
 	}
 
-	public void updateQuery(String message) throws SQLException {
-		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement preparedStatement = connection
-				.prepareStatement(message);
-		preparedStatement.executeUpdate();
-		preparedStatement.close();
-		connection.close();
-	}
-
 }
