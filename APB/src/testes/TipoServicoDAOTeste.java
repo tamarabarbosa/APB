@@ -2,7 +2,6 @@ package testes;
 
 import static org.junit.Assert.*;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.TipoServico;
@@ -14,7 +13,40 @@ import dao.TipoServicoDAO;
 public class TipoServicoDAOTeste {
 
 	TipoServico tiposervico = new TipoServico();
+	TipoServico tiposervico2 = new TipoServico();
 	TipoServicoDAO servicoDAO = TipoServicoDAO.getInstance();
+	
+	@Test
+	public void getInstanceDeTipoServicoDAODeveRetonarInstanciaCorrente() {
+		assertEquals(TipoServicoDAO.getInstance(), servicoDAO);
+	}
+
+	@Test
+	public void inserirDeTipoServicoDAODeveCadastrarUmTipoServico() {
+		try {
+			assertTrue(servicoDAO.incluir(tiposervico));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test
+	public void excluirDeTipoServicoDAODeveEnviarUmTipoServico() {
+		try {
+			assertTrue(servicoDAO.excluir(tiposervico));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void alterarDeTipoServicoDAODeveEnviarUmTipoServico() {
+		try {
+			assertTrue(servicoDAO.alterar(tiposervico, tiposervico2));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@Test
 	public void inserirDeTipoServicoDAOPassandoUmServicoNulo() {
@@ -52,19 +84,7 @@ public class TipoServicoDAOTeste {
 		}
 	}
 	
-	/*
-	@Test
-	public void pesquisarDeBarbeiroDAODeveMostrarUmBarbeiro() {
-		try {
-			ResultSet rs = barbeiroDAO.pesquisar();
-			
-			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}*/
+	
+	
 
 }
