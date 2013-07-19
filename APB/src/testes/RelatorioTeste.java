@@ -132,7 +132,17 @@ public class RelatorioTeste {
 	@Test (expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarTipoServicoNulo() {
 		try{
-			new Relatorio("2013-01-01", "2013-01-01", "Chico", null);
+			new Relatorio ("2013-01-01", "2013-01-01", "Chico", null);
+		} catch (RelatorioException e){
+			e.printStackTrace();
+		}
+	}
+	
+	@Test 
+	public void construtorDeRelatorioPassandoTodosOsDadosCorretos(){
+		try {
+			new Relatorio ("2013-01-01", "2013-12-31", "Chico", "barba");
+			assertEquals(relatorio, relatorio);
 		} catch (RelatorioException e){
 			e.printStackTrace();
 		}
