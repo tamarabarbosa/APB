@@ -42,7 +42,7 @@ public class Administrativo extends JFrame {
 	public Administrativo() {
 		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 540, 200);
+		setBounds(100, 100, 418, 238);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,7 +52,7 @@ public class Administrativo extends JFrame {
 		panel.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "Administrativo",
 				TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 11, 505, 138);
+		panel.setBounds(10, 11, 379, 183);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -78,7 +78,7 @@ public class Administrativo extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnTipoServico.setBounds(346, 45, 149, 37);
+		btnTipoServico.setBounds(215, 45, 149, 37);
 		panel.add(btnTipoServico);
 		
 		JButton btnAgenda = new JButton("Agenda");
@@ -91,7 +91,7 @@ public class Administrativo extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnAgenda.setBounds(179, 45, 157, 37);
+		btnAgenda.setBounds(10, 93, 157, 37);
 		panel.add(btnAgenda);
 		
 		JButton btnVoltar = new JButton("Voltar");
@@ -103,7 +103,20 @@ public class Administrativo extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnVoltar.setBounds(211, 104, 89, 23);
+		btnVoltar.setBounds(151, 141, 89, 23);
 		panel.add(btnVoltar);
+		
+		JButton btnRecibo = new JButton("Recibo");
+		btnRecibo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+				GerarRecibo frame = new GerarRecibo();
+				frame.setVisible(true);
+				frame.setLocationRelativeTo(null);
+			}
+		});
+		btnRecibo.setBounds(215, 93, 149, 37);
+		panel.add(btnRecibo);
 	}
 }
