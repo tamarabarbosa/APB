@@ -12,10 +12,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import view.AlterarBarbeiro;
-
 import dao.BarbeiroDAO;
 import dao.FactoryConnection;
-
 import exception.BarbeiroException;
 
 public class BarbeiroDAOTeste {
@@ -145,7 +143,18 @@ public class BarbeiroDAOTeste {
 		}
 	}
 	
-	
-	
+	@Test
+	public void pesquisarDeBarbeiroDAODeveMostrarUmBarbeiro() {
+		try {
+			ResultSet rs = barbeiroDAO.pesquisar();
+			
+			while (rs.next()) {
+				String nome = rs.getString("nome");
+				assertNotNull(nome);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
