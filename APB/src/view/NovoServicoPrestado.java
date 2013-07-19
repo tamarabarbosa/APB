@@ -83,25 +83,18 @@ public class NovoServicoPrestado extends JFrame {
 		comboBoxServico.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				Connection connection;
-				if (comboBoxServico.getSelectedIndex() != 0) {
-
+				if (comboBoxServico.getSelectedIndex() != 0)
 					try {
-						connection = FactoryConnection.getInstance()
-								.getConnection();
-						java.sql.PreparedStatement pst1 = connection
-								.prepareStatement("SELECT preco FROM tipoServico WHERE "
-										+ " nome = \""
-										+ comboBoxServico.getSelectedItem()
-												.toString().substring(4)
-										+ "\";");
+						connection = FactoryConnection.getInstance().getConnection();
+						java.sql.PreparedStatement pst1 = connection.prepareStatement(
+								"SELECT preco FROM tipoServico WHERE \"" 
+								+ comboBoxServico.getSelectedItem().toString().substring(4) + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
 						textValor.setText(rs1.getString("preco"));
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
 					}
-
-				}
 			}
 
 		});

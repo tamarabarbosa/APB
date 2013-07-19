@@ -162,11 +162,11 @@ public class PesquisarContato extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				dispose();
 				AlterarContato frame = new AlterarContato();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				dispose();
-				}
+			}
 		});
 		btnAlterar.setBounds(98, 228, 89, 23);
 		contentPane.add(btnAlterar);

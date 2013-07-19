@@ -47,6 +47,8 @@ public class AlterarContato extends JFrame {
 			}
 		});
 	}
+	
+	
 
 	public AlterarContato() {
 		setTitle("Alterar Contato");
@@ -57,18 +59,45 @@ public class AlterarContato extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		textFieldNome = new JTextField();
+		textFieldNome.setBounds(83, 22, 341, 20);
+		contentPane.add(textFieldNome);
+		textFieldNome.setColumns(10);
+
+		textFieldTelefone = new JTextField();
+		textFieldTelefone.setBounds(83, 76, 341, 20);
+		contentPane.add(textFieldTelefone);
+		textFieldTelefone.setColumns(10);
+
+		textFieldDescricao = new JTextField();
+		textFieldDescricao.setBounds(83, 123, 341, 41);
+		contentPane.add(textFieldDescricao);
+		textFieldDescricao.setColumns(10);
+
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setBounds(10, 25, 46, 14);
+		contentPane.add(lblNome);
+
+		JLabel lblTelefone = new JLabel("Telefone:");
+		lblTelefone.setBounds(10, 79, 46, 14);
+		contentPane.add(lblTelefone);
+
+		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
+		lblDescricao.setBounds(10, 123, 63, 14);
+		contentPane.add(lblDescricao);
+		
 		try {
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM agenda WHERE "
 					+ "nome = '" + PesquisarContato.getTempNome() + "';");
 			ResultSet rs = pst.executeQuery();
 				
-			rs.next(); 
-			
+			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldTelefone.setText(rs.getString("telefone"));
 				AlterarContato.setTelefoneAntigo(rs.getString("telefone"));
 				textFieldDescricao.setText(rs.getString("descricao"));
+			}
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
@@ -119,35 +148,7 @@ public class AlterarContato extends JFrame {
 		});
 		btnVoltar.setBounds(259, 220, 104, 31);
 		contentPane.add(btnVoltar);
-
-		textFieldNome = new JTextField();
-		textFieldNome.setBounds(83, 22, 341, 20);
-		contentPane.add(textFieldNome);
-		textFieldNome.setColumns(10);
-
-		textFieldTelefone = new JTextField();
-		textFieldTelefone.setBounds(83, 76, 341, 20);
-		contentPane.add(textFieldTelefone);
-		textFieldTelefone.setColumns(10);
-
-		textFieldDescricao = new JTextField();
-		textFieldDescricao.setBounds(83, 123, 341, 41);
-		contentPane.add(textFieldDescricao);
-		textFieldDescricao.setColumns(10);
-
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setBounds(10, 25, 46, 14);
-		contentPane.add(lblNome);
-
-		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(10, 79, 46, 14);
-		contentPane.add(lblTelefone);
-
-		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
-		lblDescricao.setBounds(10, 123, 63, 14);
-		contentPane.add(lblDescricao);
 	}
-	
 	
 	public static String getTelefoneAntigo() {
 		return telefoneAntigo;

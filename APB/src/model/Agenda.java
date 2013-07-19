@@ -39,7 +39,7 @@ public class Agenda {
 	public void setNome(String nome) throws BarbeiroException {
 		if ("".equals(nome))
 			throw new BarbeiroException(NOME_BRANCO);
-		else if (nome.matches("[a-zA-Z\\s]+"))
+		else if (nome.matches("^[[ ]|\\p{L}*]+$"))
 			this.nome = nome;
 		else
 			throw new BarbeiroException(NOME_INVALIDO);
