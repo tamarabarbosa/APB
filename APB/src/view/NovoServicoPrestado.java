@@ -92,7 +92,8 @@ public class NovoServicoPrestado extends JFrame {
 								.prepareStatement("SELECT preco FROM tipoServico WHERE "
 										+ " nome = \""
 										+ comboBoxServico.getSelectedItem()
-												.toString().substring(4) + "\";");
+												.toString().substring(4)
+										+ "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
 						textValor.setText(rs1.getString("preco"));
@@ -123,12 +124,12 @@ public class NovoServicoPrestado extends JFrame {
 			while (rs.next()) {
 				String nome = rs.getString("nome");
 				String cadeira = rs.getString("cadeira");
-				comboBoxBarbeiro.addItem(cadeira+" - "+nome);
+				comboBoxBarbeiro.addItem(cadeira + " - " + nome);
 			}
 			while (rs2.next()) {
-				cont ++;
+				cont++;
 				String nome = rs2.getString("nome");
-				comboBoxServico.addItem(cont+" - "+nome);
+				comboBoxServico.addItem(cont + " - " + nome);
 			}
 
 		} catch (SQLException e) {
@@ -141,11 +142,15 @@ public class NovoServicoPrestado extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					String data;
+					String[] nome = comboBoxServico.getSelectedItem()
+							.toString().split(" ");
+					String[] barbeiro = comboBoxBarbeiro.getSelectedItem()
+							.toString().split(" ");
+
 					ServicoPrestado servico_prestado = new ServicoPrestado();
-					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro
-							.getSelectedItem().toString());
-					servico_prestado.setNomeServico(comboBoxServico
-							.getSelectedItem().toString());
+
+					servico_prestado.setNomeBarbeiro(barbeiro[2]);
+					servico_prestado.setNomeServico(nome[2]);
 					servico_prestado.setPreco(textValor.getText());
 					data = servico_prestado.getData();
 					servico_prestado.setData(data);
