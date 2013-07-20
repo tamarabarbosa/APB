@@ -1,5 +1,6 @@
 package model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -13,20 +14,21 @@ public class Relatorio {
 	private String tipoServico;
 	private SimpleDateFormat formatoDaData;
 	private Date data;
-	
+
 	private final String DATA_FINAL_BRANCO = "Data final em Branco";
 	private final String DATA_INICIAL_BRANCO = "Data inicial em Branco";
 	private final String DATA_INICIAL_INVALIDA = "Data Inicial Inválida";
 	private final String BARBEIRO_BRANCO = "Barbeiro em Branco";
 	private final String TIPO_SERVICO_BRANCO = "Tipo do Serviço em Branco";
 
-	public Relatorio(String dataInicial, String dataFinal, String barbeiro, String tipoServico) throws RelatorioException {
-		//super();
+	public Relatorio(String dataInicial, String dataFinal, String barbeiro,
+			String tipoServico) throws RelatorioException {
+		// super();
 		this.dataInicial = dataInicial;
 		this.dataFinal = dataFinal;
 		this.barbeiro = barbeiro;
 		this.tipoServico = tipoServico;
-		
+
 		if (this.dataInicial == null)
 			throw new IllegalArgumentException(DATA_INICIAL_BRANCO);
 
@@ -47,15 +49,22 @@ public class Relatorio {
 		return dataInicial;
 	}
 
-
-
-	public void setDataInicial(String dataInicial) throws RelatorioException, NullPointerException {
+	public void setDataInicial(String dataInicial) throws RelatorioException,
+			NullPointerException, ParseException {
 		if (dataInicial == null)
 			throw new NullPointerException(DATA_INICIAL_BRANCO);
 		else if ("".equals(dataInicial))
 			throw new AssertionError(DATA_INICIAL_BRANCO);
-		else
-			this.dataInicial = dataInicial;
+		else {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			Date dataIso = sdf.parse(dataInicial);
+
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+			String dataISO = sdf2.format(dataIso);
+
+			this.dataInicial = dataISO;
+		}
 
 	}
 
@@ -63,13 +72,23 @@ public class Relatorio {
 		return dataFinal;
 	}
 
-	public void setDataFinal(String dataFinal) throws RelatorioException {
-	if (dataFinal == null)
-		throw new NullPointerException(DATA_FINAL_BRANCO);
-	else if ("".equals(dataFinal))
-		throw new AssertionError(DATA_FINAL_BRANCO);
-	else
-		this.dataFinal = dataFinal;
+	public void setDataFinal(String dataFinal) throws RelatorioException, NullPointerException,
+			ParseException {
+		
+		if (dataFinal == null)
+			throw new NullPointerException(DATA_FINAL_BRANCO);
+		else if ("".equals(dataFinal))
+			throw new AssertionError(DATA_FINAL_BRANCO);
+		else {
+
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			Date dataIso = sdf.parse(dataFinal);
+
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+			String dataISO = sdf2.format(dataIso);
+			
+			this.dataFinal = dataISO;
+		}
 	}
 
 	public String getBarbeiro() {

@@ -22,6 +22,7 @@ import exception.RelatorioException;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class PesquisarRelatorio extends JFrame {
 
@@ -264,6 +265,10 @@ public class PesquisarRelatorio extends JFrame {
 						mostrarMensagemDeErro(e.getMessage());
 					} catch (RelatorioException e) {
 						e.printStackTrace();
+					} catch (NullPointerException e) {
+						e.printStackTrace();
+					} catch (ParseException e) {
+						e.printStackTrace();
 					}
 
 				}
@@ -285,6 +290,10 @@ public class PesquisarRelatorio extends JFrame {
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (RelatorioException e1) {
+					e1.printStackTrace();
+				} catch (NullPointerException e1) {
+					e1.printStackTrace();
+				} catch (ParseException e1) {
 					e1.printStackTrace();
 				}
 			}
