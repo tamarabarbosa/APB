@@ -1,6 +1,9 @@
 package testes;
 
 import static org.junit.Assert.*;
+
+import java.text.ParseException;
+
 import junit.framework.Assert;
 import junit.framework.AssertionFailedError;
 import model.ServicoPrestado;
@@ -108,19 +111,31 @@ public class ServicoPrestadoTeste {
 	
 	@Test (expected = AssertionFailedError.class)
 	public void testeDataNulo() throws ServicoException {
-		servico.setData(null);
+		try {
+			servico.setData(null);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
 	@Test (expected = AssertionFailedError.class)
 	public void testeDataEmBranco() throws ServicoException {
-		servico.setData("");
+		try {
+			servico.setData("");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
 	@Test (expected = AssertionFailedError.class)
 	public void testeDataForaDeFormato() throws ServicoException {
-		servico.setData("abc");
+		try {
+			servico.setData("abc");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		Assert.fail("Deve lançar uma exceção");
 	}
 	

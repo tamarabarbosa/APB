@@ -10,7 +10,6 @@ import model.Agenda;
 import org.junit.Before;
 import org.junit.Test;
 
-import view.AlterarContato;
 import control.AgendaController;
 import exception.BarbeiroException;
 
@@ -51,19 +50,17 @@ public class AgendaControllerTeste {
 		try {
 			assertTrue(agendaController.excluir(contato));
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
 	}
-
+	
 	@Test
-	public void alterarDeAgendaControllerDeveEnviarUmaAgenda() {
+	public void alterarDeAgendaControllerDeveEnviarUmaAgendaAlterada() {
 		try {
-			AlterarContato.setTelefoneAntigo("3895-5698");
 			assertTrue(agendaController.alterar(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
@@ -98,5 +95,17 @@ public class AgendaControllerTeste {
 		ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
 		while(rs.next());
 	}
+	
+	@Test
+	public void pesquisarPorNomeDeAgendaControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = agendaController.pesquisarPorNome(contato);
+		while(rs.next());
+	}
 
+	@Test
+	public void pesquisarPorTelefoneDeAgendaControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = agendaController.pesquisarPorTelefone(contato);
+		while(rs.next());
+	}
+	
 }

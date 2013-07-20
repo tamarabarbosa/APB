@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import view.AlterarBarbeiro;
 import model.Barbeiro;
 
 public class BarbeiroDAO {
@@ -45,7 +44,7 @@ public class BarbeiroDAO {
 				+ barbeiro_alterado.getRg() + "', " + "telefone = '"
 				+ barbeiro_alterado.getTelefone() + "', " + "cadeira = '"
 				+ barbeiro_alterado.getCadeira() + "' WHERE" + " cpf = '"
-				+ AlterarBarbeiro.getCpfAntigo() + "';");
+				+ barbeiro.getCpf() + "';");
 
 		return true;
 	}
@@ -82,5 +81,14 @@ public class BarbeiroDAO {
 		
 		return rs;
 	}
+	
+	public ResultSet pesquisarPorNome(Barbeiro barbeiro) throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		PreparedStatement pst = connection.prepareStatement("SELECT * FROM barbeiro WHERE nome = '" 
+							+ barbeiro.getNome() + "';");
+		ResultSet rs = pst.executeQuery();
+
+		return rs;
+	} 
 
 }

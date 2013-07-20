@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 @SuppressWarnings("serial")
 public class MenuPrincipal extends JFrame {
@@ -97,7 +98,10 @@ public class MenuPrincipal extends JFrame {
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (RelatorioException e1) {
-					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (NullPointerException e1) {
+					e1.printStackTrace();
+				} catch (ParseException e1) {
 					e1.printStackTrace();
 				}
 			}

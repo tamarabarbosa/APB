@@ -11,14 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import control.BarbeiroController;
-import dao.FactoryConnection;
 import exception.BarbeiroException;
 
 import model.Barbeiro;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -31,7 +29,6 @@ public class AlterarBarbeiro extends JFrame {
 	private JTextField textFieldRg;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldCadeira;
-	private static String cpfAntigo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -101,23 +98,23 @@ public class AlterarBarbeiro extends JFrame {
 		contentPane.add(labelCadeira);
 
 		try {
-			Connection connection = FactoryConnection.getInstance()
-					.getConnection();
-			java.sql.PreparedStatement pst = connection
-					.prepareStatement("SELECT * FROM barbeiro WHERE "
-							+ "nome = '" + CadastrarBarbeiro.getTempNome()
-							+ "';");
-			ResultSet rs = pst.executeQuery();
-
-			rs.next();
-
-			textFieldNome.setText(rs.getString("nome"));
-			textFieldCpf.setText(rs.getString("cpf"));
-			AlterarBarbeiro.setCpfAntigo(rs.getString("cpf"));
-			textFieldRg.setText(rs.getString("rg"));
-			textFieldTelefone.setText(rs.getString("telefone"));
-			textFieldCadeira.setText(rs.getString("cadeira"));
+			Barbeiro barbeiro = new Barbeiro();
+			BarbeiroController barbeiroController = BarbeiroController.getInstance();
+			barbeiro.setNome(Barbeiro.getTempNome());
+			System.out.println(barbeiro.getNome());
+			
+			ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
+			
+			while (rs.next()) {
+				textFieldNome.setText(rs.getString("nome"));
+				textFieldCpf.setText(rs.getString("cpf"));
+				textFieldRg.setText(rs.getString("rg"));
+				textFieldTelefone.setText(rs.getString("telefone"));
+				textFieldCadeira.setText(rs.getString("cadeira"));
+			}
 		} catch (SQLException e) {
+			mostrarMensagemDeErro(e.getMessage());
+		} catch (BarbeiroException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
 
@@ -179,14 +176,6 @@ public class AlterarBarbeiro extends JFrame {
 		});
 		buttonVoltar.setBounds(158, 177, 125, 23);
 		contentPane.add(buttonVoltar);
-	}
-
-	public static String getCpfAntigo() {
-		return cpfAntigo;
-	}
-
-	public static void setCpfAntigo(String cpfAntigo) {
-		AlterarBarbeiro.cpfAntigo = cpfAntigo;
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {

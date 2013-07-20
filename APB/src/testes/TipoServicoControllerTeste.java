@@ -92,5 +92,11 @@ public class TipoServicoControllerTeste {
 		ResultSet rs = servicoController.mostrarTipoServicoCadastrados(servico);
 		while(rs.next());
 	}
+	
+	@Test
+	public void pesquisarPorNomeDeTipoServicoControllerDeveMostrarUmServico() throws SQLException {
+		ResultSet rs = servicoController.pesquisarPorNome(servico);
+		while(rs.next());
+	}
 
 }

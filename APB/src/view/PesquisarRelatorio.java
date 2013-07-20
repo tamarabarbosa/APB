@@ -4,12 +4,15 @@ import java.awt.Checkbox;
 import java.awt.Event;
 import java.awt.EventQueue;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.MaskFormatter;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
@@ -22,6 +25,7 @@ import exception.RelatorioException;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 public class PesquisarRelatorio extends JFrame {
 
@@ -46,7 +50,7 @@ public class PesquisarRelatorio extends JFrame {
 					PesquisarRelatorio frame = new PesquisarRelatorio();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					mostrarMensagemDeErro(e.getMessage());
 				}
 			}
 		});
@@ -54,8 +58,9 @@ public class PesquisarRelatorio extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws ParseException 
 	 */
-	public PesquisarRelatorio() {
+	public PesquisarRelatorio() throws ParseException {
 		setTitle("Tipo de Pesquisa do Relat\u00F3rio");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,6 +69,7 @@ public class PesquisarRelatorio extends JFrame {
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		final MaskFormatter mascaraFormatoData = new MaskFormatter("##/##/####");
 
 		JPanel panelData = new JPanel();
 		panelData.setBorder(new TitledBorder(UIManager
@@ -73,18 +79,16 @@ public class PesquisarRelatorio extends JFrame {
 		contentPane.add(panelData);
 		panelData.setLayout(null);
 
-		txtDataInicial = new JTextField();
+		txtDataInicial = new JFormattedTextField(mascaraFormatoData);
 		txtDataInicial.setEnabled(false);
 		txtDataInicial.setBounds(10, 66, 94, 20);
 		panelData.add(txtDataInicial);
-		txtDataInicial.setText("dd/MM/aaaa");
 		txtDataInicial.setColumns(10);
 
-		txtDataFinal = new JTextField();
+		txtDataFinal = new JFormattedTextField(mascaraFormatoData);
 		txtDataFinal.setEnabled(false);
 		txtDataFinal.setBounds(114, 66, 94, 20);
 		panelData.add(txtDataFinal);
-		txtDataFinal.setText("dd/MM/aaaa\r\n");
 		txtDataFinal.setColumns(10);
 
 		JLabel lblDataInicial = new JLabel("Data Inicial");
@@ -97,13 +101,9 @@ public class PesquisarRelatorio extends JFrame {
 				if (checkPorData.getState() == false) {
 					txtDataInicial.setEnabled(false);
 					txtDataFinal.setEnabled(false);
-					txtDataInicial.setText("dd/MM/aaaa\r\n");
-					txtDataFinal.setText("dd/MM/aaaa\r\n");
 				} else {
 					txtDataInicial.setEnabled(true);
 					txtDataFinal.setEnabled(true);
-					txtDataInicial.setText("");
-					txtDataFinal.setText("");
 				}
 			}
 		});
@@ -263,7 +263,11 @@ public class PesquisarRelatorio extends JFrame {
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
 					} catch (RelatorioException e) {
-						e.printStackTrace();
+						mostrarMensagemDeErro(e.getMessage());
+					} catch (NullPointerException e) {
+						mostrarMensagemDeErro(e.getMessage());
+					} catch (ParseException e) {
+						mostrarMensagemDeErro(e.getMessage());
 					}
 
 				}
@@ -285,7 +289,11 @@ public class PesquisarRelatorio extends JFrame {
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (RelatorioException e1) {
-					e1.printStackTrace();
+					mostrarMensagemDeErro(e1.getMessage());
+				} catch (NullPointerException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				} catch (ParseException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
 				}
 			}
 		});
@@ -297,7 +305,7 @@ public class PesquisarRelatorio extends JFrame {
 		return false;
 	}
 
-	private void mostrarMensagemDeErro(String informacao) {
+	private static void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}

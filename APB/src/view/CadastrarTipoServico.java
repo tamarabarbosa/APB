@@ -98,11 +98,15 @@ public class CadastrarTipoServico extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				nomeTemp = (String) modelo.getValueAt(table.getSelectedRow(), 0);
-				AlterarTipoServico frame = new AlterarTipoServico();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
+				try {
+					TipoServico.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
+					AlterarTipoServico frame = new AlterarTipoServico();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
+				} catch (ServicoException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				}
 			}
 		});
 		btnAlterar.setBounds(380, 58, 94, 23);

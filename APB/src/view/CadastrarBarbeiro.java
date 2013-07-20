@@ -24,7 +24,6 @@ import exception.BarbeiroException;
 public class CadastrarBarbeiro extends JFrame {
 
 	private JPanel contentPane;
-	private static String tempNome;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -91,7 +90,6 @@ public class CadastrarBarbeiro extends JFrame {
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 	
@@ -105,15 +103,14 @@ public class CadastrarBarbeiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try{
-					tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
-				
-				AlterarBarbeiro frame = new AlterarBarbeiro();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
+					Barbeiro.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
+					AlterarBarbeiro frame = new AlterarBarbeiro();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
 				} catch (ArrayIndexOutOfBoundsException e1) {
 					mostrarMensagemDeErro("Selecione um Barbeiro para Alterar");
-			}
+				}
 			}
 		});
 		botaoAlterar.setBounds(385, 50, 158, 28);
@@ -127,7 +124,7 @@ public class CadastrarBarbeiro extends JFrame {
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
 					Barbeiro barbeiro = new Barbeiro();
 					barbeiro.setNome(nome);
-
+					
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
@@ -171,7 +168,4 @@ public class CadastrarBarbeiro extends JFrame {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
-	public static String getTempNome() {
-		return tempNome;
-	}
 }

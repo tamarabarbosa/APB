@@ -7,6 +7,7 @@ public class Agenda {
 	private String nome;
 	private String telefone;
 	private String descricao;
+	private static String tempNome;
 
 	private final String NOME_INVALIDO = "Nome Inválido";
 	private final String NOME_BRANCO = "Nome em Branco";
@@ -35,7 +36,6 @@ public class Agenda {
 		return descricao;
 	}
 
-
 	public void setNome(String nome) throws BarbeiroException {
 		if ("".equals(nome))
 			throw new BarbeiroException(NOME_BRANCO);
@@ -58,5 +58,12 @@ public class Agenda {
 		this.descricao = descricao;
 	}
 
+	public static String getTempNome() {
+		return tempNome;
+	}
+
+	public static void setTempNome(String tempNome) {
+		Agenda.tempNome = tempNome;
+	}
 
 }

@@ -50,5 +50,9 @@ public class BarbeiroController {
 	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro) throws SQLException {
 		return BarbeiroDAO.getInstance().mostrarBarbeirosCadastrados(barbeiro);
 	}
+	
+	public ResultSet pesquisarPorNome(Barbeiro barbeiro) throws SQLException {
+		return BarbeiroDAO.getInstance().pesquisarPorNome(barbeiro);
+	}
 
 }

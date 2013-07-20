@@ -2,6 +2,8 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+
 import model.Relatorio;
 
 import org.junit.Before;
@@ -14,14 +16,14 @@ public class RelatorioTeste {
 	Relatorio relatorio;
 
 	@Before
-	public void setUp() {
+	public void setUp() throws ParseException {
 		try {
 			relatorio = new Relatorio();
 
 			relatorio.setBarbeiro("Chico");
 			relatorio.setTipoServico("barba");
-			relatorio.setDataInicial("2013-01-01");
-			relatorio.setDataFinal("2013-12-31");
+			relatorio.setDataInicial("01/01/2013");
+			relatorio.setDataFinal("09/09/2013");
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();
@@ -31,7 +33,7 @@ public class RelatorioTeste {
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void dataInicialNaoPodeSerSettadaNula() {
+	public void dataInicialNaoPodeSerSettadaNula() throws NullPointerException, ParseException {
 		try{
 			relatorio.setDataInicial(null);
 		} catch (RelatorioException e){
@@ -40,7 +42,7 @@ public class RelatorioTeste {
 	}
 	
 	@Test (expected = AssertionError.class)
-	public void dataInicialNaoPodeSerSettadaEmBranco() {
+	public void dataInicialNaoPodeSerSettadaEmBranco() throws NullPointerException, ParseException {
 		try{
 			relatorio.setDataInicial("");
 		} catch (RelatorioException e){
@@ -49,7 +51,7 @@ public class RelatorioTeste {
 	}
 	
 	@Test (expected = NullPointerException.class)
-	public void dataFinalNaoPodeSerSettadaNula() {
+	public void dataFinalNaoPodeSerSettadaNula() throws NullPointerException, ParseException {
 		try{
 			relatorio.setDataFinal(null);
 		} catch (RelatorioException e){
@@ -58,7 +60,7 @@ public class RelatorioTeste {
 	}
 	
 	@Test (expected = AssertionError.class)
-	public void dataFinalNaoPodeSerSettaEmBranco() {
+	public void dataFinalNaoPodeSerSettaEmBranco() throws NullPointerException, ParseException {
 		try{
 			relatorio.setDataFinal("");
 		} catch (RelatorioException e){
