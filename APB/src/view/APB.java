@@ -2,6 +2,7 @@ package view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -12,6 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
+import java.awt.Canvas;
+import javax.swing.JEditorPane;
+import javax.swing.Box;
+import java.awt.Color;
+import javax.swing.JProgressBar;
+import javax.swing.UIManager;
+import java.awt.Panel;
+import javax.swing.JDesktopPane;
 
 @SuppressWarnings("serial")
 public class APB extends JFrame {
@@ -41,8 +51,9 @@ public class APB extends JFrame {
 	public APB() {
 		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 423, 266);
+		setBounds(100, 100, 583, 357);
 		contentPane = new JPanel();
+		contentPane.setForeground(new Color(255, 255, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -50,13 +61,13 @@ public class APB extends JFrame {
 		JLabel lblBemVindo = new JLabel("Bem Vindo");
 		lblBemVindo.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		lblBemVindo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBemVindo.setBounds(127, 11, 160, 38);
+		lblBemVindo.setBounds(195, 13, 160, 38);
 		contentPane.add(lblBemVindo);
 
 		JLabel lblAPB = new JLabel("Automa\u00E7\u00E3o de Processos da Barbearia");
 		lblAPB.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblAPB.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAPB.setBounds(61, 60, 288, 57);
+		lblAPB.setBounds(127, 175, 288, 57);
 		contentPane.add(lblAPB);
 
 		JButton btnIniciar = new JButton("Iniciar");
@@ -70,7 +81,7 @@ public class APB extends JFrame {
 		});
 		btnIniciar.setIcon(new ImageIcon(APB.class
 				.getResource("/resources/ButtonAccept.png")));
-		btnIniciar.setBounds(24, 151, 137, 65);
+		btnIniciar.setBounds(82, 242, 137, 65);
 		contentPane.add(btnIniciar);
 
 		JButton btnFechar = new JButton("Fechar");
@@ -81,7 +92,13 @@ public class APB extends JFrame {
 		});
 		btnFechar.setIcon(new ImageIcon(APB.class
 				.getResource("/resources/cancel-button-icone-7221-48.png")));
-		btnFechar.setBounds(238, 151, 145, 65);
+		btnFechar.setBounds(338, 242, 145, 65);
 		contentPane.add(btnFechar);
+		
+		JLabel lblIcone = new JLabel("");
+		lblIcone.setIcon(new ImageIcon(APB.class.getResource("/resources/19fb55_f0fe0bafb3f2bec53376838a10e0825a.jpg_srz_401_146_75_22_0.50_1.20_0 .jpeg")));
+		lblIcone.setBounds(82, 62, 401, 119);
+		contentPane.add(lblIcone);
+		
 	}
 }
