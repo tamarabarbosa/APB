@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import model.Relatorio;
 
@@ -19,11 +20,11 @@ public class RelatorioDAOTeste {
 	Relatorio relatorio = new Relatorio();
 
 	@Before
-	public void setUp() throws RelatorioException {
+	public void setUp() throws RelatorioException, ParseException {
 		try {
 			relatorio.setBarbeiro("Luciano");
-			relatorio.setDataFinal("2013-09-09");
-			relatorio.setDataInicial("2013-01-01");
+			relatorio.setDataFinal("09/09/2013");
+			relatorio.setDataInicial("01/01/2013");
 			relatorio.setTipoServico("corte");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
