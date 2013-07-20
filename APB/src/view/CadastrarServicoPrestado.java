@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -66,10 +67,12 @@ public class CadastrarServicoPrestado extends JFrame {
 				dados[0] = rs.getString("nome");
 				dados[1] = rs.getString("barbeiro");
 				dados[2] = rs.getString("preco");
-				dados[3] = rs.getString("data");
+				dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
+			mostrarMensagemDeErro(e.getMessage());
+		} catch (ParseException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
 

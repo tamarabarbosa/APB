@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 @SuppressWarnings("serial")
 public class PesquisarServicoPrestado extends JFrame {
@@ -96,12 +97,14 @@ public class PesquisarServicoPrestado extends JFrame {
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("barbeiro");
 						dados[2] = rs.getString("preco");
-						dados[3] = rs.getString("data");
+						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (ParseException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
 
@@ -128,12 +131,14 @@ public class PesquisarServicoPrestado extends JFrame {
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("barbeiro");
 						dados[2] = rs.getString("preco");
-						dados[3] = rs.getString("data");
+						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (ParseException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
 
@@ -213,10 +218,12 @@ public class PesquisarServicoPrestado extends JFrame {
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("barbeiro");
 						dados[2] = rs.getString("preco");
-						dados[3] = rs.getString("data");
+						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
 				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (ParseException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
 

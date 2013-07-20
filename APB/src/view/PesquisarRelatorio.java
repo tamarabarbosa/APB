@@ -47,7 +47,7 @@ public class PesquisarRelatorio extends JFrame {
 					PesquisarRelatorio frame = new PesquisarRelatorio();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					mostrarMensagemDeErro(e.getMessage());
 				}
 			}
 		});
@@ -264,11 +264,11 @@ public class PesquisarRelatorio extends JFrame {
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
 					} catch (RelatorioException e) {
-						e.printStackTrace();
+						mostrarMensagemDeErro(e.getMessage());
 					} catch (NullPointerException e) {
-						e.printStackTrace();
+						mostrarMensagemDeErro(e.getMessage());
 					} catch (ParseException e) {
-						e.printStackTrace();
+						mostrarMensagemDeErro(e.getMessage());
 					}
 
 				}
@@ -290,11 +290,11 @@ public class PesquisarRelatorio extends JFrame {
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (RelatorioException e1) {
-					e1.printStackTrace();
+					mostrarMensagemDeErro(e1.getMessage());
 				} catch (NullPointerException e1) {
-					e1.printStackTrace();
+					mostrarMensagemDeErro(e1.getMessage());
 				} catch (ParseException e1) {
-					e1.printStackTrace();
+					mostrarMensagemDeErro(e1.getMessage());
 				}
 			}
 		});
@@ -306,7 +306,7 @@ public class PesquisarRelatorio extends JFrame {
 		return false;
 	}
 
-	private void mostrarMensagemDeErro(String informacao) {
+	private static void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}

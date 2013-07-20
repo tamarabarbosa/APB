@@ -57,7 +57,7 @@ public class VisualizarRelatorios extends JFrame {
 					VisualizarRelatorios frame = new VisualizarRelatorios();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					mostrarMensagemDeErro(e.getMessage());
 				}
 			}
 		});
@@ -121,7 +121,7 @@ public class VisualizarRelatorios extends JFrame {
 					dados[0] = rs.getString("barbeiro");
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
-					dados[3] = rs.getString("data");
+					dados[3] = relatorio.ConverterDataParaABNT(rs.getString("data"));
 					numero = rs.getString("preco").replace(",", ".");
 					double valor = Double.parseDouble(numero);
 					total = total + valor;
@@ -141,7 +141,7 @@ public class VisualizarRelatorios extends JFrame {
 					dados[0] = rs.getString("barbeiro");
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
-					dados[3] = rs.getString("data");
+					dados[3] = relatorio.ConverterDataParaABNT(rs.getString("data"));
 					numero = rs.getString("preco").replace(",", ".");
 					double valor = Double.parseDouble(numero);
 					total = total + valor;
@@ -162,7 +162,7 @@ public class VisualizarRelatorios extends JFrame {
 					dados[0] = rs.getString("barbeiro");
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
-					dados[3] = rs.getString("data");
+					dados[3] = relatorio.ConverterDataParaABNT(rs.getString("data"));
 					numero = rs.getString("preco").replace(",", ".");
 					double valor = Double.parseDouble(numero);
 					total = total + valor;
@@ -184,7 +184,7 @@ public class VisualizarRelatorios extends JFrame {
 					dados[0] = rs.getString("barbeiro");
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
-					dados[3] = rs.getString("data");
+					dados[3] = relatorio.ConverterDataParaABNT(rs.getString("data"));
 					numero = rs.getString("preco").replace(",", ".");
 					double valor = Double.parseDouble(numero);
 					total = total + valor;
@@ -204,7 +204,7 @@ public class VisualizarRelatorios extends JFrame {
 					dados[0] = rs.getString("barbeiro");
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
-					dados[3] = rs.getString("data");
+					dados[3] = relatorio.ConverterDataParaABNT(rs.getString("data"));
 					numero = rs.getString("preco").replace(",", ".");
 					double valor = Double.parseDouble(numero);
 					total = total + valor;
@@ -225,7 +225,7 @@ public class VisualizarRelatorios extends JFrame {
 					dados[0] = rs.getString("barbeiro");
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
-					dados[3] = rs.getString("data");
+					dados[3] = relatorio.ConverterDataParaABNT(rs.getString("data"));
 					numero = rs.getString("preco").replace(",", ".");
 					double valor = Double.parseDouble(numero);
 					total = total + valor;
@@ -244,7 +244,7 @@ public class VisualizarRelatorios extends JFrame {
 					dados[0] = rs.getString("barbeiro");
 					dados[1] = rs.getString("nome");
 					dados[2] = rs.getString("preco");
-					dados[3] = rs.getString("data");
+					dados[3] = relatorio.ConverterDataParaABNT(rs.getString("data"));
 					numero = rs.getString("preco").replace(",", ".");
 					double valor = Double.parseDouble(numero);
 					total = total + valor;
@@ -334,10 +334,9 @@ public class VisualizarRelatorios extends JFrame {
 				painelGrafico.repaint();
 
 			} catch (SQLException e) {
-				e.printStackTrace();
+				mostrarMensagemDeErro(e.getMessage());
 			} catch (RelatorioException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				mostrarMensagemDeErro(e.getMessage());
 			}
 
 		}
@@ -463,5 +462,10 @@ public class VisualizarRelatorios extends JFrame {
 		}
 
 		return dataset;
+	}
+	
+	private static void mostrarMensagemDeErro(String informacao) {
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
