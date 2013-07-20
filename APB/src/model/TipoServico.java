@@ -6,6 +6,7 @@ public class TipoServico {
 
 	private String nomeTipoServico;
 	private String preco;
+	private static String tempNome;
 
 	private final String NOME_BRANCO = "Nome do Serviço em Branco";
 	private final String PRECO_INVALIDO = "Preço Inválido";
@@ -41,5 +42,13 @@ public class TipoServico {
 			this.preco = preco;
 		else
 			throw new IllegalArgumentException("Preço deve ser no formato: **,** ");
+	}
+
+	public static String getTempNome() {
+		return tempNome;
+	}
+
+	public static void setTempNome(String tempNome) {
+		TipoServico.tempNome = tempNome;
 	}
 }

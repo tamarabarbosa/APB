@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import view.AlterarTipoServico;
+import view.CadastrarTipoServico;
 import model.TipoServico;
 
 
@@ -68,6 +69,15 @@ public class TipoServicoDAO {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
 				"SELECT * FROM tiposervico;");
+		
+		return rs;
+	}
+	
+	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM tiposervico WHERE "
+				+ "nome = '" + CadastrarTipoServico.getNomeTemp() + "';");
+		ResultSet rs = pst.executeQuery();
 		
 		return rs;
 	}

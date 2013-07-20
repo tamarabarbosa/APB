@@ -98,7 +98,7 @@ public class CadastrarTipoServico extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				nomeTemp = (String) modelo.getValueAt(table.getSelectedRow(), 0);
+				TipoServico.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
 				AlterarTipoServico frame = new AlterarTipoServico();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);

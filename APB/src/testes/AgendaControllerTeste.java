@@ -10,7 +10,6 @@ import model.Agenda;
 import org.junit.Before;
 import org.junit.Test;
 
-import view.AlterarContato;
 import control.AgendaController;
 import exception.BarbeiroException;
 
@@ -51,17 +50,6 @@ public class AgendaControllerTeste {
 		try {
 			assertTrue(agendaController.excluir(contato));
 		} catch (SQLException e) {
-		}
-
-	}
-
-	@Test
-	public void alterarDeAgendaControllerDeveEnviarUmaAgenda() {
-		try {
-			AlterarContato.setTelefoneAntigo("3895-5698");
-			assertTrue(agendaController.alterar(contato));
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 
 	}

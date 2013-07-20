@@ -14,16 +14,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import control.AgendaController;
-import dao.FactoryConnection;
 import exception.BarbeiroException;
 import model.Agenda;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
@@ -31,9 +29,7 @@ public class PesquisarContato extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private Connection connection;
-	private static String tempNome;
-
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -87,26 +83,18 @@ public class PesquisarContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Agenda agenda = new Agenda();
-					agenda.setNome(textField.getText());
-					PesquisarContato.setTempNome(textField.getText());
-					connection = FactoryConnection.getInstance()
-							.getConnection();
-					PreparedStatement pst = connection
-							.prepareStatement("Select nome, telefone, descricao "
-									+ "from agenda where nome = '"
-									+ agenda.getNome() + "';");
-					ResultSet rs = pst.executeQuery();
-
+					Agenda contato = new Agenda();
+					AgendaController agendaController = AgendaController.getInstance();
+					contato.setNome(textField.getText());
+					ResultSet rs = agendaController.pesquisarPorNome(contato);
+					
 					while (rs.next()) {
 						String[] dados = new String[3];
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("telefone");
 						dados[2] = rs.getString("descricao");
 						modelo.addRow(dados);
-
 					}
-
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (BarbeiroException e) {
@@ -127,16 +115,11 @@ public class PesquisarContato extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				
 				try {
-					Agenda agenda = new Agenda();
-					agenda.setTelefone(textField.getText());
-
-					connection = FactoryConnection.getInstance()
-							.getConnection();
-					PreparedStatement pst = connection
-							.prepareStatement("Select nome, telefone, descricao "
-									+ "from agenda where telefone = '"
-									+ agenda.getTelefone() + "';");
-					ResultSet rs = pst.executeQuery();
+					
+					Agenda contato = new Agenda();
+					AgendaController agendaController = AgendaController.getInstance();
+					contato.setTelefone(textField.getText());
+					ResultSet rs = agendaController.pesquisarPorTelefone(contato);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
@@ -144,15 +127,12 @@ public class PesquisarContato extends JFrame {
 						dados[1] = rs.getString("telefone");
 						dados[2] = rs.getString("descricao");;
 						modelo.addRow(dados);
-
 					}
-
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (BarbeiroException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
-				
 			}
 		});
 		btnPesquisarTelefone.setBounds(264, 168, 160, 23);
@@ -162,6 +142,7 @@ public class PesquisarContato extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				Agenda.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
 				dispose();
 				AlterarContato frame = new AlterarContato();
 				frame.setVisible(true);
@@ -182,7 +163,7 @@ public class PesquisarContato extends JFrame {
 					Agenda agenda = new Agenda();
 					agenda.setNome(nome);
 					agenda.setTelefone(telefone);
-
+					
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
@@ -202,7 +183,6 @@ public class PesquisarContato extends JFrame {
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				}
-				
 			}
 		});
 		btnRemover.setBounds(216, 228, 89, 23);
@@ -226,13 +206,5 @@ public class PesquisarContato extends JFrame {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
-	
-	public static String getTempNome() {
-		return tempNome;
-	}
-
-	public static void setTempNome(String tempNome) {
-		PesquisarContato.tempNome = tempNome;
-	}	
-	
+		
 }

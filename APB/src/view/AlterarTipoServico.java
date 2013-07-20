@@ -11,14 +11,11 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 
 import control.TipoServicoController;
-import dao.FactoryConnection;
 import exception.ServicoException;
-
 import model.TipoServico;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -70,22 +67,25 @@ public class AlterarTipoServico extends JFrame {
 		labelCadeira.setBounds(21, 45, 61, 14);
 		contentPane.add(labelCadeira);
 
-
 		try {
-			Connection connection = FactoryConnection.getInstance().getConnection();
-			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM tiposervico WHERE "
-					+ "nome = '" + CadastrarTipoServico.getNomeTemp() + "';");
-			ResultSet rs = pst.executeQuery();
-				
-			rs.next(); 
+			TipoServico tiposervico = new TipoServico();
+			TipoServicoController servicoController = TipoServicoController.getInstance();
+			tiposervico.setNomeTipoServico(TipoServico.getTempNome());
+			System.out.println(tiposervico.getNomeTipoServico());
 			
+			ResultSet rs = servicoController.pesquisarPorNome(tiposervico);
+			
+				
+			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldPreco.setText(rs.getString("preco"));
 				AlterarTipoServico.setNomeTipoServicoAntigo(rs.getString("nome"));
-				} catch (SQLException e) {
+			}
+		} catch (SQLException e) {
+			mostrarMensagemDeErro(e.getMessage());
+		} catch (ServicoException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
-
 
 		JButton buttonSalvar = new JButton("Salvar");
 		buttonSalvar.addActionListener(new ActionListener() {

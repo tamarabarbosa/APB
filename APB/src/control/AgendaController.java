@@ -30,11 +30,11 @@ public class AgendaController {
 		return true;		
 	}
 
-	public  boolean excluir(Agenda agenda) throws SQLException {
-		if (agenda == null)
+	public  boolean excluir(Agenda contato) throws SQLException {
+		if (contato == null)
 			return false;
 		
-		AgendaDAO.getInstance().excluir(agenda);
+		AgendaDAO.getInstance().excluir(contato);
 		return true;
 	}
 	
@@ -46,6 +46,14 @@ public class AgendaController {
 	
 	public ResultSet mostrarContatosCadastrados(Agenda contato) throws SQLException {
 		return AgendaDAO.getInstance().mostrarContatosCadastrados(contato);
+	}
+	
+	public ResultSet pesquisarPorNome(Agenda contato) throws SQLException {
+		return AgendaDAO.getInstance().pesquisarPorNome(contato);
+	}
+	
+	public ResultSet pesquisarPorTelefone(Agenda contato) throws SQLException {
+		return AgendaDAO.getInstance().pesquisarPorTelefone(contato);
 	}
 
 }

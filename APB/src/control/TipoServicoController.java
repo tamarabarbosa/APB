@@ -51,5 +51,9 @@ public class TipoServicoController {
 	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico) throws SQLException {
 		return TipoServicoDAO.getInstance().mostrarTipoServicoCadastrados(servico);
 	}
+	
+	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException {
+		return TipoServicoDAO.getInstance().pesquisarPorNome(servico);
+	}
 
 }

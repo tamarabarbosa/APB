@@ -1,28 +1,21 @@
 package view;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import javax.swing.JOptionPane;
-
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
 import control.AgendaController;
-
-import dao.FactoryConnection;
-
 import exception.BarbeiroException;
-
 import model.Agenda;
-
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -33,7 +26,6 @@ public class AlterarContato extends JFrame {
 	private JTextField textFieldNome;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldDescricao;
-	private static String telefoneAntigo;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -47,8 +39,6 @@ public class AlterarContato extends JFrame {
 			}
 		});
 	}
-	
-	
 
 	public AlterarContato() {
 		setTitle("Alterar Contato");
@@ -87,18 +77,19 @@ public class AlterarContato extends JFrame {
 		contentPane.add(lblDescricao);
 		
 		try {
-			Connection connection = FactoryConnection.getInstance().getConnection();
-			java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM agenda WHERE "
-					+ "nome = '" + PesquisarContato.getTempNome() + "';");
-			ResultSet rs = pst.executeQuery();
+			Agenda contato = new Agenda();
+			AgendaController agendaController = AgendaController.getInstance();
+			contato.setNome(Agenda.getTempNome());
+			ResultSet rs = agendaController.pesquisarPorNome(contato);
 				
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldTelefone.setText(rs.getString("telefone"));
-				AlterarContato.setTelefoneAntigo(rs.getString("telefone"));
 				textFieldDescricao.setText(rs.getString("descricao"));
 			}
 		} catch (SQLException e) {
+			mostrarMensagemDeErro(e.getMessage());
+		} catch (BarbeiroException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
 
@@ -143,19 +134,10 @@ public class AlterarContato extends JFrame {
 				CadastrarAgenda frame = new CadastrarAgenda();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				
 			}
 		});
 		btnVoltar.setBounds(259, 220, 104, 31);
 		contentPane.add(btnVoltar);
-	}
-	
-	public static String getTelefoneAntigo() {
-		return telefoneAntigo;
-	}
-
-	public static void setTelefoneAntigo(String telefoneAntigo) {
-		AlterarContato.telefoneAntigo = telefoneAntigo;
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {

@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import view.AlterarContato;
 import model.Agenda;
 import dao.FactoryConnection;
 
@@ -42,17 +41,17 @@ public class AgendaDAO {
 				"telefone = \"" + agenda_alterado.getTelefone() + "\", "+
 				"descricao = \"" + agenda_alterado.getDescricao() + "\""+
 				" WHERE " +
-				" agenda.telefone = \"" + AlterarContato.getTelefoneAntigo() + "\";");
+				" agenda.nome = \"" + agenda.getNome() + "\";");
 			
 		return true;
 	}
 
-	public boolean excluir(Agenda agenda) throws SQLException {
-		if(agenda ==  null)
+	public boolean excluir(Agenda contato) throws SQLException {
+		if(contato ==  null)
 			return false;
 		
 		this.updateQuery("DELETE FROM agenda WHERE " + "agenda.telefone = \""
-				+ agenda.getTelefone() + "\";");
+				+ contato.getTelefone() + "\";");
 		return true;
 	}
 
@@ -67,8 +66,26 @@ public class AgendaDAO {
 	public ResultSet mostrarContatosCadastrados(Agenda contato) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
-				"Select nome, telefone, descricao from agenda;");
+				"Select * from agenda;");
 		
+		return rs;
+	}
+	
+	public ResultSet pesquisarPorNome(Agenda contato) throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM agenda WHERE "
+				+ "nome = '" + contato.getNome()+ "';");
+		ResultSet rs = pst.executeQuery();
+
+		return rs;
+	}
+	
+	public ResultSet pesquisarPorTelefone(Agenda contato) throws SQLException {
+		Connection connection = FactoryConnection.getInstance().getConnection();
+		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM agenda WHERE "
+				+ "telefone = '" + contato.getTelefone()+ "';");
+		ResultSet rs = pst.executeQuery();
+
 		return rs;
 	}
 
