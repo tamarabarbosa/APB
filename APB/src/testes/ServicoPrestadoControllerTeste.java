@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import model.ServicoPrestado;
 
@@ -18,11 +19,11 @@ public class ServicoPrestadoControllerTeste {
 	ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
 
 	@Before
-	public void setUp() throws ServicoException {
+	public void setUp() throws ServicoException, ParseException {
 		servico.setNomeServico("Corte");
 		servico.setNomeBarbeiro("Joao");
 		servico.setPreco("125,23");
-		servico.setData("20/12/13");
+		servico.setData("20/12/2013");
 
 	}
 	
