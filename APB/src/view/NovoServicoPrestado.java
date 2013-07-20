@@ -20,6 +20,8 @@ import model.ServicoPrestado;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -170,6 +172,8 @@ public class NovoServicoPrestado extends JFrame {
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (ParseException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
 			}

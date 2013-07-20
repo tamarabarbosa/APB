@@ -141,6 +141,8 @@ public class CadastrarServicoPrestado extends JFrame {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
+				} catch (ParseException e) {
+					mostrarMensagemDeErro(e.getMessage());
 				}
 
 			}

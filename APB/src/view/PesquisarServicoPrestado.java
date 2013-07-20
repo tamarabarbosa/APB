@@ -180,6 +180,8 @@ public class PesquisarServicoPrestado extends JFrame {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
+				} catch (ParseException e) {
+					mostrarMensagemDeErro(e.getMessage());
 				}
 
 			}
@@ -224,6 +226,8 @@ public class PesquisarServicoPrestado extends JFrame {
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (ParseException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
 
