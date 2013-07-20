@@ -1,8 +1,10 @@
 package view;
 
 import java.awt.EventQueue;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,10 +16,14 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import control.BarbeiroController;
+import control.ReciboController;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import com.javadocx.CreateDocx;
 
 @SuppressWarnings("serial")
 public class GerarRecibo extends JFrame {
@@ -25,6 +31,8 @@ public class GerarRecibo extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldDataInicial;
 	private JTextField textFieldDataFinal;
+	private double total = 0;
+	private String numero;
 
 	/**
 	 * Launch the application.
@@ -53,7 +61,7 @@ public class GerarRecibo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JComboBox comboBoxBarbeiros = new JComboBox();
+		final JComboBox comboBoxBarbeiros = new JComboBox();
 		comboBoxBarbeiros.setModel(new DefaultComboBoxModel(new String[] {"Selecione um barbeiro"}));
 		comboBoxBarbeiros.setBounds(10, 32, 304, 26);
 		contentPane.add(comboBoxBarbeiros);
@@ -89,7 +97,28 @@ public class GerarRecibo extends JFrame {
 		btnGerarRecibo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				ReciboController reciboController = ReciboController.getInstance();
+				try {
+					CreateDocx docx = new CreateDocx("docx");
+					
+					HashMap paramsText = new HashMap();
+			        paramsText.put("b", "single");
+			        paramsText.put("font", "Arial");
+
+					ResultSet rs = reciboController.getInstance().pesquisarServicosDoBarbeiro(comboBoxBarbeiros.getSelectedItem().toString(),
+							textFieldDataInicial.getText(), textFieldDataFinal.getText());
+					while (rs.next()) {
+						numero = rs.getString("preco").replace(",", ".");
+						double valor = Double.parseDouble(numero);
+						total = total + (valor/2);
+					}
+					String text = String.valueOf(total);
+					docx.addText(text, paramsText);
+			        docx.createDocx("Recibo");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnGerarRecibo.setBounds(202, 175, 112, 35);
