@@ -100,18 +100,22 @@ public class GerarRecibo extends JFrame {
 				ReciboController reciboController = ReciboController.getInstance();
 				try {
 					CreateDocx docx = new CreateDocx("docx");
+					String[] nome = comboBoxBarbeiros.getSelectedItem()
+							.toString().split(" ");
 					
 					HashMap paramsText = new HashMap();
 			        paramsText.put("b", "single");
 			        paramsText.put("font", "Arial");
 
-					ResultSet rs = reciboController.getInstance().pesquisarServicosDoBarbeiro(comboBoxBarbeiros.getSelectedItem().toString(),
+					ResultSet rs = reciboController.getInstance().pesquisarServicosDoBarbeiro(nome[2],
 							textFieldDataInicial.getText(), textFieldDataFinal.getText());
 					while (rs.next()) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						total = total + (valor/2);
+						System.out.println(""+numero);
 					}
+					System.out.println(""+total);
 					String text = String.valueOf(total);
 					docx.addText(text, paramsText);
 			        docx.createDocx("Recibo");
