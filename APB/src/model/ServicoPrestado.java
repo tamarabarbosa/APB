@@ -4,6 +4,7 @@ import java.util.Date;
 
 import exception.ServicoException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class ServicoPrestado {
@@ -86,5 +87,16 @@ public class ServicoPrestado {
 
 	public void setData(String data) {
 		this.data = data;
+	}
+	
+	public String ConverterDataParaABNT(String data) throws ParseException{
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dataISO = sdf.parse(data);
+		
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+		String databr = sdf2.format(dataISO);
+		
+		return databr;
 	}
 }

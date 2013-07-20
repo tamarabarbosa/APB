@@ -12,12 +12,9 @@ public class Relatorio {
 	private String dataFinal;
 	private String barbeiro;
 	private String tipoServico;
-	private SimpleDateFormat formatoDaData;
-	private Date data;
 
 	private final String DATA_FINAL_BRANCO = "Data final em Branco";
 	private final String DATA_INICIAL_BRANCO = "Data inicial em Branco";
-	private final String DATA_INICIAL_INVALIDA = "Data Inicial Inválida";
 	private final String BARBEIRO_BRANCO = "Barbeiro em Branco";
 	private final String TIPO_SERVICO_BRANCO = "Tipo do Serviço em Branco";
 
@@ -116,5 +113,17 @@ public class Relatorio {
 		else
 			this.tipoServico = tipoServico;
 	}
+	
+	public String ConverterDataParaABNT(String data) throws ParseException{
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dataISO = sdf.parse(data);
+		
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+		String databr = sdf2.format(dataISO);
+		
+		return databr;
+	}
+	
 
 }
