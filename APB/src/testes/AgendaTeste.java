@@ -2,11 +2,13 @@ package testes;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
+import junit.framework.AssertionFailedError;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import exception.BarbeiroException;
+import exception.ServicoException;
 import model.Agenda;
 
 @SuppressWarnings("deprecation")
@@ -20,12 +22,9 @@ public class AgendaTeste {
 			contato.setNome("Alessandro");
 			contato.setTelefone("4568-9856");
 		} catch (BarbeiroException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		contato.setDescricao("ASDAS");
-		
-		
 	}
 	
 	@Test
@@ -76,5 +75,29 @@ public class AgendaTeste {
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
+
+	@Test (expected = AssertionError.class)
+	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
+		assertEquals("Barba", Agenda.getTempNome());
+	}
+	
+	@Test (expected = AssertionFailedError.class)
+	public void setterDeTempNomeNãoPodeSerNulo() throws ServicoException {
+		Agenda.setTempNome(null);
+		Assert.fail("Deve lançar exceção");
+	}
+	
+	
+	@Test (expected = AssertionFailedError.class)
+	public void setterDeTempNomeNaoPodeSerEmBranco() {
+		Agenda.setTempNome("");
+		Assert.fail("Deve lançar uma exceção");
+	}
+	
+	@Test
+	public void tempNomeValido() throws BarbeiroException {
+		Agenda.setTempNome("Paulo");
+		assertEquals("Paulo", Agenda.getTempNome());
+	}
 
 }

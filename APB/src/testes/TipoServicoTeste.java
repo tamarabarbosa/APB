@@ -13,6 +13,7 @@ import exception.ServicoException;
 public class TipoServicoTeste {
 	
 	TipoServico  servico =  new TipoServico();
+	
 	@Before
 	public void setUp(){
 		try {
@@ -33,35 +34,63 @@ public class TipoServicoTeste {
 		assertEquals("14,50", servico.getPreco());
 	}
 
-	@Test(expected =  NullPointerException.class)
-	public void setterDePrecoNãoPodeSerNulo() throws ServicoException{
+	@Test (expected = NullPointerException.class)
+	public void setterDePrecoNãoPodeSerNulo() throws ServicoException {
 		servico.setPreco(null);
 		Assert.fail("Deve lançar exceção");
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void setterDeNomeNãoPodeSerNulo() throws ServicoException{
+	@Test (expected = NullPointerException.class)
+	public void setterDeNomeNãoPodeSerNulo() throws ServicoException {
 		servico.setNomeTipoServico(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void setterDePrecoNãoPodeSerInvalido() throws ServicoException{
+	@Test (expected = IllegalArgumentException.class)
+	public void setterDePrecoNãoPodeSerInvalido() throws ServicoException {
 		servico.setPreco("14.50%");
 		Assert.fail("Deve lançar exceção");
 	}
 
-	@Test(expected =  ServicoException.class)
-	public void setterDePrecoServicoNaoPodeSerEmBranco() throws ServicoException{
+	@Test (expected =  ServicoException.class)
+	public void setterDePrecoServicoNaoPodeSerEmBranco() throws ServicoException {
 		servico.setPreco("");
 		Assert.fail("Deve lançar exceção");
 	}
 
-	@Test(expected =  ServicoException.class)
-	public void setterDeNomeServicoNaoPodeSerEmBranco() throws ServicoException{
+	@Test (expected =  ServicoException.class)
+	public void setterDeNomeServicoNaoPodeSerEmBranco() throws ServicoException {
 		servico.setNomeTipoServico("");
 		Assert.fail("Deve lançar exceção");
 	}
-
+	
+	@Test (expected = AssertionError.class)
+	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
+		assertEquals("Barba", TipoServico.getTempNome());
+	}
+	
+	@Test (expected = NullPointerException.class)
+	public void setterDeTempNomeNãoPodeSerNulo() throws ServicoException {
+		TipoServico.setTempNome(null);
+		Assert.fail("Deve lançar exceção");
+	}
+	
+	
+	@Test (expected = ServicoException.class)
+	public void setterDeTempNomeNaoPodeSerEmBranco() throws ServicoException {
+		TipoServico.setTempNome("");
+		Assert.fail("Deve lançar uma exceção");
+	}
+	
+	@Test
+	public void tempNomeValido() {
+		try {
+			TipoServico.setTempNome("Barba");
+		} catch (ServicoException e) {
+			e.printStackTrace();
+			Assert.fail("Não deve lançar exceção");
+		}
+		assertEquals("Barba", TipoServico.getTempNome());
+	}
 
 }

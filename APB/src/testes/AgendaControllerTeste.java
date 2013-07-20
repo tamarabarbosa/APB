@@ -50,8 +50,17 @@ public class AgendaControllerTeste {
 		try {
 			assertTrue(agendaController.excluir(contato));
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
-
+	}
+	
+	@Test
+	public void alterarDeAgendaControllerDeveEnviarUmaAgendaAlterada() {
+		try {
+			assertTrue(agendaController.alterar(contato));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test
@@ -86,5 +95,17 @@ public class AgendaControllerTeste {
 		ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
 		while(rs.next());
 	}
+	
+	@Test
+	public void pesquisarPorNomeDeAgendaControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = agendaController.pesquisarPorNome(contato);
+		while(rs.next());
+	}
 
+	@Test
+	public void pesquisarPorTelefoneDeAgendaControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = agendaController.pesquisarPorTelefone(contato);
+		while(rs.next());
+	}
+	
 }

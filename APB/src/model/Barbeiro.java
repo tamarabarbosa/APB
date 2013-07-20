@@ -68,14 +68,6 @@ public class Barbeiro {
 	public String getCadeira() {
 		return cadeira;
 	}
-	
-	public static String getTempNome() {
-		return tempNome;
-	}
-
-	public static void setTempNome(String tempNome) {
-		Barbeiro.tempNome = tempNome;
-	}
 
 	public void setNome(String nome) throws BarbeiroException {
 		if (nome == null)
@@ -142,6 +134,14 @@ public class Barbeiro {
 			this.cadeira = cadeira;
 		else
 			throw new BarbeiroException(CADEIRA_INVALIDA);
+	}
+	
+	public static String getTempNome() {
+		return tempNome;
+	}
+
+	public static void setTempNome(String tempNome) {
+		Barbeiro.tempNome = tempNome;
 	}
 
 	private boolean validarCpf(String cpf) {

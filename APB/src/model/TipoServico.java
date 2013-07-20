@@ -8,7 +8,7 @@ public class TipoServico {
 	private String preco;
 	private static String tempNome;
 
-	private final String NOME_BRANCO = "Nome do Serviço em Branco";
+	private final static String NOME_BRANCO = "Nome do Serviço em Branco";
 	private final String PRECO_INVALIDO = "Preço Inválido";
 	private final String PRECO_BRANCO = "Preço em Branco";
 
@@ -22,6 +22,10 @@ public class TipoServico {
 
 	public String getPreco() {
 		return preco;
+	}
+	
+	public static String getTempNome() {
+		return tempNome;
 	}
 
 	public void setNomeTipoServico(String nomeTipoServico) throws ServicoException {
@@ -44,11 +48,12 @@ public class TipoServico {
 			throw new IllegalArgumentException("Preço deve ser no formato: **,** ");
 	}
 
-	public static String getTempNome() {
-		return tempNome;
-	}
-
-	public static void setTempNome(String tempNome) {
-		TipoServico.tempNome = tempNome;
+	public static void setTempNome(String tempNome) throws ServicoException {
+		if (tempNome == null)
+			throw new NullPointerException(NOME_BRANCO);
+		else if ("".equals(tempNome))
+			throw new ServicoException(NOME_BRANCO);
+		else
+			TipoServico.tempNome = tempNome;
 	}
 }
