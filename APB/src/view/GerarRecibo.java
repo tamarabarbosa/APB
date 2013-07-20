@@ -113,9 +113,7 @@ public class GerarRecibo extends JFrame {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						total = total + (valor/2);
-						System.out.println(""+numero);
 					}
-					System.out.println(""+total);
 					String text = String.valueOf(total);
 					docx.addText(text, paramsText);
 			        docx.createDocx("Recibo");
