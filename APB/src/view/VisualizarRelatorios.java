@@ -257,11 +257,15 @@ public class VisualizarRelatorios extends JFrame {
 		btnPesquisar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PesquisarRelatorio.tipoBusca = 0;
-				PesquisarRelatorio frame = new PesquisarRelatorio();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
+				try {
+					PesquisarRelatorio.tipoBusca = 0;
+					PesquisarRelatorio frame = new PesquisarRelatorio();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
+				} catch (ParseException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				}
 			}
 		});
 		btnPesquisar.addActionListener(new ActionListener() {
