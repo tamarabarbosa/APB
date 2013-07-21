@@ -131,7 +131,7 @@ public class GerarRecibo extends JFrame {
 					CreateDocx docx = new CreateDocx("docx");
 					
 					String[] nome = comboBoxBarbeiros.getSelectedItem()
-							.toString().split(" ");
+							.toString().split(" - ");
 					
 					HashMap paramsCabeca = new HashMap();
 					HashMap paramsTitulo = new HashMap();
@@ -166,7 +166,7 @@ public class GerarRecibo extends JFrame {
 			        paramsAssinaturaBarbeiro.put("jc", "center");
 			        paramsAssinaturaBarbeiro.put("b", "single");
 			        
-					ResultSet rs = reciboController.getInstance().pesquisarServicosDoBarbeiro(nome[2],
+					ResultSet rs = reciboController.getInstance().pesquisarServicosDoBarbeiro(nome[1],
 							textFieldDataInicial.getText(), textFieldDataFinal.getText());
 					while (rs.next()) {
 						numero = rs.getString("preco").replace(",", ".");
@@ -181,7 +181,7 @@ public class GerarRecibo extends JFrame {
 					
 					String valor = ("VALOR R$ " + decimal.format(total));
 
-					String texto = "                    Recebi do Sr. " + nome[2] + 
+					String texto = "                    Recebi do Sr. " + nome[1] + 
 							" a importância supra de R$ " + (decimal.format(total)) + " (), " +
 							"referente ao Aluguel do período de " + ConverterDataParaABNT(dataInic) +
 							" até " + ConverterDataParaABNT(dataFin) + ", conforme CONTRATO de locação " +
@@ -201,9 +201,9 @@ public class GerarRecibo extends JFrame {
 					docx.addText(RAZAO_SOCIAL, paramsTexto4);
 					docx.addBreak("line");
 					docx.addText(LINHA, paramsLinhaAssinatura);
-					docx.addText(nome[2], paramsAssinaturaBarbeiro);
+					docx.addText(nome[1], paramsAssinaturaBarbeiro);
 					
-					docx.createDocx("Recibo " + nome[2] + " " +
+					docx.createDocx("Recibo " + nome[1] + " " +
 							ConverterDataParaABNTSemBarra(dataInic) +
 								" - " + ConverterDataParaABNTSemBarra(dataFin));
 					
