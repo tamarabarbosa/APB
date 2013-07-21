@@ -54,25 +54,25 @@ public class AgendaTeste {
 	@Test(expected = BarbeiroException.class)
 	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
 		contato.setNome("");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
 	
 	@Test(expected = BarbeiroException.class)
 	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
 		contato.setTelefone("");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
 	
 	@Test(expected = BarbeiroException.class)
 	public void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato() throws BarbeiroException{
 		contato.setNome("ASDAS!!");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
 	
 	@Test(expected = BarbeiroException.class)
 	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato() throws BarbeiroException{
 		contato.setTelefone("45645aa-a54654");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanÃ§ar uma exceÃ§Ã£o");
 	}
 	
 
@@ -82,16 +82,16 @@ public class AgendaTeste {
 	}
 	
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNãoPodeSerNulo() throws ServicoException {
+	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
 		Agenda.setTempNome(null);
-		Assert.fail("Deve lançar exceção");
+		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 	
 	
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerEmBranco() {
 		Agenda.setTempNome("");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 	
 	@Test

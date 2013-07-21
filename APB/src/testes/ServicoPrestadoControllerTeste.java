@@ -51,7 +51,7 @@ public class ServicoPrestadoControllerTeste {
 	}
 
 	@Test
-	public void inserirServicoPrestadoNãoPodePassarServicoPrestadoNullo() {
+	public void inserirServicoPrestadoNaoPodePassarServicoPrestadoNullo() {
 		try {
 			assertFalse(servicoController.inserir(null));
 		} catch (SQLException e) {
@@ -60,7 +60,7 @@ public class ServicoPrestadoControllerTeste {
 	}
 
 	@Test
-	public void excluirServicoPrestadoNãoPodePassarServicoPrestadoNullo() {
+	public void excluirServicoPrestadoNaoPodePassarServicoPrestadoNullo() {
 		try {
 			assertFalse(servicoController.excluir(null));
 		} catch (SQLException e) {

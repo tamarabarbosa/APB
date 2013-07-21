@@ -35,33 +35,33 @@ public class TipoServicoTeste {
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void setterDePrecoNãoPodeSerNulo() throws ServicoException {
+	public void setterDePrecoNaoPodeSerNulo() throws ServicoException {
 		servico.setPreco(null);
-		Assert.fail("Deve lançar exceção");
+		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void setterDeNomeNãoPodeSerNulo() throws ServicoException {
+	public void setterDeNomeNaoPodeSerNulo() throws ServicoException {
 		servico.setNomeTipoServico(null);
-		Assert.fail("Deve lançar exceção");
+		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void setterDePrecoNãoPodeSerInvalido() throws ServicoException {
+	public void setterDePrecoNaoPodeSerInvalido() throws ServicoException {
 		servico.setPreco("14.50%");
-		Assert.fail("Deve lançar exceção");
+		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 
 	@Test (expected =  ServicoException.class)
 	public void setterDePrecoServicoNaoPodeSerEmBranco() throws ServicoException {
 		servico.setPreco("");
-		Assert.fail("Deve lançar exceção");
+		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 
 	@Test (expected =  ServicoException.class)
 	public void setterDeNomeServicoNaoPodeSerEmBranco() throws ServicoException {
 		servico.setNomeTipoServico("");
-		Assert.fail("Deve lançar exceção");
+		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 	
 	@Test (expected = AssertionError.class)
@@ -70,16 +70,16 @@ public class TipoServicoTeste {
 	}
 	
 	@Test (expected = NullPointerException.class)
-	public void setterDeTempNomeNãoPodeSerNulo() throws ServicoException {
+	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
 		TipoServico.setTempNome(null);
-		Assert.fail("Deve lançar exceção");
+		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 	
 	
 	@Test (expected = ServicoException.class)
 	public void setterDeTempNomeNaoPodeSerEmBranco() throws ServicoException {
 		TipoServico.setTempNome("");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanÃ§ar exceÃ§Ã£o");
 	}
 	
 	@Test
@@ -88,7 +88,7 @@ public class TipoServicoTeste {
 			TipoServico.setTempNome("Barba");
 		} catch (ServicoException e) {
 			e.printStackTrace();
-			Assert.fail("Não deve lançar exceção");
+			Assert.fail("NÃ£o Deve lanÃ§ar exceÃ§Ã£o");
 		}
 		assertEquals("Barba", TipoServico.getTempNome());
 	}

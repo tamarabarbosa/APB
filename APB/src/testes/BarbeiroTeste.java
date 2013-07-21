@@ -195,88 +195,88 @@ public class BarbeiroTeste {
 	@Test
 	public void setDeBarbeiroDeveFuncionar() {
 		try {
-			barbeiro.setNome("AlessandrÙ");
+			barbeiro.setNome("Alessandro");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
-		assertEquals("AlessandrÙ", barbeiro.getNome());
+		assertEquals("Alessandro", barbeiro.getNome());
 	}
 	
 	@Test (expected =  BarbeiroException.class)
 	public void cpfPassadoEmBranco() throws BarbeiroException {
 		barbeiro.setCpf("");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test (expected =  BarbeiroException.class)
 	public void cpfInvalido() throws BarbeiroException {
 		barbeiro.setCpf("123.654.456-75");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test (expected =  AssertionError.class)
 	public void rgPassadoComLetras() throws BarbeiroException {
 		barbeiro.setRg("asasa");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	@Test (expected =  BarbeiroException.class)
 	public void rgPassadoEmBrancro() throws BarbeiroException {
 		barbeiro.setRg("");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test (expected =  BarbeiroException.class)
 	public void nomePassadoEmBrancro() throws BarbeiroException {
 		barbeiro.setNome("");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test (expected =  BarbeiroException.class)
 	public void telefonePassadoEmBrancro() throws BarbeiroException {
 		barbeiro.setTelefone("");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test (expected =  BarbeiroException.class)
 	public void cadeiraPassadoEmBrancro() throws BarbeiroException {
 		barbeiro.setCadeira("");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	@Test (expected =  AssertionError.class)
 	public void cadeiraPassadoComoZero() throws BarbeiroException {
 		barbeiro.setCadeira("0");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test (expected = BarbeiroException.class)
 	public void cadeiraPassadoComMaisDeDoisDigitos() throws BarbeiroException {
 		barbeiro.setCadeira("1000");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test (expected = AssertionError.class)
 	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
-		assertEquals("Jo„o", Barbeiro.getTempNome());
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeN„oPodeSerNulo() throws ServicoException {
+	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
 		Barbeiro.setTempNome(null);
-		Assert.fail("Deve lanÁar exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerEmBranco() {
 		Barbeiro.setTempNome("");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test (expected = AssertionError.class)
 	public void tempNomeValido() throws BarbeiroException {
-		Barbeiro.setTempNome("Jo„o");
-		assertEquals("Jo„o", Agenda.getTempNome());
+		Barbeiro.setTempNome("Jo√£o");
+		assertEquals("Jo√£o", Agenda.getTempNome());
 	}
 }

@@ -64,7 +64,7 @@ public class AgendaControllerTeste {
 	}
 
 	@Test
-	public void inserirAgendaNãoPodePassarAgendaNullo() {
+	public void inserirAgendaNaoPodePassarAgendaNullo() {
 		try {
 			assertFalse(agendaController.incluir(null));
 		} catch (SQLException e) {
@@ -73,7 +73,7 @@ public class AgendaControllerTeste {
 	}
 
 	@Test
-	public void excluirAgendaNãoPodePassarAgendaNullo() {
+	public void excluirAgendaNaoPodePassarAgendaNullo() {
 		try {
 			assertFalse(agendaController.excluir(null));
 		} catch (SQLException e) {
@@ -82,7 +82,7 @@ public class AgendaControllerTeste {
 	}
 
 	@Test
-	public void alterarAgendaNãoPodePassarAgendaNullo() {
+	public void alterarAgendaNaoPodePassarAgendaNullo() {
 		try {
 			assertFalse(agendaController.alterar(null));
 		} catch (SQLException e) {

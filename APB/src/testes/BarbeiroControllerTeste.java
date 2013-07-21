@@ -67,7 +67,7 @@ public class BarbeiroControllerTeste {
 	}
 	
 	@Test
-	public void inserirBarbeiroNãoPodePassarBarbeiroNullo() {
+	public void inserirBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
 			assertFalse(barbeiroController.inserir(null));
 		} catch (SQLException e) {
@@ -76,7 +76,7 @@ public class BarbeiroControllerTeste {
 	}
 	
 	@Test
-	public void excluirBarbeiroNãoPodePassarBarbeiroNullo() {
+	public void excluirBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
 			assertFalse(barbeiroController.excluir(null));
 		} catch (SQLException e) {
@@ -85,7 +85,7 @@ public class BarbeiroControllerTeste {
 	}
 	
 	@Test
-	public void alterarBarbeiroNãoPodePassarBarbeiroNullo() {
+	public void alterarBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
 			assertFalse(barbeiroController.alterar(null));
 		} catch (SQLException e) {

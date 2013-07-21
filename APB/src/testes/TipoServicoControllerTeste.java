@@ -61,7 +61,7 @@ public class TipoServicoControllerTeste {
 	}
 
 	@Test
-	public void inserirTipoServicoNãoPodePassarTipoServicoNullo() {
+	public void inserirTipoServicoNaoPodePassarTipoServicoNullo() {
 		try {
 			assertFalse(servicoController.inserir(null));
 		} catch (SQLException e) {
@@ -70,7 +70,7 @@ public class TipoServicoControllerTeste {
 	}
 
 	@Test
-	public void excluirTipoServicoNãoPodePassarTipoServicoNullo() {
+	public void excluirTipoServicoNaoPodePassarTipoServicoNullo() {
 		try {
 			assertFalse(servicoController.excluir(null));
 		} catch (SQLException e) {
@@ -79,7 +79,7 @@ public class TipoServicoControllerTeste {
 	}
 
 	@Test
-	public void alterarTipoServicoNãoPodePassarTipoServicoNullo() {
+	public void alterarTipoServicoNaoPodePassarTipoServicoNullo() {
 		try {
 			assertFalse(servicoController.alterar(null));
 		} catch (SQLException e) {
