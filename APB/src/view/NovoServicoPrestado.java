@@ -87,12 +87,15 @@ public class NovoServicoPrestado extends JFrame {
 				Connection connection;
 				if (comboBoxServico.getSelectedIndex() != 0)
 					try {
+						String[] nome = comboBoxServico.getSelectedItem()
+							.toString().split(" - ");
 						connection = FactoryConnection.getInstance().getConnection();
 						java.sql.PreparedStatement pst1 = connection.prepareStatement(
-								"SELECT preco FROM tipoServico WHERE \"" 
-								+ comboBoxServico.getSelectedItem().toString().substring(4) + "\";");
+								"SELECT preco FROM tipoServico WHERE nome = \"" 
+								+ nome[1] + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
+						
 						textValor.setText(rs1.getString("preco"));
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
@@ -138,24 +141,24 @@ public class NovoServicoPrestado extends JFrame {
 				try {
 					String data;
 					String[] nome = comboBoxServico.getSelectedItem()
-							.toString().split(" ");
+							.toString().split(" - ");
 					String[] barbeiro = comboBoxBarbeiro.getSelectedItem()
-							.toString().split(" ");
+							.toString().split(" - ");
 
 					ServicoPrestado servico_prestado = new ServicoPrestado();
 
-					servico_prestado.setNomeBarbeiro(barbeiro[2]);
-					servico_prestado.setNomeServico(nome[2]);
+					servico_prestado.setNomeBarbeiro(barbeiro[1]);
+					servico_prestado.setNomeServico(nome[1]);
 					servico_prestado.setPreco(textValor.getText());
 					data = servico_prestado.getData();
 					servico_prestado.setData(data);
 
 					if (comboBoxServico.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um tipo de serviço.");
+								"Vocï¿½ deve selecionar um tipo de serviï¿½o.");
 					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um barbeiro.");
+								"Vocï¿½ deve selecionar um barbeiro.");
 					else {
 						ServicoPrestadoController servicoController = ServicoPrestadoController
 								.getInstance();
@@ -208,7 +211,7 @@ public class NovoServicoPrestado extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
