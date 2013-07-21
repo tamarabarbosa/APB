@@ -2,10 +2,12 @@ package view;
 
 import java.awt.EventQueue;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashMap;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -16,8 +18,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
-
-import com.mysql.jdbc.PreparedStatement;
 
 import control.BarbeiroController;
 import control.ReciboController;
@@ -35,10 +35,38 @@ public class GerarRecibo extends JFrame {
 	private double total = 0;
 	private String nomeBarbeiro = null;
 	private String numero;
+	
+	private static String RAZAO_SOCIAL = "BARBEARIA DO ONOFRE LTDA - ME";
+	private static String RECIBO_PAGAMENTO = "RECIBO PAGAMENTO ALUGUEL BENS MÓVEIS";
+	private static String LINHA = "_____________________________________________________";
+	private static String LOCAL_E_DATA = "                    Brasília - DF  ____/____/________";
 
 	/**
 	 * Launch the application.
 	 */
+	
+	public String ConverterDataParaABNT(String data) throws ParseException {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dataISO = sdf.parse(data);
+
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
+		String databr = sdf2.format(dataISO);
+
+		return databr;
+	}
+	
+	public String ConverterDataParaABNTSemBarra(String data) throws ParseException {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date dataISO = sdf.parse(data);
+
+		SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+		String databr = sdf2.format(dataISO);
+
+		return databr;
+	}
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -102,6 +130,7 @@ public class GerarRecibo extends JFrame {
 				ReciboController reciboController = ReciboController.getInstance();
 				try {
 					CreateDocx docx = new CreateDocx("docx");
+					
 					String[] nome = comboBoxBarbeiros.getSelectedItem()
 							.toString().split(" ");
 					
@@ -133,9 +162,11 @@ public class GerarRecibo extends JFrame {
 			        paramsLinhaAssinatura.put("jc", "center");
 			        
 			        paramsTexto4.put("jc", "center");
+			        paramsTexto4.put("b", "single");
 			        
 			        paramsAssinaturaBarbeiro.put("jc", "center");
-
+			        paramsAssinaturaBarbeiro.put("b", "single");
+			        
 					ResultSet rs = reciboController.getInstance().pesquisarServicosDoBarbeiro(nome[2],
 							textFieldDataInicial.getText(), textFieldDataFinal.getText());
 					while (rs.next()) {
@@ -150,47 +181,45 @@ public class GerarRecibo extends JFrame {
 						nomeBarbeiro = rs2.getString("nome");
 					}
 					
+					DecimalFormat decimal = new DecimalFormat("##0.00");
+					
 					String dataInic = textFieldDataInicial.getText();
 					String dataFin = textFieldDataFinal.getText();
 					
-					String cabeca =	"BARBEARIA DO ONOFRE LTDA - ME";
 					
-					String titulo = "RECIBO PAGAMENTO ALUGUEL BENS MÓVEIS";
 					
-					String valor = ("VALOR R$ " + total);
-					
-					String quebraLinha = " ";
-					
+					String valor = ("VALOR R$ " + decimal.format(total));
+
 					String texto = "                    Recebi do Sr. " + nomeBarbeiro + 
-							" a importância supra de  R$ " + total + " (), " +
-							"referente ao Aluguel do período de " + dataInic +
-							" até " + dataFin + ", conforme CONTRATO de locação " +
+							" a importância supra de R$ " + (decimal.format(total)) + " (), " +
+							"referente ao Aluguel do período de " + ConverterDataParaABNT(dataInic) +
+							" até " + ConverterDataParaABNT(dataFin) + ", conforme CONTRATO de locação " +
 							"de bens móveis, firmado entre as partes.";
 					String texto2 =  "                    Por ser verdade assino o presente RECIBO para" +
 							" os fins de direitos, de acordo com a lei.";
-					String texto3 = "                    Brasília - DF ____/____/________";
 					
-					String linhaAssinatura = "_____________________________________________________";
-					String texto4 = "BARBEARIA DO ONOFRE LTDA - ME";
-					String assianturaBarbeiro = nomeBarbeiro;
-					
-					docx.addText(cabeca, paramsCabeca);
-					docx.addText(titulo, paramsTitulo);
+					docx.addText(RAZAO_SOCIAL, paramsCabeca);
+					docx.addText(RECIBO_PAGAMENTO, paramsTitulo);
 					docx.addText(valor, paramsValor);
-					docx.addText(quebraLinha, paramsQuebraLinha);
+					docx.addBreak("line");
 					docx.addText(texto, paramsTexto);
 					docx.addText(texto2, paramsTexto);
-					docx.addText(texto3, paramsTexto);
-					docx.addText(quebraLinha, paramsQuebraLinha);
-					docx.addText(linhaAssinatura, paramsLinhaAssinatura);
-					docx.addText(texto4, paramsTexto4);
-					docx.addText(quebraLinha, paramsQuebraLinha);
-					docx.addText(linhaAssinatura, paramsLinhaAssinatura);
+					docx.addText(LOCAL_E_DATA, paramsTexto);
+					docx.addBreak("line");
+					docx.addText(LINHA, paramsLinhaAssinatura);
+					docx.addText(RAZAO_SOCIAL, paramsTexto4);
+					docx.addBreak("line");
+					docx.addText(LINHA, paramsLinhaAssinatura);
 					docx.addText(nomeBarbeiro, paramsAssinaturaBarbeiro);
 					
-					docx.createDocx("Recibo");
+					docx.createDocx("Recibo " + nomeBarbeiro + " " +
+							ConverterDataParaABNTSemBarra(dataInic) +
+								" - " + ConverterDataParaABNTSemBarra(dataFin));
 					
 				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
@@ -217,4 +246,5 @@ public class GerarRecibo extends JFrame {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
+
 }
