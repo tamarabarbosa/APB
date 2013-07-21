@@ -26,6 +26,7 @@ public class AlterarContato extends JFrame {
 	private JTextField textFieldNome;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldDescricao;
+	private String nome;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -87,6 +88,7 @@ public class AlterarContato extends JFrame {
 				textFieldTelefone.setText(rs.getString("telefone"));
 				textFieldDescricao.setText(rs.getString("descricao"));
 			}
+			nome = textFieldNome.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		} catch (BarbeiroException e) {
@@ -104,7 +106,7 @@ public class AlterarContato extends JFrame {
 					agenda.setDescricao(textFieldDescricao.getText());
 
 					AgendaController AgendaController = control.AgendaController.getInstance();
-					AgendaController.alterar(agenda);
+					AgendaController.alterar(nome, agenda);
 
 					JOptionPane.showMessageDialog(null, "Agenda "
 							+ textFieldNome.getText()
@@ -119,7 +121,7 @@ public class AlterarContato extends JFrame {
 				} catch (SQLException k) {
 					mostrarMensagemDeErro(k.getMessage());
 				}
-			}
+			}	
 			
 		});
 		btnSalvarAlteracao.setBounds(83, 220, 121, 31);

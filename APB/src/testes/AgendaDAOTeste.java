@@ -42,7 +42,7 @@ public class AgendaDAOTeste {
 	@Test
 	public void alterarDeAgendaDAODeveEnviarUmContato() {
 		try {
-			assertTrue(agendaDAO.alterar(contato, contato2));
+			assertTrue(agendaDAO.alterar(contato.getNome(),contato, contato2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -69,7 +69,7 @@ public class AgendaDAOTeste {
 	@Test
 	public void alterarDeAgendaDAOPassandoUmContatoNulo() {
 		try {
-			assertFalse(agendaDAO.alterar(contato, null));
+			assertFalse(agendaDAO.alterar(contato.getNome(),contato, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -78,7 +78,7 @@ public class AgendaDAOTeste {
 	@Test
 	public void alterarDeAgendaDAOPassandoUmAgendaAleradoNulo() {
 		try {
-			assertFalse(agendaDAO.alterar(null, contato));
+			assertFalse(agendaDAO.alterar(contato.getNome(),null, contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

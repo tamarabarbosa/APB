@@ -57,7 +57,7 @@ public class AgendaControllerTeste {
 	@Test
 	public void alterarDeAgendaControllerDeveEnviarUmaAgendaAlterada() {
 		try {
-			assertTrue(agendaController.alterar(contato));
+			assertTrue(agendaController.alterar(contato.getNome(),contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -84,7 +84,7 @@ public class AgendaControllerTeste {
 	@Test
 	public void alterarAgendaNaoPodePassarAgendaNullo() {
 		try {
-			assertFalse(agendaController.alterar(null));
+			assertFalse(agendaController.alterar(null,null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

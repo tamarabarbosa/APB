@@ -32,7 +32,7 @@ public class AgendaDAO {
 		return true;
 	}
 
-	public boolean alterar(Agenda agenda_alterado, Agenda agenda) throws SQLException {	
+	public boolean alterar(String nome,Agenda agenda_alterado, Agenda agenda) throws SQLException {	
 		if(agenda == null || agenda_alterado == null)
 			return false;
 		
@@ -41,7 +41,7 @@ public class AgendaDAO {
 				"telefone = \"" + agenda_alterado.getTelefone() + "\", "+
 				"descricao = \"" + agenda_alterado.getDescricao() + "\""+
 				" WHERE " +
-				" agenda.nome = \"" + agenda.getNome() + "\";");
+				" agenda.nome = \"" + nome + "\";");
 			
 		return true;
 	}

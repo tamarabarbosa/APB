@@ -40,14 +40,14 @@ public class CadastrarAgenda extends JFrame {
 	public CadastrarAgenda() {
 		setTitle("Agenda de Contatos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 575, 472);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 21, 310, 230);
+		scrollPane.setBounds(10, 21, 435, 401);
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
@@ -98,7 +98,7 @@ public class CadastrarAgenda extends JFrame {
 				
 			}
 		});
-		btnNovo.setBounds(330, 21, 94, 23);
+		btnNovo.setBounds(455, 24, 94, 23);
 		contentPane.add(btnNovo);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -111,7 +111,7 @@ public class CadastrarAgenda extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnPesquisar.setBounds(330, 55, 94, 23);
+		btnPesquisar.setBounds(455, 58, 94, 23);
 		contentPane.add(btnPesquisar);
 
 		JButton btnVoltar = new JButton("Voltar");
@@ -124,7 +124,7 @@ public class CadastrarAgenda extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnVoltar.setBounds(330, 228, 94, 23);
+		btnVoltar.setBounds(455, 399, 94, 23);
 		contentPane.add(btnVoltar);
 	}
 

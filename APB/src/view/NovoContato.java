@@ -77,6 +77,11 @@ public class NovoContato extends JFrame {
 					textFieldTelefone.setText("");
 					textFieldDescricao.setText("");
 					
+					dispose();
+					CadastrarAgenda frame =  new CadastrarAgenda();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (BarbeiroException e1) {

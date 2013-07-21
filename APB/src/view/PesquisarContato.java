@@ -29,7 +29,7 @@ public class PesquisarContato extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -84,10 +84,11 @@ public class PesquisarContato extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					Agenda contato = new Agenda();
-					AgendaController agendaController = AgendaController.getInstance();
+					AgendaController agendaController = AgendaController
+							.getInstance();
 					contato.setNome(textField.getText());
 					ResultSet rs = agendaController.pesquisarPorNome(contato);
-					
+
 					while (rs.next()) {
 						String[] dados = new String[3];
 						dados[0] = rs.getString("nome");
@@ -113,19 +114,22 @@ public class PesquisarContato extends JFrame {
 		btnPesquisarTelefone.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
+
 				try {
-					
+
 					Agenda contato = new Agenda();
-					AgendaController agendaController = AgendaController.getInstance();
+					AgendaController agendaController = AgendaController
+							.getInstance();
 					contato.setTelefone(textField.getText());
-					ResultSet rs = agendaController.pesquisarPorTelefone(contato);
+					ResultSet rs = agendaController
+							.pesquisarPorTelefone(contato);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("telefone");
-						dados[2] = rs.getString("descricao");;
+						dados[2] = rs.getString("descricao");
+						;
 						modelo.addRow(dados);
 					}
 				} catch (SQLException e) {
@@ -142,11 +146,17 @@ public class PesquisarContato extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Agenda.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
-				dispose();
-				AlterarContato frame = new AlterarContato();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
+				try {
+					Agenda.setTempNome(modelo.getValueAt(
+							table.getSelectedRow(), 0).toString());
+					dispose();
+					AlterarContato frame = new AlterarContato();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					mostrarMensagemDeErro("Selecione um contato para alterar");
+				}
 			}
 		});
 		btnAlterar.setBounds(98, 228, 89, 23);
@@ -156,19 +166,22 @@ public class PesquisarContato extends JFrame {
 		btnRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				try {
-					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
-					String telefone = (String) table.getValueAt(table.getSelectedRow(), 1);
+					String nome = (String) table.getValueAt(
+							table.getSelectedRow(), 0);
+					String telefone = (String) table.getValueAt(
+							table.getSelectedRow(), 1);
 					Agenda agenda = new Agenda();
 					agenda.setNome(nome);
 					agenda.setTelefone(telefone);
-					
+
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						AgendaController agendaController = AgendaController.getInstance();
+						AgendaController agendaController = AgendaController
+								.getInstance();
 						agendaController.excluir(agenda);
 
 						dispose();
@@ -206,5 +219,5 @@ public class PesquisarContato extends JFrame {
 		JOptionPane.showMessageDialog(null, informacao, "Aten��o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
-		
+
 }

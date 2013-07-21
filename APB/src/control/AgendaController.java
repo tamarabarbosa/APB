@@ -21,12 +21,12 @@ public class AgendaController {
 		return true;
 	}
 	
-	public boolean alterar(Agenda agenda) throws SQLException {
+	public boolean alterar(String nome,Agenda agenda) throws SQLException {
 		if(agenda == null )
 			return false;
 		
 		Agenda agenda_alterado = agenda;
-		AgendaDAO.getInstance().alterar(agenda_alterado, agenda);
+		AgendaDAO.getInstance().alterar(nome ,agenda_alterado, agenda);
 		return true;		
 	}
 

@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -19,16 +21,18 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 @SuppressWarnings("serial")
 public class AlterarBarbeiro extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
-	private JTextField textFieldCpf;
 	private JTextField textFieldRg;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldCadeira;
+	private String cpf;
+	private JTextField textFieldCpf;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -43,10 +47,13 @@ public class AlterarBarbeiro extends JFrame {
 		});
 	}
 
-	public AlterarBarbeiro() {
+	public AlterarBarbeiro() throws ParseException {
+		
+		MaskFormatter mascraFormatTel = new MaskFormatter("(##)####-####");
+		MaskFormatter mascraFormatCpf = new MaskFormatter("###.###.###-##");
 		setTitle("Alterar Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 475, 253);
+		setBounds(100, 100, 475, 283);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -60,32 +67,32 @@ public class AlterarBarbeiro extends JFrame {
 		JLabel labelNome = new JLabel("Nome:");
 		labelNome.setBounds(21, 14, 46, 14);
 		contentPane.add(labelNome);
-
-		textFieldCpf = new JTextField();
-		textFieldCpf.setColumns(10);
-		textFieldCpf.setBounds(92, 42, 354, 20);
+		
+		JLabel lblCpf = new JLabel("CPF:");
+		lblCpf.setBounds(21, 43, 31, 14);
+		contentPane.add(lblCpf);
+		
+		textFieldCpf = new JFormattedTextField(mascraFormatCpf);
+		textFieldCpf.setBounds(92, 40, 354, 20);
 		contentPane.add(textFieldCpf);
-
-		JLabel labelCpf = new JLabel("CPF:");
-		labelCpf.setBounds(21, 45, 46, 14);
-		contentPane.add(labelCpf);
+		textFieldCpf.setColumns(10);
 
 		textFieldRg = new JTextField();
 		textFieldRg.setColumns(10);
-		textFieldRg.setBounds(92, 73, 354, 20);
+		textFieldRg.setBounds(92, 71, 354, 20);
 		contentPane.add(textFieldRg);
 
 		JLabel labelRg = new JLabel("RG:");
-		labelRg.setBounds(21, 76, 46, 14);
+		labelRg.setBounds(21, 77, 46, 14);
 		contentPane.add(labelRg);
-
-		textFieldTelefone = new JTextField();
+		
+		textFieldTelefone = new JFormattedTextField(mascraFormatTel);
 		textFieldTelefone.setColumns(10);
-		textFieldTelefone.setBounds(92, 104, 354, 20);
+		textFieldTelefone.setBounds(92, 102, 354, 20);
 		contentPane.add(textFieldTelefone);
 
 		JLabel labelTelefone = new JLabel("Telefone:");
-		labelTelefone.setBounds(21, 107, 61, 14);
+		labelTelefone.setBounds(21, 108, 61, 14);
 		contentPane.add(labelTelefone);
 
 		textFieldCadeira = new JTextField();
@@ -94,14 +101,13 @@ public class AlterarBarbeiro extends JFrame {
 		contentPane.add(textFieldCadeira);
 
 		JLabel labelCadeira = new JLabel("Cadeira:");
-		labelCadeira.setBounds(21, 136, 61, 14);
+		labelCadeira.setBounds(21, 139, 61, 14);
 		contentPane.add(labelCadeira);
 
 		try {
 			Barbeiro barbeiro = new Barbeiro();
 			BarbeiroController barbeiroController = BarbeiroController.getInstance();
 			barbeiro.setNome(Barbeiro.getTempNome());
-			System.out.println(barbeiro.getNome());
 			
 			ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
 			
@@ -112,6 +118,7 @@ public class AlterarBarbeiro extends JFrame {
 				textFieldTelefone.setText(rs.getString("telefone"));
 				textFieldCadeira.setText(rs.getString("cadeira"));
 			}
+			cpf = textFieldCpf.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		} catch (BarbeiroException e) {
@@ -131,7 +138,7 @@ public class AlterarBarbeiro extends JFrame {
 
 					BarbeiroController barbeiroController = BarbeiroController
 							.getInstance();
-					barbeiroController.alterar(barbeiro);
+					barbeiroController.alterar(cpf,barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 							+ textFieldNome.getText()
@@ -149,20 +156,19 @@ public class AlterarBarbeiro extends JFrame {
 				}
 			}
 		});
-		buttonSalvar.setBounds(10, 177, 125, 23);
+		buttonSalvar.setBounds(10, 196, 125, 23);
 		contentPane.add(buttonSalvar);
 
 		JButton buttonLimpar = new JButton("Limpar Campos");
 		buttonLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textFieldNome.setText("");
-				textFieldCpf.setText("");
 				textFieldRg.setText("");
 				textFieldTelefone.setText("");
 				textFieldCadeira.setText("");
 			}
 		});
-		buttonLimpar.setBounds(308, 177, 138, 23);
+		buttonLimpar.setBounds(308, 196, 138, 23);
 		contentPane.add(buttonLimpar);
 
 		JButton buttonVoltar = new JButton("Voltar");
@@ -174,8 +180,10 @@ public class AlterarBarbeiro extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		buttonVoltar.setBounds(158, 177, 125, 23);
+		buttonVoltar.setBounds(158, 196, 125, 23);
 		contentPane.add(buttonVoltar);
+		
+		
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {

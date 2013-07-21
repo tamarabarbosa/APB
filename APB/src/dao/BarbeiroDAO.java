@@ -34,7 +34,7 @@ public class BarbeiroDAO {
 		return true;
 	}
 
-	public boolean alterar(Barbeiro barbeiro_alterado, Barbeiro barbeiro) throws SQLException {
+	public boolean alterar(String cpf,Barbeiro barbeiro_alterado, Barbeiro barbeiro) throws SQLException {
 		if (barbeiro_alterado == null || barbeiro == null)
 			return false;
 		
@@ -44,7 +44,7 @@ public class BarbeiroDAO {
 				+ barbeiro_alterado.getRg() + "', " + "telefone = '"
 				+ barbeiro_alterado.getTelefone() + "', " + "cadeira = '"
 				+ barbeiro_alterado.getCadeira() + "' WHERE" + " cpf = '"
-				+ barbeiro.getCpf() + "';");
+				+ cpf + "';");
 
 		return true;
 	}

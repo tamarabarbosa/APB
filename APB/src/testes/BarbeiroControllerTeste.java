@@ -60,7 +60,7 @@ public class BarbeiroControllerTeste {
 	@Test
 	public void alterarDeBarbeiroControllerDeveEnviarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroController.alterar(barbeiro));
+			assertTrue(barbeiroController.alterar(barbeiro.getCpf(),barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -87,7 +87,7 @@ public class BarbeiroControllerTeste {
 	@Test
 	public void alterarBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
-			assertFalse(barbeiroController.alterar(null));
+			assertFalse(barbeiroController.alterar(barbeiro.getCpf(),null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

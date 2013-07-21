@@ -46,14 +46,14 @@ public class CadastrarBarbeiro extends JFrame {
 	public void inicializarComponentes() {
 		setTitle("Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 566, 345);
+		setBounds(100, 100, 678, 490);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 365, 286);
+		scrollPane.setBounds(10, 11, 474, 429);
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
@@ -95,7 +95,7 @@ public class CadastrarBarbeiro extends JFrame {
 	
 			}
 		});
-		botaoNovo.setBounds(385, 11, 158, 28);
+		botaoNovo.setBounds(494, 11, 158, 28);
 		contentPane.add(botaoNovo);
 
 		JButton botaoAlterar = new JButton("Alterar");
@@ -113,7 +113,7 @@ public class CadastrarBarbeiro extends JFrame {
 				}
 			}
 		});
-		botaoAlterar.setBounds(385, 50, 158, 28);
+		botaoAlterar.setBounds(494, 50, 158, 28);
 		contentPane.add(botaoAlterar);
 
 		JButton botaoRemover = new JButton("Remover");
@@ -146,7 +146,7 @@ public class CadastrarBarbeiro extends JFrame {
 				}
 			}
 		});
-		botaoRemover.setBounds(385, 89, 158, 28);
+		botaoRemover.setBounds(494, 89, 158, 28);
 		contentPane.add(botaoRemover);
 		
 		JButton botaoVoltar = new JButton("Voltar");
@@ -159,7 +159,7 @@ public class CadastrarBarbeiro extends JFrame {
 				dispose();
 			}
 		});
-		botaoVoltar.setBounds(385, 267, 158, 28);
+		botaoVoltar.setBounds(494, 412, 158, 28);
 		contentPane.add(botaoVoltar);
 	}
 

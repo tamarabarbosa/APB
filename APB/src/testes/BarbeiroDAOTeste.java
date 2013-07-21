@@ -87,9 +87,9 @@ public class BarbeiroDAOTeste {
 	@Test
 	public void alterarDeBarbeiroDaoDeveAlterarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroDAO.alterar(barbeiro, barbeiro2));
+			assertTrue(barbeiroDAO.alterar(barbeiro.getCpf(),barbeiro, barbeiro2));
 			
-			barbeiroDAO.alterar(barbeiro2, barbeiro);
+			barbeiroDAO.alterar(barbeiro.getCpf(),barbeiro2, barbeiro);
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			java.sql.PreparedStatement pst1 = connection.prepareStatement("SELECT nome FROM barbeiro WHERE "
 							+ " nome = \"" + barbeiro.getNome() + "\";");
@@ -126,7 +126,7 @@ public class BarbeiroDAOTeste {
 	@Test
 	public void alterarDeBarbeiroDaoPassandoUmBarbeiroNulo() {
 		try {
-			assertFalse(barbeiroDAO.alterar(barbeiro, null));
+			assertFalse(barbeiroDAO.alterar(barbeiro.getCpf(), null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -135,7 +135,7 @@ public class BarbeiroDAOTeste {
 	@Test
 	public void alterarDeBarbeiroDaoPassandoUmBarbeiroAlteradoNulo() {
 		try {
-			assertFalse(barbeiroDAO.alterar(null, barbeiro));
+			assertFalse(barbeiroDAO.alterar(barbeiro.getCpf(),null, barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
