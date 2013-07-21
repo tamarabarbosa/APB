@@ -9,7 +9,7 @@ public class ReciboController {
 
 	private static ReciboController instance;
 	
-	private ReciboController(){}
+	public ReciboController(){}
 	
 	public static ReciboController getInstance(){
 		if(instance == null){

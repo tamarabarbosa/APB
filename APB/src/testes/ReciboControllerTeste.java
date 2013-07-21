@@ -6,24 +6,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import model.Relatorio;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import control.ReciboController;
 import exception.ReciboException;
+import exception.RelatorioException;
+import exception.ServicoException;
 
 public class ReciboControllerTeste {
 	
-	/*@Before
+	Relatorio relatorio = new Relatorio();
+	
+	@Before
 	public void setUp() throws ReciboException, ParseException {
-		try {
-			recibo.setBarbeiro("Fulano");
-			recibo.setDataFinal("09/09/2013");
-			recibo.setDataInicial("01/01/2013");
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
-
+		
+				try {
+					relatorio.setBarbeiro("Fulano");
+					relatorio.setDataFinal("09/09/2013");
+					relatorio.setDataInicial("01/01/2013");
+					
+				} catch (RelatorioException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
 	}
 	
 	@Test
@@ -35,9 +44,9 @@ public class ReciboControllerTeste {
 	@Test
 	public void procurarPorDataEBarbeiroDeReciboControllerDeveMostrarUmRecibo() throws SQLException {
 		ReciboController reciboController = new ReciboController();
-		ResultSet rs = reciboController.pesquisarPorDataEBarbeiro(recibo);
+		//ResultSet rs = reciboController.pesquisarServicosDoBarbeiro(relatorio.getBarbeiro(), relatorio., relatorio);
 		
-		while(rs.next());
-	}*/
+		//while(rs.next());
+	}
 
 }
