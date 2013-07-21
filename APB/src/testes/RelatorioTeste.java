@@ -34,7 +34,7 @@ public class RelatorioTeste {
 
 	@Test (expected = NullPointerException.class)
 	public void dataInicialNaoPodeSerSettadaNula() throws NullPointerException, ParseException {
-		try{
+		try {
 			relatorio.setDataInicial(null);
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -43,7 +43,7 @@ public class RelatorioTeste {
 	
 	@Test (expected = AssertionError.class)
 	public void dataInicialNaoPodeSerSettadaEmBranco() throws NullPointerException, ParseException {
-		try{
+		try {
 			relatorio.setDataInicial("");
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -52,7 +52,7 @@ public class RelatorioTeste {
 	
 	@Test (expected = NullPointerException.class)
 	public void dataFinalNaoPodeSerSettadaNula() throws NullPointerException, ParseException {
-		try{
+		try {
 			relatorio.setDataFinal(null);
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -61,7 +61,7 @@ public class RelatorioTeste {
 	
 	@Test (expected = AssertionError.class)
 	public void dataFinalNaoPodeSerSettaEmBranco() throws NullPointerException, ParseException {
-		try{
+		try {
 			relatorio.setDataFinal("");
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -70,7 +70,7 @@ public class RelatorioTeste {
 	
 	@Test (expected = NullPointerException.class)
 	public void barbeiroNaoPodeSerSettadoNulo() {
-		try{
+		try {
 			relatorio.setBarbeiro(null);
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -79,7 +79,7 @@ public class RelatorioTeste {
 	
 	@Test (expected = AssertionError.class)
 	public void barbeiroNaoPodeSerSettoEmBranco() {
-		try{
+		try {
 			relatorio.setBarbeiro("");
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -88,7 +88,7 @@ public class RelatorioTeste {
 	
 	@Test (expected = NullPointerException.class)
 	public void tipoDeServicoNaoPodeSerSettadoNulo() {
-		try{
+		try {
 			relatorio.setTipoServico(null);
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -97,7 +97,7 @@ public class RelatorioTeste {
 	
 	@Test (expected = AssertionError.class)
 	public void tipoDeServicoNaoPodeSerSettoEmBranco() {
-		try{
+		try {
 			relatorio.setTipoServico("");
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -105,8 +105,8 @@ public class RelatorioTeste {
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void construtorDeRelatorioNaoPodePassarBarbeiroNulo(){
-		try{
+	public void construtorDeRelatorioNaoPodePassarBarbeiroNulo() {
+		try {
 			new Relatorio ("2013-01-01", "2013-01-01", null, "barba");
 		} catch(RelatorioException e){
 			e.printStackTrace();
@@ -114,8 +114,8 @@ public class RelatorioTeste {
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void construtorDeRelatorioNaoPodePassarDataFinalNula(){
-		try{
+	public void construtorDeRelatorioNaoPodePassarDataFinalNula() {
+		try {
 			new Relatorio("2013-01-01", null, "Chico", "barba");
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -123,8 +123,8 @@ public class RelatorioTeste {
 	}
 	
 	@Test (expected = IllegalArgumentException.class)
-	public void construtorDeRelatorioNaoPodePassarDataInicialNula(){
-		try{
+	public void construtorDeRelatorioNaoPodePassarDataInicialNula() {
+		try {
 			new Relatorio (null, "2013-01-01", "Chico", "barba");
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -133,7 +133,7 @@ public class RelatorioTeste {
 	
 	@Test (expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarTipoServicoNulo() {
-		try{
+		try {
 			new Relatorio ("2013-01-01", "2013-01-01", "Chico", null);
 		} catch (RelatorioException e){
 			e.printStackTrace();
@@ -141,7 +141,7 @@ public class RelatorioTeste {
 	}
 	
 	@Test 
-	public void construtorDeRelatorioPassandoTodosOsDadosCorretos(){
+	public void construtorDeRelatorioPassandoTodosOsDadosCorretos() {
 		try {
 			new Relatorio ("2013-01-01", "2013-12-31", "Chico", "barba");
 			assertEquals(relatorio, relatorio);
@@ -151,23 +151,32 @@ public class RelatorioTeste {
 	}
 	
 	@Test
-	public void metodoParaTestarGetterDeBarbeiro(){
+	public void metodoParaTestarGetterDeBarbeiro() {
 		assertEquals("Chico", relatorio.getBarbeiro());
 	}
 	
 	@Test
-	public void metodoParaTestarGetterDeTipoDeServico(){
+	public void metodoParaTestarGetterDeTipoDeServico() {
 		assertEquals("barba", relatorio.getTipoServico());
 	}
 	
 	@Test
-	public void metodoParaTestarGetterDeDataInicial(){
+	public void metodoParaTestarGetterDeDataInicial() {
 		assertEquals("2013-01-01", relatorio.getDataInicial());
 	}
 	
 	@Test
-	public void metodoParaTestarGetterDeDataFinal(){
-		assertEquals("2013-12-31", relatorio.getDataFinal());
+	public void metodoParaTestarGetterDeDataFinal() {
+		assertEquals("2013-09-09", relatorio.getDataFinal());
+	}
+	
+	@Test
+	public void testeDataParaConverter() {
+		try {
+			relatorio.ConverterDataParaABNT("2010-10-10");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

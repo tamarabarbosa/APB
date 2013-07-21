@@ -3,11 +3,8 @@ package model;
 import java.util.Date;
 
 import exception.ServicoException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-
-import javax.swing.text.MaskFormatter;
 
 public class ServicoPrestado {
 

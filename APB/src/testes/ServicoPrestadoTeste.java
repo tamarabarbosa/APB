@@ -72,7 +72,7 @@ public class ServicoPrestadoTeste {
 	}
 	
 	@Test
-	public void testePrecoValidoo() {
+	public void testePrecoValido() {
 		try {
 			servico.setPreco("123,45");
 		} catch (ServicoException e) {
@@ -109,34 +109,64 @@ public class ServicoPrestadoTeste {
 		assertEquals("João", servico.getNomeBarbeiro());
 	}
 	
-	@Test (expected = AssertionFailedError.class)
+	@Test (expected = NullPointerException.class)
 	public void testeDataNulo() throws ServicoException {
 		try {
 			servico.setData(null);
 		} catch (ParseException e) {
 			e.printStackTrace();
+		} catch (AssertionFailedError e) {
+			e.printStackTrace();
 		}
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
-	@Test (expected = AssertionFailedError.class)
+	@Test (expected = ServicoException.class)
 	public void testeDataEmBranco() throws ServicoException {
 		try {
 			servico.setData("");
 		} catch (ParseException e) {
 			e.printStackTrace();
-		}
-		Assert.fail("Deve lançar uma exceção");
-	}
-	
-	@Test (expected = AssertionFailedError.class)
-	public void testeDataForaDeFormato() throws ServicoException {
-		try {
-			servico.setData("abc");
-		} catch (ParseException e) {
+		} catch (AssertionFailedError e) {
 			e.printStackTrace();
 		}
 		Assert.fail("Deve lançar uma exceção");
 	}
 	
+	@Test (expected = ServicoException.class)
+	public void testeDataForaDeFormato() throws ServicoException {
+		try {
+			servico.setData("abc");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (AssertionFailedError e) {
+			e.printStackTrace();
+		}
+		Assert.fail("Deve lançar uma exceção");
+	}
+	
+	@Test
+	public void testeDataParaConverter() {
+		try {
+			servico.ConverterDataParaABNT("2010-10-10");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void testeDataNormal() {
+		try {
+			servico.setData("10/10/2012");
+		} catch (ServicoException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test (expected = AssertionError.class)
+	public void getterDeDataDeveFuncionar(){
+		assertEquals("10/10/2012", servico.getData());
+	}
 }
