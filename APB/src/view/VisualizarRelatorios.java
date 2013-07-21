@@ -70,7 +70,7 @@ public class VisualizarRelatorios extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Barbeiro Responsável", "Tipo de Serviço", "Valor", "Data" }) {
+				new String[] { "Barbeiro ResponsÃ¡vel", "Tipo de ServiÃ§o", "Valor", "Data" }) {
 			boolean[] columnEditables = new boolean[] { false, false, false, false };
 
 			public boolean isCellEditable(int row, int column) {
@@ -324,7 +324,7 @@ public class VisualizarRelatorios extends JFrame {
 					painelGrafico.setVisible(true);
 					scrollPane.setVisible(false);
 				} else
-					JOptionPane.showMessageDialog(null, "Você deve fazer uma busca para visualizar o gráfico.");
+					JOptionPane.showMessageDialog(null, "VocÃª deve fazer uma busca para visualizar o grÃ¡fico.");
 			}
 		});
 		btnGrafico.setBounds(680, 159, 94, 62);
@@ -428,7 +428,7 @@ public class VisualizarRelatorios extends JFrame {
 	}
 	
 	private static void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

@@ -16,7 +16,7 @@ public class Relatorio {
 	private final String DATA_FINAL_BRANCO = "Data final em Branco";
 	private final String DATA_INICIAL_BRANCO = "Data inicial em Branco";
 	private final String BARBEIRO_BRANCO = "Barbeiro em Branco";
-	private final String TIPO_SERVICO_BRANCO = "Tipo do Serviço em Branco";
+	private final String TIPO_SERVICO_BRANCO = "Tipo do ServiÃ§o em Branco";
 
 	public Relatorio(String dataInicial, String dataFinal, String barbeiro,
 			String tipoServico) throws RelatorioException {
