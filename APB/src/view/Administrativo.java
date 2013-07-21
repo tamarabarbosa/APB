@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.UIManager;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.ParseException;
 
 
 @SuppressWarnings("serial")
@@ -111,7 +112,13 @@ public class Administrativo extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				GerarRecibo frame = new GerarRecibo();
+				GerarRecibo frame = null;
+				try {
+					frame = new GerarRecibo();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

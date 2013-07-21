@@ -12,7 +12,9 @@ import java.util.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.MaskFormatter;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -34,17 +36,17 @@ public class GerarRecibo extends JFrame {
 	private JTextField textFieldDataFinal;
 	private double total = 0;
 	private String numero;
-	
+
 	private static String RAZAO_SOCIAL = "BARBEARIA DO ONOFRE LTDA - ME";
 	private static String RECIBO_PAGAMENTO = "RECIBO PAGAMENTO ALUGUEL BENS MÓVEIS";
-	private static String LINHA = "_____________________________________________________";
+	private static String LINHA = "____________________________________________________________";
 	private static String LOCAL_E_DATA = "                    Brasília - DF  ____/____/________";
 
 	/**
 	 * Launch the application.
 	 */
-	
-	public String ConverterDataParaABNT(String data) throws ParseException {
+
+	public String ConverterDataParaABNT (String data) throws ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dataISO = sdf.parse(data);
@@ -54,8 +56,9 @@ public class GerarRecibo extends JFrame {
 
 		return databr;
 	}
-	
-	public String ConverterDataParaABNTSemBarra(String data) throws ParseException {
+
+	public String ConverterDataParaABNTSemBarra (String data)
+			throws ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dataISO = sdf.parse(data);
@@ -66,6 +69,17 @@ public class GerarRecibo extends JFrame {
 		return databr;
 	}
 	
+	private String ConverterDataParaISO (String data) throws ParseException {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		Date dataABNT = sdf.parse(data);
+
+		SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+		String dataISO = sdf2.format(dataABNT);
+
+		return dataISO;
+	}
+	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -81,8 +95,10 @@ public class GerarRecibo extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
+	 * @throws ParseException
 	 */
-	public GerarRecibo() {
+	public GerarRecibo() throws ParseException {
 		setTitle("Gerar Recibo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 348, 264);
@@ -99,13 +115,15 @@ public class GerarRecibo extends JFrame {
 		try {
 			ResultSet rs = BarbeiroController.getInstance().pesquisar();
 			while(rs.next()){
-				comboBoxBarbeiros.addItem(rs.getString("cadeira")+" - "+rs.getString("nome"));
+				comboBoxBarbeiros.addItem(rs.getString("cadeira") + " - " + rs.getString("nome"));
 			}
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
 		
-		textFieldDataInicial = new JTextField();
+		final MaskFormatter mascaraFormatoData = new MaskFormatter("##/##/####");
+		
+		textFieldDataInicial = new JFormattedTextField(mascaraFormatoData);
 		textFieldDataInicial.setBounds(10, 110, 124, 20);
 		contentPane.add(textFieldDataInicial);
 		textFieldDataInicial.setColumns(10);
@@ -114,7 +132,7 @@ public class GerarRecibo extends JFrame {
 		lblDataDeInicio.setBounds(36, 89, 86, 14);
 		contentPane.add(lblDataDeInicio);
 		
-		textFieldDataFinal = new JTextField();
+		textFieldDataFinal = new JFormattedTextField(mascaraFormatoData);
 		textFieldDataFinal.setBounds(190, 110, 124, 20);
 		contentPane.add(textFieldDataFinal);
 		textFieldDataFinal.setColumns(10);
@@ -122,6 +140,8 @@ public class GerarRecibo extends JFrame {
 		JLabel lblDataFinal = new JLabel("Data Final");
 		lblDataFinal.setBounds(215, 89, 86, 14);
 		contentPane.add(lblDataFinal);
+		
+		
 		
 		JButton btnGerarRecibo = new JButton("Gerar Recibo");
 		btnGerarRecibo.addMouseListener(new MouseAdapter() {
@@ -156,6 +176,7 @@ public class GerarRecibo extends JFrame {
 			        paramsValor.put("font", "Arial");
 					
 			        paramsTexto.put("font", "Arial");
+			        paramsTexto.put("align", "justify");
 			        
 			        paramsLinhaAssinatura.put("jc", "center");
 			        
@@ -165,8 +186,11 @@ public class GerarRecibo extends JFrame {
 			        paramsAssinaturaBarbeiro.put("jc", "center");
 			        paramsAssinaturaBarbeiro.put("b", "single");
 			        
+			        final String dataInicialIso = ConverterDataParaISO(textFieldDataInicial.getText());
+					final String dataFinalIso = ConverterDataParaISO(textFieldDataFinal.getText());
+					
 					ResultSet rs = reciboController.getInstance().pesquisarServicosDoBarbeiro(nome[1],
-							textFieldDataInicial.getText(), textFieldDataFinal.getText());
+							dataInicialIso, dataFinalIso);
 					while (rs.next()) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
@@ -182,8 +206,8 @@ public class GerarRecibo extends JFrame {
 
 					String texto = "                    Recebi do Sr. " + nome[1] + 
 							" a importância supra de R$ " + (decimal.format(total)) + " (), " +
-							"referente ao Aluguel do período de " + ConverterDataParaABNT(dataInic) +
-							" até " + ConverterDataParaABNT(dataFin) + ", conforme CONTRATO de locação " +
+							"referente ao Aluguel do período de " + dataInic +
+							" até " + dataFin + ", conforme CONTRATO de locação " +
 							"de bens móveis, firmado entre as partes.";
 					String texto2 =  "                    Por ser verdade assino o presente RECIBO para" +
 							" os fins de direitos, de acordo com a lei.";
@@ -203,8 +227,13 @@ public class GerarRecibo extends JFrame {
 					docx.addText(nome[1], paramsAssinaturaBarbeiro);
 					
 					docx.createDocx("Recibo " + nome[1] + " " +
-							ConverterDataParaABNTSemBarra(dataInic) +
-								" - " + ConverterDataParaABNTSemBarra(dataFin));
+							ConverterDataParaABNTSemBarra(dataInicialIso) +
+								" - " + ConverterDataParaABNTSemBarra(dataFinalIso));
+					
+					GerarRecibo frame = new GerarRecibo();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -231,7 +260,7 @@ public class GerarRecibo extends JFrame {
 		btnVoltar.setBounds(10, 175, 112, 35);
 		contentPane.add(btnVoltar);
 	}
-	
+
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
