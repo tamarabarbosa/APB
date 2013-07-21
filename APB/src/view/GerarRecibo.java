@@ -83,6 +83,7 @@ public class GerarRecibo extends JFrame {
 	 * Create the frame.
 	 */
 	public GerarRecibo() {
+		setTitle("Gerar Recibo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 348, 264);
 		contentPane = new JPanel();
@@ -145,8 +146,6 @@ public class GerarRecibo extends JFrame {
 					paramsCabeca.put("b", "single");
 					paramsCabeca.put("jc", "center");
 					paramsCabeca.put("font", "Arial");
-					
-					paramsQuebraLinha.put("jc", "center");
 					
 					paramsTitulo.put("b", "single");
 					paramsTitulo.put("jc", "center");
