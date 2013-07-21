@@ -155,17 +155,17 @@ public class NovoServicoPrestado extends JFrame {
 
 					if (comboBoxServico.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
-								"Voc� deve selecionar um tipo de servi�o.");
+								"Você deve selecionar um tipo de serviço.");
 					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
-								"Voc� deve selecionar um barbeiro.");
+								"Você deve selecionar um barbeiro.");
 					else {
 						ServicoPrestadoController servicoController = ServicoPrestadoController
 								.getInstance();
 						servicoController.inserir(servico_prestado);
 
 						JOptionPane.showMessageDialog(null,
-								"Servico criado com sucesso");
+								"Serviço criado com sucesso");
 
 						comboBoxBarbeiro.setSelectedIndex(0);
 						comboBoxServico.setSelectedIndex(0);
@@ -211,7 +211,7 @@ public class NovoServicoPrestado extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Aten��o",
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

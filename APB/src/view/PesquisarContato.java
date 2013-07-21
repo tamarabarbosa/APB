@@ -61,7 +61,7 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Nome", "Telefone", "Descrição" });
+				new String[] { "Nome", "Telefone", "DescriÃ§Ã£o" });
 		final JTable table = new JTable(modelo);
 
 		table.getColumnModel().getColumn(0).setResizable(false);
@@ -203,7 +203,7 @@ public class PesquisarContato extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 		
