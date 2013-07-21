@@ -2,6 +2,7 @@ package view;
 
 import java.awt.EventQueue;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -32,6 +33,7 @@ public class GerarRecibo extends JFrame {
 	private JTextField textFieldDataInicial;
 	private JTextField textFieldDataFinal;
 	private double total = 0;
+	private String nomeBarbeiro = null;
 	private String numero;
 
 	/**
@@ -103,9 +105,36 @@ public class GerarRecibo extends JFrame {
 					String[] nome = comboBoxBarbeiros.getSelectedItem()
 							.toString().split(" ");
 					
-					HashMap paramsText = new HashMap();
-			        paramsText.put("b", "single");
-			        paramsText.put("font", "Arial");
+					HashMap paramsCabeca = new HashMap();
+					HashMap paramsTitulo = new HashMap();
+					HashMap paramsValor = new HashMap();
+					HashMap paramsTexto = new HashMap();
+					HashMap paramsLinhaAssinatura = new HashMap();
+			        HashMap paramsTexto4 = new HashMap();
+			        HashMap paramsQuebraLinha = new HashMap();
+			        HashMap paramsAssinaturaBarbeiro = new HashMap();
+			        
+					paramsCabeca.put("b", "single");
+					paramsCabeca.put("jc", "center");
+					paramsCabeca.put("font", "Arial");
+					
+					paramsQuebraLinha.put("jc", "center");
+					
+					paramsTitulo.put("b", "single");
+					paramsTitulo.put("jc", "center");
+					paramsTitulo.put("font", "Arial");
+					
+					paramsValor.put("b", "single");
+					paramsValor.put("jc", "center");
+			        paramsValor.put("font", "Arial");
+					
+			        paramsTexto.put("font", "Arial");
+			        
+			        paramsLinhaAssinatura.put("jc", "center");
+			        
+			        paramsTexto4.put("jc", "center");
+			        
+			        paramsAssinaturaBarbeiro.put("jc", "center");
 
 					ResultSet rs = reciboController.getInstance().pesquisarServicosDoBarbeiro(nome[2],
 							textFieldDataInicial.getText(), textFieldDataFinal.getText());
@@ -114,9 +143,53 @@ public class GerarRecibo extends JFrame {
 						double valor = Double.parseDouble(numero);
 						total = total + (valor/2);
 					}
-					String text = String.valueOf(total);
-					docx.addText(text, paramsText);
-			        docx.createDocx("Recibo");
+					
+					ResultSet rs2 = BarbeiroController.getInstance().pesquisar();
+					
+					while(rs2.next()){
+						nomeBarbeiro = rs2.getString("nome");
+					}
+					
+					String dataInic = textFieldDataInicial.getText();
+					String dataFin = textFieldDataFinal.getText();
+					
+					String cabeca =	"BARBEARIA DO ONOFRE LTDA - ME";
+					
+					String titulo = "RECIBO PAGAMENTO ALUGUEL BENS MÓVEIS";
+					
+					String valor = ("VALOR R$ " + total);
+					
+					String quebraLinha = " ";
+					
+					String texto = "                    Recebi do Sr. " + nomeBarbeiro + 
+							" a importância supra de  R$ " + total + " (), " +
+							"referente ao Aluguel do período de " + dataInic +
+							" até " + dataFin + ", conforme CONTRATO de locação " +
+							"de bens móveis, firmado entre as partes.";
+					String texto2 =  "                    Por ser verdade assino o presente RECIBO para" +
+							" os fins de direitos, de acordo com a lei.";
+					String texto3 = "                    Brasília - DF ____/____/________";
+					
+					String linhaAssinatura = "_____________________________________________________";
+					String texto4 = "BARBEARIA DO ONOFRE LTDA - ME";
+					String assianturaBarbeiro = nomeBarbeiro;
+					
+					docx.addText(cabeca, paramsCabeca);
+					docx.addText(titulo, paramsTitulo);
+					docx.addText(valor, paramsValor);
+					docx.addText(quebraLinha, paramsQuebraLinha);
+					docx.addText(texto, paramsTexto);
+					docx.addText(texto2, paramsTexto);
+					docx.addText(texto3, paramsTexto);
+					docx.addText(quebraLinha, paramsQuebraLinha);
+					docx.addText(linhaAssinatura, paramsLinhaAssinatura);
+					docx.addText(texto4, paramsTexto4);
+					docx.addText(quebraLinha, paramsQuebraLinha);
+					docx.addText(linhaAssinatura, paramsLinhaAssinatura);
+					docx.addText(nomeBarbeiro, paramsAssinaturaBarbeiro);
+					
+					docx.createDocx("Recibo");
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -141,7 +214,7 @@ public class GerarRecibo extends JFrame {
 	}
 	
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Aten��o",
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
