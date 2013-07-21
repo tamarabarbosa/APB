@@ -13,14 +13,14 @@ public class ServicoPrestado {
 	private String preco;
 	private String data;
 
-	private final String NOME_INVALIDO = "Nome do Serviço Inválido";
-	private final String NOME_BRANCO = "Nome do Serviço em Branco";
+	private final String NOME_INVALIDO = "Nome do ServiÃ§o InvÃ¡lido";
+	private final String NOME_BRANCO = "Nome do ServiÃ§o em Branco";
 	private final String BARBEIRO_INVALIDO = "Nome do Barbeiro em Branco";
-	private final String BARBEIRO_BRANCO = "Insira um Barbeiro responsável pelo serviço";
-	private final String PRECO_INVALIDO = "Preço Inválido";
-	private final String PRECO_BRANCO = "Preço em Branco";
-	private final String DATA_BRANCO = "Insira uma data válida";
-	private final String DATA_INVALIDA = "Insira uma data válida";
+	private final String BARBEIRO_BRANCO = "Insira um Barbeiro responsÃ¡vel pelo serviÃ§o";
+	private final String PRECO_INVALIDO = "PreÃ§o InvÃ¡lido";
+	private final String PRECO_BRANCO = "PreÃ§o em Branco";
+	private final String DATA_BRANCO = "Data em Branco";
+	private final String DATA_INVALIDA = "Insira uma data vÃ¡lida";
 
 	public ServicoPrestado() {
 

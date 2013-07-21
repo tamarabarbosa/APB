@@ -98,7 +98,7 @@ public class AlterarTipoServico extends JFrame {
 					TipoServicoController tipoServicoController = TipoServicoController.getInstance();
 					tipoServicoController.alterar(tipoServico);
 
-					JOptionPane.showMessageDialog(null, "Tipo de Serviço "
+					JOptionPane.showMessageDialog(null, "Tipo de ServiÃ§o "
 							+ textFieldNome.getText()
 							+ " foi alterado com sucesso");
 
@@ -150,7 +150,7 @@ public class AlterarTipoServico extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

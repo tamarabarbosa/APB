@@ -61,7 +61,7 @@ public class CadastrarTipoServico extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Serviço", "Valor" });
+				new String[] { "ServiÃ§o", "Valor" });
 		final JTable table = new JTable(modelo);
 		try {
 			TipoServicoController servicoController = TipoServicoController.getInstance();
@@ -165,7 +165,7 @@ public class CadastrarTipoServico extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

@@ -44,9 +44,9 @@ public class ReciboControllerTeste {
 	@Test
 	public void procurarPorDataEBarbeiroDeReciboControllerDeveMostrarUmRecibo() throws SQLException {
 		ReciboController reciboController = new ReciboController();
-		//ResultSet rs = reciboController.pesquisarServicosDoBarbeiro(relatorio.getBarbeiro(), relatorio., relatorio);
+		ResultSet rs = reciboController.pesquisarServicosDoBarbeiro(relatorio.getBarbeiro(), relatorio.getDataInicial(), relatorio.getDataFinal());
 		
-		//while(rs.next());
+		while(rs.next());
 	}
 
 }

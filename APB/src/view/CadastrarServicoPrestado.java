@@ -55,7 +55,7 @@ public class CadastrarServicoPrestado extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Serviço", "Realizado por", "Valor", "Data" });
+				new String[] { "ServiÃ§o", "Realizado por", "Valor", "Data" });
 		final JTable table = new JTable(modelo);
 
 		try {
@@ -136,7 +136,7 @@ public class CadastrarServicoPrestado extends JFrame {
 						frame.setLocationRelativeTo(null);
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
-					mostrarMensagemDeErro("Selecione um Serviço para remover");
+					mostrarMensagemDeErro("Selecione um ServiÃ§o para remover");
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
@@ -165,7 +165,7 @@ public class CadastrarServicoPrestado extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
