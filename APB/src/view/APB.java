@@ -87,7 +87,7 @@ public class APB extends JFrame {
 		contentPane.add(btnFechar);
 		
 		JLabel lblIcone = new JLabel("");
-		lblIcone.setIcon(new ImageIcon(APB.class.getResource("/resources/19fb55_f0fe0bafb3f2bec53376838a10e0825a.jpg_srz_401_146_75_22_0.50_1.20_0 .jpeg")));
+		lblIcone.setIcon(new ImageIcon(APB.class.getResource("/resources/19fb55_f0fe0bafb3f2bec53376838a10e0825a.jpg_srz_401_146_75_22_0.50_1.20_0.00_jpg_srz.jpg")));
 		lblIcone.setBounds(82, 62, 401, 119);
 		contentPane.add(lblIcone);
 		
