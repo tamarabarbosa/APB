@@ -88,6 +88,9 @@ public class ServicoPrestado {
 			throw new NullPointerException(DATA_BRANCO);
 		else if ("".equals(data))
 			throw new ServicoException(DATA_BRANCO);
+		else if (data.matches("[\\d]{1,4}-[\\d]{1,2}-[\\d]{1,2}")){
+			this.data = data;
+		}
 		else if (data.matches("[\\d]{1,2}/[\\d]{1,2}/[\\d]{1,4}")){
 
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

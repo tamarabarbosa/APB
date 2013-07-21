@@ -21,6 +21,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -139,7 +141,12 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
+					
 					String data;
+					Date d = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					data = sdf.format(d);
+					
 					String[] nome = comboBoxServico.getSelectedItem()
 							.toString().split(" - ");
 					String[] barbeiro = comboBoxBarbeiro.getSelectedItem()
@@ -150,7 +157,6 @@ public class NovoServicoPrestado extends JFrame {
 					servico_prestado.setNomeBarbeiro(barbeiro[1]);
 					servico_prestado.setNomeServico(nome[1]);
 					servico_prestado.setPreco(textValor.getText());
-					data = servico_prestado.getData();
 					servico_prestado.setData(data);
 
 					if (comboBoxServico.getSelectedIndex() == 0)
