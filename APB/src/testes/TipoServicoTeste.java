@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import exception.ServicoException;
 
-@SuppressWarnings("deprecation")
+
 public class TipoServicoTeste {
 	
 	TipoServico  servico =  new TipoServico();

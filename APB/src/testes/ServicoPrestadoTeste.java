@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import exception.ServicoException;
 
-@SuppressWarnings("deprecation")
+
 public class ServicoPrestadoTeste {
 
 	ServicoPrestado servico = new ServicoPrestado();

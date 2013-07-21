@@ -27,6 +27,7 @@ import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+@SuppressWarnings("serial")
 public class PesquisarRelatorio extends JFrame {
 
 	private JPanel contentPane;

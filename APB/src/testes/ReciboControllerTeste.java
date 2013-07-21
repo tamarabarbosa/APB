@@ -14,7 +14,6 @@ import org.junit.Test;
 import control.ReciboController;
 import exception.ReciboException;
 import exception.RelatorioException;
-import exception.ServicoException;
 
 public class ReciboControllerTeste {
 	

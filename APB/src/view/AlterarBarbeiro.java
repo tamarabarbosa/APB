@@ -5,8 +5,6 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.MaskFormatter;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -21,7 +19,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
 
 @SuppressWarnings("serial")
 public class AlterarBarbeiro extends JFrame {
@@ -47,7 +44,7 @@ public class AlterarBarbeiro extends JFrame {
 		});
 	}
 
-	public AlterarBarbeiro() throws ParseException {
+	public AlterarBarbeiro()  {
 		
 
 		setTitle("Alterar Barbeiro");

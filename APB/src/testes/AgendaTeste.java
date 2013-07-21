@@ -11,7 +11,6 @@ import exception.BarbeiroException;
 import exception.ServicoException;
 import model.Agenda;
 
-@SuppressWarnings("deprecation")
 public class AgendaTeste {
 	
 	Agenda contato = new Agenda();
