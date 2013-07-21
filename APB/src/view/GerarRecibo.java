@@ -33,7 +33,6 @@ public class GerarRecibo extends JFrame {
 	private JTextField textFieldDataInicial;
 	private JTextField textFieldDataFinal;
 	private double total = 0;
-	private String nomeBarbeiro = null;
 	private String numero;
 	
 	private static String RAZAO_SOCIAL = "BARBEARIA DO ONOFRE LTDA - ME";
@@ -174,23 +173,15 @@ public class GerarRecibo extends JFrame {
 						double valor = Double.parseDouble(numero);
 						total = total + (valor/2);
 					}
-					
-					ResultSet rs2 = BarbeiroController.getInstance().pesquisar();
-					
-					while(rs2.next()){
-						nomeBarbeiro = rs2.getString("nome");
-					}
-					
+				
 					DecimalFormat decimal = new DecimalFormat("##0.00");
 					
 					String dataInic = textFieldDataInicial.getText();
 					String dataFin = textFieldDataFinal.getText();
 					
-					
-					
 					String valor = ("VALOR R$ " + decimal.format(total));
 
-					String texto = "                    Recebi do Sr. " + nomeBarbeiro + 
+					String texto = "                    Recebi do Sr. " + nome[2] + 
 							" a importância supra de R$ " + (decimal.format(total)) + " (), " +
 							"referente ao Aluguel do período de " + ConverterDataParaABNT(dataInic) +
 							" até " + ConverterDataParaABNT(dataFin) + ", conforme CONTRATO de locação " +
@@ -210,9 +201,9 @@ public class GerarRecibo extends JFrame {
 					docx.addText(RAZAO_SOCIAL, paramsTexto4);
 					docx.addBreak("line");
 					docx.addText(LINHA, paramsLinhaAssinatura);
-					docx.addText(nomeBarbeiro, paramsAssinaturaBarbeiro);
+					docx.addText(nome[2], paramsAssinaturaBarbeiro);
 					
-					docx.createDocx("Recibo " + nomeBarbeiro + " " +
+					docx.createDocx("Recibo " + nome[2] + " " +
 							ConverterDataParaABNTSemBarra(dataInic) +
 								" - " + ConverterDataParaABNTSemBarra(dataFin));
 					
