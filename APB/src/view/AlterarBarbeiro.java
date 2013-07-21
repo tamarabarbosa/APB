@@ -49,8 +49,7 @@ public class AlterarBarbeiro extends JFrame {
 
 	public AlterarBarbeiro() throws ParseException {
 		
-		MaskFormatter mascraFormatTel = new MaskFormatter("(##)####-####");
-		MaskFormatter mascraFormatCpf = new MaskFormatter("###.###.###-##");
+
 		setTitle("Alterar Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 475, 283);
@@ -72,7 +71,7 @@ public class AlterarBarbeiro extends JFrame {
 		lblCpf.setBounds(21, 43, 31, 14);
 		contentPane.add(lblCpf);
 		
-		textFieldCpf = new JFormattedTextField(mascraFormatCpf);
+		textFieldCpf = new JTextField();
 		textFieldCpf.setBounds(92, 40, 354, 20);
 		contentPane.add(textFieldCpf);
 		textFieldCpf.setColumns(10);
@@ -86,7 +85,7 @@ public class AlterarBarbeiro extends JFrame {
 		labelRg.setBounds(21, 77, 46, 14);
 		contentPane.add(labelRg);
 		
-		textFieldTelefone = new JFormattedTextField(mascraFormatTel);
+		textFieldTelefone = new JTextField();
 		textFieldTelefone.setColumns(10);
 		textFieldTelefone.setBounds(92, 102, 354, 20);
 		contentPane.add(textFieldTelefone);
