@@ -9,8 +9,8 @@ public class Barbeiro {
 	private String rg;
 	private String telefone;
 	private String cadeira;
+	private static String tempNome;
 
-	private final String NOME_INVALIDO = "Nome Inválido";
 	private final String NOME_BRANCO = "Nome em Branco";
 	private final String CPF_INVALIDO = "CPF Inválido";
 	private final String CPF_BRANCO = "CPF em Branco";
@@ -69,16 +69,13 @@ public class Barbeiro {
 		return cadeira;
 	}
 
-	public void setNome(String nome) throws BarbeiroException,
-			NullPointerException {
+	public void setNome(String nome) throws BarbeiroException {
 		if (nome == null)
 			throw new NullPointerException(NOME_BRANCO);
 		else if ("".equals(nome))
 			throw new BarbeiroException(NOME_BRANCO);
-		else if (nome.matches("^[[ ]|\\p{L}*]+$")) // inclui letras acentuadas
+		else 
 			this.nome = nome;
-		else
-			throw new AssertionError(NOME_INVALIDO);
 	}
 
 	public void setCpf(String cpf) throws BarbeiroException {
@@ -120,8 +117,7 @@ public class Barbeiro {
 			throw new NullPointerException(TELEFONE_BRANCO);
 		else if ("".equals(telefone))
 			throw new BarbeiroException(TELEFONE_BRANCO);
-		else if (telefone
-				.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+		else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 			this.telefone = telefone;
 		else
 			throw new AssertionError(TELEFONE_INVALIDO);
@@ -139,6 +135,14 @@ public class Barbeiro {
 		else
 			throw new BarbeiroException(CADEIRA_INVALIDA);
 	}
+	
+	public static String getTempNome() {
+		return tempNome;
+	}
+
+	public static void setTempNome(String tempNome) {
+		Barbeiro.tempNome = tempNome;
+	}
 
 	private boolean validarCpf(String cpf) {
 		int d1, d2;
@@ -149,13 +153,11 @@ public class Barbeiro {
 		d1 = d2 = digito1 = digito2 = resto = 0;
 
 		for (int nCount = 1; nCount < cpf.length() - 1; nCount++) {
-			digitoCPF = Integer.valueOf(cpf.substring(nCount - 1, nCount))
-					.intValue();
+			digitoCPF = Integer.valueOf(cpf.substring(nCount - 1, nCount)).intValue();
 
 			d1 = d1 + (11 - nCount) * digitoCPF;
 			d2 = d2 + (12 - nCount) * digitoCPF;
-		}
-		;
+		};
 
 		resto = d1 % 11;
 
@@ -164,7 +166,7 @@ public class Barbeiro {
 		else
 			digito1 = 11 - resto;
 
-		d2 += 2 * digito1;
+		d2 += 2*digito1;
 		resto = (d2 % 11);
 
 		if (resto < 2)

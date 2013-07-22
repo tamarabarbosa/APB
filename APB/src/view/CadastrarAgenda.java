@@ -8,11 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import dao.FactoryConnection;
+
+import model.Agenda;
+import control.AgendaController;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.EventQueue;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -21,7 +23,6 @@ import java.text.ParseException;
 public class CadastrarAgenda extends JFrame {
 
 	private JPanel contentPane;
-	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,14 +40,14 @@ public class CadastrarAgenda extends JFrame {
 	public CadastrarAgenda() {
 		setTitle("Agenda de Contatos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 575, 472);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 21, 310, 230);
+		scrollPane.setBounds(10, 21, 435, 401);
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
@@ -65,9 +66,9 @@ public class CadastrarAgenda extends JFrame {
 		scrollPane.setViewportView(table);
 
 		try {
-			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery(
-					"Select nome, telefone, descricao from agenda;");
+			AgendaController agendaController = AgendaController.getInstance();
+			Agenda contato = new Agenda();
+			ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
 			while (rs.next()) {
 				String[] dados = new String[3];
 				dados[0] = rs.getString("nome");
@@ -92,13 +93,12 @@ public class CadastrarAgenda extends JFrame {
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				
 			}
 		});
-		btnNovo.setBounds(330, 21, 94, 23);
+		btnNovo.setBounds(455, 24, 94, 23);
 		contentPane.add(btnNovo);
 
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -111,7 +111,7 @@ public class CadastrarAgenda extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnPesquisar.setBounds(330, 55, 94, 23);
+		btnPesquisar.setBounds(455, 58, 94, 23);
 		contentPane.add(btnPesquisar);
 
 		JButton btnVoltar = new JButton("Voltar");
@@ -124,7 +124,7 @@ public class CadastrarAgenda extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnVoltar.setBounds(330, 228, 94, 23);
+		btnVoltar.setBounds(455, 399, 94, 23);
 		contentPane.add(btnVoltar);
 	}
 

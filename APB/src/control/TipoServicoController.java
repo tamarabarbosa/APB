@@ -1,6 +1,8 @@
 package control;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import dao.TipoServicoDAO;
 import model.TipoServico;
 
@@ -17,12 +19,12 @@ public class TipoServicoController {
 		}
 	}
 
-	public boolean alterar(TipoServico tipoServico) throws SQLException {
+	public boolean alterar(String nome,TipoServico tipoServico) throws SQLException {
 		if (tipoServico == null) {
 			return false;
 		} else {
 			TipoServico tipoServico_alterado = tipoServico;
-			TipoServicoDAO.getInstance().alterar(tipoServico_alterado, tipoServico);
+			TipoServicoDAO.getInstance().alterar(nome,tipoServico_alterado, tipoServico);
 			return true;
 		}
 	}
@@ -44,6 +46,14 @@ public class TipoServicoController {
 		if (instance == null)
 			instance = new TipoServicoController();
 		return instance;
+	}
+	
+	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico) throws SQLException {
+		return TipoServicoDAO.getInstance().mostrarTipoServicoCadastrados(servico);
+	}
+	
+	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException {
+		return TipoServicoDAO.getInstance().pesquisarPorNome(servico);
 	}
 
 }

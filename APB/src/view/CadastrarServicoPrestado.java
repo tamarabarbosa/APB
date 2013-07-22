@@ -3,9 +3,9 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,10 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import control.ServicoPrestadoController;
-
 import model.ServicoPrestado;
-
-import dao.FactoryConnection;
 import exception.ServicoException;
 
 import java.awt.event.ActionListener;
@@ -30,7 +27,6 @@ import java.awt.event.ActionEvent;
 public class CadastrarServicoPrestado extends JFrame {
 
 	private JPanel contentPane;
-	private Connection connection;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -59,25 +55,24 @@ public class CadastrarServicoPrestado extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Serviço", "Realizado por", "Valor", "Data" });
+				new String[] { "ServiÃ§o", "Realizado por", "Valor", "Data" });
 		final JTable table = new JTable(modelo);
 
 		try {
-			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection
-					.createStatement()
-					.executeQuery(
-							"SELECT nome, preco, barbeiro, data FROM servicoprestado ORDER BY data;");
-
+			ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+			ServicoPrestado servico = new ServicoPrestado();
+			ResultSet rs = servicoController.mostrarServicosPrestadosCadastrados(servico);
 			while (rs.next()) {
 				String[] dados = new String[4];
 				dados[0] = rs.getString("nome");
 				dados[1] = rs.getString("barbeiro");
 				dados[2] = rs.getString("preco");
-				dados[3] = rs.getString("data");
+				dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
+			mostrarMensagemDeErro(e.getMessage());
+		} catch (ParseException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
 
@@ -141,10 +136,12 @@ public class CadastrarServicoPrestado extends JFrame {
 						frame.setLocationRelativeTo(null);
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
-					mostrarMensagemDeErro("Selecione um Serviço para remover");
+					mostrarMensagemDeErro("Selecione um ServiÃ§o para remover");
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (ParseException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
 
@@ -168,7 +165,7 @@ public class CadastrarServicoPrestado extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

@@ -20,6 +20,10 @@ import model.ServicoPrestado;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -83,24 +87,21 @@ public class NovoServicoPrestado extends JFrame {
 		comboBoxServico.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				Connection connection;
-				if (comboBoxServico.getSelectedIndex() != 0) {
-
+				if (comboBoxServico.getSelectedIndex() != 0)
 					try {
-						connection = FactoryConnection.getInstance()
-								.getConnection();
-						java.sql.PreparedStatement pst1 = connection
-								.prepareStatement("SELECT preco FROM tipoServico WHERE "
-										+ " nome = \""
-										+ comboBoxServico.getSelectedItem()
-												.toString() + "\";");
+						String[] nome = comboBoxServico.getSelectedItem()
+							.toString().split(" - ");
+						connection = FactoryConnection.getInstance().getConnection();
+						java.sql.PreparedStatement pst1 = connection.prepareStatement(
+								"SELECT preco FROM tipoServico WHERE nome = \"" 
+								+ nome[1] + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
+						
 						textValor.setText(rs1.getString("preco"));
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
 					}
-
-				}
 			}
 
 		});
@@ -110,10 +111,11 @@ public class NovoServicoPrestado extends JFrame {
 		comboBoxServico.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxServico);
 		try {
+			int cont = 0;
 			Connection connection = FactoryConnection.getInstance()
 					.getConnection();
 			java.sql.PreparedStatement pst = connection
-					.prepareStatement("SELECT nome FROM barbeiro;");
+					.prepareStatement("SELECT nome, cadeira FROM barbeiro ORDER BY cadeira;");
 			java.sql.PreparedStatement pst2 = connection
 					.prepareStatement("SELECT nome FROM tiposervico;");
 			ResultSet rs = pst.executeQuery();
@@ -121,11 +123,13 @@ public class NovoServicoPrestado extends JFrame {
 
 			while (rs.next()) {
 				String nome = rs.getString("nome");
-				comboBoxBarbeiro.addItem(nome);
+				String cadeira = rs.getString("cadeira");
+				comboBoxBarbeiro.addItem(cadeira + " - " + nome);
 			}
 			while (rs2.next()) {
+				cont++;
 				String nome = rs2.getString("nome");
-				comboBoxServico.addItem(nome);
+				comboBoxServico.addItem(cont + " - " + nome);
 			}
 
 		} catch (SQLException e) {
@@ -137,29 +141,37 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
+					
 					String data;
+					Date d = new Date();
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+					data = sdf.format(d);
+					
+					String[] nome = comboBoxServico.getSelectedItem()
+							.toString().split(" - ");
+					String[] barbeiro = comboBoxBarbeiro.getSelectedItem()
+							.toString().split(" - ");
+
 					ServicoPrestado servico_prestado = new ServicoPrestado();
-					servico_prestado.setNomeBarbeiro(comboBoxBarbeiro
-							.getSelectedItem().toString());
-					servico_prestado.setNomeServico(comboBoxServico
-							.getSelectedItem().toString());
+
+					servico_prestado.setNomeBarbeiro(barbeiro[1]);
+					servico_prestado.setNomeServico(nome[1]);
 					servico_prestado.setPreco(textValor.getText());
-					data = servico_prestado.getData();
 					servico_prestado.setData(data);
 
 					if (comboBoxServico.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um tipo de serviço.");
+								"VocÃª deve selecionar um tipo de serviÃ§o.");
 					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um barbeiro.");
+								"VocÃª deve selecionar um barbeiro.");
 					else {
 						ServicoPrestadoController servicoController = ServicoPrestadoController
 								.getInstance();
 						servicoController.inserir(servico_prestado);
 
 						JOptionPane.showMessageDialog(null,
-								"Servico criado com sucesso");
+								"ServiÃ§o criado com sucesso");
 
 						comboBoxBarbeiro.setSelectedIndex(0);
 						comboBoxServico.setSelectedIndex(0);
@@ -169,6 +181,8 @@ public class NovoServicoPrestado extends JFrame {
 				} catch (ServicoException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
+					mostrarMensagemDeErro(e.getMessage());
+				} catch (ParseException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
 			}
@@ -203,7 +217,7 @@ public class NovoServicoPrestado extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "AtenÃ§Ã£o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

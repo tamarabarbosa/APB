@@ -1,12 +1,16 @@
 package testes;
 
 import static org.junit.Assert.*;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import model.Barbeiro;
+
 import org.junit.Before;
 import org.junit.Test;
+
 import control.BarbeiroController;
-import dao.BarbeiroDAO;
 import exception.BarbeiroException;
 
 public class BarbeiroControllerTeste {
@@ -17,98 +21,93 @@ public class BarbeiroControllerTeste {
 	public void setUp() {
 		try {
 			barbeiro.setNome("Alessandro");
+			barbeiro.setRg("418757896");
+			barbeiro.setTelefone("3389-9085");
+			barbeiro.setCpf("02919594150");
+			barbeiro.setCadeira("5");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
-
-		try {
-			barbeiro.setRg("418757896");
-			barbeiro.setTelefone("3389-9085");
-			barbeiro.setCpf("02919594150");
-			barbeiro.setCadeira("5");
-		} catch (BarbeiroException e) {
-			e.printStackTrace();
-		}
 	}
+	
+	BarbeiroController barbeiroController = BarbeiroController.getInstance();
 
 	@Test
 	public void getInstanceDeBarbeiroControlerDeveRetonarInstanciaCorrente() {
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
 		assertEquals(BarbeiroController.getInstance(), barbeiroController);
 	}
 
 	@Test
 	public void inserirDeBarbeiroControllerDeveEnviarUmBarbeiro() {
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
 		try {
 			assertTrue(barbeiroController.inserir(barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
 	public void excluirDeBarbeiroControllerDeveEnviarUmBarbeiro() {
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
 		try {
 			assertTrue(barbeiroController.excluir(barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Test
 	public void alterarDeBarbeiroControllerDeveEnviarUmBarbeiro() {
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
 		try {
-			assertTrue(barbeiroController.alterar(barbeiro));
+			assertTrue(barbeiroController.alterar(barbeiro.getNome(), barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 	}
 	
 	@Test
-	public void inserirBarbeiroNãoPodePassarBarbeiroNullo(){
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
+	public void inserirBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
 			assertFalse(barbeiroController.inserir(null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	public void excluirBarbeiroNãoPodePassarBarbeiroNullo(){
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
+	public void excluirBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
 			assertFalse(barbeiroController.excluir(null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	@Test
-	public void alterarBarbeiroNãoPodePassarBarbeiroNullo(){
-		BarbeiroController barbeiroController = BarbeiroController
-				.getInstance();
+	public void alterarBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
-			assertFalse(barbeiroController.alterar(null));
+			assertFalse(barbeiroController.alterar(null, null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	@Test
+	public void procurarPorBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
+		ResultSet rs = barbeiroController.pesquisar();
+		while (rs.next());
+	}
+	
+	@Test
+	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
+		ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
+		while(rs.next());
+	}
+	
+	@Test
+	public void pesquisarPorNomeDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
+		ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
+		while(rs.next());
 	}
 }

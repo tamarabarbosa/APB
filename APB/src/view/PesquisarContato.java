@@ -14,16 +14,14 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import control.AgendaController;
-import dao.FactoryConnection;
 import exception.BarbeiroException;
 import model.Agenda;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
@@ -31,8 +29,6 @@ public class PesquisarContato extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
-	private Connection connection;
-	private static String tempNome;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -65,7 +61,7 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Nome", "Telefone", "Descrição" });
+				new String[] { "Nome", "Telefone", "DescriÃ§Ã£o" });
 		final JTable table = new JTable(modelo);
 
 		table.getColumnModel().getColumn(0).setResizable(false);
@@ -87,16 +83,16 @@ public class PesquisarContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Agenda agenda = new Agenda();
-					agenda.setNome(textField.getText());
-					PesquisarContato.setTempNome(textField.getText());
-					connection = FactoryConnection.getInstance()
-							.getConnection();
-					PreparedStatement pst = connection
-							.prepareStatement("Select nome, telefone, descricao "
-									+ "from agenda where nome = '"
-									+ agenda.getNome() + "';");
-					ResultSet rs = pst.executeQuery();
+					
+					for (int i = 0; i< modelo.getRowCount(); i++){
+						modelo.removeRow(i);
+					}
+					
+					Agenda contato = new Agenda();
+					AgendaController agendaController = AgendaController
+							.getInstance();
+					contato.setNome(textField.getText());
+					ResultSet rs = agendaController.pesquisarPorNome(contato);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
@@ -104,18 +100,12 @@ public class PesquisarContato extends JFrame {
 						dados[1] = rs.getString("telefone");
 						dados[2] = rs.getString("descricao");
 						modelo.addRow(dados);
-
 					}
-
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (BarbeiroException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
-			}
-		});
-		btnPesquisarNome.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
 		btnPesquisarNome.setBounds(82, 168, 160, 23);
@@ -125,34 +115,35 @@ public class PesquisarContato extends JFrame {
 		btnPesquisarTelefone.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
-				try {
-					Agenda agenda = new Agenda();
-					agenda.setTelefone(textField.getText());
 
-					connection = FactoryConnection.getInstance()
-							.getConnection();
-					PreparedStatement pst = connection
-							.prepareStatement("Select nome, telefone, descricao "
-									+ "from agenda where telefone = '"
-									+ agenda.getTelefone() + "';");
-					ResultSet rs = pst.executeQuery();
+				try {
+					
+					for (int i = 0; i< modelo.getRowCount(); i++){
+						modelo.removeRow(i);
+					}
+					
+					Agenda contato = new Agenda();
+					AgendaController agendaController = AgendaController
+							.getInstance();
+					contato.setTelefone(textField.getText());
+					ResultSet rs = agendaController
+							.pesquisarPorTelefone(contato);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("telefone");
-						dados[2] = rs.getString("descricao");;
+						dados[2] = rs.getString("descricao");
+						
 						modelo.addRow(dados);
-
+						
+						table.updateUI();
 					}
-
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (BarbeiroException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
-				
 			}
 		});
 		btnPesquisarTelefone.setBounds(264, 168, 160, 23);
@@ -162,11 +153,18 @@ public class PesquisarContato extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				AlterarContato frame = new AlterarContato();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
+				try {
+					Agenda.setTempNome(modelo.getValueAt(
+							table.getSelectedRow(), 0).toString());
+					dispose();
+					AlterarContato frame = new AlterarContato();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					mostrarMensagemDeErro("Selecione um contato para alterar");
 				}
+			}
 		});
 		btnAlterar.setBounds(98, 228, 89, 23);
 		contentPane.add(btnAlterar);
@@ -175,10 +173,12 @@ public class PesquisarContato extends JFrame {
 		btnRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+
 				try {
-					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
-					String telefone = (String) table.getValueAt(table.getSelectedRow(), 1);
+					String nome = (String) table.getValueAt(
+							table.getSelectedRow(), 0);
+					String telefone = (String) table.getValueAt(
+							table.getSelectedRow(), 1);
 					Agenda agenda = new Agenda();
 					agenda.setNome(nome);
 					agenda.setTelefone(telefone);
@@ -187,7 +187,8 @@ public class PesquisarContato extends JFrame {
 							"Remover " + nome + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						AgendaController agendaController = AgendaController.getInstance();
+						AgendaController agendaController = AgendaController
+								.getInstance();
 						agendaController.excluir(agenda);
 
 						dispose();
@@ -202,7 +203,6 @@ public class PesquisarContato extends JFrame {
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				}
-				
 			}
 		});
 		btnRemover.setBounds(216, 228, 89, 23);
@@ -223,15 +223,8 @@ public class PesquisarContato extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
-	public static String getTempNome() {
-		return tempNome;
-	}
 
-	public static void setTempNome(String tempNome) {
-		PesquisarContato.tempNome = tempNome;
-	}	
-	
 }

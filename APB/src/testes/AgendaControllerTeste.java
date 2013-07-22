@@ -2,6 +2,7 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.Agenda;
@@ -9,40 +10,35 @@ import model.Agenda;
 import org.junit.Before;
 import org.junit.Test;
 
-import view.AlterarContato;
-
-import com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException;
-
 import control.AgendaController;
 import exception.BarbeiroException;
 
 public class AgendaControllerTeste {
 
-	Agenda agenda = new Agenda();
+	Agenda contato = new Agenda();
 
 	@Before
 	public void setUp() {
 		try {
-			agenda.setNome("Corte");
-			agenda.setTelefone("3895-5698");
-			agenda.setDescricao("AAA");
+			contato.setNome("Corte");
+			contato.setTelefone("3895-5698");
+			contato.setDescricao("AAA");
 		} catch (BarbeiroException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	AgendaController agendaController = AgendaController.getInstance();
+	
 	@Test
 	public void getInstanceDeAgendaControllerDeveRetornarInstanciaCorrente() {
-		AgendaController agendaController = AgendaController.getInstance();
 		assertEquals(AgendaController.getInstance(), agendaController);
 	}
 
 	@Test
 	public void inserirDeAgendaControllerDeveEnviarUm() {
-		AgendaController agendaController = AgendaController.getInstance();
 		try {
-			assertTrue(agendaController.incluir(agenda));
+			assertTrue(agendaController.incluir(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -51,57 +47,65 @@ public class AgendaControllerTeste {
 
 	@Test
 	public void excluirDeAgendaControllerDeveEnviarUmaAgenda() {
-		AgendaController agendaController = AgendaController.getInstance();
 		try {
-			assertTrue(agendaController.excluir(agenda));
-		} catch (SQLException e) {
-		}
-
-	}
-
-	@Test
-	public void alterarDeAgendaControllerDeveEnviarUmaAgenda() {
-		AgendaController agendaController = AgendaController.getInstance();
-		try {
-			AlterarContato.setTelefoneAntigo("3895-5698");
-			assertTrue(agendaController.alterar(agenda));
+			assertTrue(agendaController.excluir(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+	}
+	
+	@Test
+	public void alterarDeAgendaControllerDeveEnviarUmaAgendaAlterada() {
+		try {
+			assertTrue(agendaController.alterar(contato.getNome(),contato));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test
-	public void inserirAgendaNãoPodePassarAgendaNullo() {
-		AgendaController agendaController = AgendaController.getInstance();
+	public void inserirAgendaNaoPodePassarAgendaNullo() {
 		try {
 			assertFalse(agendaController.incluir(null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void excluirAgendaNãoPodePassarAgendaNullo() {
-		AgendaController agendaController = AgendaController.getInstance();
+	public void excluirAgendaNaoPodePassarAgendaNullo() {
 		try {
 			assertFalse(agendaController.excluir(null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void alterarAgendaNãoPodePassarAgendaNullo() {
-		AgendaController agendaController = AgendaController.getInstance();
+	public void alterarAgendaNaoPodePassarAgendaNullo() {
 		try {
-			assertFalse(agendaController.alterar(null));
+			assertFalse(agendaController.alterar(null,null));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void mostrarContatosDeAgendaControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
+		while(rs.next());
+	}
+	
+	@Test
+	public void pesquisarPorNomeDeAgendaControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = agendaController.pesquisarPorNome(contato);
+		while(rs.next());
+	}
 
+	@Test
+	public void pesquisarPorTelefoneDeAgendaControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = agendaController.pesquisarPorTelefone(contato);
+		while(rs.next());
+	}
+	
 }

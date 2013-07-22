@@ -9,9 +9,11 @@ import org.junit.Test;
 
 import exception.ServicoException;
 
+
 public class TipoServicoTeste {
 	
 	TipoServico  servico =  new TipoServico();
+	
 	@Before
 	public void setUp(){
 		try {
@@ -32,40 +34,63 @@ public class TipoServicoTeste {
 		assertEquals("14,50", servico.getPreco());
 	}
 
-	@Test(expected =  NullPointerException.class)
-	public void setterDePrecoN„oPodeSerNulo() throws ServicoException{
+	@Test (expected = NullPointerException.class)
+	public void setterDePrecoNaoPodeSerNulo() throws ServicoException {
 		servico.setPreco(null);
-		Assert.fail("Deve lanÁar exceÁ„o");
+		Assert.fail("Deve lan√ßar exce√ß√£o");
 	}
 
-	@Test(expected = NullPointerException.class)
-	public void setterDeNomeN„oPodeSerNulo() throws ServicoException{
+	@Test (expected = NullPointerException.class)
+	public void setterDeNomeNaoPodeSerNulo() throws ServicoException {
 		servico.setNomeTipoServico(null);
-		Assert.fail("Deve lanÁar exceÁ„o");
+		Assert.fail("Deve lan√ßar exce√ß√£o");
 	}
 	
-	@Test(expected = ServicoException.class)
-	public void setterDeNomeN„oPodeSerInvalido() throws ServicoException{
-		servico.setNomeTipoServico("Cor#tÙ");
-		Assert.fail("Deve lanÁar exceÁ„o");
-	}
-	@Test(expected = IllegalArgumentException.class)
-	public void setterDePrecoN„oPodeSerInvalido() throws ServicoException{
+	@Test (expected = IllegalArgumentException.class)
+	public void setterDePrecoNaoPodeSerInvalido() throws ServicoException {
 		servico.setPreco("14.50%");
-		Assert.fail("Deve lanÁar exceÁ„o");
+		Assert.fail("Deve lan√ßar exce√ß√£o");
 	}
 
-	@Test(expected =  ServicoException.class)
-	public void setterDePrecoServicoNaoPodeSerEmBranco() throws ServicoException{
+	@Test (expected =  ServicoException.class)
+	public void setterDePrecoServicoNaoPodeSerEmBranco() throws ServicoException {
 		servico.setPreco("");
-		Assert.fail("Deve lanÁar exceÁ„o");
+		Assert.fail("Deve lan√ßar exce√ß√£o");
 	}
 
-	@Test(expected =  ServicoException.class)
-	public void setterDeNomeServicoNaoPodeSerEmBranco() throws ServicoException{
+	@Test (expected =  ServicoException.class)
+	public void setterDeNomeServicoNaoPodeSerEmBranco() throws ServicoException {
 		servico.setNomeTipoServico("");
-		Assert.fail("Deve lanÁar exceÁ„o");
+		Assert.fail("Deve lan√ßar exce√ß√£o");
 	}
-
+	
+	@Test (expected = AssertionError.class)
+	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
+		assertEquals("Barba", TipoServico.getTempNome());
+	}
+	
+	@Test (expected = NullPointerException.class)
+	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
+		TipoServico.setTempNome(null);
+		Assert.fail("Deve lan√ßar exce√ß√£o");
+	}
+	
+	
+	@Test (expected = ServicoException.class)
+	public void setterDeTempNomeNaoPodeSerEmBranco() throws ServicoException {
+		TipoServico.setTempNome("");
+		Assert.fail("Deve lan√ßar exce√ß√£o");
+	}
+	
+	@Test
+	public void tempNomeValido() {
+		try {
+			TipoServico.setTempNome("Barba");
+		} catch (ServicoException e) {
+			e.printStackTrace();
+			Assert.fail("N√£o Deve lan√ßar exce√ß√£o");
+		}
+		assertEquals("Barba", TipoServico.getTempNome());
+	}
 
 }

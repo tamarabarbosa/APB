@@ -2,12 +2,13 @@ package testes;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
+import junit.framework.AssertionFailedError;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import exception.BarbeiroException;
-
+import exception.ServicoException;
 import model.Agenda;
 
 public class AgendaTeste {
@@ -20,12 +21,9 @@ public class AgendaTeste {
 			contato.setNome("Alessandro");
 			contato.setTelefone("4568-9856");
 		} catch (BarbeiroException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		contato.setDescricao("ASDAS");
-		
-		
 	}
 	
 	@Test
@@ -55,26 +53,50 @@ public class AgendaTeste {
 	@Test(expected = BarbeiroException.class)
 	public void nomeDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
 		contato.setNome("");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test(expected = BarbeiroException.class)
 	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
 		contato.setTelefone("");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test(expected = BarbeiroException.class)
 	public void nomeDoBarbeiroNaoPodePassarQuandoForaDeFormato() throws BarbeiroException{
 		contato.setNome("ASDAS!!");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
 	@Test(expected = BarbeiroException.class)
 	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato() throws BarbeiroException{
 		contato.setTelefone("45645aa-a54654");
-		Assert.fail("Deve lanÁar uma exceÁ„o");
+		Assert.fail("Deve lan√ßar uma exce√ß√£o");
 	}
 	
+
+	@Test (expected = AssertionError.class)
+	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
+		assertEquals("Barba", Agenda.getTempNome());
+	}
+	
+	@Test (expected = AssertionFailedError.class)
+	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
+		Agenda.setTempNome(null);
+		Assert.fail("Deve lan√ßar exce√ß√£o");
+	}
+	
+	
+	@Test (expected = AssertionFailedError.class)
+	public void setterDeTempNomeNaoPodeSerEmBranco() {
+		Agenda.setTempNome("");
+		Assert.fail("Deve lan√ßar exce√ß√£o");
+	}
+	
+	@Test
+	public void tempNomeValido() throws BarbeiroException {
+		Agenda.setTempNome("Paulo");
+		assertEquals("Paulo", Agenda.getTempNome());
+	}
 
 }

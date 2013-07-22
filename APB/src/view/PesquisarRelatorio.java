@@ -4,12 +4,15 @@ import java.awt.Checkbox;
 import java.awt.Event;
 import java.awt.EventQueue;
 
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.MaskFormatter;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
@@ -17,18 +20,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
-import control.RelatorioController;
 import exception.RelatorioException;
-
-import model.Relatorio;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
+@SuppressWarnings("serial")
 public class PesquisarRelatorio extends JFrame {
 
 	private JPanel contentPane;
@@ -37,10 +36,10 @@ public class PesquisarRelatorio extends JFrame {
 	private JTextField txtBarbeiro;
 	private JTextField txtServico;
 	public static int tipoBusca = 0;
-	public static String servico = null;
-	public static String barbeiro = null;
-	public static String dataInicial = null;
-	public static String dataFinal = null;
+	public static String servico = "servico";
+	public static String barbeiro = "barbeiro";
+	public static String dataInicial = "dataInicial";
+	public static String dataFinal = "dataFinal";
 
 	/**
 	 * Launch the application.
@@ -52,7 +51,7 @@ public class PesquisarRelatorio extends JFrame {
 					PesquisarRelatorio frame = new PesquisarRelatorio();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					mostrarMensagemDeErro(e.getMessage());
 				}
 			}
 		});
@@ -60,8 +59,9 @@ public class PesquisarRelatorio extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws ParseException 
 	 */
-	public PesquisarRelatorio() {
+	public PesquisarRelatorio() throws ParseException {
 		setTitle("Tipo de Pesquisa do Relat\u00F3rio");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,6 +70,7 @@ public class PesquisarRelatorio extends JFrame {
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0)));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		final MaskFormatter mascaraFormatoData = new MaskFormatter("##/##/####");
 
 		JPanel panelData = new JPanel();
 		panelData.setBorder(new TitledBorder(UIManager
@@ -79,18 +80,16 @@ public class PesquisarRelatorio extends JFrame {
 		contentPane.add(panelData);
 		panelData.setLayout(null);
 
-		txtDataInicial = new JTextField();
+		txtDataInicial = new JFormattedTextField(mascaraFormatoData);
 		txtDataInicial.setEnabled(false);
 		txtDataInicial.setBounds(10, 66, 94, 20);
 		panelData.add(txtDataInicial);
-		txtDataInicial.setText("dd/MM/aaaa");
 		txtDataInicial.setColumns(10);
 
-		txtDataFinal = new JTextField();
+		txtDataFinal = new JFormattedTextField(mascaraFormatoData);
 		txtDataFinal.setEnabled(false);
 		txtDataFinal.setBounds(114, 66, 94, 20);
 		panelData.add(txtDataFinal);
-		txtDataFinal.setText("dd/MM/aaaa\r\n");
 		txtDataFinal.setColumns(10);
 
 		JLabel lblDataInicial = new JLabel("Data Inicial");
@@ -103,13 +102,9 @@ public class PesquisarRelatorio extends JFrame {
 				if (checkPorData.getState() == false) {
 					txtDataInicial.setEnabled(false);
 					txtDataFinal.setEnabled(false);
-					txtDataInicial.setText("dd/MM/aaaa\r\n");
-					txtDataFinal.setText("dd/MM/aaaa\r\n");
 				} else {
 					txtDataInicial.setEnabled(true);
 					txtDataFinal.setEnabled(true);
-					txtDataInicial.setText("");
-					txtDataFinal.setText("");
 				}
 			}
 		});
@@ -185,48 +180,82 @@ public class PesquisarRelatorio extends JFrame {
 		btnConcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				
-				
-				if (checkBarbeiro.getState() == true && checkPorData.getState() == false && checkServico.getState() == false) {
-					barbeiro = txtBarbeiro.getText();
-					tipoBusca = 1;
-				}
-				if (checkBarbeiro.getState() == true && checkPorData.getState() == false && checkServico.getState() == true) {
-					barbeiro = txtBarbeiro.getText();
-					servico = txtServico.getText();
-					tipoBusca = 2;
-				}
-				if (checkBarbeiro.getState() == true && checkPorData.getState() == true && checkServico.getState() == false) {
-					barbeiro = txtBarbeiro.getText();
-					dataInicial = txtDataInicial.getText();
-					dataFinal = txtDataFinal.getText();
-					tipoBusca = 3;
-				}
-				if (checkBarbeiro.getState() == true && checkPorData.getState() == true && checkServico.getState() == true) {
-					barbeiro = txtBarbeiro.getText();
-					dataInicial = txtDataInicial.getText();
-					dataFinal = txtDataFinal.getText();
-					servico = txtServico.getText();
-					tipoBusca = 4;
-				}
-				if (checkBarbeiro.getState() == false && checkPorData.getState() == false && checkServico.getState() == true) {
-					servico = txtServico.getText();
-					tipoBusca = 5;
-				}
-				if (checkBarbeiro.getState() == false && checkPorData.getState() == true && checkServico.getState() == true) {
-					dataInicial = txtDataInicial.getText();
-					dataFinal = txtDataFinal.getText();
-					servico = txtServico.getText();
-					tipoBusca = 6;
-				}
-				if (checkBarbeiro.getState() == false && checkPorData.getState() == true && checkServico.getState() == false) {
-					dataInicial = txtDataInicial.getText();
-					dataFinal = txtDataFinal.getText();
-					tipoBusca = 7;
-				}
-				if (tipoBusca == 0) {
-					JOptionPane.showMessageDialog(null, "Selecione uma opção de busca");
+
+				if (txtBarbeiro.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							"Digite o nome do barbeiro.");
+				} else if (txtServico.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							"Digite um tipo de serviço.");
+				} else if (txtDataFinal.getText().equals("")) {
+					JOptionPane
+							.showMessageDialog(null, "Digite uma data final");
+				} else if (txtDataInicial.getText().equals("")) {
+					JOptionPane.showMessageDialog(null,
+							"Digite uma data inicial");
 				} else {
+
+					if (checkBarbeiro.getState() == true
+							&& checkPorData.getState() == false
+							&& checkServico.getState() == false) {
+						barbeiro = txtBarbeiro.getText();
+						tipoBusca = 1;
+					}
+
+					if (checkBarbeiro.getState() == true
+							&& checkPorData.getState() == false
+							&& checkServico.getState() == true) {
+						barbeiro = txtBarbeiro.getText();
+						servico = txtServico.getText();
+						tipoBusca = 2;
+					}
+					if (checkBarbeiro.getState() == true
+							&& checkPorData.getState() == true
+							&& checkServico.getState() == false) {
+						barbeiro = txtBarbeiro.getText();
+						dataInicial = txtDataInicial.getText();
+						dataFinal = txtDataFinal.getText();
+						tipoBusca = 3;
+					}
+					if (checkBarbeiro.getState() == true
+							&& checkPorData.getState() == true
+							&& checkServico.getState() == true) {
+						barbeiro = txtBarbeiro.getText();
+						dataInicial = txtDataInicial.getText();
+						dataFinal = txtDataFinal.getText();
+						servico = txtServico.getText();
+						tipoBusca = 4;
+					}
+					if (checkBarbeiro.getState() == false
+							&& checkPorData.getState() == false
+							&& checkServico.getState() == true) {
+						servico = txtServico.getText();
+						tipoBusca = 5;
+					}
+					if (checkBarbeiro.getState() == false
+							&& checkPorData.getState() == true
+							&& checkServico.getState() == true) {
+						dataInicial = txtDataInicial.getText();
+						dataFinal = txtDataFinal.getText();
+						servico = txtServico.getText();
+						tipoBusca = 6;
+					}
+					if (checkBarbeiro.getState() == false
+							&& checkPorData.getState() == true
+							&& checkServico.getState() == false) {
+						dataInicial = txtDataInicial.getText();
+						dataFinal = txtDataFinal.getText();
+						tipoBusca = 7;
+					}
+				}
+
+				if (checkBarbeiro.getState() == false
+						&& checkPorData.getState() == false
+						&& checkServico.getState() == false) {
+					JOptionPane.showMessageDialog(null,
+							"Selecione uma opção de busca");
+				} 
+				if (tipoBusca!=0){
 					try {
 						VisualizarRelatorios frame = new VisualizarRelatorios();
 						frame.setVisible(true);
@@ -235,12 +264,15 @@ public class PesquisarRelatorio extends JFrame {
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
 					} catch (RelatorioException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						mostrarMensagemDeErro(e.getMessage());
+					} catch (NullPointerException e) {
+						mostrarMensagemDeErro(e.getMessage());
+					} catch (ParseException e) {
+						mostrarMensagemDeErro(e.getMessage());
 					}
-					
+
 				}
-				
+
 			}
 		});
 		btnConcluir.setBounds(241, 11, 105, 62);
@@ -258,8 +290,11 @@ public class PesquisarRelatorio extends JFrame {
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (RelatorioException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					mostrarMensagemDeErro(e1.getMessage());
+				} catch (NullPointerException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				} catch (ParseException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
 				}
 			}
 		});
@@ -271,7 +306,7 @@ public class PesquisarRelatorio extends JFrame {
 		return false;
 	}
 
-	private void mostrarMensagemDeErro(String informacao) {
+	private static void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}

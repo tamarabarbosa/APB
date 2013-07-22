@@ -1,14 +1,17 @@
 package testes;
 
 import static org.junit.Assert.*;
+
+import java.text.ParseException;
+
 import junit.framework.Assert;
 import junit.framework.AssertionFailedError;
-
 import model.ServicoPrestado;
 
 import org.junit.Test;
 
 import exception.ServicoException;
+
 
 public class ServicoPrestadoTeste {
 
@@ -24,19 +27,19 @@ public class ServicoPrestadoTeste {
 	@Test (expected = NullPointerException.class)
 	public void testeSetNomeNaoNulo() throws ServicoException {
 		servico.setNomeServico(null);
-		Assert.fail("Deve lançar exceção");
+		Assert.fail("Deve lanï¿½ar exceï¿½ï¿½o");
 	}
 	
 	@Test (expected = ServicoException.class)
 	public void testeSetNomeBranco() throws ServicoException {
 		servico.setNomeServico("");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
 	}
 	
 	@Test (expected = ServicoException.class)
 	public void testeSetNomeForaDeFormato() throws ServicoException {
 		servico.setNomeServico("123");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
 	}
 	
 	@Test
@@ -45,7 +48,7 @@ public class ServicoPrestadoTeste {
 			servico.setNomeServico("Corte");
 		} catch (ServicoException e) {
 			e.printStackTrace();
-			Assert.fail("Não deve lançar exceção");
+			Assert.fail("Nï¿½o deve lanï¿½ar exceï¿½ï¿½o");
 		}
 		assertEquals("Corte", servico.getNomeServico());
 	}
@@ -53,27 +56,27 @@ public class ServicoPrestadoTeste {
 	@Test (expected = ServicoException.class)
 	public void precoForaDeFormato() throws ServicoException {
 		servico.setPreco("as");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
 	}
 	
 	@Test (expected = NullPointerException.class)
 	public void testePrecoNaoNulo() throws ServicoException {
 		servico.setPreco(null);
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
 	}
 	
 	@Test (expected = ServicoException.class)
 	public void testePrecoEmBranco() throws ServicoException {
 		servico.setPreco("");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
 	}
 	
 	@Test
-	public void testePrecoValidoo() {
+	public void testePrecoValido() {
 		try {
 			servico.setPreco("123,45");
 		} catch (ServicoException e) {
-			Assert.fail("Não deve lançar exceção");
+			Assert.fail("Nï¿½o deve lanï¿½ar exceï¿½ï¿½o");
 		}
 		assertEquals("123,45", servico.getPreco());
 	}
@@ -81,47 +84,89 @@ public class ServicoPrestadoTeste {
 	@Test (expected = NullPointerException.class)
 	public void testeNomeBarbeiroNulo() throws ServicoException {
 		servico.setNomeBarbeiro(null);
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
 	}
 	
 	@Test (expected = ServicoException.class)
 	public void testeNomeBarbeiroEmBranco() throws ServicoException {
 		servico.setNomeBarbeiro("");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
 	}
 	
 	@Test (expected = ServicoException.class)
 	public void testeNomeBarbeiroForaDeFormato() throws ServicoException {
 		servico.setNomeBarbeiro("123");
-		Assert.fail("Deve lançar uma exceção");
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
+	}
+	
+	@Test (expected = AssertionFailedError.class)
+	public void testeNomeBarbeiroValido() {
+		try {
+			servico.setNomeBarbeiro("Joï¿½o");
+		} catch (ServicoException e) {
+			Assert.fail("NÃ£o deve lanÃ§ar uma exceÃ§Ã£o");
+		}
+		assertEquals("Joï¿½o", servico.getNomeBarbeiro());
+	}
+	
+	@Test (expected = NullPointerException.class)
+	public void testeDataNulo() throws ServicoException {
+		try {
+			servico.setData(null);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (AssertionFailedError e) {
+			e.printStackTrace();
+		}
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
+	}
+	
+	@Test (expected = ServicoException.class)
+	public void testeDataEmBranco() throws ServicoException {
+		try {
+			servico.setData("");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (AssertionFailedError e) {
+			e.printStackTrace();
+		}
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
+	}
+	
+	@Test (expected = ServicoException.class)
+	public void testeDataForaDeFormato() throws ServicoException {
+		try {
+			servico.setData("abc");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} catch (AssertionFailedError e) {
+			e.printStackTrace();
+		}
+		Assert.fail("Deve lanï¿½ar uma exceï¿½ï¿½o");
 	}
 	
 	@Test
-	public void testeNomeBarbeiroValido() {
+	public void testeDataParaConverter() {
 		try {
-			servico.setNomeBarbeiro("João");
-		} catch (ServicoException e) {
-			Assert.fail("Não deve lançar exceção");
+			servico.ConverterDataParaABNT("2010-10-10");
+		} catch (ParseException e) {
+			e.printStackTrace();
 		}
-		assertEquals("João", servico.getNomeBarbeiro());
 	}
 	
-	@Test (expected = AssertionFailedError.class)
-	public void testeDataNulo() throws ServicoException {
-		servico.setData(null);
-		Assert.fail("Deve lançar uma exceção");
+	@Test
+	public void testeDataNormal() {
+		try {
+			servico.setData("10/10/2012");
+		} catch (ServicoException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	@Test (expected = AssertionFailedError.class)
-	public void testeDataEmBranco() throws ServicoException {
-		servico.setData("");
-		Assert.fail("Deve lançar uma exceção");
+	@Test (expected = AssertionError.class)
+	public void getterDeDataDeveFuncionar(){
+		assertEquals("10/10/2012", servico.getData());
 	}
-	
-	@Test (expected = AssertionFailedError.class)
-	public void testeDataForaDeFormato() throws ServicoException {
-		servico.setData("abc");
-		Assert.fail("Deve lançar uma exceção");
-	}
-	
 }

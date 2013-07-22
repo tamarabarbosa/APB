@@ -3,6 +3,7 @@ package testes;
 import static org.junit.Assert.*;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import model.ServicoPrestado;
 
@@ -21,15 +22,17 @@ public class ServicoPrestadoDAOTeste {
 		try {
 			servico.setNomeServico("Corte");
 			servico.setNomeBarbeiro("Alessandro");
-			servico.setData("2010/10/10");
+			servico.setData("10/10/2010");
 			servico.setPreco("10,00");
 			servico2.setNomeServico("Barba");
 			servico2.setNomeBarbeiro("Luciano");
-			servico2.setData("2001/01/01");
+			servico2.setData("01/01/2010");
 			servico2.setPreco("9,90");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (ServicoException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
@@ -55,6 +58,24 @@ public class ServicoPrestadoDAOTeste {
 	public void excluirDeServicoPrestadoDAODeveEnviarUmServicoPrestado() {
 		try {
 			assertTrue(servicoDAO.excluir(servico));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void inserirDeServicoPrestadoDAOPassandoUmServicoNulo() {
+		try {
+			assertFalse(servicoDAO.incluir(null));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void excluirDeServicoPrestadoDAOPassandoUmServicoNulo() {
+		try {
+			assertFalse(servicoDAO.excluir(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

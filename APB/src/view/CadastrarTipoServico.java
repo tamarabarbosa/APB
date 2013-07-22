@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,17 +12,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
 import control.TipoServicoController;
-
 import model.TipoServico;
-
-import dao.FactoryConnection;
 import exception.ServicoException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -31,7 +26,6 @@ import java.sql.SQLException;
 public class CadastrarTipoServico extends JFrame {
 
 	private JPanel contentPane;
-	private Connection connection;
 	private static String nomeTemp;
 
 	/**
@@ -67,12 +61,12 @@ public class CadastrarTipoServico extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Serviço", "Valor" });
+				new String[] { "ServiÃ§o", "Valor" });
 		final JTable table = new JTable(modelo);
 		try {
-			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery(
-					"Select * from tiposervico;");
+			TipoServicoController servicoController = TipoServicoController.getInstance();
+			TipoServico servico= new TipoServico();
+			ResultSet rs = servicoController.mostrarTipoServicoCadastrados(servico);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("nome");
@@ -104,11 +98,15 @@ public class CadastrarTipoServico extends JFrame {
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				nomeTemp = (String) modelo.getValueAt(table.getSelectedRow(), 0);
-				AlterarTipoServico frame = new AlterarTipoServico();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
+				try {
+					TipoServico.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
+					AlterarTipoServico frame = new AlterarTipoServico();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
+				} catch (ServicoException e1) {
+					mostrarMensagemDeErro(e1.getMessage());
+				}
 			}
 		});
 		btnAlterar.setBounds(380, 58, 94, 23);
@@ -118,14 +116,12 @@ public class CadastrarTipoServico extends JFrame {
 		btnRemover.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				String nome = (String) table.getValueAt(table.getSelectedRow(),
-						0);
+				String nome = (String) table.getValueAt(table.getSelectedRow(),	0);
 				TipoServico tipoServico = new TipoServico();
-				try {
+				
+				try {	
 					tipoServico.setNomeTipoServico(nome);
 				} catch (ServicoException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -133,13 +129,10 @@ public class CadastrarTipoServico extends JFrame {
 						"Remover " + nome + " da lista?");
 
 				if (confirmacao == JOptionPane.YES_OPTION) {
-
-					TipoServicoController tipoServicoController = TipoServicoController
-							.getInstance();
+					TipoServicoController tipoServicoController = TipoServicoController.getInstance();
 					try {
 						tipoServicoController.excluir(tipoServico);
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					
@@ -166,15 +159,13 @@ public class CadastrarTipoServico extends JFrame {
 		});
 		contentPane.add(btnVoltar);
 	}
-	
-	
 
 	public static String getNomeTemp() {
 		return nomeTemp;
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

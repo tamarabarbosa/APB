@@ -58,7 +58,7 @@ public class NovoTipoServico extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblServico = new JLabel("Servi\u00E7o:");
+		JLabel lblServico = new JLabel("Serviço:");
 		lblServico.setBounds(29, 33, 46, 14);
 		contentPane.add(lblServico);
 
@@ -80,7 +80,6 @@ public class NovoTipoServico extends JFrame {
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-
 				try {
 					TipoServico tipoServico = new TipoServico();
 					tipoServico.setNomeTipoServico(textFieldServico.getText());
@@ -90,7 +89,7 @@ public class NovoTipoServico extends JFrame {
 							.getInstance();
 					tipoServicoController.inserir(tipoServico);
 
-					JOptionPane.showMessageDialog(null, "Servico "
+					JOptionPane.showMessageDialog(null, "Serviço "
 							+ textFieldServico.getText()
 							+ " foi cadastrado com sucesso");
 
@@ -124,7 +123,7 @@ public class NovoTipoServico extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Aten��o",
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

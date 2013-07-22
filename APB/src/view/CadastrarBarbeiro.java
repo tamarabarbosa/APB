@@ -3,7 +3,6 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -19,15 +18,12 @@ import javax.swing.table.DefaultTableModel;
 
 import model.Barbeiro;
 import control.BarbeiroController;
-import dao.FactoryConnection;
 import exception.BarbeiroException;
 
 @SuppressWarnings("serial")
 public class CadastrarBarbeiro extends JFrame {
 
 	private JPanel contentPane;
-	private Connection connection;
-	private static String tempNome;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -50,14 +46,14 @@ public class CadastrarBarbeiro extends JFrame {
 	public void inicializarComponentes() {
 		setTitle("Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 566, 345);
+		setBounds(100, 100, 678, 490);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 365, 286);
+		scrollPane.setBounds(10, 11, 474, 429);
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
@@ -65,9 +61,9 @@ public class CadastrarBarbeiro extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery(
-					"Select nome, cpf, rg, telefone, cadeira from barbeiro;");
+			BarbeiroController barbeiroController = BarbeiroController.getInstance();
+			Barbeiro barbeiro = new Barbeiro();
+			ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("nome");
@@ -94,13 +90,12 @@ public class CadastrarBarbeiro extends JFrame {
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (ParseException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 	
 			}
 		});
-		botaoNovo.setBounds(385, 11, 158, 28);
+		botaoNovo.setBounds(494, 11, 158, 28);
 		contentPane.add(botaoNovo);
 
 		JButton botaoAlterar = new JButton("Alterar");
@@ -108,18 +103,17 @@ public class CadastrarBarbeiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try{
-					tempNome = modelo.getValueAt(table.getSelectedRow(), 0).toString();
-				
-				AlterarBarbeiro frame = new AlterarBarbeiro();
-				frame.setVisible(true);
-				frame.setLocationRelativeTo(null);
-				dispose();
+					Barbeiro.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
+					AlterarBarbeiro frame = new AlterarBarbeiro();
+					frame.setVisible(true);
+					frame.setLocationRelativeTo(null);
+					dispose();
 				} catch (ArrayIndexOutOfBoundsException e1) {
 					mostrarMensagemDeErro("Selecione um Barbeiro para Alterar");
-			}
+				}
 			}
 		});
-		botaoAlterar.setBounds(385, 50, 158, 28);
+		botaoAlterar.setBounds(494, 50, 158, 28);
 		contentPane.add(botaoAlterar);
 
 		JButton botaoRemover = new JButton("Remover");
@@ -130,7 +124,7 @@ public class CadastrarBarbeiro extends JFrame {
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
 					Barbeiro barbeiro = new Barbeiro();
 					barbeiro.setNome(nome);
-
+					
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
@@ -152,7 +146,7 @@ public class CadastrarBarbeiro extends JFrame {
 				}
 			}
 		});
-		botaoRemover.setBounds(385, 89, 158, 28);
+		botaoRemover.setBounds(494, 89, 158, 28);
 		contentPane.add(botaoRemover);
 		
 		JButton botaoVoltar = new JButton("Voltar");
@@ -165,7 +159,7 @@ public class CadastrarBarbeiro extends JFrame {
 				dispose();
 			}
 		});
-		botaoVoltar.setBounds(385, 267, 158, 28);
+		botaoVoltar.setBounds(494, 412, 158, 28);
 		contentPane.add(botaoVoltar);
 	}
 
@@ -174,7 +168,4 @@ public class CadastrarBarbeiro extends JFrame {
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
-	public static String getTempNome() {
-		return tempNome;
-	}
 }
