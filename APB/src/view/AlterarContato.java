@@ -44,7 +44,7 @@ public class AlterarContato extends JFrame {
 	public AlterarContato() {
 		setTitle("Alterar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 225);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -56,12 +56,12 @@ public class AlterarContato extends JFrame {
 		textFieldNome.setColumns(10);
 
 		textFieldTelefone = new JTextField();
-		textFieldTelefone.setBounds(83, 76, 341, 20);
+		textFieldTelefone.setBounds(83, 53, 341, 20);
 		contentPane.add(textFieldTelefone);
 		textFieldTelefone.setColumns(10);
 
 		textFieldDescricao = new JTextField();
-		textFieldDescricao.setBounds(83, 123, 341, 41);
+		textFieldDescricao.setBounds(83, 84, 341, 41);
 		contentPane.add(textFieldDescricao);
 		textFieldDescricao.setColumns(10);
 
@@ -70,11 +70,11 @@ public class AlterarContato extends JFrame {
 		contentPane.add(lblNome);
 
 		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(10, 79, 46, 14);
+		lblTelefone.setBounds(10, 56, 46, 14);
 		contentPane.add(lblTelefone);
 
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
-		lblDescricao.setBounds(10, 123, 63, 14);
+		lblDescricao.setBounds(10, 97, 63, 14);
 		contentPane.add(lblDescricao);
 		
 		try {
@@ -124,7 +124,7 @@ public class AlterarContato extends JFrame {
 			}	
 			
 		});
-		btnSalvarAlteracao.setBounds(83, 220, 121, 31);
+		btnSalvarAlteracao.setBounds(83, 136, 153, 31);
 		contentPane.add(btnSalvarAlteracao);
 
 		JButton btnVoltar = new JButton("Voltar");
@@ -138,7 +138,7 @@ public class AlterarContato extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnVoltar.setBounds(259, 220, 104, 31);
+		btnVoltar.setBounds(259, 136, 165, 31);
 		contentPane.add(btnVoltar);
 	}
 
