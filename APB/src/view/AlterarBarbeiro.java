@@ -28,7 +28,7 @@ public class AlterarBarbeiro extends JFrame {
 	private JTextField textFieldRg;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldCadeira;
-	private String cpf;
+	private String nome;
 	private JTextField textFieldCpf;
 
 	public static void main(String[] args) {
@@ -114,7 +114,7 @@ public class AlterarBarbeiro extends JFrame {
 				textFieldTelefone.setText(rs.getString("telefone"));
 				textFieldCadeira.setText(rs.getString("cadeira"));
 			}
-			cpf = textFieldCpf.getText();
+			nome = textFieldCpf.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		} catch (BarbeiroException e) {
@@ -134,7 +134,7 @@ public class AlterarBarbeiro extends JFrame {
 
 					BarbeiroController barbeiroController = BarbeiroController
 							.getInstance();
-					barbeiroController.alterar(cpf,barbeiro);
+					barbeiroController.alterar(nome, barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 							+ textFieldNome.getText()
@@ -183,7 +183,7 @@ public class AlterarBarbeiro extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

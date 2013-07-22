@@ -87,7 +87,7 @@ public class BarbeiroDAOTeste {
 	@Test
 	public void alterarDeBarbeiroDaoDeveAlterarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroDAO.alterar(barbeiro.getCpf(),barbeiro, barbeiro2));
+			assertTrue(barbeiroDAO.alterar(barbeiro.getNome(), barbeiro, barbeiro2));
 			
 			barbeiroDAO.alterar(barbeiro.getCpf(),barbeiro2, barbeiro);
 			Connection connection = FactoryConnection.getInstance().getConnection();
@@ -126,7 +126,7 @@ public class BarbeiroDAOTeste {
 	@Test
 	public void alterarDeBarbeiroDaoPassandoUmBarbeiroNulo() {
 		try {
-			assertFalse(barbeiroDAO.alterar(barbeiro.getCpf(), null, null));
+			assertFalse(barbeiroDAO.alterar(barbeiro.getNome(), null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -135,7 +135,7 @@ public class BarbeiroDAOTeste {
 	@Test
 	public void alterarDeBarbeiroDaoPassandoUmBarbeiroAlteradoNulo() {
 		try {
-			assertFalse(barbeiroDAO.alterar(barbeiro.getCpf(),null, barbeiro));
+			assertFalse(barbeiroDAO.alterar(barbeiro.getNome(), null, barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

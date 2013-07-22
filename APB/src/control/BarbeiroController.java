@@ -26,12 +26,12 @@ public class BarbeiroController {
 		return true;
 	}
 
-	public boolean alterar(String cpf,Barbeiro barbeiro) throws SQLException {
+	public boolean alterar(String nome, Barbeiro barbeiro) throws SQLException {
 		if (barbeiro == null)
 			return false;
 
 		Barbeiro barbeiro_alterado = barbeiro;
-		BarbeiroDAO.getInstance().alterar(cpf,barbeiro_alterado, barbeiro);
+		BarbeiroDAO.getInstance().alterar(nome, barbeiro_alterado, barbeiro);
 		return true;
 	}
 
