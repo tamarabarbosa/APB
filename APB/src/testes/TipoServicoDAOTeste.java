@@ -42,7 +42,7 @@ public class TipoServicoDAOTeste {
 	@Test
 	public void alterarDeTipoServicoDAODeveEnviarUmTipoServico() {
 		try {
-			assertTrue(servicoDAO.alterar(tiposervico, tiposervico2));
+			assertTrue(servicoDAO.alterar(tiposervico.getNomeTipoServico(),tiposervico, tiposervico2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -69,7 +69,7 @@ public class TipoServicoDAOTeste {
 	@Test
 	public void alterarDeTipoServicoDAOPassandoUmServicoNulo() {
 		try {
-			assertFalse(servicoDAO.alterar(tiposervico, null));
+			assertFalse(servicoDAO.alterar(tiposervico.getNomeTipoServico(),tiposervico, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -78,7 +78,7 @@ public class TipoServicoDAOTeste {
 	@Test
 	public void alterarDeTipoServicoDAOPassandoUmServicoAlteradoNulo() {
 		try {
-			assertFalse(servicoDAO.alterar(null, tiposervico));
+			assertFalse(servicoDAO.alterar(tiposervico.getNomeTipoServico(),null, tiposervico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

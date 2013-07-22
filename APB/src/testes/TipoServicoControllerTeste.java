@@ -54,7 +54,7 @@ public class TipoServicoControllerTeste {
 	@Test
 	public void alterarDeTipoServicoControllerDeveAlterarUmTipoServico() {
 		try {
-			assertTrue(servicoController.alterar(servico));
+			assertTrue(servicoController.alterar(servico.getNomeTipoServico(),servico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -81,7 +81,7 @@ public class TipoServicoControllerTeste {
 	@Test
 	public void alterarTipoServicoNaoPodePassarTipoServicoNullo() {
 		try {
-			assertFalse(servicoController.alterar(null));
+			assertFalse(servicoController.alterar(null,null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

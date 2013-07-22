@@ -25,7 +25,7 @@ public class AlterarTipoServico extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTextField textFieldPreco;
-	private static String nomeTipoServicoAntigo;
+	private String nome;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -71,16 +71,13 @@ public class AlterarTipoServico extends JFrame {
 			TipoServico tiposervico = new TipoServico();
 			TipoServicoController servicoController = TipoServicoController.getInstance();
 			tiposervico.setNomeTipoServico(TipoServico.getTempNome());
-			System.out.println(tiposervico.getNomeTipoServico());
-			
 			ResultSet rs = servicoController.pesquisarPorNome(tiposervico);
 			
-				
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldPreco.setText(rs.getString("preco"));
-				AlterarTipoServico.setNomeTipoServicoAntigo(rs.getString("nome"));
 			}
+			nome = textFieldNome.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		} catch (ServicoException e) {
@@ -96,7 +93,7 @@ public class AlterarTipoServico extends JFrame {
 					tipoServico.setPreco(textFieldPreco.getText());
 					
 					TipoServicoController tipoServicoController = TipoServicoController.getInstance();
-					tipoServicoController.alterar(tipoServico);
+					tipoServicoController.alterar(nome,tipoServico);
 
 					JOptionPane.showMessageDialog(null, "Tipo de Serviço "
 							+ textFieldNome.getText()
@@ -113,7 +110,7 @@ public class AlterarTipoServico extends JFrame {
 				}
 			}
 		});
-		buttonSalvar.setBounds(36, 86, 90, 23);
+		buttonSalvar.setBounds(10, 86, 124, 23);
 		contentPane.add(buttonSalvar);
 
 		JButton buttonLimpar = new JButton("Limpar Campos");
@@ -123,7 +120,7 @@ public class AlterarTipoServico extends JFrame {
 				textFieldPreco.setText("");
 			}
 		});
-		buttonLimpar.setBounds(285, 86, 105, 23);
+		buttonLimpar.setBounds(282, 86, 128, 23);
 		contentPane.add(buttonLimpar);
 
 		JButton buttonVoltar = new JButton("Voltar");
@@ -135,19 +132,10 @@ public class AlterarTipoServico extends JFrame {
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		buttonVoltar.setBounds(167, 86, 85, 23);
+		buttonVoltar.setBounds(144, 86, 128, 23);
 		contentPane.add(buttonVoltar);
 	}
 	
-	
-
-	public static String getNomeTipoServicoAntigo() {
-		return nomeTipoServicoAntigo;
-	}
-
-	public static void setNomeTipoServicoAntigo(String nomeTipoServicoAntigo) {
-		AlterarTipoServico.nomeTipoServicoAntigo = nomeTipoServicoAntigo;
-	}
 
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
