@@ -26,13 +26,13 @@ public class AgendaDAO {
 			return false;
 		
 		this.updateQuery("INSERT INTO "
-				+ "Agenda (nome, telefone, descricao) VALUES (" + "\""
+				+ "agenda (nome, telefone, descricao) VALUES (" + "\""
 				+ agenda.getNome() + "\", " + "\"" + agenda.getTelefone()
 				+ "\", " + "\"" + agenda.getDescricao() + "\"); ");
 		return true;
 	}
 
-	public boolean alterar(String nome,Agenda agenda_alterado, Agenda agenda) throws SQLException {	
+	public boolean alterar(String nome, Agenda agenda_alterado, Agenda agenda) throws SQLException {	
 		if(agenda == null || agenda_alterado == null)
 			return false;
 		

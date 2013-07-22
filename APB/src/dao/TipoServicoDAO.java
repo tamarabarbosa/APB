@@ -25,7 +25,7 @@ public class TipoServicoDAO {
 			return false;
 		
 		this.updateQuery("INSERT INTO "
-				+ "tipoServico (nome, preco) VALUES ("
+				+ "tiposervico (nome, preco) VALUES ("
 				+ "\"" + tipoServico.getNomeTipoServico() + "\", " + "\""
 				+ tipoServico.getPreco() + "\"); ");
 
@@ -36,7 +36,7 @@ public class TipoServicoDAO {
 		if (tipoServico_alterado == null || tipoServico == null) 
 			return false;
 		
-		this.updateQuery("UPDATE tipoServico SET nome = '"
+		this.updateQuery("UPDATE tiposervico SET nome = '"
 				+ tipoServico_alterado.getNomeTipoServico() + "', " + "preco = '"
 				+ tipoServico_alterado.getPreco()  + "' WHERE"
 				+ " nome = '" + nome + "';");
@@ -48,7 +48,7 @@ public class TipoServicoDAO {
 		if (tipoServico == null)
 			return false;
 		
-		this.updateQuery("DELETE FROM tipoServico WHERE "
+		this.updateQuery("DELETE FROM tiposervico WHERE "
 				+ "tipoServico.nome = \"" + tipoServico.getNomeTipoServico() + "\";");
 		return true;
 	}
