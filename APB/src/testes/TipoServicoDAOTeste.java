@@ -2,6 +2,7 @@ package testes;
 
 import static org.junit.Assert.*;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.TipoServico;
@@ -69,7 +70,7 @@ public class TipoServicoDAOTeste {
 	@Test
 	public void alterarDeTipoServicoDAOPassandoUmServicoNulo() {
 		try {
-			assertFalse(servicoDAO.alterar(tiposervico.getNomeTipoServico(),tiposervico, null));
+			assertFalse(servicoDAO.alterar(tiposervico.getNomeTipoServico(), tiposervico, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -78,13 +79,38 @@ public class TipoServicoDAOTeste {
 	@Test
 	public void alterarDeTipoServicoDAOPassandoUmServicoAlteradoNulo() {
 		try {
-			assertFalse(servicoDAO.alterar(tiposervico.getNomeTipoServico(),null, tiposervico));
+			assertFalse(servicoDAO.alterar(tiposervico.getNomeTipoServico(), null, tiposervico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	@Test
+	public void mostrarServicosDeTipoServicoDAODeveMostrarServico() {
+		try {
+			ResultSet rs = servicoDAO.mostrarTipoServicoCadastrados(tiposervico);
+			
+			while (rs.next()) {
+				String nome = rs.getString("nome");
+				assertNotNull(nome);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
-	
+	@Test
+	public void pesquisarPorNomeDeTipoServicoDAODeveMostrarServico() {
+		try {
+			ResultSet rs = servicoDAO.pesquisarPorNome(tiposervico);
+			
+			while (rs.next()) {
+				String nome = rs.getString("nome");
+				assertNotNull(nome);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

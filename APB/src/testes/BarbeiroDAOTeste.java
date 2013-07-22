@@ -97,7 +97,7 @@ public class BarbeiroDAOTeste {
 			ResultSet rs = pst1.executeQuery();
 			
 			while(rs.next())
-				assertEquals("Luciano", rs.getString("nome"));
+				assertEquals("Alessandro", rs.getString("nome"));
 			
 			rs.close();
 		} catch (SQLException e) {
@@ -145,6 +145,34 @@ public class BarbeiroDAOTeste {
 	public void pesquisarDeBarbeiroDAODeveMostrarUmBarbeiro() {
 		try {
 			ResultSet rs = barbeiroDAO.pesquisar();
+			
+			while (rs.next()) {
+				String nome = rs.getString("nome");
+				assertNotNull(nome);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void mostrarBarbeirosCadastradosDeBarbeiroDAODeveMostrarBarbeiros() {
+		try {
+			ResultSet rs = barbeiroDAO.mostrarBarbeirosCadastrados(barbeiro);
+			
+			while (rs.next()) {
+				String nome = rs.getString("nome");
+				assertNotNull(nome);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void pesquisarPorNomeDeBarbeiroDAODeveMostrarBarbeiros() {
+		try {
+			ResultSet rs = barbeiroDAO.pesquisarPorNome(barbeiro);
 			
 			while (rs.next()) {
 				String nome = rs.getString("nome");

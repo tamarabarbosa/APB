@@ -7,8 +7,6 @@ import java.sql.SQLException;
 
 import model.TipoServico;
 
-
-
 public class TipoServicoDAO {
 
 	private static TipoServicoDAO instance;

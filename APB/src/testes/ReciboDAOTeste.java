@@ -39,7 +39,7 @@ Relatorio relatorio = new Relatorio();
 	@Test
 	public void getInstanceDeReciboDAODeveRetonarInstanciaCorrente() {
 		ReciboDAO reciboDAO = ReciboDAO.getInstance();
-		assertEquals(RelatorioDAO.getInstance(), reciboDAO);
+		assertEquals(ReciboDAO.getInstance(), reciboDAO);
 	}
 	
 	@Test
