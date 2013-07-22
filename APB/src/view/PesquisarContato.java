@@ -83,6 +83,11 @@ public class PesquisarContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
+					
+					for (int i = 0; i< modelo.getRowCount(); i++){
+						modelo.removeRow(i);
+					}
+					
 					Agenda contato = new Agenda();
 					AgendaController agendaController = AgendaController
 							.getInstance();
@@ -103,10 +108,6 @@ public class PesquisarContato extends JFrame {
 				}
 			}
 		});
-		btnPesquisarNome.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnPesquisarNome.setBounds(82, 168, 160, 23);
 		contentPane.add(btnPesquisarNome);
 
@@ -116,7 +117,11 @@ public class PesquisarContato extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 
 				try {
-
+					
+					for (int i = 0; i< modelo.getRowCount(); i++){
+						modelo.removeRow(i);
+					}
+					
 					Agenda contato = new Agenda();
 					AgendaController agendaController = AgendaController
 							.getInstance();
@@ -129,8 +134,10 @@ public class PesquisarContato extends JFrame {
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("telefone");
 						dados[2] = rs.getString("descricao");
-						;
+						
 						modelo.addRow(dados);
+						
+						table.updateUI();
 					}
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
