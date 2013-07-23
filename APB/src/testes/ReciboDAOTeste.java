@@ -53,6 +53,7 @@ public class ReciboDAOTeste {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+			
 		}
 
 	}

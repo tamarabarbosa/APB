@@ -66,7 +66,7 @@ public class TipoServicoTeste {
 	
 	@Test (expected = AssertionError.class)
 	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
-		assertEquals("Barba", TipoServico.getTempNome());
+		assertEquals("Corte", TipoServico.getTempNome());
 	}
 	
 	@Test (expected = NullPointerException.class)
