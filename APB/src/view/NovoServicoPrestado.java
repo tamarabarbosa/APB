@@ -90,14 +90,15 @@ public class NovoServicoPrestado extends JFrame {
 				if (comboBoxServico.getSelectedIndex() != 0)
 					try {
 						String[] nome = comboBoxServico.getSelectedItem()
-							.toString().split(" - ");
-						connection = FactoryConnection.getInstance().getConnection();
-						java.sql.PreparedStatement pst1 = connection.prepareStatement(
-								"SELECT preco FROM tipoServico WHERE nome = \"" 
-								+ nome[1] + "\";");
+								.toString().split(" - ");
+						connection = FactoryConnection.getInstance()
+								.getConnection();
+						java.sql.PreparedStatement pst1 = connection
+								.prepareStatement("SELECT preco FROM tipoServico WHERE nome = \""
+										+ nome[1] + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
-						
+
 						textValor.setText(rs1.getString("preco"));
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
@@ -141,24 +142,6 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					
-					String data;
-					Date d = new Date();
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					data = sdf.format(d);
-					
-					String[] nome = comboBoxServico.getSelectedItem()
-							.toString().split(" - ");
-					String[] barbeiro = comboBoxBarbeiro.getSelectedItem()
-							.toString().split(" - ");
-
-					ServicoPrestado servico_prestado = new ServicoPrestado();
-
-					servico_prestado.setNomeBarbeiro(barbeiro[1]);
-					servico_prestado.setNomeServico(nome[1]);
-					servico_prestado.setPreco(textValor.getText());
-					servico_prestado.setData(data);
-
 					if (comboBoxServico.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
 								"Você deve selecionar um tipo de serviço.");
@@ -166,6 +149,24 @@ public class NovoServicoPrestado extends JFrame {
 						JOptionPane.showMessageDialog(null,
 								"Você deve selecionar um barbeiro.");
 					else {
+						String data;
+						Date d = new Date();
+						SimpleDateFormat sdf = new SimpleDateFormat(
+								"yyyy-MM-dd");
+						data = sdf.format(d);
+
+						String[] nome = comboBoxServico.getSelectedItem()
+								.toString().split(" - ");
+						String[] barbeiro = comboBoxBarbeiro.getSelectedItem()
+								.toString().split(" - ");
+
+						ServicoPrestado servico_prestado = new ServicoPrestado();
+
+						servico_prestado.setNomeBarbeiro(barbeiro[1]);
+						servico_prestado.setNomeServico(nome[1]);
+						servico_prestado.setPreco(textValor.getText());
+						servico_prestado.setData(data);
+
 						ServicoPrestadoController servicoController = ServicoPrestadoController
 								.getInstance();
 						servicoController.inserir(servico_prestado);
@@ -185,6 +186,7 @@ public class NovoServicoPrestado extends JFrame {
 				} catch (ParseException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
+
 			}
 		});
 		botaoSalvar.setBounds(27, 129, 89, 23);

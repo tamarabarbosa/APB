@@ -47,6 +47,7 @@ public class VisualizarRelatorios extends JFrame {
 	private int numeroTotalDeServicos = 0;
 	private double valorTotalDoServico = 0;
 	private double valorTotalASerPAgo = 0;
+	private double total2 = 0;
 
 	DecimalFormat decimal = new DecimalFormat("##0.00");
 
@@ -136,7 +137,9 @@ public class VisualizarRelatorios extends JFrame {
 				dados[3] = Double.toString(valorTotalASerPAgo)
 						.replace(".", ",")
 						.valueOf(decimal.format(valorTotalASerPAgo));
-
+				
+				total = total + valorTotalDoServico;
+				total2 = total2 + valorTotalASerPAgo;
 				modelo.addRow(dados);
 
 				numeroTotalDeServicos = 0;
@@ -184,7 +187,10 @@ public class VisualizarRelatorios extends JFrame {
 						.valueOf(decimal.format(valorTotalASerPAgo));
 
 				modelo.addRow(dados);
-
+				
+				total = total + valorTotalDoServico;
+				total2 = total2 + valorTotalASerPAgo;
+				
 				numeroTotalDeServicos = 0;
 				valorTotalASerPAgo = 0;
 				valorTotalDoServico = 0;
@@ -231,7 +237,10 @@ public class VisualizarRelatorios extends JFrame {
 						.valueOf(decimal.format(valorTotalASerPAgo));
 
 				modelo.addRow(dados);
-
+				
+				total = total + valorTotalDoServico;
+				total2 = total2 + valorTotalASerPAgo;
+				
 				numeroTotalDeServicos = 0;
 				valorTotalASerPAgo = 0;
 				valorTotalDoServico = 0;
@@ -262,7 +271,7 @@ public class VisualizarRelatorios extends JFrame {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
-
+						
 						numeroTotalDeServicos++;
 					}
 				}
@@ -280,6 +289,9 @@ public class VisualizarRelatorios extends JFrame {
 
 				modelo.addRow(dados);
 
+				total = total + valorTotalDoServico;
+				total2 = total2 + valorTotalASerPAgo;
+				
 				numeroTotalDeServicos = 0;
 				valorTotalASerPAgo = 0;
 				valorTotalDoServico = 0;
@@ -325,6 +337,9 @@ public class VisualizarRelatorios extends JFrame {
 
 				modelo.addRow(dados);
 
+				total = total + valorTotalDoServico;
+				total2 = total2 + valorTotalASerPAgo;
+				
 				numeroTotalDeServicos = 0;
 				valorTotalASerPAgo = 0;
 				valorTotalDoServico = 0;
@@ -372,6 +387,9 @@ public class VisualizarRelatorios extends JFrame {
 
 				modelo.addRow(dados);
 
+				total = total + valorTotalDoServico;
+				total2 = total2 + valorTotalASerPAgo;
+				
 				numeroTotalDeServicos = 0;
 				valorTotalASerPAgo = 0;
 				valorTotalDoServico = 0;
@@ -417,6 +435,9 @@ public class VisualizarRelatorios extends JFrame {
 
 				modelo.addRow(dados);
 
+				total = total + valorTotalDoServico;
+				total2 = total2 + valorTotalASerPAgo;
+				
 				numeroTotalDeServicos = 0;
 				valorTotalASerPAgo = 0;
 				valorTotalDoServico = 0;
@@ -459,7 +480,7 @@ public class VisualizarRelatorios extends JFrame {
 		panel.setLayout(null);
 
 		JLabel lblLucroTotal = new JLabel("Valor total pesquisado:");
-		lblLucroTotal.setBounds(6, 4, 138, 14);
+		lblLucroTotal.setBounds(6, 4, 174, 14);
 		panel.add(lblLucroTotal);
 
 		JLabel lblValor = new JLabel("R$ "
@@ -539,6 +560,13 @@ public class VisualizarRelatorios extends JFrame {
 		JLabel lblNewLabel = new JLabel("Valor total a ser pago para o barbeiro:");
 		lblNewLabel.setBounds(6, 4, 235, 14);
 		painelTotalPago.add(lblNewLabel);
+		
+		JLabel lblvalorTotalDoBarbeiro = new JLabel("R$ "
+				+ String.valueOf(decimal.format(total2)));
+		lblvalorTotalDoBarbeiro.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblvalorTotalDoBarbeiro.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblvalorTotalDoBarbeiro.setBounds(476, 4, 174, 14);
+		painelTotalPago.add(lblvalorTotalDoBarbeiro);
 	}
 
 	private CategoryDataset createDatasetRelatorio() throws SQLException,
