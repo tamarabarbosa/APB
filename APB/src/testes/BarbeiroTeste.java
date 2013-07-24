@@ -193,6 +193,11 @@ public class BarbeiroTeste {
 	}
 	
 	@Test
+	public void testeParaGetterDeTempNomeDeBarbeiro() {
+		assertEquals(null, Barbeiro.getTempNome());
+	}
+	
+	@Test
 	public void setDeBarbeiroDeveFuncionar() {
 		try {
 			barbeiro.setNome("Alessandro");
@@ -202,6 +207,12 @@ public class BarbeiroTeste {
 			e.printStackTrace();
 		}
 		assertEquals("Alessandro", barbeiro.getNome());
+	}
+	
+	@Test (expected = BarbeiroException.class)
+	public void nomeComNumero() throws BarbeiroException {
+		barbeiro.setNome("J040");
+		Assert.fail("Deve lançar uma exceção");
 	}
 	
 	@Test (expected =  BarbeiroException.class)

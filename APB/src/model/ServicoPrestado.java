@@ -53,8 +53,7 @@ public class ServicoPrestado {
 			throw new NullPointerException(NOME_BRANCO);
 		else if ("".equals(nomeServico))
 			throw new ServicoException(NOME_BRANCO);
-		else if (nomeServico.matches("^[[ ]|\\p{L}*]+$")) // inclui letras
-															// acentuadas
+		else if (nomeServico.matches("^[[ ]|\\p{L}*]+$")) 
 			this.nomeServico = nomeServico;
 		else
 			throw new ServicoException(NOME_INVALIDO);

@@ -11,19 +11,18 @@ public class Barbeiro {
 	private String cadeira;
 	private static String tempNome;
 
+	private final String NOME_INVALIDO = "Nome Inválido";
 	private final String NOME_BRANCO = "Nome em Branco";
-	private final String CPF_INVALIDO = "CPF Inv�lido";
+	private final String CPF_INVALIDO = "CPF Inválido";
 	private final String CPF_BRANCO = "CPF em Branco";
 	private final String RG_BRANCO = "RG em Branco";
-	private final String RG_INVALIDO = "RG Inv�lido";
-	private final String TELEFONE_INVALIDO = "Telefone Inv�lido";
+	private final String RG_INVALIDO = "RG Inválido";
+	private final String TELEFONE_INVALIDO = "Telefone Inválido";
 	private final String TELEFONE_BRANCO = "Telefone em Branco";
-	private final String CADEIRA_INVALIDA = "Cadeira Inv�lida";
+	private final String CADEIRA_INVALIDA = "Cadeira Inválida";
 	private final String CADEIRA_BRANCO = "Campo Cadeira em Branco";
 
-	public Barbeiro() {
-
-	}
+	public Barbeiro() {}
 
 	public Barbeiro(String nome, String cpf, String rg, String telefone,
 			String cadeira) throws BarbeiroException {
@@ -74,12 +73,14 @@ public class Barbeiro {
 			throw new NullPointerException(NOME_BRANCO);
 		else if ("".equals(nome))
 			throw new BarbeiroException(NOME_BRANCO);
-		else 
-			this.nome = nome;
+		else if (nome.matches("^[[ ]|\\p{L}*]+$"))
+			this.nome= nome;
+		else
+			throw new BarbeiroException(NOME_INVALIDO);
 	}
 
 	public void setCpf(String cpf) throws BarbeiroException {
-		// Exemplo CPF v�lido: 493.751.185-84
+		// Exemplo CPF válido: 493.751.185-84
 		try {
 			if (cpf == null)
 				throw new NullPointerException(CPF_BRANCO);
@@ -87,8 +88,7 @@ public class Barbeiro {
 				throw new AssertionError(CPF_BRANCO);
 			else if (cpf.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
 				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]
-						+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
-
+				+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
 			if (this.validarCpf(cpf))
 				this.cpf = cpf;
 			else
