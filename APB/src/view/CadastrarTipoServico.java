@@ -106,6 +106,8 @@ public class CadastrarTipoServico extends JFrame {
 					dispose();
 				} catch (ServicoException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
+				} catch (ArrayIndexOutOfBoundsException e1) {
+					mostrarMensagemDeErro("Selecione um Tipo de Serviço");
 				}
 			}
 		});
@@ -165,7 +167,7 @@ public class CadastrarTipoServico extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Aten��o",
+		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
