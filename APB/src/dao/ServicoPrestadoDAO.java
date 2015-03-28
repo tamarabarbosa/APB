@@ -38,10 +38,11 @@ public class ServicoPrestadoDAO {
 	public boolean excluir(ServicoPrestado servico) throws SQLException {
 		if (servico != null) {
 			this.updateQuery("DELETE FROM servicoprestado WHERE "
-				+ "servicoprestado.idservicoprestado = \"" + pesquisar(servico)+ "\";");
+					+ "servicoprestado.idservicoprestado = \""
+					+ pesquisar(servico) + "\";");
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -70,12 +71,15 @@ public class ServicoPrestadoDAO {
 		preparedStatement.close();
 		connection.close();
 	}
-	
-	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico) throws SQLException {
+
+	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico)
+			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		ResultSet rs = connection.createStatement().executeQuery(
+		ResultSet rs = connection
+				.createStatement()
+				.executeQuery(
 						"SELECT nome, preco, barbeiro, data FROM servicoprestado ORDER BY data;");
-		
+
 		return rs;
 	}
 
