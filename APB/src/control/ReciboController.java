@@ -15,7 +15,8 @@ public class ReciboController {
 	public static ReciboController getInstance() {
 		if (instance == null) {
 			instance = new ReciboController();
-		} else {
+		} 
+		else {
 			/* nothing to do. */
 		}
 		return instance;
