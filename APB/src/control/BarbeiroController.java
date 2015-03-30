@@ -17,7 +17,8 @@ public class BarbeiroController {
 		if (instance == null) {
 			instance = new BarbeiroController();
 			return instance;
-		} else {
+		} 
+		else {
 			return instance;
 		}
 	}
