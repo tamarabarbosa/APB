@@ -16,7 +16,8 @@ public class AgendaController {
 	public boolean incluir(Agenda agenda) throws SQLException {
 		if (agenda == null) {
 			return false;
-		} else {
+		} 
+		else {
 			AgendaDAO.getInstance().incluir(agenda);
 			return true;
 		}
@@ -25,7 +26,8 @@ public class AgendaController {
 	public boolean alterar(String nome, Agenda agenda) throws SQLException {
 		if (agenda == null) {
 			return false;
-		} else {
+		} 
+		else {
 			Agenda agenda_alterado = agenda;
 			AgendaDAO.getInstance().alterar(nome, agenda_alterado, agenda);
 			return true;
@@ -35,7 +37,8 @@ public class AgendaController {
 	public boolean excluir(Agenda contato) throws SQLException {
 		if (contato == null) {
 			return false;
-		} else {
+		} 
+		else {
 			AgendaDAO.getInstance().excluir(contato);
 			return true;
 		}
@@ -45,7 +48,8 @@ public class AgendaController {
 		if (instance == null) {
 			instance = new AgendaController();
 			return instance;
-		} else {
+		} 
+		else {
 			return instance;
 		}
 	}
