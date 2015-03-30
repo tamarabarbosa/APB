@@ -13,13 +13,13 @@ public class BarbeiroDAO {
 
 	private BarbeiroDAO() {
 	}
-
+	//this method check the existence of the barber in the database
 	public static BarbeiroDAO getInstance() {
 		if (instance == null)
 			instance = new BarbeiroDAO();
 		return instance;
 	}
-
+	// include the new barber in the database
 	public boolean incluir(Barbeiro barbeiro) throws SQLException {
 		if (barbeiro == null)
 			return false;
@@ -33,7 +33,7 @@ public class BarbeiroDAO {
 
 		return true;
 	}
-
+	// update the barber in the database
 	public boolean alterar(String nome, Barbeiro barbeiro_alterado,
 			Barbeiro barbeiro) throws SQLException {
 		if (barbeiro_alterado == null || barbeiro == null)
@@ -49,7 +49,7 @@ public class BarbeiroDAO {
 
 		return true;
 	}
-
+	// exclude the new barber in the database
 	public boolean excluir(Barbeiro barbeiro) throws SQLException {
 		if (barbeiro == null)
 			return false;
@@ -58,7 +58,7 @@ public class BarbeiroDAO {
 				+ barbeiro.getNome() + "\";");
 		return true;
 	}
-
+	//search a barber in the database
 	public ResultSet pesquisar() throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
@@ -67,7 +67,7 @@ public class BarbeiroDAO {
 
 		return rs;
 	}
-
+	//this method is responsible for connection with database
 	public void updateQuery(String message) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
@@ -76,7 +76,7 @@ public class BarbeiroDAO {
 		preparedStatement.close();
 		connection.close();
 	}
-
+	//this method shows barbers in the database
 	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -85,7 +85,7 @@ public class BarbeiroDAO {
 
 		return rs;
 	}
-
+	//this method searches the barber by name
 	public ResultSet pesquisarPorNome(Barbeiro barbeiro) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
