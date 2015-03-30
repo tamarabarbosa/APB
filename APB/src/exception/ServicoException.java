@@ -1,8 +1,8 @@
 package exception;
 
 @SuppressWarnings("serial")
-public class ServicoException extends Exception{
-	
+public class ServicoException extends Exception {
+
 	public ServicoException() {
 		super();
 	}

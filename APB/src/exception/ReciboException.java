@@ -11,5 +11,4 @@ public class ReciboException extends Exception {
 		super(message);
 	}
 
-	
 }
