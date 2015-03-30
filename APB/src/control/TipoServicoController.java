@@ -13,7 +13,8 @@ public class TipoServicoController {
 	public boolean inserir(TipoServico tipoServico) throws SQLException {
 		if (tipoServico == null) {
 			return false;
-		} else {
+		} 
+		else {
 			TipoServicoDAO.getInstance().incluir(tipoServico);
 			return true;
 		}
@@ -23,7 +24,8 @@ public class TipoServicoController {
 			throws SQLException {
 		if (tipoServico == null) {
 			return false;
-		} else {
+		} 
+		else {
 			TipoServico tipoServico_alterado = tipoServico;
 			TipoServicoDAO.getInstance().alterar(nome, tipoServico_alterado,
 					tipoServico);
@@ -35,7 +37,8 @@ public class TipoServicoController {
 
 		if (tipoServico == null) {
 			return false;
-		} else {
+		} 
+		else {
 			TipoServicoDAO.getInstance().excluir(tipoServico);
 			return true;
 		}
@@ -47,7 +50,8 @@ public class TipoServicoController {
 	public static TipoServicoController getInstance() {
 		if (instance == null){
 			instance = new TipoServicoController();
-		}else{
+		}
+		else {
 			/* nothing to do. */
 		}
 		return instance;
