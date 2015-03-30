@@ -12,9 +12,13 @@ public class ServicoPrestadoController {
 	}
 
 	public static ServicoPrestadoController getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new ServicoPrestadoController();
+		} else {
+			/* nothing to do. */
+		}
 		return instance;
+
 	}
 
 	private static ServicoPrestadoController instance;
@@ -23,18 +27,18 @@ public class ServicoPrestadoController {
 		if (servico != null) {
 			ServicoPrestadoDAO.getInstance().incluir(servico);
 			return true;
+		} else {
+			return false;
 		}
-
-		return false;
 	}
 
 	public boolean excluir(ServicoPrestado servico) throws SQLException {
 		if (servico != null) {
 			ServicoPrestadoDAO.getInstance().excluir(servico);
 			return true;
-
+		} else {
+			return false;
 		}
-		return false;
 	}
 
 	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico)

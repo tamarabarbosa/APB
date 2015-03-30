@@ -45,8 +45,11 @@ public class TipoServicoController {
 	}
 
 	public static TipoServicoController getInstance() {
-		if (instance == null)
+		if (instance == null){
 			instance = new TipoServicoController();
+		}else{
+			/* nothing to do. */
+		}
 		return instance;
 	}
 

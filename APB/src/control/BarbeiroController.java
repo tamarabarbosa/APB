@@ -14,34 +14,41 @@ public class BarbeiroController {
 	}
 
 	public static BarbeiroController getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new BarbeiroController();
-		return instance;
+			return instance;
+		} else {
+			return instance;
+		}
 	}
 
 	public boolean inserir(Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null)
+		if (barbeiro == null) {
 			return false;
-
-		BarbeiroDAO.getInstance().incluir(barbeiro);
-		return true;
+		} else {
+			BarbeiroDAO.getInstance().incluir(barbeiro);
+			return true;
+		}
 	}
 
 	public boolean alterar(String nome, Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null)
+		if (barbeiro == null) {
 			return false;
-
-		Barbeiro barbeiro_alterado = barbeiro;
-		BarbeiroDAO.getInstance().alterar(nome, barbeiro_alterado, barbeiro);
-		return true;
+		} else {
+			Barbeiro barbeiro_alterado = barbeiro;
+			BarbeiroDAO.getInstance()
+					.alterar(nome, barbeiro_alterado, barbeiro);
+			return true;
+		}
 	}
 
 	public boolean excluir(Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null)
+		if (barbeiro == null) {
 			return false;
-
-		BarbeiroDAO.getInstance().excluir(barbeiro);
-		return true;
+		} else {
+			BarbeiroDAO.getInstance().excluir(barbeiro);
+			return true;
+		}
 	}
 
 	public ResultSet pesquisar() throws SQLException {

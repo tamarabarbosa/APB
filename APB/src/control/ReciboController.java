@@ -15,8 +15,11 @@ public class ReciboController {
 	public static ReciboController getInstance() {
 		if (instance == null) {
 			instance = new ReciboController();
+		} else {
+			/* nothing to do. */
 		}
 		return instance;
+
 	}
 
 	public ResultSet pesquisarServicosDoBarbeiro(String barbeiro,

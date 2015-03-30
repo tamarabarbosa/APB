@@ -50,8 +50,11 @@ public class RelatorioController {
 	}
 
 	public static RelatorioController getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new RelatorioController();
+		} else {
+			/* nothing to do. */
+		}
 		return instance;
 	}
 
