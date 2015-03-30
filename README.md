@@ -13,3 +13,6 @@ Refatoração para disciplina de Técnicas de Programação
 
 <h3>Equipe:</h3> 
 Thabata Granja, Lucas Freitas, Eduardo Brasil, Tâmara Barbosa
+
+- [Stylesheet](https://github.com/tamarabarbosa/APB/blob/master/Stylesheet.md)
+- [Folha de estilo](https://github.com/tamarabarbosa/APB/blob/master/FolhaDeEstilo.md)
