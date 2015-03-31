@@ -15,13 +15,13 @@ public class FactoryConnection {
 
 	private FactoryConnection() {
 	}
-
+	//this method create the connection with the database
 	public static FactoryConnection getInstance() {
 		if (instance == null)
 			instance = new FactoryConnection();
 		return instance;
 	}
-
+	//this method make the connection with the database
 	public Connection getConnection() throws SQLException {
 		Connection connection = null;
 		connection = DriverManager.getConnection(local, user, password);

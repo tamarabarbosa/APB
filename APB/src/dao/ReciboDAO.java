@@ -16,7 +16,7 @@ public class ReciboDAO {
 			instance = new ReciboDAO();
 		return instance;
 	}
-	
+	//this method search on the schedule works done by the barber
 	public ResultSet pesquisarServicosDoBarbeiro(String barbeiro, String dataInicial, String dataFinal) throws SQLException{
 		
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -27,7 +27,7 @@ public class ReciboDAO {
 		
 		return rs;
 	}
-	
+	//this method is responsible by connection
 	public void updateQuery(String message) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection

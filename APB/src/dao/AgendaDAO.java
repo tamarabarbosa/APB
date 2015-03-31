@@ -21,6 +21,7 @@ public class AgendaDAO {
 		return instance;
 	}
 
+	//this method include one schedule in the agenda
 	public boolean incluir(Agenda agenda) throws SQLException {
 		if (agenda == null)
 			return false;
@@ -31,7 +32,7 @@ public class AgendaDAO {
 				+ "\", " + "\"" + agenda.getDescricao() + "\"); ");
 		return true;
 	}
-
+	//this method change data on the schedule
 	public boolean alterar(String nome, Agenda agenda_alterado, Agenda agenda) throws SQLException {	
 		if(agenda == null || agenda_alterado == null)
 			return false;
@@ -45,7 +46,7 @@ public class AgendaDAO {
 			
 		return true;
 	}
-
+	//this method exclude one event on the schedule
 	public boolean excluir(Agenda contato) throws SQLException {
 		if(contato ==  null)
 			return false;
@@ -54,7 +55,7 @@ public class AgendaDAO {
 				+ contato.getTelefone() + "\";");
 		return true;
 	}
-
+	//this method is responsible to make connection with the database
 	public void updateQuery(String message) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(message);
@@ -62,7 +63,7 @@ public class AgendaDAO {
 		preparedStatement.close();
 		connection.close();
 	}
-	
+	//this method shows contacts registred on the schedule
 	public ResultSet mostrarContatosCadastrados(Agenda contato) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
@@ -70,7 +71,7 @@ public class AgendaDAO {
 		
 		return rs;
 	}
-	
+	//this method search by name in the schedule
 	public ResultSet pesquisarPorNome(Agenda contato) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM agenda WHERE "
@@ -79,7 +80,7 @@ public class AgendaDAO {
 
 		return rs;
 	}
-	
+	//this method search by phone in the schedule
 	public ResultSet pesquisarPorTelefone(Agenda contato) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection.prepareStatement("SELECT * FROM agenda WHERE "
