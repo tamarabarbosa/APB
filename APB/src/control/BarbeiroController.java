@@ -12,7 +12,7 @@ public class BarbeiroController {
 
 	private BarbeiroController() {
 	}
-
+	//this check if the instance is there
 	public static BarbeiroController getInstance() {
 		if (instance == null) {
 			instance = new BarbeiroController();
@@ -22,7 +22,7 @@ public class BarbeiroController {
 			return instance;
 		}
 	}
-
+	//this method include barber
 	public boolean inserir(Barbeiro barbeiro) throws SQLException {
 		if (barbeiro == null) {
 			return false;
@@ -31,7 +31,7 @@ public class BarbeiroController {
 			return true;
 		}
 	}
-
+	//this method change data of barber
 	public boolean alterar(String nome, Barbeiro barbeiro) throws SQLException {
 		if (barbeiro == null) {
 			return false;
@@ -42,7 +42,7 @@ public class BarbeiroController {
 			return true;
 		}
 	}
-
+	//this method exclude barber
 	public boolean excluir(Barbeiro barbeiro) throws SQLException {
 		if (barbeiro == null) {
 			return false;
@@ -51,16 +51,16 @@ public class BarbeiroController {
 			return true;
 		}
 	}
-
+	//this show results of search
 	public ResultSet pesquisar() throws SQLException {
 		return BarbeiroDAO.getInstance().pesquisar();
 	}
-
+	//this show results of barber registred
 	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro)
 			throws SQLException {
 		return BarbeiroDAO.getInstance().mostrarBarbeirosCadastrados(barbeiro);
 	}
-
+	//this show results of seach barber by name
 	public ResultSet pesquisarPorNome(Barbeiro barbeiro) throws SQLException {
 		return BarbeiroDAO.getInstance().pesquisarPorNome(barbeiro);
 	}

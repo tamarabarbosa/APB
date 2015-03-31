@@ -12,7 +12,7 @@ public class AgendaController {
 
 	private AgendaController() {
 	}
-
+	//this method include barber on the agenda
 	public boolean incluir(Agenda agenda) throws SQLException {
 		if (agenda == null) {
 			return false;
@@ -22,7 +22,7 @@ public class AgendaController {
 			return true;
 		}
 	}
-
+	//this method change barber on the agenda
 	public boolean alterar(String nome, Agenda agenda) throws SQLException {
 		if (agenda == null) {
 			return false;
@@ -33,7 +33,7 @@ public class AgendaController {
 			return true;
 		}
 	}
-
+	//this method exclude barber on the agenda
 	public boolean excluir(Agenda contato) throws SQLException {
 		if (contato == null) {
 			return false;
@@ -43,7 +43,7 @@ public class AgendaController {
 			return true;
 		}
 	}
-
+	//this method check if the instance is null case dont he set new agenda
 	public static AgendaController getInstance() {
 		if (instance == null) {
 			instance = new AgendaController();
@@ -53,16 +53,16 @@ public class AgendaController {
 			return instance;
 		}
 	}
-
+	//show results of contacts 
 	public ResultSet mostrarContatosCadastrados(Agenda contato)
 			throws SQLException {
 		return AgendaDAO.getInstance().mostrarContatosCadastrados(contato);
 	}
-
+	//show results by name
 	public ResultSet pesquisarPorNome(Agenda contato) throws SQLException {
 		return AgendaDAO.getInstance().pesquisarPorNome(contato);
 	}
-
+	//show results by phone
 	public ResultSet pesquisarPorTelefone(Agenda contato) throws SQLException {
 		return AgendaDAO.getInstance().pesquisarPorTelefone(contato);
 	}

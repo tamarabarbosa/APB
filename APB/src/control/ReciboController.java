@@ -11,7 +11,7 @@ public class ReciboController {
 
 	public ReciboController() {
 	}
-
+	//this check if the instance is there
 	public static ReciboController getInstance() {
 		if (instance == null) {
 			instance = new ReciboController();
@@ -22,7 +22,7 @@ public class ReciboController {
 		return instance;
 
 	}
-
+	//show results of search of barber service
 	public ResultSet pesquisarServicosDoBarbeiro(String barbeiro,
 			String dataInicial, String dataFinal) throws SQLException {
 

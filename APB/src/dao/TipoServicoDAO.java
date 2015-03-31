@@ -13,13 +13,13 @@ public class TipoServicoDAO {
 
 	private TipoServicoDAO() {
 	}
-
+	//this method check if existence of type of service in data base
 	public static TipoServicoDAO getInstance() {
 		if (instance == null)
 			instance = new TipoServicoDAO();
 		return instance;
 	}
-
+	//this method include type of service provided
 	public boolean incluir(TipoServico tipoServico) throws SQLException {
 		if (tipoServico == null)
 			return false;
@@ -30,7 +30,7 @@ public class TipoServicoDAO {
 
 		return true;
 	}
-
+	//this method change type of service provided
 	public boolean alterar(String nome, TipoServico tipoServico_alterado,
 			TipoServico tipoServico) throws SQLException {
 		if (tipoServico_alterado == null || tipoServico == null)
@@ -43,7 +43,7 @@ public class TipoServicoDAO {
 
 		return true;
 	}
-
+	//this method exclude type of service provided
 	public boolean excluir(TipoServico tipoServico) throws SQLException {
 		if (tipoServico == null)
 			return false;
@@ -53,7 +53,7 @@ public class TipoServicoDAO {
 				+ "\";");
 		return true;
 	}
-
+	//this method make connection with database
 	public void updateQuery(String message) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
@@ -62,7 +62,7 @@ public class TipoServicoDAO {
 		preparedStatement.close();
 		connection.close();
 	}
-
+	//this method show type of service registred
 	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -71,7 +71,7 @@ public class TipoServicoDAO {
 
 		return rs;
 	}
-
+	//this method search by name type of service 
 	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
