@@ -38,6 +38,7 @@ public class RelatorioController {
 				relatorio);
 	}
 
+	//this method set the search by service
 	public ResultSet pesquisarPorServico(Relatorio relatorio)
 			throws SQLException {
 		return RelatorioDAO.getInstance().pesquisarPorServico(relatorio);
