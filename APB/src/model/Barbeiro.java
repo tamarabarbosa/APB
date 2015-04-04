@@ -68,6 +68,7 @@ public class Barbeiro {
 		return cadeira;
 	}
 
+	//this setter define how the name of barber must be filled
 	public void setNome(String nome) throws BarbeiroException {
 		if (nome == null)
 			throw new NullPointerException(NOME_BRANCO);
@@ -79,8 +80,9 @@ public class Barbeiro {
 			throw new BarbeiroException(NOME_INVALIDO);
 	}
 
+	//this setter define how the CPF of barber must be filled
 	public void setCpf(String cpf) throws BarbeiroException {
-		// Exemplo CPF válido: 493.751.185-84
+		// Sample of valid CPF: 493.751.185-84
 		try {
 			if (cpf == null)
 				throw new NullPointerException(CPF_BRANCO);
@@ -98,6 +100,7 @@ public class Barbeiro {
 		}
 	}
 
+	//this setter define how the RG of barber must be filled
 	public void setRg(String rg) throws BarbeiroException {
 		if (rg == null)
 			throw new NullPointerException(RG_BRANCO);
@@ -111,7 +114,7 @@ public class Barbeiro {
 			throw new AssertionError(RG_INVALIDO);
 	}
 
-	
+	//this setter define how the telephone of barber must be filled
 	public void setTelefone(String telefone) throws BarbeiroException {
 		if (telefone == null)
 			throw new NullPointerException(TELEFONE_BRANCO);
@@ -123,6 +126,7 @@ public class Barbeiro {
 			throw new AssertionError(TELEFONE_INVALIDO);
 	}
 
+	//this setter define how the chair of barber must be filled
 	public void setCadeira(String cadeira) throws BarbeiroException {
 		if (cadeira == null)
 			throw new NullPointerException(CADEIRA_BRANCO);
@@ -144,6 +148,7 @@ public class Barbeiro {
 		Barbeiro.tempNome = tempNome;
 	}
 
+	//this method verify if the CPF was filled correctly 
 	private boolean validarCpf(String cpf) {
 		int d1, d2;
 		int digito1, digito2, resto;

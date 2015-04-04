@@ -36,6 +36,7 @@ public class Agenda {
 		return descricao;
 	}
 
+	//this method set how the name must be setted in appointment book
 	public void setNome(String nome) throws BarbeiroException {
 		if ("".equals(nome))
 			throw new BarbeiroException(NOME_BRANCO);
@@ -45,6 +46,7 @@ public class Agenda {
 			throw new BarbeiroException(NOME_INVALIDO);
 	}
 
+	//this method set how the telephone number must be setted in appointment book
 	public void setTelefone(String telefone) throws BarbeiroException {
 		if ("".equals(telefone))
 			throw new BarbeiroException(TELEFONE_BRANCO);

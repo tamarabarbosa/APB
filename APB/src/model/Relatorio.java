@@ -46,6 +46,7 @@ public class Relatorio {
 		return dataInicial;
 	}
 
+	//this setter define how the inicial date must be filled
 	public void setDataInicial(String dataInicial) throws RelatorioException,
 			NullPointerException, ParseException {
 		if (dataInicial == null)
@@ -69,6 +70,7 @@ public class Relatorio {
 		return dataFinal;
 	}
 
+	//this setter define how the final date must be filled
 	public void setDataFinal(String dataFinal) throws RelatorioException, NullPointerException,
 			ParseException {
 		
@@ -92,6 +94,7 @@ public class Relatorio {
 		return barbeiro;
 	}
 
+	//this setter define how the barber must be filled in report
 	public void setBarbeiro(String barbeiro) throws RelatorioException {
 		if (barbeiro == null)
 			throw new NullPointerException(BARBEIRO_BRANCO);
@@ -105,6 +108,7 @@ public class Relatorio {
 		return tipoServico;
 	}
 
+	//this setter define how the type of service must be filled
 	public void setTipoServico(String tipoServico) throws RelatorioException {
 		if (tipoServico == null)
 			throw new NullPointerException(TIPO_SERVICO_BRANCO);
@@ -114,6 +118,7 @@ public class Relatorio {
 			this.tipoServico = tipoServico;
 	}
 	
+	//this method converts the input date to according norms to ABNT
 	public String ConverterDataParaABNT(String data) throws ParseException{
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
