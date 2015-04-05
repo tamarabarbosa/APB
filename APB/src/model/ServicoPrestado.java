@@ -1,3 +1,4 @@
+/* This class is responsible to create a report to job done */
 package model;
 
 import java.util.Date;

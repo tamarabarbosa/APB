@@ -1,3 +1,4 @@
+/* This class is responsible to information the type of job is done */
 package model;
 
 import exception.ServicoException;
@@ -8,9 +9,9 @@ public class TipoServico {
 	private String preco;
 	private static String tempNome;
 
-	private final static String NOME_BRANCO = "Nome do Serviço em Branco";
-	private final String PRECO_INVALIDO = "Preço Inválido";
-	private final String PRECO_BRANCO = "Preço em Branco";
+	private final static String NOME_BRANCO = "Nome do Serviï¿½o em Branco";
+	private final String PRECO_INVALIDO = "Preï¿½o Invï¿½lido";
+	private final String PRECO_BRANCO = "Preï¿½o em Branco";
 
 	
 	public TipoServico(){
@@ -45,7 +46,7 @@ public class TipoServico {
 		else if (preco.matches("[\\d]{1,3},[\\d]{1,2}"))
 			this.preco = preco;
 		else
-			throw new IllegalArgumentException("Preço deve ser no formato: **,** ");
+			throw new IllegalArgumentException("Preï¿½o deve ser no formato: **,** ");
 	}
 
 	public static void setTempNome(String tempNome) throws ServicoException {

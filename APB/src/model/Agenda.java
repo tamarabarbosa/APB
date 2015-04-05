@@ -1,3 +1,5 @@
+/* This class is responsible to create the agenda. */
+
 package model;
 
 import exception.BarbeiroException;
@@ -9,9 +11,9 @@ public class Agenda {
 	private String descricao;
 	private static String tempNome;
 
-	private final String NOME_INVALIDO = "Nome Inválido";
+	private final String NOME_INVALIDO = "Nome Invï¿½lido";
 	private final String NOME_BRANCO = "Nome em Branco";
-	private final String TELEFONE_INVALIDO = "Telefone Inválido";
+	private final String TELEFONE_INVALIDO = "Telefone Invï¿½lido";
 	private final String TELEFONE_BRANCO = "Telefone em Branco";
 
 	public Agenda() {
