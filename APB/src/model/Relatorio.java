@@ -1,3 +1,4 @@
+/* This class is responsible to create a report of the barbers*/
 package model;
 
 import java.text.ParseException;

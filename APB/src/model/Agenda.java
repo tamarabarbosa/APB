@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 /*
 
 */
+=======
+/* This class is responsible to create the agenda. */
+>>>>>>> 4e1f00b71a881396d5b5d4242f274db1dc2cf43a
 
 package model;
 
@@ -16,10 +20,14 @@ public class Agenda {
 	//Declation of instance variables
 	private static String tempNome;
 
+<<<<<<< HEAD
 	//Declaration of the constants along the class
 	private final String NOME_INVALIDO = "Nome Inválido";
+=======
+	private final String NOME_INVALIDO = "Nome Invï¿½lido";
+>>>>>>> 4e1f00b71a881396d5b5d4242f274db1dc2cf43a
 	private final String NOME_BRANCO = "Nome em Branco";
-	private final String TELEFONE_INVALIDO = "Telefone Inválido";
+	private final String TELEFONE_INVALIDO = "Telefone Invï¿½lido";
 	private final String TELEFONE_BRANCO = "Telefone em Branco";
 
 	//this is the constructor of object "Agenda"
