@@ -14,8 +14,7 @@ public class ServicoPrestadoController {
 	public static ServicoPrestadoController getInstance() {
 		if (instance == null) {
 			instance = new ServicoPrestadoController();
-		} 
-		else {
+		} else {
 			/* nothing to do. */
 		}
 		return instance;
@@ -24,26 +23,27 @@ public class ServicoPrestadoController {
 
 	private static ServicoPrestadoController instance;
 
+	// Method used to insert a service
 	public boolean inserir(ServicoPrestado servico) throws SQLException {
 		if (servico != null) {
 			ServicoPrestadoDAO.getInstance().incluir(servico);
 			return true;
-		} 
-		else {
+		} else {
 			return false;
 		}
 	}
 
+	// Method used to delete a service
 	public boolean excluir(ServicoPrestado servico) throws SQLException {
 		if (servico != null) {
 			ServicoPrestadoDAO.getInstance().excluir(servico);
 			return true;
-		} 
-		else {
+		} else {
 			return false;
 		}
 	}
 
+	// Method that gives access to the registered services
 	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico)
 			throws SQLException {
 		return ServicoPrestadoDAO.getInstance()
