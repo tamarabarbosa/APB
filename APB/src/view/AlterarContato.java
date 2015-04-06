@@ -41,6 +41,7 @@ public class AlterarContato extends JFrame {
 		});
 	}
 
+	// These methods are used to initialize the components
 	public AlterarContato() {
 		setTitle("Alterar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -49,7 +50,7 @@ public class AlterarContato extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		textFieldNome = new JTextField();
 		textFieldNome.setBounds(83, 22, 341, 20);
 		contentPane.add(textFieldNome);
@@ -76,13 +77,13 @@ public class AlterarContato extends JFrame {
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricao.setBounds(10, 97, 63, 14);
 		contentPane.add(lblDescricao);
-		
+
 		try {
 			Agenda contato = new Agenda();
 			AgendaController agendaController = AgendaController.getInstance();
 			contato.setNome(Agenda.getTempNome());
 			ResultSet rs = agendaController.pesquisarPorNome(contato);
-				
+
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldTelefone.setText(rs.getString("telefone"));
@@ -98,6 +99,7 @@ public class AlterarContato extends JFrame {
 		JButton btnSalvarAlteracao = new JButton("Salvar Altera\u00E7\u00E3o");
 		btnSalvarAlteracao.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to initialize the buttons on the frame
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					Agenda agenda = new Agenda();
@@ -105,7 +107,8 @@ public class AlterarContato extends JFrame {
 					agenda.setTelefone(textFieldTelefone.getText());
 					agenda.setDescricao(textFieldDescricao.getText());
 
-					AgendaController AgendaController = control.AgendaController.getInstance();
+					AgendaController AgendaController = control.AgendaController
+							.getInstance();
 					AgendaController.alterar(nome, agenda);
 
 					JOptionPane.showMessageDialog(null, "Agenda "
@@ -121,8 +124,8 @@ public class AlterarContato extends JFrame {
 				} catch (SQLException k) {
 					mostrarMensagemDeErro(k.getMessage());
 				}
-			}	
-			
+			}
+
 		});
 		btnSalvarAlteracao.setBounds(83, 136, 153, 31);
 		contentPane.add(btnSalvarAlteracao);
@@ -130,8 +133,9 @@ public class AlterarContato extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to initialize the buttons on the frame
 			public void mouseClicked(MouseEvent e) {
-				
+
 				dispose();
 				CadastrarAgenda frame = new CadastrarAgenda();
 				frame.setVisible(true);
@@ -142,6 +146,7 @@ public class AlterarContato extends JFrame {
 		contentPane.add(btnVoltar);
 	}
 
+	// Method that shows the error message when a exception is triggered
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
