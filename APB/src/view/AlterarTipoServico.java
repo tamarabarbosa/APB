@@ -40,6 +40,7 @@ public class AlterarTipoServico extends JFrame {
 		});
 	}
 
+	// These methods are used to initialize the components
 	public AlterarTipoServico() {
 		setTitle("Alterar Tipo Servico");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,10 +70,11 @@ public class AlterarTipoServico extends JFrame {
 
 		try {
 			TipoServico tiposervico = new TipoServico();
-			TipoServicoController servicoController = TipoServicoController.getInstance();
+			TipoServicoController servicoController = TipoServicoController
+					.getInstance();
 			tiposervico.setNomeTipoServico(TipoServico.getTempNome());
 			ResultSet rs = servicoController.pesquisarPorNome(tiposervico);
-			
+
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldPreco.setText(rs.getString("preco"));
@@ -86,14 +88,17 @@ public class AlterarTipoServico extends JFrame {
 
 		JButton buttonSalvar = new JButton("Salvar");
 		buttonSalvar.addActionListener(new ActionListener() {
+			// This method is used to initialize the main frame of the
+			// application
 			public void actionPerformed(ActionEvent e) {
 				try {
 					TipoServico tipoServico = new TipoServico();
 					tipoServico.setNomeTipoServico(textFieldNome.getText());
 					tipoServico.setPreco(textFieldPreco.getText());
-					
-					TipoServicoController tipoServicoController = TipoServicoController.getInstance();
-					tipoServicoController.alterar(nome,tipoServico);
+
+					TipoServicoController tipoServicoController = TipoServicoController
+							.getInstance();
+					tipoServicoController.alterar(nome, tipoServico);
 
 					JOptionPane.showMessageDialog(null, "Tipo de Serviço "
 							+ textFieldNome.getText()
@@ -115,6 +120,8 @@ public class AlterarTipoServico extends JFrame {
 
 		JButton buttonLimpar = new JButton("Limpar Campos");
 		buttonLimpar.addActionListener(new ActionListener() {
+			// This method is used to initialize the panel to insert the
+			// components
 			public void actionPerformed(ActionEvent e) {
 				textFieldNome.setText("");
 				textFieldPreco.setText("");
@@ -125,6 +132,7 @@ public class AlterarTipoServico extends JFrame {
 
 		JButton buttonVoltar = new JButton("Voltar");
 		buttonVoltar.addActionListener(new ActionListener() {
+			// This method is used to initialize the text fields on the frame
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				CadastrarTipoServico frame = new CadastrarTipoServico();
@@ -135,8 +143,8 @@ public class AlterarTipoServico extends JFrame {
 		buttonVoltar.setBounds(144, 86, 128, 23);
 		contentPane.add(buttonVoltar);
 	}
-	
 
+	// Method that shows the error message when a exception is triggered
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
