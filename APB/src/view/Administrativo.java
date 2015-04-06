@@ -14,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
 
-
 @SuppressWarnings("serial")
 public class Administrativo extends JFrame {
 
@@ -40,6 +39,7 @@ public class Administrativo extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	// These methods are used to initialize the components
 	public Administrativo() {
 		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,6 +60,8 @@ public class Administrativo extends JFrame {
 		JButton btnBarbeiro = new JButton("Barbeiro");
 		btnBarbeiro.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to create the button and the action that open
+			// the Phonebook frame
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 				CadastrarBarbeiro frame = new CadastrarBarbeiro();
@@ -72,6 +74,8 @@ public class Administrativo extends JFrame {
 
 		JButton btnTipoServico = new JButton("Tipo de Servi\u00E7o");
 		btnTipoServico.addActionListener(new ActionListener() {
+			// This method is used to create the button and the action that open
+			// the Service Type frame
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				CadastrarTipoServico frame = new CadastrarTipoServico();
@@ -81,10 +85,12 @@ public class Administrativo extends JFrame {
 		});
 		btnTipoServico.setBounds(215, 45, 149, 37);
 		panel.add(btnTipoServico);
-		
+
 		JButton btnAgenda = new JButton("Agenda");
 		btnAgenda.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to create the button and the action that open
+			// the Phonebook frame
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 				CadastrarAgenda frame = new CadastrarAgenda();
@@ -94,9 +100,11 @@ public class Administrativo extends JFrame {
 		});
 		btnAgenda.setBounds(10, 93, 157, 37);
 		panel.add(btnAgenda);
-		
+
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
+			// This method is used to create the button and the action that open
+			// the Service Type frame
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				MenuPrincipal frame = new MenuPrincipal();
@@ -106,10 +114,12 @@ public class Administrativo extends JFrame {
 		});
 		btnVoltar.setBounds(151, 141, 89, 23);
 		panel.add(btnVoltar);
-		
+
 		JButton btnRecibo = new JButton("Recibo");
 		btnRecibo.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to create the button and the action that open
+			// the receipt frame
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 				GerarRecibo frame = null;
