@@ -23,6 +23,7 @@ import exception.BarbeiroException;
 @SuppressWarnings("serial")
 public class CadastrarBarbeiro extends JFrame {
 
+	// Creating a panel
 	private JPanel contentPane;
 
 	public static void main(String[] args) {
@@ -39,10 +40,12 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 	}
 
+	// Class constructor
 	public CadastrarBarbeiro() {
 		inicializarComponentes();
 	}
 
+	// Method that initialize the panel in the frame
 	public void inicializarComponentes() {
 		setTitle("Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -61,9 +64,11 @@ public class CadastrarBarbeiro extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			BarbeiroController barbeiroController = BarbeiroController.getInstance();
+			BarbeiroController barbeiroController = BarbeiroController
+					.getInstance();
 			Barbeiro barbeiro = new Barbeiro();
-			ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
+			ResultSet rs = barbeiroController
+					.mostrarBarbeirosCadastrados(barbeiro);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("nome");
@@ -82,6 +87,7 @@ public class CadastrarBarbeiro extends JFrame {
 		JButton botaoNovo = new JButton("Novo");
 		botaoNovo.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to create a table that contains the contacts
 			public void mouseClicked(MouseEvent e) {
 				dispose();
 				NovoBarbeiro frame;
@@ -92,7 +98,7 @@ public class CadastrarBarbeiro extends JFrame {
 				} catch (ParseException e1) {
 					e1.printStackTrace();
 				}
-	
+
 			}
 		});
 		botaoNovo.setBounds(494, 11, 158, 28);
@@ -101,9 +107,11 @@ public class CadastrarBarbeiro extends JFrame {
 		JButton botaoAlterar = new JButton("Alterar");
 		botaoAlterar.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to initialize the buttons
 			public void mouseClicked(MouseEvent e) {
-				try{
-					Barbeiro.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
+				try {
+					Barbeiro.setTempNome(modelo.getValueAt(
+							table.getSelectedRow(), 0).toString());
 					AlterarBarbeiro frame = new AlterarBarbeiro();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
@@ -119,17 +127,21 @@ public class CadastrarBarbeiro extends JFrame {
 		JButton botaoRemover = new JButton("Remover");
 		botaoRemover.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to create the button and the action that open
+			// the frame that register a new barber
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					String nome = (String) table.getValueAt(
+							table.getSelectedRow(), 0);
 					Barbeiro barbeiro = new Barbeiro();
 					barbeiro.setNome(nome);
-					
+
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						BarbeiroController barbeiroController = BarbeiroController.getInstance();
+						BarbeiroController barbeiroController = BarbeiroController
+								.getInstance();
 						barbeiroController.excluir(barbeiro);
 
 						dispose();
@@ -148,7 +160,7 @@ public class CadastrarBarbeiro extends JFrame {
 		});
 		botaoRemover.setBounds(494, 89, 158, 28);
 		contentPane.add(botaoRemover);
-		
+
 		JButton botaoVoltar = new JButton("Voltar");
 		botaoVoltar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -163,6 +175,7 @@ public class CadastrarBarbeiro extends JFrame {
 		contentPane.add(botaoVoltar);
 	}
 
+	// Method that shows a error message
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
