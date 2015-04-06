@@ -41,6 +41,7 @@ public class CadastrarServicoPrestado extends JFrame {
 		});
 	}
 
+	// These methods are used to initialize the components
 	public CadastrarServicoPrestado() {
 		setTitle("Servi\u00E7os Prestados");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,9 +60,11 @@ public class CadastrarServicoPrestado extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+			ServicoPrestadoController servicoController = ServicoPrestadoController
+					.getInstance();
 			ServicoPrestado servico = new ServicoPrestado();
-			ResultSet rs = servicoController.mostrarServicosPrestadosCadastrados(servico);
+			ResultSet rs = servicoController
+					.mostrarServicosPrestadosCadastrados(servico);
 			while (rs.next()) {
 				String[] dados = new String[4];
 				dados[0] = rs.getString("nome");
@@ -81,6 +84,8 @@ public class CadastrarServicoPrestado extends JFrame {
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to initialize the main frame of the
+			// application
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 				NovoServicoPrestado frame = new NovoServicoPrestado();
@@ -94,6 +99,7 @@ public class CadastrarServicoPrestado extends JFrame {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to create a table that contains the contacts
 			public void mouseClicked(MouseEvent e) {
 				PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
 				frame.setVisible(true);
@@ -106,6 +112,7 @@ public class CadastrarServicoPrestado extends JFrame {
 
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addActionListener(new ActionListener() {
+			// This method is used to initialize the buttons
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					String nome = (String) table.getValueAt(
@@ -153,6 +160,8 @@ public class CadastrarServicoPrestado extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
+			// This method is used to create the button and the action that open
+			// the main frame
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 				MenuPrincipal frame = new MenuPrincipal();
@@ -164,6 +173,7 @@ public class CadastrarServicoPrestado extends JFrame {
 		contentPane.add(btnVoltar);
 	}
 
+	// Method that shows the error message when a exception is triggered
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);

@@ -33,6 +33,7 @@ public class CadastrarTipoServico extends JFrame {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			// Method that initializes the window registration service type
 			public void run() {
 				try {
 					CadastrarTipoServico frame = new CadastrarTipoServico();
@@ -47,6 +48,7 @@ public class CadastrarTipoServico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	// Class constructor
 	public CadastrarTipoServico() {
 		setTitle("Tipo de Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,9 +66,11 @@ public class CadastrarTipoServico extends JFrame {
 				new String[] { "Serviço", "Valor" });
 		final JTable table = new JTable(modelo);
 		try {
-			TipoServicoController servicoController = TipoServicoController.getInstance();
-			TipoServico servico= new TipoServico();
-			ResultSet rs = servicoController.mostrarTipoServicoCadastrados(servico);
+			TipoServicoController servicoController = TipoServicoController
+					.getInstance();
+			TipoServico servico = new TipoServico();
+			ResultSet rs = servicoController
+					.mostrarTipoServicoCadastrados(servico);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("nome");
@@ -82,6 +86,7 @@ public class CadastrarTipoServico extends JFrame {
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addMouseListener(new MouseAdapter() {
 			@Override
+			// Start all needed view components
 			public void mouseClicked(MouseEvent arg0) {
 
 				dispose();
@@ -97,9 +102,12 @@ public class CadastrarTipoServico extends JFrame {
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addMouseListener(new MouseAdapter() {
 			@Override
+			// // VIEW method that calls the window changeTypeService to make a
+			// change
 			public void mouseClicked(MouseEvent e) {
 				try {
-					TipoServico.setTempNome(modelo.getValueAt(table.getSelectedRow(), 0).toString());
+					TipoServico.setTempNome(modelo.getValueAt(
+							table.getSelectedRow(), 0).toString());
 					AlterarTipoServico frame = new AlterarTipoServico();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
@@ -117,11 +125,13 @@ public class CadastrarTipoServico extends JFrame {
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addMouseListener(new MouseAdapter() {
 			@Override
+			// // VIEW method that performs a delete of a Type of Service
 			public void mouseClicked(MouseEvent e) {
-				String nome = (String) table.getValueAt(table.getSelectedRow(),	0);
+				String nome = (String) table.getValueAt(table.getSelectedRow(),
+						0);
 				TipoServico tipoServico = new TipoServico();
-				
-				try {	
+
+				try {
 					tipoServico.setNomeTipoServico(nome);
 				} catch (ServicoException e1) {
 					e1.printStackTrace();
@@ -131,13 +141,14 @@ public class CadastrarTipoServico extends JFrame {
 						"Remover " + nome + " da lista?");
 
 				if (confirmacao == JOptionPane.YES_OPTION) {
-					TipoServicoController tipoServicoController = TipoServicoController.getInstance();
+					TipoServicoController tipoServicoController = TipoServicoController
+							.getInstance();
 					try {
 						tipoServicoController.excluir(tipoServico);
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
-					
+
 					dispose();
 					CadastrarTipoServico frame = new CadastrarTipoServico();
 					frame.setVisible(true);
@@ -152,6 +163,7 @@ public class CadastrarTipoServico extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setBounds(380, 228, 94, 23);
 		btnVoltar.addActionListener(new ActionListener() {
+			// VIEW method of returning to the administrative window
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				Administrativo frame = new Administrativo();
@@ -162,10 +174,12 @@ public class CadastrarTipoServico extends JFrame {
 		contentPane.add(btnVoltar);
 	}
 
+	// temporaryName getter
 	public static String getNomeTemp() {
 		return nomeTemp;
 	}
 
+	// Display the error message that occurred
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);
