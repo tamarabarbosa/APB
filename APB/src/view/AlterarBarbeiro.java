@@ -44,8 +44,8 @@ public class AlterarBarbeiro extends JFrame {
 		});
 	}
 
-	public AlterarBarbeiro()  {
-		
+	// Constructor
+	public AlterarBarbeiro() {
 
 		setTitle("Alterar Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,11 +63,11 @@ public class AlterarBarbeiro extends JFrame {
 		JLabel labelNome = new JLabel("Nome:");
 		labelNome.setBounds(21, 14, 46, 14);
 		contentPane.add(labelNome);
-		
+
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setBounds(21, 43, 31, 14);
 		contentPane.add(lblCpf);
-		
+
 		textFieldCpf = new JTextField();
 		textFieldCpf.setBounds(92, 40, 354, 20);
 		contentPane.add(textFieldCpf);
@@ -81,7 +81,7 @@ public class AlterarBarbeiro extends JFrame {
 		JLabel labelRg = new JLabel("RG:");
 		labelRg.setBounds(21, 77, 46, 14);
 		contentPane.add(labelRg);
-		
+
 		textFieldTelefone = new JTextField();
 		textFieldTelefone.setColumns(10);
 		textFieldTelefone.setBounds(92, 102, 354, 20);
@@ -102,11 +102,12 @@ public class AlterarBarbeiro extends JFrame {
 
 		try {
 			Barbeiro barbeiro = new Barbeiro();
-			BarbeiroController barbeiroController = BarbeiroController.getInstance();
+			BarbeiroController barbeiroController = BarbeiroController
+					.getInstance();
 			barbeiro.setNome(Barbeiro.getTempNome());
-			
+
 			ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
-			
+
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
 				textFieldCpf.setText(rs.getString("cpf"));
@@ -178,10 +179,10 @@ public class AlterarBarbeiro extends JFrame {
 		});
 		buttonVoltar.setBounds(158, 196, 125, 23);
 		contentPane.add(buttonVoltar);
-		
-		
+
 	}
 
+	// Method used to show an error message for exception treatment
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Aten��o",
 				JOptionPane.INFORMATION_MESSAGE);

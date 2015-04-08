@@ -55,7 +55,8 @@ public class APB extends JFrame {
 		lblBemVindo.setBounds(195, 13, 160, 38);
 		contentPane.add(lblBemVindo);
 
-		JLabel lblAPB = new JLabel("Automa\u00E7\u00E3o de Processos da Barbearia");
+		JLabel lblAPB = new JLabel(
+				"Automa\u00E7\u00E3o de Processos da Barbearia");
 		lblAPB.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblAPB.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAPB.setBounds(127, 175, 288, 57);
@@ -63,6 +64,8 @@ public class APB extends JFrame {
 
 		JButton btnIniciar = new JButton("Iniciar");
 		btnIniciar.addActionListener(new ActionListener() {
+			// This method is used to initialize the main frame of the
+			// application
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
 				MenuPrincipal frame = new MenuPrincipal();
@@ -85,11 +88,13 @@ public class APB extends JFrame {
 				.getResource("/resources/cancel-button-icone-7221-48.png")));
 		btnFechar.setBounds(338, 242, 145, 65);
 		contentPane.add(btnFechar);
-		
+
 		JLabel lblIcone = new JLabel("");
-		lblIcone.setIcon(new ImageIcon(APB.class.getResource("/resources/19fb55_f0fe0bafb3f2bec53376838a10e0825a.jpg_srz_401_146_75_22_0.50_1.20_0.00_jpg_srz.jpg")));
+		lblIcone.setIcon(new ImageIcon(
+				APB.class
+						.getResource("/resources/19fb55_f0fe0bafb3f2bec53376838a10e0825a.jpg_srz_401_146_75_22_0.50_1.20_0.00_jpg_srz.jpg")));
 		lblIcone.setBounds(82, 62, 401, 119);
 		contentPane.add(lblIcone);
-		
+
 	}
 }

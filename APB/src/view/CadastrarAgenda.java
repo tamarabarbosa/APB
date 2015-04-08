@@ -37,6 +37,7 @@ public class CadastrarAgenda extends JFrame {
 		});
 	}
 
+	// Class constructor
 	public CadastrarAgenda() {
 		setTitle("Agenda de Contatos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -54,11 +55,12 @@ public class CadastrarAgenda extends JFrame {
 				new String[] { "Nome", "Telefone", "Descri\u00E7\u00E3o" }) {
 			boolean[] columnEditables = new boolean[] { false, false, false };
 
+			// Method that initialize the frame
 			public boolean isCellEditable(int row, int column) {
 				return columnEditables[column];
 			}
 		};
-		
+
 		final JTable table = new JTable(modelo);
 		table.getColumnModel().getColumn(0).setResizable(false);
 		table.getColumnModel().getColumn(1).setResizable(false);
@@ -95,7 +97,7 @@ public class CadastrarAgenda extends JFrame {
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
-				
+
 			}
 		});
 		btnNovo.setBounds(455, 24, 94, 23);
@@ -117,6 +119,7 @@ public class CadastrarAgenda extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
+			// // This method calls the register barber frame
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
 				Administrativo frame = new Administrativo();
@@ -128,6 +131,7 @@ public class CadastrarAgenda extends JFrame {
 		contentPane.add(btnVoltar);
 	}
 
+	// Method that shows a error message
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);

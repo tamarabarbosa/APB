@@ -27,6 +27,7 @@ public class ServicoPrestado {
 
 	}
 
+	// Class constructor
 	public ServicoPrestado(String nomeServico, String preco, String nomeBarbeiro) {
 		this.nomeServico = nomeServico;
 		this.preco = preco;
@@ -49,17 +50,19 @@ public class ServicoPrestado {
 		return data;
 	}
 
+	// Service name setter
 	public void setNomeServico(String nomeServico) throws ServicoException {
 		if (nomeServico == null)
 			throw new NullPointerException(NOME_BRANCO);
 		else if ("".equals(nomeServico))
 			throw new ServicoException(NOME_BRANCO);
-		else if (nomeServico.matches("^[[ ]|\\p{L}*]+$")) 
+		else if (nomeServico.matches("^[[ ]|\\p{L}*]+$"))
 			this.nomeServico = nomeServico;
 		else
 			throw new ServicoException(NOME_INVALIDO);
 	}
 
+	// Barber name setter
 	public void setNomeBarbeiro(String nomeBarbeiro) throws ServicoException {
 		if (nomeBarbeiro == null)
 			throw new NullPointerException(BARBEIRO_BRANCO);
@@ -71,6 +74,7 @@ public class ServicoPrestado {
 			throw new ServicoException(BARBEIRO_INVALIDO);
 	}
 
+	// Price setter
 	public void setPreco(String preco) throws ServicoException {
 		if (preco == null)
 			throw new NullPointerException(PRECO_BRANCO);
@@ -82,29 +86,29 @@ public class ServicoPrestado {
 			throw new ServicoException(PRECO_INVALIDO);
 	}
 
+	// Date setter
 	public void setData(String data) throws ServicoException, ParseException {
 
 		if (data == null)
 			throw new NullPointerException(DATA_BRANCO);
 		else if ("".equals(data))
 			throw new ServicoException(DATA_BRANCO);
-		else if (data.matches("[\\d]{1,4}-[\\d]{1,2}-[\\d]{1,2}")){
+		else if (data.matches("[\\d]{1,4}-[\\d]{1,2}-[\\d]{1,2}")) {
 			this.data = data;
-		}
-		else if (data.matches("[\\d]{1,2}/[\\d]{1,2}/[\\d]{1,4}")){
+		} else if (data.matches("[\\d]{1,2}/[\\d]{1,2}/[\\d]{1,4}")) {
 
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 			Date dataIso = sdf.parse(data);
 
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 			String dataISO = sdf2.format(dataIso);
-			
+
 			this.data = dataISO;
-		}
-		else
+		} else
 			throw new ServicoException(DATA_INVALIDA);
 	}
 
+	// Method to convert service date to ABNT
 	public String ConverterDataParaABNT(String data) throws ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
