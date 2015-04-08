@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-/*
-
-*/
-=======
-/* This class is responsible to create the agenda. */
->>>>>>> 4e1f00b71a881396d5b5d4242f274db1dc2cf43a
-
 package model;
 
 import exception.BarbeiroException;
@@ -17,20 +9,23 @@ public class Agenda {
 	private String telefone;
 	private String descricao;
 
-	//Declation of instance variables
+	//Declaration of instance variables
 	private static String tempNome;
 
-<<<<<<< HEAD
 	//Declaration of the constants along the class
 	private final String NOME_INVALIDO = "Nome Inválido";
-=======
-	private final String NOME_INVALIDO = "Nome Invï¿½lido";
->>>>>>> 4e1f00b71a881396d5b5d4242f274db1dc2cf43a
+	private final String NOME_INVALIDO = "Nome Inválido";
 	private final String NOME_BRANCO = "Nome em Branco";
-	private final String TELEFONE_INVALIDO = "Telefone Invï¿½lido";
+	private final String TELEFONE_INVALIDO = "Telefone Inválido";
 	private final String TELEFONE_BRANCO = "Telefone em Branco";
 
-	//this is the constructor of object "Agenda"
+	/**
+	* Constructor.
+	* 
+	* @param nome the name of the barber.
+	* @param telefone the phone number of the barber.
+	* @param descricao the description of the service.
+	*/
 	public Agenda(String nome, String telefone, String descricao) {
 		this.nome = nome;
 		this.telefone = telefone;
@@ -38,6 +33,8 @@ public class Agenda {
 	}
 
 	/**
+	* Get the current name.
+	*
  	* @return current name of the barber in appoiment book
  	*/
 	public String getNome() {
@@ -45,13 +42,17 @@ public class Agenda {
 	}
 
 	/**
- 	* @return current telephone of the barber in appoiment book
+	* Get the current phone number.
+	*
+ 	* @return current phone number of the barber in appoiment book
  	*/
 	public String getTelefone() {
 		return telefone;
 	}
 
 	/**
+	* Get the current description of service.
+	*
  	* @return the description of the barber in appoiment book
  	*/
 	public String getDescricao() {
