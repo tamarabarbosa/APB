@@ -5,31 +5,30 @@ import exception.BarbeiroException;
 public class Agenda {
 
 	//Declaration of the atributes  
-	private String nome;
-	private String telefone;
-	private String descricao;
+	private String name;
+	private String phoneNumber;
+	private String description;
 
 	//Declaration of instance variables
-	private static String tempNome;
+	private static String tempName;
 
 	//Declaration of the constants along the class
-	private final String NOME_INVALIDO = "Nome Inv·lido";
-	private final String NOME_INVALIDO = "Nome Inv·lido";
-	private final String NOME_BRANCO = "Nome em Branco";
-	private final String TELEFONE_INVALIDO = "Telefone Inv·lido";
-	private final String TELEFONE_BRANCO = "Telefone em Branco";
+	private final String INVALID_NAME = "Nome Inv√°lido";
+	private final String EMPTY_NAME = "Nome em Branco";
+	private final String INVALID_PHONE = "Telefone Inv√°lido";
+	private final String EMPTY_PHONE = "Telefone em Branco";
 
 	/**
 	* Constructor.
 	* 
-	* @param nome the name of the barber.
-	* @param telefone the phone number of the barber.
-	* @param descricao the description of the service.
+	* @param name is the name of the barber.
+	* @param phoneNumber is the phone number of the barber.
+	* @param description is the description of the service.
 	*/
-	public Agenda(String nome, String telefone, String descricao) {
-		this.nome = nome;
-		this.telefone = telefone;
-		this.descricao = descricao;
+	public Agenda(String name, String phoneNumber, String description) {
+		this.name = name;
+		this.phoneNumber = phoneNumber;
+		this.description = description;
 	}
 
 	/**
@@ -37,8 +36,8 @@ public class Agenda {
 	*
  	* @return current name of the barber in appoiment book
  	*/
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
 	/**
@@ -46,8 +45,8 @@ public class Agenda {
 	*
  	* @return current phone number of the barber in appoiment book
  	*/
-	public String getTelefone() {
-		return telefone;
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
 
 	/**
@@ -55,63 +54,63 @@ public class Agenda {
 	*
  	* @return the description of the barber in appoiment book
  	*/
-	public String getDescricao() {
-		return descricao;
+	public String getDescription() {
+		return description;
 	}
 
 	/**	 
 	* Set the name of the barber to search in appoiment book, case the name doesn't
 	* exist or the field setted empty, the method return an warning while
-	* the user doesn't filled correctly.
+	* the user doesn't fill correctly.
 	*
- 	* @param nome is the name of the barber to be placed into nome.
+ 	* @param name is the name of the barber to be placed into name.
  	* 
  	* @exception BarbeiroException if the field setted empty.
  	* @exception BarbeiroExcepetion if the name of barber doesn't exist. 
  	*/
-	public void setNome(String nome) throws BarbeiroException {
-		if ("".equals(nome))
-			throw new BarbeiroException(NOME_BRANCO);
-		else if (nome.matches("^[[ ]|\\p{L}*]+$"))
-			this.nome = nome;
+	public void setName(String name) throws BarbeiroException {
+		if ("".equals(name))
+			throw new BarbeiroException(EMPTY_NAME);
+		else if (name.matches("^[[ ]|\\p{L}*]+$"))
+			this.name = name;
 		else
-			throw new BarbeiroException(NOME_INVALIDO);
+			throw new BarbeiroException(INVALID_NAME);
 	}
 
 	/**	 
-	* Set the telephone of the barber to search in appoiment book, case the telephone doesn't
+	* Set the phone number of the barber to search in appoiment book, case the tphone number doesn't
 	* exist or the field setted empty, the method return an warning while
-	* the user doesn't filled correctly.
+	* the user doesn't fill correctly.
 	*
- 	* @param telefone is the telephone of the barber to be placed into telefone.
+ 	* @param phoneNumber is the phone number of the barber to be placed into phoneNumber.
  	*
  	* @exception BarbeiroException if the field setted empty.
- 	* @exception BarbeiroExcepetion if the telephone of barber doesn't exist. 
+ 	* @exception BarbeiroExcepetion if the phone number of barber doesn't exist. 
  	*/
-	public void setTelefone(String telefone) throws BarbeiroException {
-		if ("".equals(telefone))
-			throw new BarbeiroException(TELEFONE_BRANCO);
-		else if (telefone.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
-			this.telefone = telefone;
+	public void setPhoneNumber(String phoneNumber) throws BarbeiroException {
+		if ("".equals(phoneNumber))
+			throw new BarbeiroException(EMPTY_PHONE);
+		else if (phoneNumber.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
+			this.phoneNumber = phoneNumber;
 		else
-			throw new BarbeiroException(TELEFONE_INVALIDO);
+			throw new BarbeiroException(INVALID_PHONE);
 	}
 
 	/**	 
 	* Set the description of the service that the barber will do.
 	*
- 	* @param descricao is the description of the service to be placed into descricao.
+ 	* @param description is the description of the service to be placed into description.
  	*/
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public static String getTempNome() {
-		return tempNome;
+	public static String getTempName() {
+		return tempName;
 	}
 
-	public static void setTempNome(String tempNome) {
-		Agenda.tempNome = tempNome;
+	public static void setTempName(String tempName) {
+		Agenda.tempName = tempName;
 	}
 
 }
