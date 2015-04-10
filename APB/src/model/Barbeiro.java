@@ -1,3 +1,11 @@
+/*
+ * Package: model
+ * Class: Barbeiro.java
+ *
+ * Description: This class is reponsible to model the barber in system with all its 
+ * atributes and necessary methods to attribute them.
+*/
+
 package model;
 
 import exception.BarbeiroException;
@@ -118,13 +126,13 @@ public class Barbeiro {
 	}
 
 	/**	 
-	* Set the name of the barber to in system, in case of the field name didn't be filled 
+	* Set the name of the barber in system, in case of the field name isn't filled 
 	* the method return an warning while the user doesn't fill correctly.
 	*
  	* @param name is the name of the barber to be placed into name.
  	* 
  	* @throws NullPointerException if the name returns a null value.
- 	* @throws BarbeiroException if the user didn't fill de name.
+ 	* @throws BarbeiroException if the user didn't fill de name field.
  	* @throws BarbeiroException if the name can't be placed in nome.
  	*/
 	public void setName(String name) throws BarbeiroException {
@@ -139,13 +147,13 @@ public class Barbeiro {
 	}
 
 	/**	 
-	* Set the Individual Registration of the barber to in system, in case of the field "CPF" doesn't be filled 
+	* Set the Individual Registration of the barber in system, in case of the field "CPF" isn't filled 
 	* the method return an warning while the user doesn't fill correctly.
 	*
  	* @param cpf is the Individual Registration of the barber to be placed into cpfe.
  	* 
  	* @throws NullPointerException if the cpf returns a null value.
- 	* @throws BarbeiroException if the user didn't fill de cpf.
+ 	* @throws BarbeiroException if the user didn't fill de IR field.
  	* @throws BarbeiroException if the IR doesn't match with the valid IR.
  	*/
 	public void setIr(String ir) throws BarbeiroException {
@@ -167,7 +175,17 @@ public class Barbeiro {
 		}
 	}
 
-	//this setter define how the RG of barber must be filled
+	/**	 
+	* Set the Indentidade of the barber in system, in case of the field "Identidade" isn't filled 
+	* the method return an warning while the user doesn't fill correctly.
+	*
+ 	* @param id is the ID of the barber to be placed into id.
+ 	* 
+ 	* @throws NullPointerException if the id returns a null value.
+ 	* @throws BarbeiroException if the user didn't fill de ID field.
+ 	* @throws AssertionError if the ID doesn't match with the valid ID.
+ 	* @throws AssertionError if the user fill anything different of the valid ID.
+ 	*/
 	public void setId(String id) throws BarbeiroException {
 		if (id == null)
 			throw new NullPointerException(EMPTY_ID);
@@ -181,7 +199,16 @@ public class Barbeiro {
 			throw new AssertionError(INVALID_ID);
 	}
 
-	//this setter define how the telephone of barber must be filled
+	/**	 
+	* Set the phone number of the barber in system, in case of the field "Telefone" isn't filled 
+	* the method return an warning while the user doesn't fill correctly.
+	*
+ 	* @param phoneNumber is the phone number of the barber to be placed into phoneNumber.
+ 	* 
+ 	* @throws NullPointerException if the phoneNumber returns a null value.
+ 	* @throws BarbeiroException if the user didn't fill de phone number field.
+ 	* @throws AssertionError if the user fill anything different than was validated before.
+ 	*/
 	public void setPhoneNumber(String phoneNumber) throws BarbeiroException {
 		if (phoneNumber == null)
 			throw new NullPointerException(EMPTY_PHONE);
@@ -193,7 +220,17 @@ public class Barbeiro {
 			throw new AssertionError(INVALID_PHONE);
 	}
 
-	//this setter define how the chair of barber must be filled
+	/**	 
+	* Set the chair of the barber in system, in case of the field "Cadeira" isn't filled 
+	* the method return an warning while the user doesn't fill correctly.
+	*
+ 	* @param chair is the chair of the barber to be placed into chair.
+ 	* 
+ 	* @throws NullPointerException if the chair returns a null value.
+ 	* @throws BarbeiroException if the user didn't fill de id.
+ 	* @throws AssertionError if the ID doesn't match with the valid chair.
+ 	* @throws AssertionError if the user fill anything different of the chair ID.
+ 	*/
 	public void setChair(String chair) throws BarbeiroException {
 		if (chair == null)
 			throw new NullPointerException(EMPTY_CHAIR);
@@ -207,10 +244,20 @@ public class Barbeiro {
 			throw new BarbeiroException(INVALID_CHAIR);
 	}
 	
+	/**
+	* Get the current temporary name.
+	* 
+	* @return current temporary name of the barber in system.
+	*/
 	public static String getTempName() {
 		return tempName;
 	}
 
+	/**
+	* Set a temporary name to help in some logic methods along the code.
+	*
+	* @param tempName is the temporary name of the barber to be placed into tempName.
+	*/
 	public static void setTempName(String tempName) {
 		Barbeiro.tempName = tempName;
 	}

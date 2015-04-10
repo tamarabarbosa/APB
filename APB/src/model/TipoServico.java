@@ -1,4 +1,11 @@
-/* This class is responsible to information the type of job is done */
+/*
+ * Package: model
+ * Class: TipoServico.java
+ *
+ * Description: This class is reponsible to model the type of service done by the barber 
+ * in system with all its atributes and necessary methods to attribute them.
+*/
+
 package model;
 
 import exception.ServicoException;
