@@ -6,11 +6,11 @@ import java.sql.SQLException;
 import dao.RelatorioDAO;
 import model.Relatorio;
 
-public class RelatorioController {
+public class ReportController {
 
-	private static RelatorioController instance;
+	private static ReportController instance;
 
-	public RelatorioController() {
+	public ReportController() {
 	}
 
 	// Method that gives access to the registered reports and also gives the
@@ -63,9 +63,9 @@ public class RelatorioController {
 				relatorio);
 	}
 
-	public static RelatorioController getInstance() {
+	public static ReportController getInstance() {
 		if (instance == null) {
-			instance = new RelatorioController();
+			instance = new ReportController();
 		} else {
 			/* nothing to do. */
 		}
