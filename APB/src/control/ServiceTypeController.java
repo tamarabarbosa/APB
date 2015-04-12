@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import dao.TipoServicoDAO;
 import model.TipoServico;
 
-public class TipoServicoController {
+public class ServiceTypeController {
 
 	// Stores the current instance of the class
-	private static TipoServicoController instance;
+	private static ServiceTypeController instance;
 
 	// Method that modify a service type on the system
 	public boolean inserir(TipoServico tipoServico) throws SQLException {
@@ -45,14 +45,14 @@ public class TipoServicoController {
 		}
 	}
 
-	private TipoServicoController() {
+	private ServiceTypeController() {
 	}
 
 	// Return the current instance or instantiate a new one if 'instance' is
 	// null
-	public static TipoServicoController getInstance() {
+	public static ServiceTypeController getInstance() {
 		if (instance == null) {
-			instance = new TipoServicoController();
+			instance = new ServiceTypeController();
 		} else {
 			/* nothing to do. */
 		}
