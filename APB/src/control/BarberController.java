@@ -6,16 +6,16 @@ import java.sql.SQLException;
 import dao.BarbeiroDAO;
 import model.Barbeiro;
 
-public class BarbeiroController {
+public class BarberController {
 
-	private static BarbeiroController instance;
+	private static BarberController instance;
 
-	private BarbeiroController() {
+	private BarberController() {
 	}
 	//this check if the instance is there
-	public static BarbeiroController getInstance() {
+	public static BarberController getInstance() {
 		if (instance == null) {
-			instance = new BarbeiroController();
+			instance = new BarberController();
 			return instance;
 		} 
 		else {
