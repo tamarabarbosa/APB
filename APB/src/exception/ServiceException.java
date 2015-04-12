@@ -1,15 +1,15 @@
 package exception;
 
 @SuppressWarnings("serial")
-public class ServicoException extends Exception {
+public class ServiceException extends Exception {
 
 	// Class constructor
-	public ServicoException() {
+	public ServiceException() {
 		super();
 	}
 
 	// Method that returns the exception message
-	public ServicoException(String message) {
+	public ServiceException(String message) {
 		super(message);
 	}
 }
