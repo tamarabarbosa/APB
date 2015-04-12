@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import dao.ServicoPrestadoDAO;
 import model.ServicoPrestado;
 
-public class ServicoPrestadoController {
+public class DoneServiceController {
 
-	private ServicoPrestadoController() {
+	private DoneServiceController() {
 	}
 
-	public static ServicoPrestadoController getInstance() {
+	public static DoneServiceController getInstance() {
 		if (instance == null) {
-			instance = new ServicoPrestadoController();
+			instance = new DoneServiceController();
 		} else {
 			/* nothing to do. */
 		}
@@ -21,7 +21,7 @@ public class ServicoPrestadoController {
 
 	}
 
-	private static ServicoPrestadoController instance;
+	private static DoneServiceController instance;
 
 	// Method used to insert a service
 	public boolean inserir(ServicoPrestado servico) throws SQLException {
