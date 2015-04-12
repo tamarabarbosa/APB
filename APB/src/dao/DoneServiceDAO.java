@@ -7,20 +7,22 @@ import java.sql.SQLException;
 
 import model.ServicoPrestado;
 
-public class ServicoPrestadoDAO {
+public class DoneServiceDAO {
 
-	private static ServicoPrestadoDAO instance;
+	private static DoneServiceDAO instance;
 
-	private ServicoPrestadoDAO() {
+	private DoneServiceDAO() {
 
 	}
-	//this method check if existence of service
-	public static ServicoPrestadoDAO getInstance() {
+
+	// this method check if existence of service
+	public static DoneServiceDAO getInstance() {
 		if (instance == null)
-			instance = new ServicoPrestadoDAO();
+			instance = new DoneServiceDAO();
 		return instance;
 	}
-	//this method include a new job done
+
+	// this method include a new job done
 	public boolean incluir(ServicoPrestado servico) throws SQLException {
 		if (servico != null) {
 			this.updateQuery("INSERT INTO "
@@ -34,7 +36,8 @@ public class ServicoPrestadoDAO {
 
 		return false;
 	}
-	//this method exclude a job done
+
+	// this method exclude a job done
 	public boolean excluir(ServicoPrestado servico) throws SQLException {
 		if (servico != null) {
 			this.updateQuery("DELETE FROM servicoprestado WHERE "
@@ -45,7 +48,8 @@ public class ServicoPrestadoDAO {
 
 		return false;
 	}
-	//this method realize a seach to job done
+
+	// this method realize a seach to job done
 	private String pesquisar(ServicoPrestado servico) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
@@ -62,7 +66,8 @@ public class ServicoPrestadoDAO {
 		rs.next();
 		return rs.getString("idservicoprestado");
 	}
-	//this method update the query
+
+	// this method update the query
 	private void updateQuery(String message) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
@@ -71,7 +76,8 @@ public class ServicoPrestadoDAO {
 		preparedStatement.close();
 		connection.close();
 	}
-	//this method show the done services and registered
+
+	// this method show the done services and registered
 	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
