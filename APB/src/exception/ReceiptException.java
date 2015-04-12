@@ -1,16 +1,16 @@
 package exception;
 
 @SuppressWarnings("serial")
-public class BarbeiroException extends Exception {
+public class ReceiptException extends Exception {
 
 	// Constructor that references the constructor of the superclass
-	public BarbeiroException() {
+	public ReceiptException() {
 		super();
 	}
 
 	// Constructor that references the constructor of the superclass - Add a
 	// message of exception
-	public BarbeiroException(String message) {
+	public ReceiptException(String message) {
 		super(message);
 	}
 
