@@ -1,6 +1,6 @@
 /*
  * Package: model
- * Class: TipoServico.java
+ * Class: ServiceType.java
  *
  * Description: This class is reponsible to model the type of service done by the barber 
  * in system with all its atributes and necessary methods to attribute them.
@@ -8,11 +8,11 @@
 
 package model;
 
-import exception.ServicoException;
+import exception.ServiceException;
 
-public class TipoServico {
+public class ServiceType {
 
-	private String nomeTipoServico;
+	private String nomeServiceType;
 	private String preco;
 	private static String tempNome;
 
@@ -21,11 +21,11 @@ public class TipoServico {
 	private final String PRECO_BRANCO = "Pre�o em Branco";
 
 	
-	public TipoServico(){
+	public ServiceType(){
 	}
 	
-	public String getNomeTipoServico() {
-		return nomeTipoServico;
+	public String getNomeServiceType() {
+		return nomeServiceType;
 	}
 
 	public String getPreco() {
@@ -36,32 +36,32 @@ public class TipoServico {
 		return tempNome;
 	}
 
-	public void setNomeTipoServico(String nomeTipoServico) throws ServicoException {
-		if (nomeTipoServico == null)
+	public void setNomeServiceType(String nomeServiceType) throws ServiceException {
+		if (nomeServiceType == null)
 			throw new NullPointerException(NOME_BRANCO);
-		else if ("".equals(nomeTipoServico))
-			throw new ServicoException(NOME_BRANCO);
+		else if ("".equals(nomeServiceType))
+			throw new ServiceException(NOME_BRANCO);
 		else
-			this.nomeTipoServico = nomeTipoServico;
+			this.nomeServiceType = nomeServiceType;
 	}
 
-	public void setPreco(String preco) throws ServicoException {
+	public void setPreco(String preco) throws ServiceException {
 		if (preco == null)
 			throw new NullPointerException(PRECO_INVALIDO);
 		else if ("".equals(preco))
-			throw new ServicoException(PRECO_BRANCO);
+			throw new ServiceException(PRECO_BRANCO);
 		else if (preco.matches("[\\d]{1,3},[\\d]{1,2}"))
 			this.preco = preco;
 		else
 			throw new IllegalArgumentException("Pre�o deve ser no formato: **,** ");
 	}
 
-	public static void setTempNome(String tempNome) throws ServicoException {
+	public static void setTempNome(String tempNome) throws ServiceException {
 		if (tempNome == null)
 			throw new NullPointerException(NOME_BRANCO);
 		else if ("".equals(tempNome))
-			throw new ServicoException(NOME_BRANCO);
+			throw new ServiceException(NOME_BRANCO);
 		else
-			TipoServico.tempNome = tempNome;
+			ServiceType.tempNome = tempNome;
 	}
 }
