@@ -1,6 +1,6 @@
 /*
  * Package: model
- * Class: Barbeiro.java
+ * Class: Barber.java
  *
  * Description: This class is reponsible to model the barber in system with all its 
  * atributes and necessary methods to attribute them.
@@ -112,7 +112,7 @@ public class Barber {
 	* 
 	* @return current phone number of the barber in system.
 	*/
-	public String getPhoneNumber()) {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
@@ -259,7 +259,7 @@ public class Barber {
 	* @param tempName is the temporary name of the barber to be placed into tempName.
 	*/
 	public static void setTempName(String tempName) {
-		Barbeiro.tempName = tempName;
+		Barber.tempName = tempName;
 	}
 
 	//this method verify if the CPF was filled correctly 

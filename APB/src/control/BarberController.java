@@ -3,8 +3,8 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dao.BarbeiroDAO;
-import model.Barbeiro;
+import dao.BarberDAO;
+import model.Barber;
 
 public class BarberController {
 
@@ -23,46 +23,46 @@ public class BarberController {
 		}
 	}
 	//this method include barber
-	public boolean inserir(Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null) {
+	public boolean inserir(Barber barber) throws SQLException {
+		if (barber == null) {
 			return false;
 		} else {
-			BarbeiroDAO.getInstance().incluir(barbeiro);
+			BarberDAO.getInstance().incluir(barber);
 			return true;
 		}
 	}
 	//this method change data of barber
-	public boolean alterar(String nome, Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null) {
+	public boolean alterar(String nome, Barber barber) throws SQLException {
+		if (barber == null) {
 			return false;
 		} else {
-			Barbeiro barbeiro_alterado = barbeiro;
-			BarbeiroDAO.getInstance()
-					.alterar(nome, barbeiro_alterado, barbeiro);
+			Barber barber_alterado = barber;
+			BarberDAO.getInstance()
+					.alterar(nome, barber_alterado, barber);
 			return true;
 		}
 	}
 	//this method exclude barber
-	public boolean excluir(Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null) {
+	public boolean excluir(Barber barber) throws SQLException {
+		if (barber == null) {
 			return false;
 		} else {
-			BarbeiroDAO.getInstance().excluir(barbeiro);
+			BarberDAO.getInstance().excluir(barber);
 			return true;
 		}
 	}
 	//this show results of search
 	public ResultSet pesquisar() throws SQLException {
-		return BarbeiroDAO.getInstance().pesquisar();
+		return BarberDAO.getInstance().pesquisar();
 	}
 	//this show results of barber registred
-	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro)
+	public ResultSet showRegisteredBarbers(Barber barber)
 			throws SQLException {
-		return BarbeiroDAO.getInstance().mostrarBarbeirosCadastrados(barbeiro);
+		return BarberDAO.getInstance().showRegisteredBarbers(barber);
 	}
 	//this show results of seach barber by name
-	public ResultSet pesquisarPorNome(Barbeiro barbeiro) throws SQLException {
-		return BarbeiroDAO.getInstance().pesquisarPorNome(barbeiro);
+	public ResultSet pesquisarPorNome(Barber barber) throws SQLException {
+		return BarberDAO.getInstance().pesquisarPorNome(barber);
 	}
 
 }

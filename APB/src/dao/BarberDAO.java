@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Barbeiro;
+import model.Barber;
 
 public class BarberDAO {
 
@@ -22,44 +22,44 @@ public class BarberDAO {
 	}
 
 	// include the new barber in the database
-	public boolean incluir(Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null)
+	public boolean incluir(Barber barber) throws SQLException {
+		if (barber == null)
 			return false;
 
 		this.updateQuery("INSERT INTO "
-				+ "barbeiro (nome, cpf, rg, telefone, cadeira) VALUES (" + "\""
-				+ barbeiro.getName() + "\", " + "\"" + barbeiro.getCpf()
-				+ "\", " + "\"" + barbeiro.getRg() + "\", " + "\""
-				+ barbeiro.getTelefone() + "\", " + "\""
-				+ barbeiro.getCadeira() + "\"); ");
+				+ "barber (nome, cpf, rg, telefone, cadeira) VALUES (" + "\""
+				+ barber.getName() + "\", " + "\"" + barber.getCpf()
+				+ "\", " + "\"" + barber.getRg() + "\", " + "\""
+				+ barber.getTelefone() + "\", " + "\""
+				+ barber.getCadeira() + "\"); ");
 
 		return true;
 	}
 
 	// update the barber in the database
-	public boolean alterar(String nome, Barbeiro barbeiro_alterado,
-			Barbeiro barbeiro) throws SQLException {
-		if (barbeiro_alterado == null || barbeiro == null)
+	public boolean alterar(String nome, Barber barber_alterado,
+			Barber barber) throws SQLException {
+		if (barber_alterado == null || barber == null)
 			return false;
 
-		this.updateQuery("UPDATE barbeiro SET nome = '"
-				+ barbeiro_alterado.getName() + "', " + "cpf = '"
-				+ barbeiro_alterado.getCpf() + "', " + "rg = '"
-				+ barbeiro_alterado.getRg() + "', " + "telefone = '"
-				+ barbeiro_alterado.getTelefone() + "', " + "cadeira = '"
-				+ barbeiro_alterado.getCadeira() + "' WHERE" + " cpf = '"
+		this.updateQuery("UPDATE barber SET nome = '"
+				+ barber_alterado.getName() + "', " + "cpf = '"
+				+ barber_alterado.getCpf() + "', " + "rg = '"
+				+ barber_alterado.getRg() + "', " + "telefone = '"
+				+ barber_alterado.getTelefone() + "', " + "cadeira = '"
+				+ barber_alterado.getCadeira() + "' WHERE" + " cpf = '"
 				+ nome + "';");
 
 		return true;
 	}
 
 	// exclude the new barber in the database
-	public boolean excluir(Barbeiro barbeiro) throws SQLException {
-		if (barbeiro == null)
+	public boolean excluir(Barber barber) throws SQLException {
+		if (barber == null)
 			return false;
 
-		this.updateQuery("DELETE FROM barbeiro WHERE " + "barbeiro.nome = \""
-				+ barbeiro.getName() + "\";");
+		this.updateQuery("DELETE FROM barber WHERE " + "barber.nome = \""
+				+ barber.getName() + "\";");
 		return true;
 	}
 
@@ -67,7 +67,7 @@ public class BarberDAO {
 	public ResultSet pesquisar() throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM barbeiro;");
+				.prepareStatement("SELECT * FROM barber;");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
@@ -84,21 +84,21 @@ public class BarberDAO {
 	}
 
 	// this method shows barbers in the database
-	public ResultSet mostrarBarbeirosCadastrados(Barbeiro barbeiro)
+	public ResultSet showRegisteredBarbers(Barber barber)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
-				"Select nome, cpf, rg, telefone, cadeira from barbeiro;");
+				"Select nome, cpf, rg, telefone, cadeira from barber;");
 
 		return rs;
 	}
 
 	// this method searches the barber by name
-	public ResultSet pesquisarPorNome(Barbeiro barbeiro) throws SQLException {
+	public ResultSet pesquisarPorNome(Barber barber) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM barbeiro WHERE nome = '"
-						+ barbeiro.getName() + "';");
+				.prepareStatement("SELECT * FROM barber WHERE nome = '"
+						+ barber.getName() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
