@@ -1,3 +1,11 @@
+/*
+ * Package: DAO
+ * Class: BarberDAO.java
+ *
+ * Description: This class is reponsible make a connection to BarberDao to database
+ * atributes and necessary methods to attribute them.
+*/
+
 package dao;
 
 import java.sql.Connection;

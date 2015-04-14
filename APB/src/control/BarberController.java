@@ -1,3 +1,11 @@
+/*
+ * Package: Controller
+ * Class: BarberController.java
+ *
+ * Description: This class is reponsible to do a CRUD
+ * atributes and necessary methods to attribute them.
+*/
+
 package control;
 
 import java.sql.ResultSet;
