@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import exception.RelatorioException;
 
-public class RelatorioTeste {
+public class ReportTest {
 
 	Report report;
 

@@ -14,7 +14,7 @@ import org.junit.Test;
 import control.ServicoPrestadoController;
 import exception.ServicoException;
 
-public class ServicoPrestadoControllerTeste {
+public class ServiceProvidedControllerTest {
 	ServicoPrestado servico = new ServicoPrestado();
 	ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
 

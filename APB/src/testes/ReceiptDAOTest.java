@@ -16,7 +16,7 @@ import dao.ReciboDAO;
 import exception.ReciboException;
 import exception.RelatorioException;
 
-public class ReciboDAOTeste {
+public class ReceiptDAOTest {
 
 	Report report = new Report();
 

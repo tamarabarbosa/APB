@@ -15,7 +15,7 @@ import control.ReciboController;
 import exception.ReciboException;
 import exception.RelatorioException;
 
-public class ReciboControllerTeste {
+public class ReceiptControllerTest {
 	
 	Report report = new Report();
 	

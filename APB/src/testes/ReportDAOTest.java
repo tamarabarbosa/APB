@@ -15,7 +15,7 @@ import dao.RelatorioDAO;
 
 import exception.RelatorioException;
 
-public class RelatorioDAOTeste {
+public class ReportDAOTest {
 
 	Report report = new Report();
 

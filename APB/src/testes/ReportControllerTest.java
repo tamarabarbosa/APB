@@ -14,7 +14,7 @@ import org.junit.Test;
 import control.RelatorioController;
 import exception.RelatorioException;
 
-public class RelatorioControllerTeste {
+public class ReportControllerTest {
 
 	Report report = new Report();
 	
