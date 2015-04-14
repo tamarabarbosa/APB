@@ -10,7 +10,7 @@ import org.junit.Test;
 import exception.ServicoException;
 
 
-public class TipoServicoTeste {
+public class TypeServiceTest {
 	
 	TipoServico  servico =  new TipoServico();
 	

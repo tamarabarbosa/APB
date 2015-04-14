@@ -13,7 +13,7 @@ import org.junit.Test;
 import dao.ServicoPrestadoDAO;
 import exception.ServicoException;
 
-public class ServicoPrestadoDAOTeste {
+public class ServiceProvidedDAOTest {
 
 	ServicoPrestado servico = new ServicoPrestado();
 	ServicoPrestado servico2 = new ServicoPrestado();

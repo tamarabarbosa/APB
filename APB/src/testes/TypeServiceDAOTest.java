@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import dao.TipoServicoDAO;
 
-public class TipoServicoDAOTeste {
+public class TypeServiceDAOTest {
 
 	TipoServico tiposervico = new TipoServico();
 	TipoServico tiposervico2 = new TipoServico();

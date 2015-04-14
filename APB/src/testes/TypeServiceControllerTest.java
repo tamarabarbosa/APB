@@ -13,7 +13,7 @@ import org.junit.Test;
 import control.TipoServicoController;
 import exception.ServicoException;
 
-public class TipoServicoControllerTeste {
+public class TypeServiceControllerTest {
 
 	TipoServico servico = new TipoServico();
 	TipoServicoController servicoController = TipoServicoController.getInstance();

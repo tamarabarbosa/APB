@@ -13,7 +13,7 @@ import org.junit.Test;
 import exception.ServicoException;
 
 
-public class ServicoPrestadoTeste {
+public class ServiceProvidedTest {
 
 	ServicoPrestado servico = new ServicoPrestado();
 	
