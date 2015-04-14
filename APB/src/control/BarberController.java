@@ -23,7 +23,7 @@ public class BarberController {
 		}
 	}
 	//this method include barber
-	public boolean inserir(Barber barber) throws SQLException {
+	public boolean insert(Barber barber) throws SQLException {
 		if (barber == null) {
 			return false;
 		} else {
@@ -32,28 +32,28 @@ public class BarberController {
 		}
 	}
 	//this method change data of barber
-	public boolean alterar(String nome, Barber barber) throws SQLException {
+	public boolean alterar(String name, Barber barber) throws SQLException {
 		if (barber == null) {
 			return false;
 		} else {
-			Barber barber_alterado = barber;
+			Barber barber_change = barber;
 			BarberDAO.getInstance()
-					.alterar(nome, barber_alterado, barber);
+					.alterar(name, barber_change, barber);
 			return true;
 		}
 	}
 	//this method exclude barber
-	public boolean excluir(Barber barber) throws SQLException {
+	public boolean delete(Barber barber) throws SQLException {
 		if (barber == null) {
 			return false;
 		} else {
-			BarberDAO.getInstance().excluir(barber);
+			BarberDAO.getInstance().delete(barber);
 			return true;
 		}
 	}
 	//this show results of search
-	public ResultSet pesquisar() throws SQLException {
-		return BarberDAO.getInstance().pesquisar();
+	public ResultSet search() throws SQLException {
+		return BarberDAO.getInstance().search();
 	}
 	//this show results of barber registred
 	public ResultSet showRegisteredBarbers(Barber barber)
@@ -61,8 +61,8 @@ public class BarberController {
 		return BarberDAO.getInstance().showRegisteredBarbers(barber);
 	}
 	//this show results of seach barber by name
-	public ResultSet pesquisarPorNome(Barber barber) throws SQLException {
-		return BarberDAO.getInstance().pesquisarPorNome(barber);
+	public ResultSet searchPorNome(Barber barber) throws SQLException {
+		return BarberDAO.getInstance().searchByName(barber);
 	}
 
 }

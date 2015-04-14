@@ -37,24 +37,24 @@ public class BarberDAO {
 	}
 
 	// update the barber in the database
-	public boolean alterar(String nome, Barber barber_alterado,
+	public boolean alterar(String nome, Barber barber_change,
 			Barber barber) throws SQLException {
-		if (barber_alterado == null || barber == null)
+		if (barber_change == null || barber == null)
 			return false;
 
 		this.updateQuery("UPDATE barber SET nome = '"
-				+ barber_alterado.getName() + "', " + "cpf = '"
-				+ barber_alterado.getCpf() + "', " + "rg = '"
-				+ barber_alterado.getRg() + "', " + "telefone = '"
-				+ barber_alterado.getTelefone() + "', " + "cadeira = '"
-				+ barber_alterado.getCadeira() + "' WHERE" + " cpf = '"
+				+ barber_change.getName() + "', " + "cpf = '"
+				+ barber_change.getCpf() + "', " + "rg = '"
+				+ barber_change.getRg() + "', " + "telefone = '"
+				+ barber_change.getTelefone() + "', " + "cadeira = '"
+				+ barber_change.getCadeira() + "' WHERE" + " cpf = '"
 				+ nome + "';");
 
 		return true;
 	}
 
 	// exclude the new barber in the database
-	public boolean excluir(Barber barber) throws SQLException {
+	public boolean delete(Barber barber) throws SQLException {
 		if (barber == null)
 			return false;
 
@@ -64,7 +64,7 @@ public class BarberDAO {
 	}
 
 	// search a barber in the database
-	public ResultSet pesquisar() throws SQLException {
+	public ResultSet search() throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM barber;");
@@ -94,7 +94,7 @@ public class BarberDAO {
 	}
 
 	// this method searches the barber by name
-	public ResultSet pesquisarPorNome(Barber barber) throws SQLException {
+	public ResultSet searchByName(Barber barber) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM barber WHERE nome = '"

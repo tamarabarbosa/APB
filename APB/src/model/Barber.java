@@ -265,36 +265,36 @@ public class Barber {
 	//this method verify if the CPF was filled correctly 
 	private boolean validateIr(String ir) {
 		int d1, d2;
-		int digito1, digito2, resto;
-		int digitoCPF;
+		int digit1, digit2, rest;
+		int digitCPF;
 		String result;
 
-		d1 = d2 = digito1 = digito2 = resto = 0;
+		d1 = d2 = digit1 = digit2 = rest = 0;
 
 		for (int nCount = 1; nCount < cpf.length() - 1; nCount++) {
-			digitoCPF = Integer.valueOf(cpf.substring(nCount - 1, nCount)).intValue();
+			digitCPF = Integer.valueOf(cpf.substring(nCount - 1, nCount)).intValue();
 
-			d1 = d1 + (11 - nCount) * digitoCPF;
-			d2 = d2 + (12 - nCount) * digitoCPF;
+			d1 = d1 + (11 - nCount) * digitCPF;
+			d2 = d2 + (12 - nCount) * digitCPF;
 		};
 
-		resto = d1 % 11;
+		rest = d1 % 11;
 
-		if (resto < 2)
-			digito1 = 0;
+		if (rest < 2)
+			digit1 = 0;
 		else
-			digito1 = 11 - resto;
+			digit1 = 11 - rest;
 
-		d2 += 2*digito1;
-		resto = (d2 % 11);
+		d2 += 2*digit1;
+		rest = (d2 % 11);
 
-		if (resto < 2)
-			digito2 = 0;
+		if (rest < 2)
+			digit2 = 0;
 		else
-			digito2 = 11 - resto;
+			digit2 = 11 - rest;
 
 		String verific = cpf.substring(cpf.length() - 2, cpf.length());
-		result = String.valueOf(digito1) + String.valueOf(digito2);
+		result = String.valueOf(digit1) + String.valueOf(digit2);
 
 		return verific.equals(result);
 	}
