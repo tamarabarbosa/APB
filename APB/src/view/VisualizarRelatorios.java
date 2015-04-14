@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
-import model.Relatorio;
+import model.Report;
 
 import control.RelatorioController;
 
@@ -99,13 +99,13 @@ public class VisualizarRelatorios extends JFrame {
 		RelatorioController relatorioController = RelatorioController
 				.getInstance();
 
-		Relatorio relatorio = new Relatorio();
+		Report report = new Report();
 
 		if (PesquisarRelatorio.tipoBusca == 1) {
 
-			relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
+			report.setBarbeiro(PesquisarRelatorio.barbeiro);
 
-			ResultSet rs = relatorioController.pesquisarPorBarbeiro(relatorio);
+			ResultSet rs = relatorioController.pesquisarPorBarbeiro(report);
 
 			while (rs.next()) {
 
@@ -149,11 +149,11 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		if (PesquisarRelatorio.tipoBusca == 2) {
 
-			relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
-			relatorio.setTipoServico(PesquisarRelatorio.servico);
+			report.setBarbeiro(PesquisarRelatorio.barbeiro);
+			report.setTipoServico(PesquisarRelatorio.servico);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorBarbeiroEServico(relatorio);
+					.pesquisarPorBarbeiroEServico(report);
 
 			while (rs.next()) {
 
@@ -198,12 +198,12 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		if (PesquisarRelatorio.tipoBusca == 3) {
 
-			relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
-			relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
-			relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+			report.setBarbeiro(PesquisarRelatorio.barbeiro);
+			report.setDataFinal(PesquisarRelatorio.dataFinal);
+			report.setDataInicial(PesquisarRelatorio.dataInicial);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataEBarbeiro(relatorio);
+					.pesquisarPorDataEBarbeiro(report);
 
 			while (rs.next()) {
 
@@ -248,13 +248,13 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		if (PesquisarRelatorio.tipoBusca == 4) {
 
-			relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
-			relatorio.setTipoServico(PesquisarRelatorio.servico);
-			relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
-			relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+			report.setBarbeiro(PesquisarRelatorio.barbeiro);
+			report.setTipoServico(PesquisarRelatorio.servico);
+			report.setDataFinal(PesquisarRelatorio.dataFinal);
+			report.setDataInicial(PesquisarRelatorio.dataInicial);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataBarbeiroEServico(relatorio);
+					.pesquisarPorDataBarbeiroEServico(report);
 
 			while (rs.next()) {
 
@@ -300,9 +300,9 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		if (PesquisarRelatorio.tipoBusca == 5) {
 
-			relatorio.setTipoServico(PesquisarRelatorio.servico);
+			report.setTipoServico(PesquisarRelatorio.servico);
 
-			ResultSet rs = relatorioController.pesquisarPorServico(relatorio);
+			ResultSet rs = relatorioController.pesquisarPorServico(report);
 
 			while (rs.next()) {
 
@@ -347,12 +347,12 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		if (PesquisarRelatorio.tipoBusca == 6) {
 
-			relatorio.setTipoServico(PesquisarRelatorio.servico);
-			relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
-			relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+			report.setTipoServico(PesquisarRelatorio.servico);
+			report.setDataFinal(PesquisarRelatorio.dataFinal);
+			report.setDataInicial(PesquisarRelatorio.dataInicial);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataEServico(relatorio);
+					.pesquisarPorDataEServico(report);
 
 			while (rs.next()) {
 
@@ -397,10 +397,10 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		if (PesquisarRelatorio.tipoBusca == 7) {
 
-			relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
-			relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+			report.setDataFinal(PesquisarRelatorio.dataFinal);
+			report.setDataInicial(PesquisarRelatorio.dataInicial);
 
-			ResultSet rs = relatorioController.pesquisarPorData(relatorio);
+			ResultSet rs = relatorioController.pesquisarPorData(report);
 
 			while (rs.next()) {
 
@@ -572,60 +572,60 @@ public class VisualizarRelatorios extends JFrame {
 	private CategoryDataset createDatasetRelatorio() throws SQLException,
 			RelatorioException, NullPointerException, ParseException {
 
-		Relatorio relatorio = new Relatorio();
+		Report report = new Report();
 		ResultSet rs = null;
 
 		if (PesquisarRelatorio.tipoBusca != 0) {
 			if (PesquisarRelatorio.tipoBusca == 1) {
-				relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
+				report.setBarbeiro(PesquisarRelatorio.barbeiro);
 
 				rs = RelatorioController.getInstance().pesquisarPorBarbeiro(
-						relatorio);
+						report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 2) {
-				relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
-				relatorio.setTipoServico(PesquisarRelatorio.servico);
+				report.setBarbeiro(PesquisarRelatorio.barbeiro);
+				report.setTipoServico(PesquisarRelatorio.servico);
 
 				rs = RelatorioController.getInstance()
-						.pesquisarPorBarbeiroEServico(relatorio);
+						.pesquisarPorBarbeiroEServico(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 3) {
-				relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
-				relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
-				relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+				report.setBarbeiro(PesquisarRelatorio.barbeiro);
+				report.setDataFinal(PesquisarRelatorio.dataFinal);
+				report.setDataInicial(PesquisarRelatorio.dataInicial);
 
 				rs = RelatorioController.getInstance()
-						.pesquisarPorDataEBarbeiro(relatorio);
+						.pesquisarPorDataEBarbeiro(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 4) {
-				relatorio.setBarbeiro(PesquisarRelatorio.barbeiro);
-				relatorio.setTipoServico(PesquisarRelatorio.servico);
-				relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
-				relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+				report.setBarbeiro(PesquisarRelatorio.barbeiro);
+				report.setTipoServico(PesquisarRelatorio.servico);
+				report.setDataFinal(PesquisarRelatorio.dataFinal);
+				report.setDataInicial(PesquisarRelatorio.dataInicial);
 
 				rs = RelatorioController.getInstance()
-						.pesquisarPorDataBarbeiroEServico(relatorio);
+						.pesquisarPorDataBarbeiroEServico(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 5) {
-				relatorio.setTipoServico(PesquisarRelatorio.servico);
+				report.setTipoServico(PesquisarRelatorio.servico);
 
 				rs = RelatorioController.getInstance().pesquisarPorServico(
-						relatorio);
+						report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 6) {
-				relatorio.setTipoServico(PesquisarRelatorio.servico);
-				relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
-				relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+				report.setTipoServico(PesquisarRelatorio.servico);
+				report.setDataFinal(PesquisarRelatorio.dataFinal);
+				report.setDataInicial(PesquisarRelatorio.dataInicial);
 
 				rs = RelatorioController.getInstance()
-						.pesquisarPorDataEServico(relatorio);
+						.pesquisarPorDataEServico(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 7) {
-				relatorio.setDataFinal(PesquisarRelatorio.dataFinal);
-				relatorio.setDataInicial(PesquisarRelatorio.dataInicial);
+				report.setDataFinal(PesquisarRelatorio.dataFinal);
+				report.setDataInicial(PesquisarRelatorio.dataInicial);
 
 				rs = RelatorioController.getInstance().pesquisarPorData(
-						relatorio);
+						report);
 			}
 		}
 

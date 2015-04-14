@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.Relatorio;
+import model.Report;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,14 +18,14 @@ import exception.RelatorioException;
 
 public class ReciboDAOTeste {
 
-	Relatorio relatorio = new Relatorio();
+	Report report = new Report();
 
 	@Before
 	public void setUp() throws ReciboException, ParseException {
 		try {
-			relatorio.setBarbeiro("Fulano");
-			relatorio.setDataFinal("09/09/2013");
-			relatorio.setDataInicial("01/01/2013");
+			report.setBarbeiro("Fulano");
+			report.setDataFinal("09/09/2013");
+			report.setDataInicial("01/01/2013");
 
 		} catch (RelatorioException e) {
 			e.printStackTrace();
@@ -44,8 +44,8 @@ public class ReciboDAOTeste {
 		try {
 			ReciboDAO reciboDAO = ReciboDAO.getInstance();
 			ResultSet rs = reciboDAO.pesquisarServicosDoBarbeiro(
-					relatorio.getBarbeiro(), relatorio.getDataInicial(),
-					relatorio.getDataFinal());
+					report.getBarbeiro(), report.getDataInicial(),
+					report.getDataFinal());
 
 			while (rs.next()) {
 				String nome = rs.getString("nome");

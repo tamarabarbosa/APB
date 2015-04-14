@@ -15,7 +15,7 @@ import javax.swing.JButton;
 
 import control.AgendaController;
 import exception.BarbeiroException;
-import model.Agenda;
+import model.Phonebook;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -88,7 +88,7 @@ public class PesquisarContato extends JFrame {
 						modelo.removeRow(i);
 					}
 					
-					Agenda contato = new Agenda();
+					Phonebook contato = new Phonebook();
 					AgendaController agendaController = AgendaController
 							.getInstance();
 					contato.setNome(textField.getText());
@@ -122,7 +122,7 @@ public class PesquisarContato extends JFrame {
 						modelo.removeRow(i);
 					}
 					
-					Agenda contato = new Agenda();
+					Phonebook contato = new Phonebook();
 					AgendaController agendaController = AgendaController
 							.getInstance();
 					contato.setTelefone(textField.getText());
@@ -154,7 +154,7 @@ public class PesquisarContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Agenda.setTempNome(modelo.getValueAt(
+					Phonebook.setTempNome(modelo.getValueAt(
 							table.getSelectedRow(), 0).toString());
 					dispose();
 					AlterarContato frame = new AlterarContato();
@@ -179,9 +179,9 @@ public class PesquisarContato extends JFrame {
 							table.getSelectedRow(), 0);
 					String telefone = (String) table.getValueAt(
 							table.getSelectedRow(), 1);
-					Agenda agenda = new Agenda();
-					agenda.setNome(nome);
-					agenda.setTelefone(telefone);
+					Phonebook phonebook = new Phonebook();
+					phonebook.setNome(nome);
+					phonebook.setTelefone(telefone);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
@@ -189,7 +189,7 @@ public class PesquisarContato extends JFrame {
 					if (confirmacao == JOptionPane.YES_OPTION) {
 						AgendaController agendaController = AgendaController
 								.getInstance();
-						agendaController.excluir(agenda);
+						agendaController.excluir(phonebook);
 
 						dispose();
 						PesquisarContato frame = new PesquisarContato();

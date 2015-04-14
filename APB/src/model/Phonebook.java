@@ -1,8 +1,8 @@
 package model;
 
-import exception.BarbeiroException;
+import exception.BarberException;
 
-public class Agenda {
+public class Phonebook {
 
 	//Declaration of the atributes  
 	private String name;
@@ -25,7 +25,7 @@ public class Agenda {
 	* @param phoneNumber is the phone number of the barber.
 	* @param description is the description of the service.
 	*/
-	public Agenda(String name, String phoneNumber, String description) {
+	public Phonebook(String name, String phoneNumber, String description) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.description = description;
@@ -65,16 +65,16 @@ public class Agenda {
 	*
  	* @param name is the name of the barber to be placed into name.
  	* 
- 	* @exception BarbeiroException if the field setted empty.
+ 	* @exception BarberException if the field setted empty.
  	* @exception BarbeiroExcepetion if the name of barber doesn't exist. 
  	*/
-	public void setName(String name) throws BarbeiroException {
+	public void setName(String name) throws BarberException {
 		if ("".equals(name))
-			throw new BarbeiroException(EMPTY_NAME);
+			throw new BarberException(EMPTY_NAME);
 		else if (name.matches("^[[ ]|\\p{L}*]+$"))
 			this.name = name;
 		else
-			throw new BarbeiroException(INVALID_NAME);
+			throw new BarberException(INVALID_NAME);
 	}
 
 	/**	 
@@ -84,16 +84,16 @@ public class Agenda {
 	*
  	* @param phoneNumber is the phone number of the barber to be placed into phoneNumber.
  	*
- 	* @exception BarbeiroException if the field setted empty.
+ 	* @exception BarberException if the field setted empty.
  	* @exception BarbeiroExcepetion if the phone number of barber doesn't exist. 
  	*/
-	public void setPhoneNumber(String phoneNumber) throws BarbeiroException {
+	public void setPhoneNumber(String phoneNumber) throws BarberException {
 		if ("".equals(phoneNumber))
-			throw new BarbeiroException(EMPTY_PHONE);
+			throw new BarberException(EMPTY_PHONE);
 		else if (phoneNumber.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 			this.phoneNumber = phoneNumber;
 		else
-			throw new BarbeiroException(INVALID_PHONE);
+			throw new BarberException(INVALID_PHONE);
 	}
 
 	/**	 
@@ -110,7 +110,7 @@ public class Agenda {
 	}
 
 	public static void setTempName(String tempName) {
-		Agenda.tempName = tempName;
+		Phonebook.tempName = tempName;
 	}
 
 }

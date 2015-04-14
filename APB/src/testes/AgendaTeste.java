@@ -9,11 +9,11 @@ import org.junit.Test;
 
 import exception.BarbeiroException;
 import exception.ServicoException;
-import model.Agenda;
+import model.Phonebook;
 
 public class AgendaTeste {
 	
-	Agenda contato = new Agenda();
+	Phonebook contato = new Phonebook();
 	
 	@Before
 	public void setUp(){
@@ -28,7 +28,7 @@ public class AgendaTeste {
 	
 	@Test
 	public void contrutorDeAgendaDeveFuncionar(){
-		Agenda contato = new Agenda("Alessandro", "6589-5689", "aaaa");
+		Phonebook contato = new Phonebook("Alessandro", "6589-5689", "aaaa");
 		assertEquals("Alessandro", contato.getNome());
 		assertEquals("6589-5689", contato.getTelefone());
 		assertEquals("aaaa", contato.getDescricao());
@@ -77,26 +77,26 @@ public class AgendaTeste {
 
 	@Test (expected = AssertionError.class)
 	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
-		assertEquals("Barba", Agenda.getTempNome());
+		assertEquals("Barba", Phonebook.getTempNome());
 	}
 	
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
-		Agenda.setTempNome(null);
+		Phonebook.setTempNome(null);
 		Assert.fail("Deve lançar exceção");
 	}
 	
 	
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerEmBranco() {
-		Agenda.setTempNome("");
+		Phonebook.setTempNome("");
 		Assert.fail("Deve lançar exceção");
 	}
 	
 	@Test
 	public void tempNomeValido() throws BarbeiroException {
-		Agenda.setTempNome("Paulo");
-		assertEquals("Paulo", Agenda.getTempNome());
+		Phonebook.setTempNome("Paulo");
+		assertEquals("Paulo", Phonebook.getTempNome());
 	}
 
 }

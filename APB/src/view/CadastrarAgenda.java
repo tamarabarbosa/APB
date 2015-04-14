@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import model.Agenda;
+import model.Phonebook;
 import control.AgendaController;
 
 import java.awt.event.MouseAdapter;
@@ -69,7 +69,7 @@ public class CadastrarAgenda extends JFrame {
 
 		try {
 			AgendaController agendaController = AgendaController.getInstance();
-			Agenda contato = new Agenda();
+			Phonebook contato = new Phonebook();
 			ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
 			while (rs.next()) {
 				String[] dados = new String[3];
@@ -133,7 +133,7 @@ public class CadastrarAgenda extends JFrame {
 
 	// Method that shows a error message
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

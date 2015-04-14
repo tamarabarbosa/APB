@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Agenda;
+import model.Phonebook;
 
 import org.junit.Test;
 
@@ -13,8 +13,8 @@ import dao.AgendaDAO;
 
 public class AgendaDAOTeste {
 
-	Agenda contato = new Agenda();
-	Agenda contato2 = new Agenda();
+	Phonebook contato = new Phonebook();
+	Phonebook contato2 = new Phonebook();
 	AgendaDAO agendaDAO = AgendaDAO.getInstance();
 	
 	@Test

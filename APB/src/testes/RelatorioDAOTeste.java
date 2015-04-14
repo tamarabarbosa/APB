@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.Relatorio;
+import model.Report;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,15 +17,15 @@ import exception.RelatorioException;
 
 public class RelatorioDAOTeste {
 
-	Relatorio relatorio = new Relatorio();
+	Report report = new Report();
 
 	@Before
 	public void setUp() throws RelatorioException, ParseException {
 		try {
-			relatorio.setBarbeiro("Luciano");
-			relatorio.setDataFinal("09/09/2013");
-			relatorio.setDataInicial("01/01/2013");
-			relatorio.setTipoServico("corte");
+			report.setBarbeiro("Luciano");
+			report.setDataFinal("09/09/2013");
+			report.setDataInicial("01/01/2013");
+			report.setTipoServico("corte");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -42,7 +42,7 @@ public class RelatorioDAOTeste {
 	public void procurarPorDataDeRelatorioDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorData(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorData(report);
 			
 			while(rs.next()) {
 				String nome = rs.getString("nome");
@@ -58,7 +58,7 @@ public class RelatorioDAOTeste {
 	public void pesquisarPorDataEServicoDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorDataEServico(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorDataEServico(report);
 			
 			while (rs.next()) {
 				String nome = rs.getString("nome");
@@ -74,7 +74,7 @@ public class RelatorioDAOTeste {
 	public void pesquisarPorBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorBarbeiro(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorBarbeiro(report);
 			
 			while(rs.next()) {
 				String nome = rs.getString("nome");
@@ -90,7 +90,7 @@ public class RelatorioDAOTeste {
 	public void pesquisarPorBArbeiroEServicoDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorBarbeiroEServico(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorBarbeiroEServico(report);
 			
 			while(rs.next()) {
 				String nome = rs.getString("nome");
@@ -106,7 +106,7 @@ public class RelatorioDAOTeste {
 	public void pesquisarPorServicoDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorServico(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorServico(report);
 			
 			while (rs.next()) {
 				String nome = rs.getString("nome");
@@ -122,7 +122,7 @@ public class RelatorioDAOTeste {
 	public void pesquisarPorDataEBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorDataEBarbeiro(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorDataEBarbeiro(report);
 			
 			while (rs.next()) {
 				String nome = rs.getString("nome");
@@ -138,7 +138,7 @@ public class RelatorioDAOTeste {
 	public void pesquisarPorDataBarbeiroEServicoDAODeveMostrarUmRelatorio(){
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorDataBarbeiroEServico(relatorio);
+			ResultSet rs = relatorioDAO.pesquisarPorDataBarbeiroEServico(report);
 			
 			while (rs.next()) {
 				String nome = rs.getString("nome");

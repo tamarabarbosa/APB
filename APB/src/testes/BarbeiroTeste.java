@@ -5,7 +5,7 @@ import junit.framework.Assert;
 import junit.framework.AssertionFailedError;
 import exception.BarbeiroException;
 import exception.ServicoException;
-import model.Agenda;
+import model.Phonebook;
 import model.Barbeiro;
 
 import org.junit.Before;
@@ -288,6 +288,6 @@ public class BarbeiroTeste {
 	@Test (expected = AssertionError.class)
 	public void tempNomeValido() throws BarbeiroException {
 		Barbeiro.setTempNome("João");
-		assertEquals("João", Agenda.getTempNome());
+		assertEquals("João", Phonebook.getTempNome());
 	}
 }

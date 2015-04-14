@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Agenda;
+import model.Phonebook;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +15,7 @@ import exception.BarbeiroException;
 
 public class AgendaControllerTeste {
 
-	Agenda contato = new Agenda();
+	Phonebook contato = new Phonebook();
 
 	@Before
 	public void setUp() {

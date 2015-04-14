@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 
 import control.AgendaController;
 import exception.BarbeiroException;
-import model.Agenda;
+import model.Phonebook;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -79,9 +79,9 @@ public class AlterarContato extends JFrame {
 		contentPane.add(lblDescricao);
 
 		try {
-			Agenda contato = new Agenda();
+			Phonebook contato = new Phonebook();
 			AgendaController agendaController = AgendaController.getInstance();
-			contato.setNome(Agenda.getTempNome());
+			contato.setNome(Phonebook.getTempNome());
 			ResultSet rs = agendaController.pesquisarPorNome(contato);
 
 			while (rs.next()) {
@@ -102,14 +102,14 @@ public class AlterarContato extends JFrame {
 			// This method is used to initialize the buttons on the frame
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Agenda agenda = new Agenda();
-					agenda.setNome(textFieldNome.getText());
-					agenda.setTelefone(textFieldTelefone.getText());
-					agenda.setDescricao(textFieldDescricao.getText());
+					Phonebook phonebook = new Phonebook();
+					phonebook.setNome(textFieldNome.getText());
+					phonebook.setTelefone(textFieldTelefone.getText());
+					phonebook.setDescricao(textFieldDescricao.getText());
 
 					AgendaController AgendaController = control.AgendaController
 							.getInstance();
-					AgendaController.alterar(nome, agenda);
+					AgendaController.alterar(nome, phonebook);
 
 					JOptionPane.showMessageDialog(null, "Agenda "
 							+ textFieldNome.getText()
@@ -148,7 +148,7 @@ public class AlterarContato extends JFrame {
 
 	// Method that shows the error message when a exception is triggered
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

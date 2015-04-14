@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dao.RelatorioDAO;
-import model.Relatorio;
+import model.Report;
 
 public class ReportController {
 
@@ -15,52 +15,52 @@ public class ReportController {
 
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by date
-	public ResultSet pesquisarPorData(Relatorio relatorio) throws SQLException {
-		return RelatorioDAO.getInstance().pesquisarPorData(relatorio);
+	public ResultSet pesquisarPorData(Report report) throws SQLException {
+		return RelatorioDAO.getInstance().pesquisarPorData(report);
 	}
 
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by date and barber
-	public ResultSet pesquisarPorDataEBarbeiro(Relatorio relatorio)
+	public ResultSet pesquisarPorDataEBarbeiro(Report report)
 			throws SQLException {
-		return RelatorioDAO.getInstance().pesquisarPorDataEBarbeiro(relatorio);
+		return RelatorioDAO.getInstance().pesquisarPorDataEBarbeiro(report);
 	}
 
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by date and service
-	public ResultSet pesquisarPorDataEServico(Relatorio relatorio)
+	public ResultSet pesquisarPorDataEServico(Report report)
 			throws SQLException {
-		return RelatorioDAO.getInstance().pesquisarPorDataEServico(relatorio);
+		return RelatorioDAO.getInstance().pesquisarPorDataEServico(report);
 	}
 
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by barber
-	public ResultSet pesquisarPorBarbeiro(Relatorio relatorio)
+	public ResultSet pesquisarPorBarbeiro(Report report)
 			throws SQLException {
-		return RelatorioDAO.getInstance().pesquisarPorBarbeiro(relatorio);
+		return RelatorioDAO.getInstance().pesquisarPorBarbeiro(report);
 	}
 
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by barber and service
-	public ResultSet pesquisarPorBarbeiroEServico(Relatorio relatorio)
+	public ResultSet pesquisarPorBarbeiroEServico(Report report)
 			throws SQLException {
 		return RelatorioDAO.getInstance().pesquisarPorBarbeiroEServico(
-				relatorio);
+				report);
 	}
 
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by service
-	public ResultSet pesquisarPorServico(Relatorio relatorio)
+	public ResultSet pesquisarPorServico(Report report)
 			throws SQLException {
-		return RelatorioDAO.getInstance().pesquisarPorServico(relatorio);
+		return RelatorioDAO.getInstance().pesquisarPorServico(report);
 	}
 
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by date, barber and service
-	public ResultSet pesquisarPorDataBarbeiroEServico(Relatorio relatorio)
+	public ResultSet pesquisarPorDataBarbeiroEServico(Report report)
 			throws SQLException {
 		return RelatorioDAO.getInstance().pesquisarPorDataBarbeiroEServico(
-				relatorio);
+				report);
 	}
 
 	public static ReportController getInstance() {

@@ -8,9 +8,9 @@
 
 package model;
 
-import exception.BarbeiroException;
+import exception.BarberException;
 
-public class Barbeiro {
+public class Barber {
 
 	//Declaration of atributes of the barber
 	private String name;
@@ -35,7 +35,7 @@ public class Barbeiro {
 	private final String EMPTY_CHAIR = "Campo Cadeira em Branco";
 
 	//Constructor of the barber
-	public Barbeiro() {
+	public Barber() {
 		/*Nothing to declare*/
 	}
 
@@ -48,15 +48,15 @@ public class Barbeiro {
  	* @param phoneNumber is the phone number of the barber to be placed into phoneNumber.
  	* @param chair is the chair that the barber will work, to be placed into chair.
  	* 
- 	* @exception BarbeiroException as parameter. 
+ 	* @exception BarberException as parameter. 
  	* @throws IllegalArgumentException if the name isn't filled. 
  	* @throws IllegalArgumentException if the IR (Indivdual Registration) isn't filled. 
  	* @throws IllegalArgumentException if the ID isn't filled. 
  	* @throws IllegalArgumentException if the phone number isn't filled. 
  	* @throws IllegalArgumentException if the chair isn't filled	. 
  	*/
-	public Barbeiro(String name, String ir, String id, String phoneNumber,
-			String chair) throws BarbeiroException {
+	public Barber(String name, String ir, String id, String phoneNumber,
+			String chair) throws BarberException {
 		this.name = name;
 		this.ir = ir;
 		this.id = id;
@@ -132,18 +132,18 @@ public class Barbeiro {
  	* @param name is the name of the barber to be placed into name.
  	* 
  	* @throws NullPointerException if the name returns a null value.
- 	* @throws BarbeiroException if the user didn't fill de name field.
- 	* @throws BarbeiroException if the name can't be placed in nome.
+ 	* @throws BarberException if the user didn't fill de name field.
+ 	* @throws BarberException if the name can't be placed in nome.
  	*/
-	public void setName(String name) throws BarbeiroException {
+	public void setName(String name) throws BarberException {
 		if (name == null)
 			throw new NullPointerException(EMPTY_NAME);
 		else if ("".equals(name))
-			throw new BarbeiroException(EMPTY_NAME);
+			throw new BarberException(EMPTY_NAME);
 		else if (name.matches("^[[ ]|\\p{L}*]+$"))
 			this.name= name;
 		else
-			throw new BarbeiroException(INVALID_NAME);
+			throw new BarberException(INVALID_NAME);
 	}
 
 	/**	 
@@ -153,10 +153,10 @@ public class Barbeiro {
  	* @param cpf is the Individual Registration of the barber to be placed into cpfe.
  	* 
  	* @throws NullPointerException if the cpf returns a null value.
- 	* @throws BarbeiroException if the user didn't fill de IR field.
- 	* @throws BarbeiroException if the IR doesn't match with the valid IR.
+ 	* @throws BarberException if the user didn't fill de IR field.
+ 	* @throws BarberException if the IR doesn't match with the valid IR.
  	*/
-	public void setIr(String ir) throws BarbeiroException {
+	public void setIr(String ir) throws BarberException {
 		// Sample of valid IR: 493.751.185-84
 		try {
 			if (ir == null)
@@ -169,9 +169,9 @@ public class Barbeiro {
 			if (ir.validateIr(ir))
 				this.ir = ir;
 			else
-				throw new BarbeiroException(INVALID_IR);
+				throw new BarberException(INVALID_IR);
 		} catch (AssertionError e) {
-			throw new BarbeiroException(INVALID_IR);
+			throw new BarberException(INVALID_IR);
 		}
 	}
 
@@ -182,15 +182,15 @@ public class Barbeiro {
  	* @param id is the ID of the barber to be placed into id.
  	* 
  	* @throws NullPointerException if the id returns a null value.
- 	* @throws BarbeiroException if the user didn't fill de ID field.
+ 	* @throws BarberException if the user didn't fill de ID field.
  	* @throws AssertionError if the ID doesn't match with the valid ID.
  	* @throws AssertionError if the user fill anything different of the valid ID.
  	*/
-	public void setId(String id) throws BarbeiroException {
+	public void setId(String id) throws BarberException {
 		if (id == null)
 			throw new NullPointerException(EMPTY_ID);
 		else if ("".equals(id))
-			throw new BarbeiroException(EMPTY_ID;
+			throw new BarberException(EMPTY_ID;
 		else if (id.matches("^[[ ]|\\p{L}*]+$"))
 			throw new AssertionError(EMPTY_ID);
 		else if (id.matches("^[0-9]*$"))
@@ -206,14 +206,14 @@ public class Barbeiro {
  	* @param phoneNumber is the phone number of the barber to be placed into phoneNumber.
  	* 
  	* @throws NullPointerException if the phoneNumber returns a null value.
- 	* @throws BarbeiroException if the user didn't fill de phone number field.
+ 	* @throws BarberException if the user didn't fill de phone number field.
  	* @throws AssertionError if the user fill anything different than was validated before.
  	*/
-	public void setPhoneNumber(String phoneNumber) throws BarbeiroException {
+	public void setPhoneNumber(String phoneNumber) throws BarberException {
 		if (phoneNumber == null)
 			throw new NullPointerException(EMPTY_PHONE);
 		else if ("".equals(phoneNumber))
-			throw new BarbeiroException(EMPTY_PHONE);
+			throw new BarberException(EMPTY_PHONE);
 		else if (phoneNumber.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
 			this.phoneNumber = phoneNumber;
 		else
@@ -227,21 +227,21 @@ public class Barbeiro {
  	* @param chair is the chair of the barber to be placed into chair.
  	* 
  	* @throws NullPointerException if the chair returns a null value.
- 	* @throws BarbeiroException if the user didn't fill de id.
+ 	* @throws BarberException if the user didn't fill de id.
  	* @throws AssertionError if the ID doesn't match with the valid chair.
  	* @throws AssertionError if the user fill anything different of the chair ID.
  	*/
-	public void setChair(String chair) throws BarbeiroException {
+	public void setChair(String chair) throws BarberException {
 		if (chair == null)
 			throw new NullPointerException(EMPTY_CHAIR);
 		else if ("".equals(chair))
-			throw new BarbeiroException(EMPTY_CHAIR);
+			throw new BarberException(EMPTY_CHAIR);
 		else if ("0".equals(chair) || chair.matches("^[[ ]|\\p{L}*]+$"))
 			throw new AssertionError(INVALID_CHAIR);
 		else if (chair.matches("^[0-9]{0,2}$"))
 			this.chair = chair;
 		else
-			throw new BarbeiroException(INVALID_CHAIR);
+			throw new BarberException(INVALID_CHAIR);
 	}
 	
 	/**

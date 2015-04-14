@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 
 import control.AgendaController;
 import exception.BarbeiroException;
-import model.Agenda;
+import model.Phonebook;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
@@ -61,13 +61,13 @@ public class NovoContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Agenda agenda = new Agenda();
-					agenda.setNome(textFieldNome.getText());
-					agenda.setTelefone(textFieldTelefone.getText());
-					agenda.setDescricao(textFieldDescricao.getText());
+					Phonebook phonebook = new Phonebook();
+					phonebook.setNome(textFieldNome.getText());
+					phonebook.setTelefone(textFieldTelefone.getText());
+					phonebook.setDescricao(textFieldDescricao.getText());
 
 					AgendaController agendaController = AgendaController.getInstance();
-					agendaController.incluir(agenda);
+					agendaController.incluir(phonebook);
 
 					JOptionPane.showMessageDialog(null, "Contato "
 							+ textFieldNome.getText()
@@ -150,7 +150,7 @@ public class NovoContato extends JFrame {
 	}
 	
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }

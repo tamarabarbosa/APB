@@ -7,7 +7,7 @@ import java.util.Date;
 
 import exception.RelatorioException;
 
-public class Relatorio {
+public class Report {
 
 	private String dataInicial;
 	private String dataFinal;
@@ -19,7 +19,7 @@ public class Relatorio {
 	private final String BARBEIRO_BRANCO = "Barbeiro em Branco";
 	private final String TIPO_SERVICO_BRANCO = "Tipo do Serviço em Branco";
 
-	public Relatorio(String dataInicial, String dataFinal, String barbeiro,
+	public Report(String dataInicial, String dataFinal, String barbeiro,
 			String tipoServico) throws RelatorioException {
 		// super();
 		this.dataInicial = dataInicial;
@@ -40,7 +40,7 @@ public class Relatorio {
 			throw new IllegalArgumentException(TIPO_SERVICO_BRANCO);
 	}
 
-	public Relatorio() {
+	public Report() {
 	}
 
 	public String getDataInicial() {

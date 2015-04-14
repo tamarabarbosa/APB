@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.Relatorio;
+import model.Report;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,16 +16,16 @@ import exception.RelatorioException;
 
 public class RelatorioControllerTeste {
 
-	Relatorio relatorio = new Relatorio();
+	Report report = new Report();
 	
 	
 	@Before
 	public void setUp() throws RelatorioException, ParseException {
 		try {
-			relatorio.setBarbeiro("Luciano");
-			relatorio.setDataFinal("09/09/2013");
-			relatorio.setDataInicial("01/01/2013");
-			relatorio.setTipoServico("corte");
+			report.setBarbeiro("Luciano");
+			report.setDataFinal("09/09/2013");
+			report.setDataInicial("01/01/2013");
+			report.setTipoServico("corte");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -41,7 +41,7 @@ public class RelatorioControllerTeste {
 	@Test
 	public void procurarPorServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorServico(relatorio);
+		ResultSet rs = relatorioController.pesquisarPorServico(report);
 		
 		while(rs.next());
 	}
@@ -49,7 +49,7 @@ public class RelatorioControllerTeste {
 	@Test
 	public void procurarPorDataDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorData(relatorio);
+		ResultSet rs = relatorioController.pesquisarPorData(report);
 		
 		while(rs.next());
 	}
@@ -57,7 +57,7 @@ public class RelatorioControllerTeste {
 	@Test
 	public void procurarPorBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorBarbeiroEServico(relatorio);
+		ResultSet rs = relatorioController.pesquisarPorBarbeiroEServico(report);
 		
 		while(rs.next());
 	}
@@ -65,7 +65,7 @@ public class RelatorioControllerTeste {
 	@Test
 	public void procurarPorDataBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataBarbeiroEServico(relatorio);
+		ResultSet rs = relatorioController.pesquisarPorDataBarbeiroEServico(report);
 		
 		while(rs.next());
 	}
@@ -73,7 +73,7 @@ public class RelatorioControllerTeste {
 	@Test
 	public void procurarPorDataEBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataEBarbeiro(relatorio);
+		ResultSet rs = relatorioController.pesquisarPorDataEBarbeiro(report);
 		
 		while(rs.next());
 	}
@@ -81,7 +81,7 @@ public class RelatorioControllerTeste {
 	@Test
 	public void procurarPorDataEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataEServico(relatorio);
+		ResultSet rs = relatorioController.pesquisarPorDataEServico(report);
 		
 		while(rs.next());
 	}
@@ -89,7 +89,7 @@ public class RelatorioControllerTeste {
 	@Test
 	public void procurarPorBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorBarbeiro(relatorio);
+		ResultSet rs = relatorioController.pesquisarPorBarbeiro(report);
 		
 		while(rs.next());
 	}

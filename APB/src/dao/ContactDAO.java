@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Agenda;
+import model.Phonebook;
 import dao.FactoryConnection;
 
 public class ContactDAO {
@@ -22,21 +22,21 @@ public class ContactDAO {
 	}
 
 	// this method include one schedule in the agenda
-	public boolean incluir(Agenda agenda) throws SQLException {
-		if (agenda == null)
+	public boolean incluir(Phonebook phonebook) throws SQLException {
+		if (phonebook == null)
 			return false;
 
 		this.updateQuery("INSERT INTO "
 				+ "agenda (nome, telefone, descricao) VALUES (" + "\""
-				+ agenda.getName() + "\", " + "\"" + agenda.getTelefone()
-				+ "\", " + "\"" + agenda.getDescription() + "\"); ");
+				+ phonebook.getName() + "\", " + "\"" + phonebook.getTelefone()
+				+ "\", " + "\"" + phonebook.getDescription() + "\"); ");
 		return true;
 	}
 
 	// this method change data on the schedule
-	public boolean alterar(String nome, Agenda agenda_alterado, Agenda agenda)
+	public boolean alterar(String nome, Phonebook agenda_alterado, Phonebook phonebook)
 			throws SQLException {
-		if (agenda == null || agenda_alterado == null)
+		if (phonebook == null || agenda_alterado == null)
 			return false;
 
 		this.updateQuery("UPDATE agenda SET " + "nome = \""
@@ -49,7 +49,7 @@ public class ContactDAO {
 	}
 
 	// this method exclude one event on the schedule
-	public boolean excluir(Agenda contato) throws SQLException {
+	public boolean excluir(Phonebook contato) throws SQLException {
 		if (contato == null)
 			return false;
 
@@ -69,7 +69,7 @@ public class ContactDAO {
 	}
 
 	// this method shows contacts registred on the schedule
-	public ResultSet mostrarContatosCadastrados(Agenda contato)
+	public ResultSet mostrarContatosCadastrados(Phonebook contato)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
@@ -79,7 +79,7 @@ public class ContactDAO {
 	}
 
 	// this method search by name in the schedule
-	public ResultSet pesquisarPorNome(Agenda contato) throws SQLException {
+	public ResultSet pesquisarPorNome(Phonebook contato) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM agenda WHERE " + "nome = '"
@@ -90,7 +90,7 @@ public class ContactDAO {
 	}
 
 	// this method search by phone in the schedule
-	public ResultSet pesquisarPorTelefone(Agenda contato) throws SQLException {
+	public ResultSet pesquisarPorTelefone(Phonebook contato) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM agenda WHERE "
