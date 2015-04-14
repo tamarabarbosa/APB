@@ -1,4 +1,11 @@
-/* This class is responsible to create a report of the barbers*/
+/*
+ * Package: model
+ * Class: Receipt.java
+ *
+ * Description: This class is reponsible to model the receipt in system with all its 
+ * atributes and necessary methods to attribute them.
+*/
+
 package model;
 
 import java.text.ParseException;
@@ -20,7 +27,7 @@ public class Receipt {
 	private final String SERVICE_TYPE_EMPTY = "Tipo do Serviço em Branco";
 
 	public Receipt(String initialDate, String endDate, String barber,
-			String serviceType) throws ReceiptException {
+			String serviceType) throws Receipt	Exception {
 		// super();
 		this.initialDate = initialDate;
 		this.endDate = endDate;

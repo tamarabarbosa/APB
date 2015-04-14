@@ -1,3 +1,11 @@
+/*
+ * Package: model
+ * Class: Phonebook.java
+ *
+ * Description: This class is reponsible to model the appointment book in system with all its 
+ * atributes and necessary methods to attribute them.
+*/
+
 package model;
 
 import exception.BarberException;

@@ -1,4 +1,11 @@
-/* This class is responsible to create a report to job done */
+/*
+ * Package: model
+ * Class: DoneService.java
+ *
+ * Description: This class is reponsible to model the service done by the barber in system with all its 
+ * atributes and necessary methods to attribute them.
+*/
+
 package model;
 
 import java.util.Date;

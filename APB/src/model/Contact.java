@@ -1,3 +1,11 @@
+/*
+ * Package: model
+ * Class: Contact.java
+ *
+ * Description: This class is reponsible to model the custumer in system with all its 
+ * atributes and necessary methods to attribute them.
+*/
+
 package model;
 
 import exception.BarberException;;
