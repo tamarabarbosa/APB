@@ -13,7 +13,7 @@ import org.junit.Test;
 import control.AgendaController;
 import exception.BarbeiroException;
 
-public class AgendaControllerTeste {
+public class PhonebookControllerTest {
 
 	Phonebook contato = new Phonebook();
 

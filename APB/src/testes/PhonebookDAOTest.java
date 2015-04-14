@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import dao.AgendaDAO;
 
-public class AgendaDAOTeste {
+public class PhonebookDAOTest {
 
 	Phonebook contato = new Phonebook();
 	Phonebook contato2 = new Phonebook();

@@ -13,7 +13,7 @@ import org.junit.Test;
 import control.BarbeiroController;
 import exception.BarbeiroException;
 
-public class BarbeiroControllerTeste {
+public class BarberControllerTest {
 
 	Barbeiro barbeiro = new Barbeiro();
 

@@ -11,7 +11,7 @@ import exception.BarbeiroException;
 import exception.ServicoException;
 import model.Phonebook;
 
-public class AgendaTeste {
+public class PhonebookTeste {
 	
 	Phonebook contato = new Phonebook();
 	

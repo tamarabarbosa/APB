@@ -15,7 +15,7 @@ import dao.BarbeiroDAO;
 import dao.FactoryConnection;
 import exception.BarbeiroException;
 
-public class BarbeiroDAOTeste {
+public class BarberDAOTest {
 
 	Barbeiro barbeiro = new Barbeiro();
 	Barbeiro barbeiro2 = new Barbeiro();
