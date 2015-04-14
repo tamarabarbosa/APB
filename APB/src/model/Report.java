@@ -9,126 +9,126 @@ import exception.RelatorioException;
 
 public class Report {
 
-	private String dataInicial;
-	private String dataFinal;
-	private String barbeiro;
-	private String tipoServico;
+	private String initialDate;
+	private String endDate;
+	private String barber;
+	private String serviceType;
 
-	private final String DATA_FINAL_BRANCO = "Data final em Branco";
-	private final String DATA_INICIAL_BRANCO = "Data inicial em Branco";
-	private final String BARBEIRO_BRANCO = "Barbeiro em Branco";
-	private final String TIPO_SERVICO_BRANCO = "Tipo do Serviço em Branco";
+	private final String END_DATE_EMPTY = "Data final em Branco";
+	private final String INITIAL_DATE_EMPTY = "Data inicial em Branco";
+	private final String BARBER_EMPTY = "Barbeiro em Branco";
+	private final String SERVICE_TYPE_EMPTY = "Tipo do Serviço em Branco";
 
-	public Report(String dataInicial, String dataFinal, String barbeiro,
-			String tipoServico) throws RelatorioException {
+	public Report(String initialDate, String endDate, String barber,
+			String serviceType) throws RelatorioException {
 		// super();
-		this.dataInicial = dataInicial;
-		this.dataFinal = dataFinal;
-		this.barbeiro = barbeiro;
-		this.tipoServico = tipoServico;
+		this.initialDate = initialDate;
+		this.endDate = endDate;
+		this.barber = barber;
+		this.serviceType = serviceType;
 
-		if (this.dataInicial == null)
-			throw new IllegalArgumentException(DATA_INICIAL_BRANCO);
+		if (this.initialDate == null)
+			throw new IllegalArgumentException(INITIAL_DATE_EMPTY);
 
-		if (this.dataFinal == null)
-			throw new IllegalArgumentException(DATA_FINAL_BRANCO);
+		if (this.endDate == null)
+			throw new IllegalArgumentException(END_DATE_EMPTY);
 
-		if (this.barbeiro == null)
-			throw new IllegalArgumentException(BARBEIRO_BRANCO);
+		if (this.barber == null)
+			throw new IllegalArgumentException(BARBER_EMPTY);
 
-		if (this.tipoServico == null)
-			throw new IllegalArgumentException(TIPO_SERVICO_BRANCO);
+		if (this.serviceType == null)
+			throw new IllegalArgumentException(SERVICE_TYPE_EMPTY);
 	}
 
 	public Report() {
 	}
 
-	public String getDataInicial() {
-		return dataInicial;
+	public String getInitialDate() {
+		return initialDate;
 	}
 
 	//this setter define how the inicial date must be filled
-	public void setDataInicial(String dataInicial) throws RelatorioException,
+	public void setInitialDate(String initialDate) throws RelatorioException,
 			NullPointerException, ParseException {
-		if (dataInicial == null)
-			throw new NullPointerException(DATA_INICIAL_BRANCO);
-		else if ("".equals(dataInicial))
-			throw new AssertionError(DATA_INICIAL_BRANCO);
+		if (initialDate == null)
+			throw new NullPointerException(INITIAL_DATE_EMPTY);
+		else if ("".equals(initialDate))
+			throw new AssertionError(INITIAL_DATE_EMPTY);
 		else {
 
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date dataIso = sdf.parse(dataInicial);
+			Date dateISO = sdf.parse(initialDate);
 
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-			String dataISO = sdf2.format(dataIso);
+			String stringDateBR = sdf2.format(dateISO);
 
-			this.dataInicial = dataISO;
+			this.initialDate = stringDateBR;
 		}
 
 	}
 
-	public String getDataFinal() {
-		return dataFinal;
+	public String getEndDate() {
+		return endDate;
 	}
 
 	//this setter define how the final date must be filled
-	public void setDataFinal(String dataFinal) throws RelatorioException, NullPointerException,
+	public void setEndDate(String endDate) throws RelatorioException, NullPointerException,
 			ParseException {
 		
-		if (dataFinal == null)
-			throw new NullPointerException(DATA_FINAL_BRANCO);
-		else if ("".equals(dataFinal))
-			throw new AssertionError(DATA_FINAL_BRANCO);
+		if (endDate == null)
+			throw new NullPointerException(END_DATE_EMPTY);
+		else if ("".equals(endDate))
+			throw new AssertionError(END_DATE_EMPTY);
 		else {
 
 			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date dataIso = sdf.parse(dataFinal);
+			Date dateISO = sdf.parse(endDate);
 
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-			String dataISO = sdf2.format(dataIso);
+			String stringDateBR = sdf2.format(dateISO);
 			
-			this.dataFinal = dataISO;
+			this.endDate = stringDateBR;
 		}
 	}
 
-	public String getBarbeiro() {
-		return barbeiro;
+	public String getBarber() {
+		return barber;
 	}
 
 	//this setter define how the barber must be filled in report
-	public void setBarbeiro(String barbeiro) throws RelatorioException {
-		if (barbeiro == null)
-			throw new NullPointerException(BARBEIRO_BRANCO);
-		else if ("".equals(barbeiro))
-			throw new AssertionError(BARBEIRO_BRANCO);
+	public void setBarber(String barber) throws RelatorioException {
+		if (barber == null)
+			throw new NullPointerException(BARBER_EMPTY);
+		else if ("".equals(barber))
+			throw new AssertionError(BARBER_EMPTY);
 		else
-			this.barbeiro = barbeiro;
+			this.barber = barber;
 	}
 
-	public String getTipoServico() {
-		return tipoServico;
+	public String getServiceType() {
+		return serviceType;
 	}
 
 	//this setter define how the type of service must be filled
-	public void setTipoServico(String tipoServico) throws RelatorioException {
-		if (tipoServico == null)
-			throw new NullPointerException(TIPO_SERVICO_BRANCO);
-		else if ("".equals(tipoServico))
-			throw new AssertionError(TIPO_SERVICO_BRANCO);
+	public void setServiceType(String serviceType) throws RelatorioException {
+		if (serviceType == null)
+			throw new NullPointerException(SERVICE_TYPE_EMPTY);
+		else if ("".equals(serviceType))
+			throw new AssertionError(SERVICE_TYPE_EMPTY);
 		else
-			this.tipoServico = tipoServico;
+			this.serviceType = serviceType;
 	}
 	
 	//this method converts the input date to according norms to ABNT
-	public String ConverterDataParaABNT(String data) throws ParseException{
+	public String ConvertToABNT(String date) throws ParseException{
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date dataISO = sdf.parse(data);
+		Date dateISO = sdf.parse(data);
 		
 		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
-		String databr = sdf2.format(dataISO);
+		String stringDateBR = sdf2.format(dateISO);
 		
-		return databr;
+		return stringDateBR;
 	}
 	
 
