@@ -16,9 +16,9 @@ public class ServiceType {
 	private String price;
 	private static String tempName;
 
-	private final static String EMPTY_NAME = "Nome do Servi�o em Branco";
-	private final String INVALID_PRICE = "Pre�o Inv�lido";
-	private final String EMPTY_PRICE = "Pre�o em Branco";
+	private final static String EMPTY_NAME = "Nome do Serviço em Branco";
+	private final String INVALID_PRICE = "Preço Inválido";
+	private final String EMPTY_PRICE = "Preço em Branco";
 
 	
 	public ServiceType(){
@@ -53,7 +53,7 @@ public class ServiceType {
 		else if (price.matches("[\\d]{1,3},[\\d]{1,2}"))
 			this.price = price;
 		else
-			throw new IllegalArgumentException("Pre�o deve ser no formato: **,** ");
+			throw new IllegalArgumentException("Preço deve ser no formato: **,** ");
 	}
 
 	public static void setTempName(String tempName) throws ServiceException {

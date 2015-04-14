@@ -12,12 +12,14 @@ import exception.BarberException;
 
 public class Barber {
 
-	//Declaration of atributes of the barber
-	private String name;
-	private String ir;
-	private String id;
-	private String phoneNumber;
-	private String chair;
+	/*
+	 * Declaration of atributes of the barber
+	*/
+	private String name; 		//Name of barber
+	private String ir; 			//IR of barber   
+	private String id; 			//ID of barber
+	private String phoneNumber; //Phone number of barber
+	private String chair; 		//The chair of barber
 
 	//Declaration of instace variable
 	private static String tempName;
@@ -262,7 +264,7 @@ public class Barber {
 		Barber.tempName = tempName;
 	}
 
-	//this method verify if the CPF was filled correctly 
+	//This method verify if the IR was filled correctly 
 	private boolean validateIr(String ir) {
 		int d1, d2;
 		int digit1, digit2, rest;
