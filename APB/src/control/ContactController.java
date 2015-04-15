@@ -1,9 +1,17 @@
+/*
+ * Package: Controller
+ * Class: ContactController.java
+ *
+ * Description: This class is reponsible to make a CRUD of barber in the phonebook  
+ * atributes and necessary methods to attribute them.
+*/
+
 package control;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dao.AgendaDAO;
+import dao.PhonebookDAO;
 import model.Phonebook;
 
 public class ContactController {
@@ -13,33 +21,33 @@ public class ContactController {
 	private ContactController() {
 	}
 	//this method include barber on the agenda
-	public boolean incluir(Phonebook phonebook) throws SQLException {
+	public boolean include(Phonebook phonebook) throws SQLException {
 		if (phonebook == null) {
 			return false;
 		} 
 		else {
-			AgendaDAO.getInstance().incluir(phonebook);
+			PhonebookDAO.getInstance().include(phonebook);
 			return true;
 		}
 	}
 	//this method change barber on the agenda
-	public boolean alterar(String nome, Phonebook phonebook) throws SQLException {
+	public boolean change(String name, Phonebook phonebook) throws SQLException {
 		if (phonebook == null) {
 			return false;
 		} 
 		else {
-			Phonebook agenda_alterado = phonebook;
-			AgendaDAO.getInstance().alterar(nome, agenda_alterado, phonebook);
+			Phonebook phonebook_change = phonebook;
+			PhonebookDAO.getInstance().change(name, phonebook_change, phonebook);
 			return true;
 		}
 	}
 	//this method exclude barber on the agenda
-	public boolean excluir(Phonebook contato) throws SQLException {
-		if (contato == null) {
+	public boolean delete(Phonebook contact) throws SQLException {
+		if (contact == null) {
 			return false;
 		} 
 		else {
-			AgendaDAO.getInstance().excluir(contato);
+			PhonebookDAO.getInstance().delete(contact);
 			return true;
 		}
 	}
@@ -54,17 +62,17 @@ public class ContactController {
 		}
 	}
 	//show results of contacts 
-	public ResultSet mostrarContatosCadastrados(Phonebook contato)
+	public ResultSet showContactsRegistered(Phonebook contact)
 			throws SQLException {
-		return AgendaDAO.getInstance().mostrarContatosCadastrados(contato);
+		return PhonebookDAO.getInstance().showContactsRegistered(contact);
 	}
 	//show results by name
-	public ResultSet pesquisarPorNome(Phonebook contato) throws SQLException {
-		return AgendaDAO.getInstance().pesquisarPorNome(contato);
+	public ResultSet searchByName(Phonebook contact) throws SQLException {
+		return PhonebookDAO.getInstance().searchByName(contact);
 	}
 	//show results by phone
-	public ResultSet pesquisarPorTelefone(Phonebook contato) throws SQLException {
-		return AgendaDAO.getInstance().pesquisarPorTelefone(contato);
+	public ResultSet searchByPhonebook(Phonebook contact) throws SQLException {
+		return PhonebookDAO.getInstance().searchByPhonebook(contact);
 	}
 
 }
