@@ -12,10 +12,14 @@ import exception.ServiceException;
 
 public class ServiceType {
 
-	private String nameServiceType;
-	private String price;
-	private static String tempName;
+	//Declaration of the atributes to the type of service.
+	private String nameServiceType; //Name of the service type.
+	private String price;			//How much costs this service.
+	
+	//Declaration of instance variables
+	private static String tempName; 
 
+	//Declaration of the constants along the class
 	private final static String EMPTY_NAME = "Nome do Serviço em Branco";
 	private final String INVALID_PRICE = "Preço Inválido";
 	private final String EMPTY_PRICE = "Preço em Branco";
