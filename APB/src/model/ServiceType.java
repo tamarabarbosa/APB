@@ -24,8 +24,9 @@ public class ServiceType {
 	private final String INVALID_PRICE = "Preço Inválido";
 	private final String EMPTY_PRICE = "Preço em Branco";
 
-	
+	//Contructor os the type service.
 	public ServiceType(){
+		/*Nothing to be declare*/
 	}
 	
 	public String getNameServiceType() {
