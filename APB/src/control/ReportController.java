@@ -3,7 +3,7 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dao.RelatorioDAO;
+import dao.ReportDAO;
 import model.Report;
 
 public class ReportController {
@@ -16,7 +16,7 @@ public class ReportController {
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by date
 	public ResultSet pesquisarPorData(Report report) throws SQLException {
-		return RelatorioDAO.getInstance().pesquisarPorData(report);
+		return ReportDAO.getInstance().pesquisarPorData(report);
 	}
 
 	// Method that gives access to the registered reports and also gives the
@@ -35,8 +35,7 @@ public class ReportController {
 
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by barber
-	public ResultSet pesquisarPorBarbeiro(Report report)
-			throws SQLException {
+	public ResultSet pesquisarPorBarbeiro(Report report) throws SQLException {
 		return RelatorioDAO.getInstance().pesquisarPorBarbeiro(report);
 	}
 
@@ -44,14 +43,12 @@ public class ReportController {
 	// option to search it by barber and service
 	public ResultSet pesquisarPorBarbeiroEServico(Report report)
 			throws SQLException {
-		return RelatorioDAO.getInstance().pesquisarPorBarbeiroEServico(
-				report);
+		return RelatorioDAO.getInstance().pesquisarPorBarbeiroEServico(report);
 	}
 
 	// Method that gives access to the registered reports and also gives the
 	// option to search it by service
-	public ResultSet pesquisarPorServico(Report report)
-			throws SQLException {
+	public ResultSet pesquisarPorServico(Report report) throws SQLException {
 		return RelatorioDAO.getInstance().pesquisarPorServico(report);
 	}
 
