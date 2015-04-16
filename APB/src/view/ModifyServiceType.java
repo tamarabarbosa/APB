@@ -10,9 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import control.TipoServicoController;
-import exception.ServicoException;
-import model.TipoServico;
+import control.ServiceTypeController;
+import exception.ServiceException;
+import model.ServiceType;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,7 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
-public class AlterarTipoServico extends JFrame {
+public class ModifyServiceType extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -31,7 +31,7 @@ public class AlterarTipoServico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlterarTipoServico frame = new AlterarTipoServico();
+					ModifyServiceType frame = new ModifyServiceType();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class AlterarTipoServico extends JFrame {
 	}
 
 	// These methods are used to initialize the components
-	public AlterarTipoServico() {
+	public ModifyServiceType() {
 		setTitle("Alterar Tipo Servico");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 436, 163);
