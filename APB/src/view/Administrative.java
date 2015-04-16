@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.text.ParseException;
 
 @SuppressWarnings("serial")
-public class Administrativo extends JFrame {
+public class Administrative extends JFrame {
 
 	private JPanel contentPane;
 
@@ -26,7 +26,7 @@ public class Administrativo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Administrativo frame = new Administrativo();
+					Administrative frame = new Administrative();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -40,7 +40,7 @@ public class Administrativo extends JFrame {
 	 * Create the frame.
 	 */
 	// These methods are used to initialize the components
-	public Administrativo() {
+	public Administrative() {
 		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 418, 238);
@@ -51,7 +51,7 @@ public class Administrativo extends JFrame {
 
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Administrativo",
+				.getBorder("TitledBorder.border"), "Administrative",
 				TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		panel.setBounds(10, 11, 379, 183);
 		contentPane.add(panel);
