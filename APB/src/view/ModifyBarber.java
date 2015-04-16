@@ -10,10 +10,10 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import control.BarbeiroController;
-import exception.BarbeiroException;
+import control.BarberController;
+import exception.BarberException;
 
-import model.Barbeiro;
+import model.Barber;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -21,7 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
-public class AlterarBarbeiro extends JFrame {
+public class ModifyBarber extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -35,7 +35,7 @@ public class AlterarBarbeiro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlterarBarbeiro frame = new AlterarBarbeiro();
+					ModifyBarber frame = new ModifyBarber();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +45,7 @@ public class AlterarBarbeiro extends JFrame {
 	}
 
 	// Constructor
-	public AlterarBarbeiro() {
+	public ModifyBarber() {
 
 		setTitle("Alterar Barbeiro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
