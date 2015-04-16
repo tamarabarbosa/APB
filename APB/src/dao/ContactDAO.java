@@ -28,20 +28,21 @@ public class ContactDAO {
 
 		this.updateQuery("INSERT INTO "
 				+ "agenda (nome, telefone, descricao) VALUES (" + "\""
-				+ phonebook.getName() + "\", " + "\"" + phonebook.getTelefone()
-				+ "\", " + "\"" + phonebook.getDescription() + "\"); ");
+				+ phonebook.getName() + "\", " + "\""
+				+ phonebook.getPhoneNumber() + "\", " + "\""
+				+ phonebook.getDescription() + "\"); ");
 		return true;
 	}
 
 	// this method change data on the schedule
-	public boolean alterar(String nome, Phonebook agenda_alterado, Phonebook phonebook)
-			throws SQLException {
+	public boolean alterar(String nome, Phonebook agenda_alterado,
+			Phonebook phonebook) throws SQLException {
 		if (phonebook == null || agenda_alterado == null)
 			return false;
 
 		this.updateQuery("UPDATE agenda SET " + "nome = \""
 				+ agenda_alterado.getName() + "\", " + "telefone = \""
-				+ agenda_alterado.getTelefone() + "\", " + "descricao = \""
+				+ agenda_alterado.getPhoneNumber() + "\", " + "descricao = \""
 				+ agenda_alterado.getDescription() + "\"" + " WHERE "
 				+ " agenda.nome = \"" + nome + "\";");
 
@@ -54,7 +55,7 @@ public class ContactDAO {
 			return false;
 
 		this.updateQuery("DELETE FROM agenda WHERE " + "agenda.telefone = \""
-				+ contato.getTelefone() + "\";");
+				+ contato.getPhoneNumber() + "\";");
 		return true;
 	}
 
@@ -90,11 +91,12 @@ public class ContactDAO {
 	}
 
 	// this method search by phone in the schedule
-	public ResultSet pesquisarPorTelefone(Phonebook contato) throws SQLException {
+	public ResultSet pesquisarPorTelefone(Phonebook contato)
+			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM agenda WHERE "
-						+ "telefone = '" + contato.getTelefone() + "';");
+						+ "telefone = '" + contato.getPhoneNumber() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;

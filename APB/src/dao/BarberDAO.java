@@ -4,7 +4,7 @@
  *
  * Description: This class is reponsible make a connection to BarberDao to database
  * atributes and necessary methods to attribute them.
-*/
+ */
 
 package dao;
 
@@ -36,27 +36,26 @@ public class BarberDAO {
 
 		this.updateQuery("INSERT INTO "
 				+ "barber (nome, cpf, rg, telefone, cadeira) VALUES (" + "\""
-				+ barber.getName() + "\", " + "\"" + barber.getCpf()
-				+ "\", " + "\"" + barber.getRg() + "\", " + "\""
-				+ barber.getTelefone() + "\", " + "\""
-				+ barber.getCadeira() + "\"); ");
+				+ barber.getName() + "\", " + "\"" + barber.getCpf() + "\", "
+				+ "\"" + barber.getRg() + "\", " + "\""
+				+ barber.getPhoneNumber() + "\", " + "\"" + barber.getChair()
+				+ "\"); ");
 
 		return true;
 	}
 
 	// update the barber in the database
-	public boolean alterar(String nome, Barber barber_change,
-			Barber barber) throws SQLException {
+	public boolean alterar(String nome, Barber barber_change, Barber barber)
+			throws SQLException {
 		if (barber_change == null || barber == null)
 			return false;
 
-		this.updateQuery("UPDATE barber SET nome = '"
-				+ barber_change.getName() + "', " + "cpf = '"
-				+ barber_change.getCpf() + "', " + "rg = '"
+		this.updateQuery("UPDATE barber SET nome = '" + barber_change.getName()
+				+ "', " + "cpf = '" + barber_change.getCpf() + "', " + "rg = '"
 				+ barber_change.getRg() + "', " + "telefone = '"
-				+ barber_change.getTelefone() + "', " + "cadeira = '"
-				+ barber_change.getCadeira() + "' WHERE" + " cpf = '"
-				+ nome + "';");
+				+ barber_change.getPhoneNumber() + "', " + "cadeira = '"
+				+ barber_change.getChair() + "' WHERE" + " cpf = '" + nome
+				+ "';");
 
 		return true;
 	}
@@ -92,8 +91,7 @@ public class BarberDAO {
 	}
 
 	// this method shows barbers in the database
-	public ResultSet showRegisteredBarbers(Barber barber)
-			throws SQLException {
+	public ResultSet showRegisteredBarbers(Barber barber) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
 				"Select nome, cpf, rg, telefone, cadeira from barber;");
