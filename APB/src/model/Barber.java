@@ -12,9 +12,7 @@ import exception.BarberException;
 
 public class Barber {
 
-	/*
-	 * Declaration of atributes of the barber
-	*/
+	//Declaration of atributes to the barber
 	private String name; 		//Name of barber
 	private String ir; 			//IR of barber   
 	private String id; 			//ID of barber
@@ -24,7 +22,7 @@ public class Barber {
 	//Declaration of instace variable
 	private static String tempName;
 
-	//Declarion of the constants along de class
+	//Declarion of constants along de class
 	private final String INVALID_NAME = "Nome Inválido";
 	private final String EMPTY_NAME = "Nome em Branco";
 	private final String INVALID_IR = "CPF Inválido";

@@ -12,7 +12,7 @@ import exception.BarberException;;
 
 public class Contact {
 
-	//Declaration of the atributes  
+	//Declaration of atributes to the custumer
 	private String name; 		//Name of customer.
 	private String phoneNumber; //Phone number of customer.
 	private String description; // Description of the service to be done.
@@ -20,7 +20,7 @@ public class Contact {
 	//Declaration of instance variables
 	private static String tempName;
 
-	//Declaration of the constants along the class
+	//Declaration of constants along the class
 	private final String INVALID_NAME = "Nome Inválido";
 	private final String EMPTY_NAME = "Nome em Branco";
 	private final String INVALID_PHONE = "Telefone Inválido";

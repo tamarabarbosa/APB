@@ -18,11 +18,13 @@ import java.text.SimpleDateFormat;
 
 public class DoneService {
 
-	private String serviceName;
-	private String barberName;
-	private String price;
-	private String date;
+	//Declaration of the atributes to the service.
+	private String serviceName; //Name of service to be done.
+	private String barberName; 	//Name of barber that did the service.
+	private String price; 		//Price of service
+	private String date; 		//The date when the service was done.
 
+	//Declaration of constants along the class
 	private final String INVALID_SERVICE_NAME = "Nome do Serviço Inválido";
 	private final String EMPTY_SERVICE_NAME = "Nome do Serviço em Branco";
 	private final String INVALID_BARBER = "Nome do Barbeiro em Branco";
