@@ -10,8 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-import control.AgendaController;
-import exception.BarbeiroException;
+import control.ContactController;
+import exception.BarberException;
 import model.Phonebook;
 
 import java.awt.event.MouseAdapter;
@@ -20,7 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
-public class AlterarContato extends JFrame {
+public class ModifyContact extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -32,7 +32,7 @@ public class AlterarContato extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AlterarContato frame = new AlterarContato();
+					ModifyContact frame = new ModifyContact();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class AlterarContato extends JFrame {
 	}
 
 	// These methods are used to initialize the components
-	public AlterarContato() {
+	public ModifyContact() {
 		setTitle("Alterar Contato");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 225);
