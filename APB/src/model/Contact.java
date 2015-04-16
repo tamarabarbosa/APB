@@ -13,9 +13,9 @@ import exception.BarberException;;
 public class Contact {
 
 	//Declaration of the atributes  
-	private String name;
-	private String phoneNumber;
-	private String description;
+	private String name; 		//Name of customer.
+	private String phoneNumber; //Phone number of customer.
+	private String description; // Description of the service to be done.
 
 	//Declaration of instance variables
 	private static String tempName;
