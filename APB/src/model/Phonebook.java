@@ -12,10 +12,10 @@ import exception.BarberException;
 
 public class Phonebook {
 
-	//Declaration of the atributes  
-	private String name;
-	private String phoneNumber;
-	private String description;
+	//Declaration of the atributes to the phonebook 
+	private String name; 		//Name of someone to be add in phonebook.
+	private String phoneNumber; //Phone number of someone to be add in phonebook.
+	private String description; //Some description to add, if necessary. 
 
 	//Declaration of instance variables
 	private static String tempName;
