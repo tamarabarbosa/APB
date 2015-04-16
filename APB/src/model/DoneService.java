@@ -34,11 +34,13 @@ public class DoneService {
 	private final String EMPTY_DATE = "Data em Branco";
 	private final String INVALID_DATE = "Insira uma date válida";
 
-	public DoneService() {
-
-	}
-
-	// Class constructor
+	/**
+	* Constructor.
+	* 
+	* @param serviceName if the name of the service to be done.
+	* @param price is the price tag of the service.
+	* @param description is the description of the service.
+	*/
 	public DoneService(String serviceName, String price, String barberName) {
 		this.serviceName = serviceName;
 		this.price = price;
