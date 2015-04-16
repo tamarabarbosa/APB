@@ -3,8 +3,8 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dao.TipoServicoDAO;
-import model.TipoServico;
+import dao.ServiceTypeDAO;
+import model.ServiceType;
 
 public class ServiceTypeController {
 
@@ -12,35 +12,35 @@ public class ServiceTypeController {
 	private static ServiceTypeController instance;
 
 	// Method that modify a service type on the system
-	public boolean inserir(TipoServico tipoServico) throws SQLException {
+	public boolean inserir(ServiceType tipoServico) throws SQLException {
 		if (tipoServico == null) {
 			return false;
 		} else {
-			TipoServicoDAO.getInstance().incluir(tipoServico);
+			ServiceTypeDAO.getInstance().incluir(tipoServico);
 			return true;
 		}
 	}
 
 	// Method that change a service type on the system
-	public boolean alterar(String nome, TipoServico tipoServico)
+	public boolean alterar(String nome, ServiceType tipoServico)
 			throws SQLException {
 		if (tipoServico == null) {
 			return false;
 		} else {
-			TipoServico tipoServico_alterado = tipoServico;
-			TipoServicoDAO.getInstance().alterar(nome, tipoServico_alterado,
+			ServiceType tipoServico_alterado = tipoServico;
+			ServiceTypeDAO.getInstance().alterar(nome, tipoServico_alterado,
 					tipoServico);
 			return true;
 		}
 	}
 
 	// Method that delete a service type on the system
-	public boolean excluir(TipoServico tipoServico) throws SQLException {
+	public boolean excluir(ServiceType tipoServico) throws SQLException {
 
 		if (tipoServico == null) {
 			return false;
 		} else {
-			TipoServicoDAO.getInstance().excluir(tipoServico);
+			ServiceTypeDAO.getInstance().excluir(tipoServico);
 			return true;
 		}
 	}
@@ -61,15 +61,15 @@ public class ServiceTypeController {
 
 	// Return a ResultSet interface object with the service types registered on
 	// the system
-	public ResultSet mostrarTipoServicoCadastrados(TipoServico servico)
+	public ResultSet mostrarTipoServicoCadastrados(ServiceType servico)
 			throws SQLException {
-		return TipoServicoDAO.getInstance().mostrarTipoServicoCadastrados(
+		return ServiceTypeDAO.getInstance().mostrarTipoServicoCadastrados(
 				servico);
 	}
 
 	// Search for an specific service type name
-	public ResultSet pesquisarPorNome(TipoServico servico) throws SQLException {
-		return TipoServicoDAO.getInstance().pesquisarPorNome(servico);
+	public static ResultSet pesquisarPorNome(ServiceType servico) throws SQLException {
+		return ServiceTypeDAO.getInstance().pesquisarPorNome(servico);
 	}
 
 }

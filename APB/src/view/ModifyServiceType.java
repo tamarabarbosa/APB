@@ -69,11 +69,11 @@ public class ModifyServiceType extends JFrame {
 		contentPane.add(labelCadeira);
 
 		try {
-			TipoServico tiposervico = new TipoServico();
-			TipoServicoController servicoController = TipoServicoController
+			ServiceType tiposervico = new ServiceType();
+			ServiceTypeController servicoController = ServiceTypeController
 					.getInstance();
-			tiposervico.setNomeTipoServico(TipoServico.getTempNome());
-			ResultSet rs = servicoController.pesquisarPorNome(tiposervico);
+			tiposervico.setNameServiceType(ServiceType.getTempName());
+			ResultSet rs = ServiceTypeController.pesquisarPorNome(tiposervico);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
@@ -82,7 +82,7 @@ public class ModifyServiceType extends JFrame {
 			nome = textFieldNome.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
-		} catch (ServicoException e) {
+		} catch (ServiceException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
 
@@ -92,11 +92,11 @@ public class ModifyServiceType extends JFrame {
 			// application
 			public void actionPerformed(ActionEvent e) {
 				try {
-					TipoServico tipoServico = new TipoServico();
-					tipoServico.setNomeTipoServico(textFieldNome.getText());
-					tipoServico.setPreco(textFieldPreco.getText());
+					ServiceType tipoServico = new ServiceType();
+					tipoServico.setNameServiceType(textFieldNome.getText());
+					tipoServico.setPrice(textFieldPreco.getText());
 
-					TipoServicoController tipoServicoController = TipoServicoController
+					ServiceTypeController tipoServicoController = ServiceTypeController
 							.getInstance();
 					tipoServicoController.alterar(nome, tipoServico);
 
@@ -108,7 +108,7 @@ public class ModifyServiceType extends JFrame {
 					CadastrarTipoServico frame = new CadastrarTipoServico();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-				} catch (ServicoException e1) {
+				} catch (ServiceException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException k) {
 					mostrarMensagemDeErro(k.getMessage());
