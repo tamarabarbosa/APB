@@ -16,11 +16,13 @@ import exception.ReceiptException;
 
 public class Receipt {
 
-	private String initialDate;
-	private String endDate;
-	private String barber;
-	private String serviceType;
+	//Declaration of the atributes to the receipt
+	private String initialDate; //The date when the service started.
+	private String endDate;		//The date when the service was done.
+	private String barber; 		//The barber that did the service.
+	private String serviceType; //The type of service that was done.
 
+	//Declaration of the constants along the class
 	private final String END_DATE_EMPTY = "Data final em Branco";
 	private final String INITIAL_DATE_EMPTY = "Data inicial em Branco";
 	private final String BARBER_EMPTY = "Barbeiro em Branco";
