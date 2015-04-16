@@ -3,8 +3,10 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import dao.ServicoPrestadoDAO;
-import model.ServicoPrestado;
+import dao.DoneServiceDAO;
+import model.DoneService;
+
+;
 
 public class DoneServiceController {
 
@@ -24,9 +26,9 @@ public class DoneServiceController {
 	private static DoneServiceController instance;
 
 	// Method used to insert a service
-	public boolean inserir(ServicoPrestado servico) throws SQLException {
+	public boolean inserir(DoneService servico) throws SQLException {
 		if (servico != null) {
-			ServicoPrestadoDAO.getInstance().incluir(servico);
+			DoneServiceDAO.getInstance().incluir(servico);
 			return true;
 		} else {
 			return false;
@@ -34,9 +36,9 @@ public class DoneServiceController {
 	}
 
 	// Method used to delete a service
-	public boolean excluir(ServicoPrestado servico) throws SQLException {
+	public boolean excluir(DoneService servico) throws SQLException {
 		if (servico != null) {
-			ServicoPrestadoDAO.getInstance().excluir(servico);
+			DoneServiceDAO.getInstance().excluir(servico);
 			return true;
 		} else {
 			return false;
@@ -44,9 +46,9 @@ public class DoneServiceController {
 	}
 
 	// Method that gives access to the registered services
-	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico)
+	public ResultSet mostrarServicosPrestadosCadastrados(DoneService servico)
 			throws SQLException {
-		return ServicoPrestadoDAO.getInstance()
+		return DoneServiceDAO.getInstance()
 				.mostrarServicosPrestadosCadastrados(servico);
 	}
 

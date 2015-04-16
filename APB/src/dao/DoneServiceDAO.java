@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.ServicoPrestado;
+import model.DoneService;
 
 public class DoneServiceDAO {
 
@@ -23,14 +23,14 @@ public class DoneServiceDAO {
 	}
 
 	// this method include a new job done
-	public boolean incluir(ServicoPrestado servico) throws SQLException {
+	public boolean incluir(DoneService servico) throws SQLException {
 		if (servico != null) {
 			this.updateQuery("INSERT INTO "
-					+ "servicoprestado (nome, preco, barbeiro, data) VALUES ("
-					+ "\"" + servico.getNomeServico() + "\", " + "\""
-					+ servico.getPreco() + "\", " + "\""
-					+ servico.getNomeBarbeiro() + "\", " + "\""
-					+ servico.getData() + "\"); ");
+					+ "DoneService (nome, preco, barbeiro, data) VALUES ("
+					+ "\"" + servico.getServiceName() + "\", " + "\""
+					+ servico.getPrice() + "\", " + "\""
+					+ servico.getBarberName() + "\", " + "\""
+					+ servico.getDate() + "\"); ");
 			return true;
 		}
 
@@ -38,11 +38,11 @@ public class DoneServiceDAO {
 	}
 
 	// this method exclude a job done
-	public boolean excluir(ServicoPrestado servico) throws SQLException {
+	public boolean excluir(DoneService servico) throws SQLException {
 		if (servico != null) {
-			this.updateQuery("DELETE FROM servicoprestado WHERE "
-					+ "servicoprestado.idservicoprestado = \""
-					+ pesquisar(servico) + "\";");
+			this.updateQuery("DELETE FROM DoneService WHERE "
+					+ "DoneService.idDoneService = \"" + pesquisar(servico)
+					+ "\";");
 			return true;
 		}
 
@@ -50,21 +50,19 @@ public class DoneServiceDAO {
 	}
 
 	// this method realize a seach to job done
-	private String pesquisar(ServicoPrestado servico) throws SQLException {
+	private String pesquisar(DoneService servico) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE "
-						+ "servicoprestado.nome = \""
-						+ servico.getNomeServico()
-						+ "\" AND servicoprestado.preco = \""
-						+ servico.getPreco()
-						+ "\" AND servicoprestado.barbeiro = \""
-						+ servico.getNomeBarbeiro()
-						+ "\" AND servicoprestado.data = \""
-						+ servico.getData() + "\";");
+				.prepareStatement("SELECT * FROM DoneService WHERE "
+						+ "DoneService.nome = \"" + servico.getServiceName()
+						+ "\" AND DoneService.preco = \"" + servico.getPrice()
+						+ "\" AND DoneService.barbeiro = \""
+						+ servico.getBarberName()
+						+ "\" AND DoneService.data = \"" + servico.getDate()
+						+ "\";");
 		ResultSet rs = preparedStatement.executeQuery();
 		rs.next();
-		return rs.getString("idservicoprestado");
+		return rs.getString("idDoneService");
 	}
 
 	// this method update the query
@@ -78,13 +76,13 @@ public class DoneServiceDAO {
 	}
 
 	// this method show the done services and registered
-	public ResultSet mostrarServicosPrestadosCadastrados(ServicoPrestado servico)
+	public ResultSet mostrarServicosPrestadosCadastrados(DoneService servico)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection
 				.createStatement()
 				.executeQuery(
-						"SELECT nome, preco, barbeiro, data FROM servicoprestado ORDER BY data;");
+						"SELECT nome, preco, barbeiro, data FROM DoneService ORDER BY data;");
 
 		return rs;
 	}
