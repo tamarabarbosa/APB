@@ -29,9 +29,9 @@ public class Phonebook {
 	/**
 	* Constructor.
 	* 
-	* @param name is the name of the barber.
-	* @param phoneNumber is the phone number of the barber.
-	* @param description is the description of the service.
+	* @param name is the name of someone.
+	* @param phoneNumber is the phone number someone.
+	* @param description is the description of itself.
 	*/
 	public Phonebook(String name, String phoneNumber, String description) {
 		this.name = name;

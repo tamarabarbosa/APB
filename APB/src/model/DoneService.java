@@ -39,7 +39,7 @@ public class DoneService {
 	* 
 	* @param serviceName if the name of the service to be done.
 	* @param price is the price tag of the service.
-	* @param description is the description of the service.
+	* @param barberName is the name of barber that done the service.
 	*/
 	public DoneService(String serviceName, String price, String barberName) {
 		this.serviceName = serviceName;

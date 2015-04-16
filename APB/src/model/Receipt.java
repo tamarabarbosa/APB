@@ -28,6 +28,14 @@ public class Receipt {
 	private final String BARBER_EMPTY = "Barbeiro em Branco";
 	private final String SERVICE_TYPE_EMPTY = "Tipo do Serviço em Branco";
 
+	/**
+	* Constructor.
+	* 
+	* @param initialDate is when the service started.
+	* @param endDate is when the service was done.
+	* @param barber is the barber that did the service.
+	* @param serviceType is the service type that was done.
+	*/
 	public Receipt(String initialDate, String endDate, String barber,
 			String serviceType) throws Receipt	Exception {
 		// super();
