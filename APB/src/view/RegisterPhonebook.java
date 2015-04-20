@@ -10,7 +10,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import model.Phonebook;
-import control.AgendaController;
+import control.ContactController;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 @SuppressWarnings("serial")
-public class CadastrarAgenda extends JFrame {
+public class RegisterPhonebook extends JFrame {
 
 	private JPanel contentPane;
 
@@ -28,7 +28,7 @@ public class CadastrarAgenda extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarAgenda frame = new CadastrarAgenda();
+					RegisterPhonebook frame = new RegisterPhonebook();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,7 +38,7 @@ public class CadastrarAgenda extends JFrame {
 	}
 
 	// Class constructor
-	public CadastrarAgenda() {
+	public RegisterPhonebook() {
 		setTitle("Agenda de Contatos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 575, 472);
@@ -68,9 +68,10 @@ public class CadastrarAgenda extends JFrame {
 		scrollPane.setViewportView(table);
 
 		try {
-			AgendaController agendaController = AgendaController.getInstance();
+			ContactController agendaController = ContactController
+					.getInstance();
 			Phonebook contato = new Phonebook();
-			ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
+			ResultSet rs = agendaController.showContactsRegistered(contato);
 			while (rs.next()) {
 				String[] dados = new String[3];
 				dados[0] = rs.getString("nome");
@@ -122,7 +123,7 @@ public class CadastrarAgenda extends JFrame {
 			// // This method calls the register barber frame
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				Administrativo frame = new Administrativo();
+				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
