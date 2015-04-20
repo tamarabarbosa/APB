@@ -16,12 +16,12 @@ import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import model.Barbeiro;
-import control.BarbeiroController;
-import exception.BarbeiroException;
+import model.Barber;
+import control.BarberController;
+import exception.BarberException;
 
 @SuppressWarnings("serial")
-public class CadastrarBarbeiro extends JFrame {
+public class RegisterBarber extends JFrame {
 
 	// Creating a panel
 	private JPanel contentPane;
@@ -30,7 +30,7 @@ public class CadastrarBarbeiro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarBarbeiro frame = new CadastrarBarbeiro();
+					RegisterBarber frame = new RegisterBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -41,7 +41,7 @@ public class CadastrarBarbeiro extends JFrame {
 	}
 
 	// Class constructor
-	public CadastrarBarbeiro() {
+	public RegisterBarber() {
 		inicializarComponentes();
 	}
 
@@ -64,11 +64,10 @@ public class CadastrarBarbeiro extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			BarbeiroController barbeiroController = BarbeiroController
+			BarberController barbeiroController = BarberController
 					.getInstance();
-			Barbeiro barbeiro = new Barbeiro();
-			ResultSet rs = barbeiroController
-					.mostrarBarbeirosCadastrados(barbeiro);
+			Barber barbeiro = new Barber();
+			ResultSet rs = barbeiroController.showRegisteredBarbers(barbeiro);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("nome");
@@ -110,9 +109,9 @@ public class CadastrarBarbeiro extends JFrame {
 			// This method is used to initialize the buttons
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Barbeiro.setTempNome(modelo.getValueAt(
+					Barber.setTempName(modelo.getValueAt(
 							table.getSelectedRow(), 0).toString());
-					AlterarBarbeiro frame = new AlterarBarbeiro();
+					ModifyBarber frame = new ModifyBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();
@@ -133,25 +132,25 @@ public class CadastrarBarbeiro extends JFrame {
 				try {
 					String nome = (String) table.getValueAt(
 							table.getSelectedRow(), 0);
-					Barbeiro barbeiro = new Barbeiro();
-					barbeiro.setNome(nome);
+					Barber barbeiro = new Barber();
+					barbeiro.setName(nome);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						BarbeiroController barbeiroController = BarbeiroController
+						BarberController barbeiroController = BarberController
 								.getInstance();
-						barbeiroController.excluir(barbeiro);
+						barbeiroController.delete(barbeiro);
 
 						dispose();
-						CadastrarBarbeiro frame = new CadastrarBarbeiro();
+						RegisterBarber frame = new RegisterBarber();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
 					mostrarMensagemDeErro("Selecione um Barbeiro para remover");
-				} catch (BarbeiroException e) {
+				} catch (BarberException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -165,7 +164,7 @@ public class CadastrarBarbeiro extends JFrame {
 		botaoVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				Administrativo frame = new Administrativo();
+				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
