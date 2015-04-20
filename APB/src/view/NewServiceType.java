@@ -11,9 +11,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
-import control.TipoServicoController;
-import model.TipoServico;
-import exception.ServicoException;
+import control.ServiceTypeController;
+import model.ServiceType;
+import exception.ServiceException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -23,7 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
-public class CadastrarTipoServico extends JFrame {
+public class NewServiceType extends JFrame {
 
 	private JPanel contentPane;
 	private static String nomeTemp;
@@ -36,7 +36,7 @@ public class CadastrarTipoServico extends JFrame {
 			// Method that initializes the window registration service type
 			public void run() {
 				try {
-					CadastrarTipoServico frame = new CadastrarTipoServico();
+					NewServiceType frame = new NewServiceType();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class CadastrarTipoServico extends JFrame {
 	 * Create the frame.
 	 */
 	// Class constructor
-	public CadastrarTipoServico() {
+	public NewServiceType() {
 		setTitle("Tipo de Servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
@@ -66,9 +66,9 @@ public class CadastrarTipoServico extends JFrame {
 				new String[] { "Serviço", "Valor" });
 		final JTable table = new JTable(modelo);
 		try {
-			TipoServicoController servicoController = TipoServicoController
+			ServiceTypeController servicoController = ServiceTypeController
 					.getInstance();
-			TipoServico servico = new TipoServico();
+			ServiceType servico = new ServiceType();
 			ResultSet rs = servicoController
 					.mostrarTipoServicoCadastrados(servico);
 			while (rs.next()) {
@@ -106,13 +106,13 @@ public class CadastrarTipoServico extends JFrame {
 			// change
 			public void mouseClicked(MouseEvent e) {
 				try {
-					TipoServico.setTempNome(modelo.getValueAt(
+					ServiceType.setTempName(modelo.getValueAt(
 							table.getSelectedRow(), 0).toString());
-					AlterarTipoServico frame = new AlterarTipoServico();
+					ModifyServiceType frame = new ModifyServiceType();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();
-				} catch (ServicoException e1) {
+				} catch (ServiceException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (ArrayIndexOutOfBoundsException e1) {
 					mostrarMensagemDeErro("Selecione um Tipo de Serviço");
@@ -129,11 +129,11 @@ public class CadastrarTipoServico extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String nome = (String) table.getValueAt(table.getSelectedRow(),
 						0);
-				TipoServico tipoServico = new TipoServico();
+				ServiceType tipoServico = new ServiceType();
 
 				try {
-					tipoServico.setNomeTipoServico(nome);
-				} catch (ServicoException e1) {
+					tipoServico.setNameServiceType(nome);
+				} catch (ServiceException e1) {
 					e1.printStackTrace();
 				}
 
@@ -141,7 +141,7 @@ public class CadastrarTipoServico extends JFrame {
 						"Remover " + nome + " da lista?");
 
 				if (confirmacao == JOptionPane.YES_OPTION) {
-					TipoServicoController tipoServicoController = TipoServicoController
+					ServiceTypeController tipoServicoController = ServiceTypeController
 							.getInstance();
 					try {
 						tipoServicoController.excluir(tipoServico);
@@ -150,7 +150,7 @@ public class CadastrarTipoServico extends JFrame {
 					}
 
 					dispose();
-					CadastrarTipoServico frame = new CadastrarTipoServico();
+					NewServiceType frame = new NewServiceType();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				}
@@ -166,7 +166,7 @@ public class CadastrarTipoServico extends JFrame {
 			// VIEW method of returning to the administrative window
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				Administrativo frame = new Administrativo();
+				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
