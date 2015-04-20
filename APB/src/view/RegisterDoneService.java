@@ -16,15 +16,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import control.ServicoPrestadoController;
-import model.ServicoPrestado;
-import exception.ServicoException;
+import control.DoneServiceController;
+import model.DoneService;
+import exception.ServiceException;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
-public class CadastrarServicoPrestado extends JFrame {
+public class RegisterDoneService extends JFrame {
 
 	private JPanel contentPane;
 
@@ -32,7 +32,7 @@ public class CadastrarServicoPrestado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+					RegisterDoneService frame = new RegisterDoneService();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class CadastrarServicoPrestado extends JFrame {
 	}
 
 	// These methods are used to initialize the components
-	public CadastrarServicoPrestado() {
+	public RegisterDoneService() {
 		setTitle("Servi\u00E7os Prestados");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 300);
@@ -60,9 +60,9 @@ public class CadastrarServicoPrestado extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			ServicoPrestadoController servicoController = ServicoPrestadoController
+			DoneServiceController servicoController = DoneServiceController
 					.getInstance();
-			ServicoPrestado servico = new ServicoPrestado();
+			DoneService servico = new DoneService();
 			ResultSet rs = servicoController
 					.mostrarServicosPrestadosCadastrados(servico);
 			while (rs.next()) {
@@ -70,7 +70,7 @@ public class CadastrarServicoPrestado extends JFrame {
 				dados[0] = rs.getString("nome");
 				dados[1] = rs.getString("barbeiro");
 				dados[2] = rs.getString("preco");
-				dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
+				dados[3] = servico.ConvertTOABNT(rs.getString("data"));
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
@@ -123,28 +123,28 @@ public class CadastrarServicoPrestado extends JFrame {
 							table.getSelectedRow(), 2);
 					String data = (String) table.getValueAt(
 							table.getSelectedRow(), 3);
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeServico(nome);
-					servico.setNomeBarbeiro(barbeiro);
-					servico.setPreco(valor);
-					servico.setData(data);
+					DoneService servico = new DoneService();
+					servico.setServiceName(nome);
+					servico.setBarberName(barbeiro);
+					servico.setPrice(valor);
+					servico.setDate(data);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						ServicoPrestadoController servicoController = ServicoPrestadoController
+						DoneServiceController servicoController = DoneServiceController
 								.getInstance();
 						servicoController.excluir(servico);
 
 						dispose();
-						CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+						RegisterDoneService frame = new RegisterDoneService();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
 					mostrarMensagemDeErro("Selecione um Serviço para remover");
-				} catch (ServicoException e) {
+				} catch (ServiceException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
