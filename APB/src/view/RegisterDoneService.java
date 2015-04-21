@@ -68,7 +68,7 @@ public class RegisterDoneService extends JFrame {
 			while (rs.next()) {
 				String[] dados = new String[4];
 				dados[0] = rs.getString("nome");
-				dados[1] = rs.getString("barbeiro");
+				dados[1] = rs.getString("barber");
 				dados[2] = rs.getString("preco");
 				dados[3] = servico.ConvertTOABNT(rs.getString("data"));
 				modelo.addRow(dados);
@@ -117,7 +117,7 @@ public class RegisterDoneService extends JFrame {
 				try {
 					String nome = (String) table.getValueAt(
 							table.getSelectedRow(), 0);
-					String barbeiro = (String) table.getValueAt(
+					String barber = (String) table.getValueAt(
 							table.getSelectedRow(), 1);
 					String valor = (String) table.getValueAt(
 							table.getSelectedRow(), 2);
@@ -125,7 +125,7 @@ public class RegisterDoneService extends JFrame {
 							table.getSelectedRow(), 3);
 					DoneService servico = new DoneService();
 					servico.setServiceName(nome);
-					servico.setBarberName(barbeiro);
+					servico.setBarberName(barber);
 					servico.setPrice(valor);
 					servico.setDate(data);
 

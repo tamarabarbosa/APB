@@ -93,7 +93,7 @@ public class VisualizarRelatorios extends JFrame {
 
 		if (PesquisarRelatorio.tipoBusca == 1) {
 
-			report.setBarber(PesquisarRelatorio.barbeiro);
+			report.setBarber(PesquisarRelatorio.barber);
 
 			ResultSet rs = relatorioController.pesquisarPorBarbeiro(report);
 
@@ -139,7 +139,7 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		if (PesquisarRelatorio.tipoBusca == 2) {
 
-			report.setBarber(PesquisarRelatorio.barbeiro);
+			report.setBarber(PesquisarRelatorio.barber);
 			report.setServiceType(PesquisarRelatorio.servico);
 
 			ResultSet rs = relatorioController
@@ -188,7 +188,7 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		if (PesquisarRelatorio.tipoBusca == 3) {
 
-			report.setBarber(PesquisarRelatorio.barbeiro);
+			report.setBarber(PesquisarRelatorio.barber);
 			report.setEndDate(PesquisarRelatorio.dataFinal);
 			report.setInitialDate(PesquisarRelatorio.dataInicial);
 
@@ -238,7 +238,7 @@ public class VisualizarRelatorios extends JFrame {
 		}
 		if (PesquisarRelatorio.tipoBusca == 4) {
 
-			report.setBarber(PesquisarRelatorio.barbeiro);
+			report.setBarber(PesquisarRelatorio.barber);
 			report.setServiceType(PesquisarRelatorio.servico);
 			report.setEndDate(PesquisarRelatorio.dataFinal);
 			report.setInitialDate(PesquisarRelatorio.dataInicial);
@@ -547,7 +547,7 @@ public class VisualizarRelatorios extends JFrame {
 		painelTotalPago.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel(
-				"Valor total a ser pago para o barbeiro:");
+				"Valor total a ser pago para o barber:");
 		lblNewLabel.setBounds(6, 4, 235, 14);
 		painelTotalPago.add(lblNewLabel);
 
@@ -567,20 +567,20 @@ public class VisualizarRelatorios extends JFrame {
 
 		if (PesquisarRelatorio.tipoBusca != 0) {
 			if (PesquisarRelatorio.tipoBusca == 1) {
-				report.setBarber(PesquisarRelatorio.barbeiro);
+				report.setBarber(PesquisarRelatorio.barber);
 
 				rs = ReportController.getInstance()
 						.pesquisarPorBarbeiro(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 2) {
-				report.setBarber(PesquisarRelatorio.barbeiro);
+				report.setBarber(PesquisarRelatorio.barber);
 				report.setServiceType(PesquisarRelatorio.servico);
 
 				rs = ReportController.getInstance()
 						.pesquisarPorBarbeiroEServico(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 3) {
-				report.setBarber(PesquisarRelatorio.barbeiro);
+				report.setBarber(PesquisarRelatorio.barber);
 				report.setEndDate(PesquisarRelatorio.dataFinal);
 				report.setInitialDate(PesquisarRelatorio.dataInicial);
 
@@ -588,7 +588,7 @@ public class VisualizarRelatorios extends JFrame {
 						report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 4) {
-				report.setBarber(PesquisarRelatorio.barbeiro);
+				report.setBarber(PesquisarRelatorio.barber);
 				report.setServiceType(PesquisarRelatorio.servico);
 				report.setEndDate(PesquisarRelatorio.dataFinal);
 				report.setInitialDate(PesquisarRelatorio.dataInicial);

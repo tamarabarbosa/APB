@@ -15,16 +15,16 @@ import exception.BarbeiroException;
 
 public class BarberControllerTest {
 
-	Barbeiro barbeiro = new Barbeiro();
+	Barbeiro barber = new Barbeiro();
 
 	@Before
 	public void setUp() {
 		try {
-			barbeiro.setNome("Alessandro");
-			barbeiro.setRg("418757896");
-			barbeiro.setTelefone("3389-9085");
-			barbeiro.setCpf("02919594150");
-			barbeiro.setCadeira("5");
+			barber.setNome("Alessandro");
+			barber.setRg("418757896");
+			barber.setTelefone("3389-9085");
+			barber.setCpf("02919594150");
+			barber.setCadeira("5");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarbeiroException e) {
@@ -32,17 +32,17 @@ public class BarberControllerTest {
 		}
 	}
 
-	BarbeiroController barbeiroController = BarbeiroController.getInstance();
+	BarbeiroController barberController = BarbeiroController.getInstance();
 
 	@Test
 	public void getInstanceDeBarbeiroControlerDeveRetonarInstanciaCorrente() {
-		assertEquals(BarbeiroController.getInstance(), barbeiroController);
+		assertEquals(BarbeiroController.getInstance(), barberController);
 	}
 
 	@Test
 	public void inserirDeBarbeiroControllerDeveEnviarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroController.inserir(barbeiro));
+			assertTrue(barberController.inserir(barber));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class BarberControllerTest {
 	@Test
 	public void deleteDeBarbeiroControllerDeveEnviarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroController.delete(barbeiro));
+			assertTrue(barberController.delete(barber));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -60,7 +60,7 @@ public class BarberControllerTest {
 	@Test
 	public void changeDeBarbeiroControllerDeveEnviarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroController.change(barbeiro.getNome(), barbeiro));
+			assertTrue(barberController.change(barber.getNome(), barber));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -69,7 +69,7 @@ public class BarberControllerTest {
 	@Test
 	public void inserirBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
-			assertFalse(barbeiroController.inserir(null));
+			assertFalse(barberController.inserir(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -78,7 +78,7 @@ public class BarberControllerTest {
 	@Test
 	public void deleteBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
-			assertFalse(barbeiroController.delete(null));
+			assertFalse(barberController.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -87,7 +87,7 @@ public class BarberControllerTest {
 	@Test
 	public void changeBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
-			assertFalse(barbeiroController.change(null, null));
+			assertFalse(barberController.change(null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -95,19 +95,19 @@ public class BarberControllerTest {
 
 	@Test
 	public void procurarPorBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
-		ResultSet rs = barbeiroController.pesquisar();
+		ResultSet rs = barberController.pesquisar();
 		while (rs.next());
 	}
 
 	@Test
 	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
-		ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
+		ResultSet rs = barberController.mostrarBarbeirosCadastrados(barber);
 		while(rs.next());
 	}
 
 	@Test
 	public void pesquisarPorNomeDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
-		ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
+		ResultSet rs = barberController.pesquisarPorNome(barber);
 		while(rs.next());
 	}
 }

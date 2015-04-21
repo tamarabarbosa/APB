@@ -40,7 +40,7 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = AssertionError.class)
 	public void dataInicialNaoPodeSerSettadaEmBranco() throws NullPointerException, ParseException {
 		try {
@@ -49,7 +49,7 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = NullPointerException.class)
 	public void dataFinalNaoPodeSerSettadaNula() throws NullPointerException, ParseException {
 		try {
@@ -58,7 +58,7 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = AssertionError.class)
 	public void dataFinalNaoPodeSerSettaEmBranco() throws NullPointerException, ParseException {
 		try {
@@ -67,25 +67,25 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodeSerSettadoNulo() {
+	public void barberNaoPodeSerSettadoNulo() {
 		try {
 			report.setBarbeiro(null);
 		} catch (RelatorioException e){
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = AssertionError.class)
-	public void barbeiroNaoPodeSerSettoEmBranco() {
+	public void barberNaoPodeSerSettoEmBranco() {
 		try {
 			report.setBarbeiro("");
 		} catch (RelatorioException e){
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = NullPointerException.class)
 	public void tipoDeServicoNaoPodeSerSettadoNulo() {
 		try {
@@ -94,7 +94,7 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = AssertionError.class)
 	public void tipoDeServicoNaoPodeSerSettoEmBranco() {
 		try {
@@ -103,7 +103,7 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarBarbeiroNulo() {
 		try {
@@ -112,7 +112,7 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarDataFinalNula() {
 		try {
@@ -121,7 +121,7 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarDataInicialNula() {
 		try {
@@ -130,7 +130,7 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarTipoServicoNulo() {
 		try {
@@ -139,8 +139,8 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
-	@Test 
+
+	@Test
 	public void construtorDeRelatorioPassandoTodosOsDadosCorretos() {
 		try {
 			new Report ("2013-01-01", "2013-12-31", "Chico", "barba");
@@ -149,27 +149,27 @@ public class ReportTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void metodoParaTestarGetterDeBarbeiro() {
 		assertEquals("Chico", report.getBarbeiro());
 	}
-	
+
 	@Test
 	public void metodoParaTestarGetterDeTipoDeServico() {
 		assertEquals("barba", report.getTipoServico());
 	}
-	
+
 	@Test
 	public void metodoParaTestarGetterDeDataInicial() {
 		assertEquals("2013-01-01", report.getDataInicial());
 	}
-	
+
 	@Test
 	public void metodoParaTestarGetterDeDataFinal() {
 		assertEquals("2013-09-09", report.getDataFinal());
 	}
-	
+
 	@Test
 	public void testeDataParaConverter() {
 		try {

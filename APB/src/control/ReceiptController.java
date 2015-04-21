@@ -26,10 +26,10 @@ public class ReceiptController {
 	}
 
 	// show results of search of barber service
-	public ResultSet pesquisarServicosDoBarbeiro(String barbeiro,
+	public ResultSet pesquisarServicosDoBarbeiro(String barber,
 			String dataInicial, String dataFinal) throws SQLException {
 
-		return ReceiptDAO.getInstance().pesquisarServicosDoBarbeiro(barbeiro,
+		return ReceiptDAO.getInstance().pesquisarServicosDoBarbeiro(barber,
 				dataInicial, dataFinal);
 
 	}

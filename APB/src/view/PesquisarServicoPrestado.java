@@ -89,13 +89,13 @@ public class PesquisarServicoPrestado extends JFrame {
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE nome = '"
+							"SELECT nome, preco, barber, data FROM servicoprestado WHERE nome = '"
 									+ servico.getNomeServico() + "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
 						dados[0] = rs.getString("nome");
-						dados[1] = rs.getString("barbeiro");
+						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
 						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
@@ -123,13 +123,13 @@ public class PesquisarServicoPrestado extends JFrame {
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT nome, preco, barbeiro, data FROM servicoprestado WHERE barbeiro = '"
+							"SELECT nome, preco, barber, data FROM servicoprestado WHERE barber = '"
 									+ servico.getNomeBarbeiro() + "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
 						dados[0] = rs.getString("nome");
-						dados[1] = rs.getString("barbeiro");
+						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
 						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
@@ -153,12 +153,12 @@ public class PesquisarServicoPrestado extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
-					String barbeiro = (String) table.getValueAt(table.getSelectedRow(), 1);
+					String barber = (String) table.getValueAt(table.getSelectedRow(), 1);
 					String valor = (String) table.getValueAt(table.getSelectedRow(), 2);
 					String data = (String) table.getValueAt(table.getSelectedRow(), 3);
 					ServicoPrestado servico = new ServicoPrestado();
 					servico.setNomeServico(nome);
-					servico.setNomeBarbeiro(barbeiro);
+					servico.setNomeBarbeiro(barber);
 					servico.setPreco(valor);
 					servico.setData(data);
 
@@ -212,13 +212,13 @@ public class PesquisarServicoPrestado extends JFrame {
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"Select nome, preco, barbeiro, data from servicoprestado where data = '"
+							"Select nome, preco, barber, data from servicoprestado where data = '"
 									+ servico.getData() + "' order by data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
 						dados[0] = rs.getString("nome");
-						dados[1] = rs.getString("barbeiro");
+						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
 						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);

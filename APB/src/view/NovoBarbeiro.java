@@ -61,12 +61,12 @@ public class NovoBarbeiro extends JFrame {
 		setContentPane(contentPane);
 		getContentPane().setLayout(null);
 		contentPane.setLayout(null);
-		
 
-	
+
+
 		MaskFormatter mascraFormatTel = new MaskFormatter("(##)####-####");
 		MaskFormatter mascraFormatCpf = new MaskFormatter("###.###.###-##");
-	
+
 
 		textFieldNome = new JTextField();
 		textFieldNome.setBounds(92, 11, 354, 20);
@@ -107,24 +107,24 @@ public class NovoBarbeiro extends JFrame {
 		lblCadeira = new JLabel("Cadeira:");
 		lblCadeira.setBounds(21, 136, 61, 14);
 		contentPane.add(lblCadeira);
-		
 
-	
+
+
 
 		botaoSalvar = new JButton("Salvar");
 		botaoSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent k) {
 				try {
-					Barbeiro barbeiro = new Barbeiro();
-					barbeiro.setNome(textFieldNome.getText());
-					barbeiro.setCpf(textFieldCpf.getText());
-					barbeiro.setRg(textFieldRg.getText());
-					barbeiro.setTelefone(textFieldTelefone.getText());
-					barbeiro.setCadeira(textFieldCadeira.getText());
+					Barbeiro barber = new Barbeiro();
+					barber.setNome(textFieldNome.getText());
+					barber.setCpf(textFieldCpf.getText());
+					barber.setRg(textFieldRg.getText());
+					barber.setTelefone(textFieldTelefone.getText());
+					barber.setCadeira(textFieldCadeira.getText());
 
-					BarbeiroController barbeiroController = BarbeiroController.getInstance();
-					barbeiroController.inserir(barbeiro);
+					BarbeiroController barberController = BarbeiroController.getInstance();
+					barberController.inserir(barber);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 							+ textFieldNome.getText()

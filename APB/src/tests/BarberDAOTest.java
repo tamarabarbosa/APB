@@ -17,24 +17,24 @@ import exception.BarbeiroException;
 
 public class BarberDAOTest {
 
-	Barbeiro barbeiro = new Barbeiro();
-	Barbeiro barbeiro2 = new Barbeiro();
+	Barbeiro barber = new Barbeiro();
+	Barbeiro barber2 = new Barbeiro();
 	@Before
 	public void setUp() {
 		try {
-			barbeiro.setNome("Alessandro");
-			barbeiro.setRg("418757896");
-			barbeiro.setTelefone("3389-9085");
-			barbeiro.setCpf("02919594150");
-			barbeiro.setCadeira("5");
-			barbeiro2.setNome("Luciano");
-			barbeiro2.setRg("418757896");
-			barbeiro2.setTelefone("3389-9085");
-			barbeiro2.setCpf("02919594150");
-			barbeiro2.setCadeira("5");
+			barber.setNome("Alessandro");
+			barber.setRg("418757896");
+			barber.setTelefone("3389-9085");
+			barber.setCpf("02919594150");
+			barber.setCadeira("5");
+			barber2.setNome("Luciano");
+			barber2.setRg("418757896");
+			barber2.setTelefone("3389-9085");
+			barber2.setCpf("02919594150");
+			barber2.setCadeira("5");
 
-			BarbeiroDAO barbeiroDao = BarbeiroDAO.getInstance();
-			barbeiroDao.insert(barbeiro);
+			BarbeiroDAO barberDao = BarbeiroDAO.getInstance();
+			barberDao.insert(barber);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarbeiroException e) {
@@ -44,21 +44,21 @@ public class BarberDAOTest {
 		}
 	}
 
-	BarbeiroDAO barbeiroDAO = BarbeiroDAO.getInstance();
+	BarbeiroDAO barberDAO = BarbeiroDAO.getInstance();
 
 	@Test
 	public void getInstanceDeBarbeiroDAODeveRetonarInstanciaCorrente() {
-		assertEquals(BarbeiroDAO.getInstance(), barbeiroDAO);
+		assertEquals(BarbeiroDAO.getInstance(), barberDAO);
 	}
 
 	@Test
 	public void inserirDeBarbeiroDAODeveCadastrarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroDAO.insert(barbeiro));
+			assertTrue(barberDAO.insert(barber));
 
 			Connection connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery("SELECT nome FROM barbeiro WHERE "
-					+ " nome = \"" + barbeiro.getNome() + "\";");
+			ResultSet rs = connection.createStatement().executeQuery("SELECT nome FROM barber WHERE "
+					+ " nome = \"" + barber.getNome() + "\";");
 			rs.next();
 			assertEquals("Alessandro", rs.getString("nome"));
 			rs.close();
@@ -71,11 +71,11 @@ public class BarberDAOTest {
 	@Test (expected = AssertionError.class)
 	public void deleteDeBarbeiroDAODeveEnviarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroDAO.delete(barbeiro));
+			assertTrue(barberDAO.delete(barber));
 
 			Connection connection = FactoryConnection.getInstance().getConnection();
-			ResultSet rs = connection.createStatement().executeQuery("SELECT nome FROM barbeiro WHERE "
-					+ " nome = \"" + barbeiro.getNome() + "\";");
+			ResultSet rs = connection.createStatement().executeQuery("SELECT nome FROM barber WHERE "
+					+ " nome = \"" + barber.getNome() + "\";");
 			rs.next();
 			fail();
 			rs.close();
@@ -87,12 +87,12 @@ public class BarberDAOTest {
 	@Test
 	public void changeDeBarbeiroDaoDeveAlterarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroDAO.change(barbeiro.getNome(), barbeiro, barbeiro2));
+			assertTrue(barberDAO.change(barber.getNome(), barber, barber2));
 
-			barbeiroDAO.change(barbeiro.getCpf(),barbeiro2, barbeiro);
+			barberDAO.change(barber.getCpf(),barber2, barber);
 			Connection connection = FactoryConnection.getInstance().getConnection();
-			java.sql.PreparedStatement pst1 = connection.prepareStatement("SELECT nome FROM barbeiro WHERE "
-							+ " nome = \"" + barbeiro.getNome() + "\";");
+			java.sql.PreparedStatement pst1 = connection.prepareStatement("SELECT nome FROM barber WHERE "
+							+ " nome = \"" + barber.getNome() + "\";");
 
 			ResultSet rs = pst1.executeQuery();
 
@@ -108,7 +108,7 @@ public class BarberDAOTest {
 	@Test
 	public void inserirDeBarbeiroDAOPassandoUmBarbeiroNulo() {
 		try {
-			assertFalse(barbeiroDAO.insert(null));
+			assertFalse(barberDAO.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -117,7 +117,7 @@ public class BarberDAOTest {
 	@Test
 	public void deleteDeBarbeiroDAOPassandoUmBarbeiroNulo() {
 		try {
-			assertFalse(barbeiroDAO.delete(null));
+			assertFalse(barberDAO.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -126,7 +126,7 @@ public class BarberDAOTest {
 	@Test
 	public void changeDeBarbeiroDaoPassandoUmBarbeiroNulo() {
 		try {
-			assertFalse(barbeiroDAO.change(barbeiro.getNome(), null, null));
+			assertFalse(barberDAO.change(barber.getNome(), null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -135,7 +135,7 @@ public class BarberDAOTest {
 	@Test
 	public void changeDeBarbeiroDaoPassandoUmBarbeiroAlteradoNulo() {
 		try {
-			assertFalse(barbeiroDAO.change(barbeiro.getNome(), null, barbeiro));
+			assertFalse(barberDAO.change(barber.getNome(), null, barber));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -144,7 +144,7 @@ public class BarberDAOTest {
 	@Test
 	public void pesquisarDeBarbeiroDAODeveMostrarUmBarbeiro() {
 		try {
-			ResultSet rs = barbeiroDAO.pesquisar();
+			ResultSet rs = barberDAO.pesquisar();
 
 			while (rs.next()) {
 				String nome = rs.getString("nome");
@@ -158,7 +158,7 @@ public class BarberDAOTest {
 	@Test
 	public void mostrarBarbeirosCadastradosDeBarbeiroDAODeveMostrarBarbeiros() {
 		try {
-			ResultSet rs = barbeiroDAO.mostrarBarbeirosCadastrados(barbeiro);
+			ResultSet rs = barberDAO.mostrarBarbeirosCadastrados(barber);
 
 			while (rs.next()) {
 				String nome = rs.getString("nome");
@@ -172,7 +172,7 @@ public class BarberDAOTest {
 	@Test
 	public void pesquisarPorNomeDeBarbeiroDAODeveMostrarBarbeiros() {
 		try {
-			ResultSet rs = barbeiroDAO.pesquisarPorNome(barbeiro);
+			ResultSet rs = barberDAO.pesquisarPorNome(barber);
 
 			while (rs.next()) {
 				String nome = rs.getString("nome");

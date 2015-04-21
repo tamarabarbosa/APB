@@ -14,28 +14,28 @@ import org.junit.Test;
 
 public class BarberTest {
 
-	Barbeiro barbeiro;
-	
+	Barbeiro barber;
+
 	@Before
 	public void setUp() {
 		try {
-			barbeiro =  new Barbeiro();
-			barbeiro.setNome("Alessandro");
-			barbeiro.setRg("418757896");
-			barbeiro.setTelefone("3389-9085");
-			barbeiro.setCpf("02919594150");
-			barbeiro.setCadeira("10");
+			barber =  new Barbeiro();
+			barber.setNome("Alessandro");
+			barber.setRg("418757896");
+			barber.setTelefone("3389-9085");
+			barber.setCpf("02919594150");
+			barber.setCadeira("10");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirNomeNuloPassandoPeloSetter() {
+	public void barberNaoPodePossuirNomeNuloPassandoPeloSetter() {
 		try {
-			barbeiro.setNome(null);
+			barber.setNome(null);
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
@@ -43,9 +43,9 @@ public class BarberTest {
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirCPFNuloPassandoPeloSetter() {
+	public void barberNaoPodePossuirCPFNuloPassandoPeloSetter() {
 		try {
-			barbeiro.setCpf(null);
+			barber.setCpf(null);
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
@@ -53,9 +53,9 @@ public class BarberTest {
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirRGNuloPassandoPeloSetter() {
+	public void barberNaoPodePossuirRGNuloPassandoPeloSetter() {
 		try {
-			barbeiro.setRg(null);
+			barber.setRg(null);
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
@@ -63,9 +63,9 @@ public class BarberTest {
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirTelefoneNuloPassandoPeloSetter() {
+	public void barberNaoPodePossuirTelefoneNuloPassandoPeloSetter() {
 		try {
-			barbeiro.setTelefone(null);
+			barber.setTelefone(null);
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
@@ -73,9 +73,9 @@ public class BarberTest {
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void barbeiroNaoPodePossuirCadeiraNuloPassandoPeloSetter() {
+	public void barberNaoPodePossuirCadeiraNuloPassandoPeloSetter() {
 		try {
-			barbeiro.setCadeira(null);
+			barber.setCadeira(null);
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
@@ -133,7 +133,7 @@ public class BarberTest {
 	@Test (expected = AssertionError.class)
 	public void cpfNaoPodePassarQuandoInvalido() {
 		try {
-			barbeiro.setCpf("000000000");
+			barber.setCpf("000000000");
 			fail();
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
@@ -143,7 +143,7 @@ public class BarberTest {
 	@Test (expected = AssertionError.class)
 	public void rgNaoPodeConterLetras() {
 		try {
-			barbeiro.setRg("4654654ASD");
+			barber.setRg("4654654ASD");
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
@@ -152,7 +152,7 @@ public class BarberTest {
 	@Test (expected = AssertionError.class)
 	public void numeroDaCadeiraNaoPodeSerUmaLetra() {
 		try {
-			barbeiro.setCadeira("asd");
+			barber.setCadeira("asd");
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
@@ -161,7 +161,7 @@ public class BarberTest {
 	@Test (expected = AssertionError.class)
 	public void numeroDoTelefoneNaoPodeConterLetras() {
 		try {
-			barbeiro.setTelefone("65465a4");
+			barber.setTelefone("65465a4");
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
@@ -169,122 +169,122 @@ public class BarberTest {
 
 	@Test
 	public void testeParaGetterDeNomeDeBarbeiro() {
-		assertEquals("Alessandro", barbeiro.getNome());
+		assertEquals("Alessandro", barber.getNome());
 	}
-	
+
 	@Test
 	public void testeParaGetterDeCPFDeBarbeiro() {
-		assertEquals("02919594150", barbeiro.getCpf());
+		assertEquals("02919594150", barber.getCpf());
 	}
-	
+
 	@Test
 	public void testeParaGetterDeRGDeBarbeiro() {
-		assertEquals("418757896", barbeiro.getRg());
+		assertEquals("418757896", barber.getRg());
 	}
-	
+
 	@Test
 	public void testeParaGetterDeTelefoneDeBarbeiro() {
-		assertEquals("3389-9085", barbeiro.getTelefone());
+		assertEquals("3389-9085", barber.getTelefone());
 	}
-	
+
 	@Test
 	public void testeParaGetterDeCadeiraDeBarbeiro() {
-		assertEquals("10", barbeiro.getCadeira());
+		assertEquals("10", barber.getCadeira());
 	}
-	
+
 	@Test
 	public void testeParaGetterDeTempNomeDeBarbeiro() {
 		assertEquals(null, Barbeiro.getTempNome());
 	}
-	
+
 	@Test
 	public void setDeBarbeiroDeveFuncionar() {
 		try {
-			barbeiro.setNome("Alessandro");
+			barber.setNome("Alessandro");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarbeiroException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Alessandro", barbeiro.getNome());
+		assertEquals("Alessandro", barber.getNome());
 	}
-	
+
 	@Test (expected = BarbeiroException.class)
 	public void nomeComNumero() throws BarbeiroException {
-		barbeiro.setNome("J040");
+		barber.setNome("J040");
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected =  BarbeiroException.class)
 	public void cpfPassadoEmBranco() throws BarbeiroException {
-		barbeiro.setCpf("");
+		barber.setCpf("");
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected =  BarbeiroException.class)
 	public void cpfInvalido() throws BarbeiroException {
-		barbeiro.setCpf("123.654.456-75");
+		barber.setCpf("123.654.456-75");
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected =  AssertionError.class)
 	public void rgPassadoComLetras() throws BarbeiroException {
-		barbeiro.setRg("asasa");
+		barber.setRg("asasa");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	@Test (expected =  BarbeiroException.class)
 	public void rgPassadoEmBrancro() throws BarbeiroException {
-		barbeiro.setRg("");
+		barber.setRg("");
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected =  BarbeiroException.class)
 	public void nomePassadoEmBrancro() throws BarbeiroException {
-		barbeiro.setNome("");
+		barber.setNome("");
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected =  BarbeiroException.class)
 	public void telefonePassadoEmBrancro() throws BarbeiroException {
-		barbeiro.setTelefone("");
+		barber.setTelefone("");
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected =  BarbeiroException.class)
 	public void cadeiraPassadoEmBrancro() throws BarbeiroException {
-		barbeiro.setCadeira("");
+		barber.setCadeira("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	@Test (expected =  AssertionError.class)
 	public void cadeiraPassadoComoZero() throws BarbeiroException {
-		barbeiro.setCadeira("0");
+		barber.setCadeira("0");
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected = BarbeiroException.class)
 	public void cadeiraPassadoComMaisDeDoisDigitos() throws BarbeiroException {
-		barbeiro.setCadeira("1000");
+		barber.setCadeira("1000");
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected = AssertionError.class)
 	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
 		Barbeiro.setTempNome(null);
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
-	
+
+
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerEmBranco() {
 		Barbeiro.setTempNome("");
 		Assert.fail("Deve lançar uma exceção");
 	}
-	
+
 	@Test (expected = AssertionError.class)
 	public void tempNomeValido() throws BarbeiroException {
 		Barbeiro.setTempNome("João");

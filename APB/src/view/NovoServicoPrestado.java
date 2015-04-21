@@ -79,7 +79,7 @@ public class NovoServicoPrestado extends JFrame {
 
 		final JComboBox comboBoxBarbeiro = new JComboBox();
 		comboBoxBarbeiro.setModel(new DefaultComboBoxModel(
-				new String[] { "Selecione um barbeiro" }));
+				new String[] { "Selecione um barber" }));
 		comboBoxBarbeiro.setBounds(129, 53, 289, 20);
 		contentPane.add(comboBoxBarbeiro);
 
@@ -116,7 +116,7 @@ public class NovoServicoPrestado extends JFrame {
 			Connection connection = FactoryConnection.getInstance()
 					.getConnection();
 			java.sql.PreparedStatement pst = connection
-					.prepareStatement("SELECT nome, cadeira FROM barbeiro ORDER BY cadeira;");
+					.prepareStatement("SELECT nome, cadeira FROM barber ORDER BY cadeira;");
 			java.sql.PreparedStatement pst2 = connection
 					.prepareStatement("SELECT nome FROM tiposervico;");
 			ResultSet rs = pst.executeQuery();
@@ -147,7 +147,7 @@ public class NovoServicoPrestado extends JFrame {
 								"Você deve selecionar um tipo de serviço.");
 					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um barbeiro.");
+								"Você deve selecionar um barber.");
 					else {
 						String data;
 						Date d = new Date();
@@ -157,12 +157,12 @@ public class NovoServicoPrestado extends JFrame {
 
 						String[] nome = comboBoxServico.getSelectedItem()
 								.toString().split(" - ");
-						String[] barbeiro = comboBoxBarbeiro.getSelectedItem()
+						String[] barber = comboBoxBarbeiro.getSelectedItem()
 								.toString().split(" - ");
 
 						ServicoPrestado servico_prestado = new ServicoPrestado();
 
-						servico_prestado.setNomeBarbeiro(barbeiro[1]);
+						servico_prestado.setNomeBarbeiro(barber[1]);
 						servico_prestado.setNomeServico(nome[1]);
 						servico_prestado.setPreco(textValor.getText());
 						servico_prestado.setData(data);

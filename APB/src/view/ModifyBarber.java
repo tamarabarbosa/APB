@@ -101,12 +101,12 @@ public class ModifyBarber extends JFrame {
 		contentPane.add(labelCadeira);
 
 		try {
-			Barbeiro barbeiro = new Barbeiro();
-			BarbeiroController barbeiroController = BarbeiroController
+			Barbeiro barber = new Barbeiro();
+			BarbeiroController barberController = BarbeiroController
 					.getInstance();
-			barbeiro.setNome(Barbeiro.getTempNome());
+			barber.setNome(Barbeiro.getTempNome());
 
-			ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);
+			ResultSet rs = barberController.pesquisarPorNome(barber);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("nome"));
@@ -126,16 +126,16 @@ public class ModifyBarber extends JFrame {
 		buttonSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Barbeiro barbeiro = new Barbeiro();
-					barbeiro.setNome(textFieldNome.getText());
-					barbeiro.setCpf(textFieldCpf.getText());
-					barbeiro.setRg(textFieldRg.getText());
-					barbeiro.setTelefone(textFieldTelefone.getText());
-					barbeiro.setCadeira(textFieldCadeira.getText());
+					Barbeiro barber = new Barbeiro();
+					barber.setNome(textFieldNome.getText());
+					barber.setCpf(textFieldCpf.getText());
+					barber.setRg(textFieldRg.getText());
+					barber.setTelefone(textFieldTelefone.getText());
+					barber.setCadeira(textFieldCadeira.getText());
 
-					BarbeiroController barbeiroController = BarbeiroController
+					BarbeiroController barberController = BarbeiroController
 							.getInstance();
-					barbeiroController.change(nome, barbeiro);
+					barberController.change(nome, barber);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 							+ textFieldNome.getText()

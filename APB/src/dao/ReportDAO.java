@@ -40,7 +40,7 @@ public class ReportDAO {
 						+ report.getDataInicial()
 						+ "' AND '"
 						+ report.getDataFinal()
-						+ "' AND barbeiro = '"
+						+ "' AND barber = '"
 						+ report.getBarbeiro() + "';");
 		ResultSet rs = pst.executeQuery();
 
@@ -67,18 +67,18 @@ public class ReportDAO {
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
+				.prepareStatement("SELECT * FROM servicoprestado WHERE barber = '"
 						+ report.getBarbeiro() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
-	//this method search by barber and service 
+	//this method search by barber and service
 	public ResultSet pesquisarPorBarbeiroEServico(Report report)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE barbeiro = '"
+				.prepareStatement("SELECT * FROM servicoprestado WHERE barber = '"
 						+ report.getBarbeiro()
 						+ "' AND nome = '"
 						+ report.getTipoServico() + "';");
@@ -106,7 +106,7 @@ public class ReportDAO {
 						+ report.getDataInicial()
 						+ "' AND '"
 						+ report.getDataFinal()
-						+ "' AND barbeiro = '"
+						+ "' AND barber = '"
 						+ report.getBarbeiro()
 						+ "' AND nome = '"
 						+ report.getTipoServico() + "';");

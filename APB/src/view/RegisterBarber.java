@@ -64,10 +64,10 @@ public class RegisterBarber extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			BarberController barbeiroController = BarberController
+			BarberController barberController = BarberController
 					.getInstance();
-			Barber barbeiro = new Barber();
-			ResultSet rs = barbeiroController.showRegisteredBarbers(barbeiro);
+			Barber barber = new Barber();
+			ResultSet rs = barberController.showRegisteredBarbers(barber);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("nome");
@@ -132,16 +132,16 @@ public class RegisterBarber extends JFrame {
 				try {
 					String nome = (String) table.getValueAt(
 							table.getSelectedRow(), 0);
-					Barber barbeiro = new Barber();
-					barbeiro.setName(nome);
+					Barber barber = new Barber();
+					barber.setName(nome);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + nome + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						BarberController barbeiroController = BarberController
+						BarberController barberController = BarberController
 								.getInstance();
-						barbeiroController.delete(barbeiro);
+						barberController.delete(barber);
 
 						dispose();
 						RegisterBarber frame = new RegisterBarber();

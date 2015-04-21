@@ -95,7 +95,7 @@ public class GerarRecibo extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * 
+	 *
 	 * @throws ParseException
 	 */
 	public GerarRecibo() throws ParseException {
@@ -109,7 +109,7 @@ public class GerarRecibo extends JFrame {
 
 		final JComboBox comboBoxBarbeiros = new JComboBox();
 		comboBoxBarbeiros.setModel(new DefaultComboBoxModel(
-				new String[] { "Selecione um barbeiro" }));
+				new String[] { "Selecione um barber" }));
 		comboBoxBarbeiros.setBounds(10, 32, 304, 26);
 		contentPane.add(comboBoxBarbeiros);
 
@@ -244,7 +244,7 @@ public class GerarRecibo extends JFrame {
 						dispose();
 					} else {
 						JOptionPane.showMessageDialog(null,
-								"Selecione o um barbeiro");
+								"Selecione o um barber");
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
