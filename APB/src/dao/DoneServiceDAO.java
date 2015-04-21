@@ -1,3 +1,11 @@
+/*
+ * Package: DAO
+ * Class: DoneServiceDAO.java
+ *
+ * Description: This class is reponsible make a connection to DoneService to database
+ * atributes and necessary methods to attribute them.
+ */
+
 package dao;
 
 import java.sql.Connection;

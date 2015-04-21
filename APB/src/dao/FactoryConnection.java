@@ -1,3 +1,11 @@
+/*
+ * Package: DAO
+ * Class: FactoryConnection.java
+ *
+ * Description: This class is make the configuration and connection with database
+ * atributes and necessary methods to attribute them.
+ */
+
 package dao;
 
 import java.sql.Connection;
