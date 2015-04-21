@@ -22,7 +22,7 @@ public class ContactDAO {
 	}
 
 	// this method include one schedule in the agenda
-	public boolean incluir(Phonebook phonebook) throws SQLException {
+	public boolean insert(Phonebook phonebook) throws SQLException {
 		if (phonebook == null)
 			return false;
 

@@ -4,7 +4,7 @@
  *
  * Description: This class is reponsible to do a CRUD
  * atributes and necessary methods to attribute them.
-*/
+ */
 
 package control;
 
@@ -20,37 +20,39 @@ public class BarberController {
 
 	private BarberController() {
 	}
-	//this check if the instance is there
+
+	// this check if the instance is there
 	public static BarberController getInstance() {
 		if (instance == null) {
 			instance = new BarberController();
 			return instance;
-		} 
-		else {
+		} else {
 			return instance;
 		}
 	}
-	//this method include barber
+
+	// this method include barber
 	public boolean insert(Barber barber) throws SQLException {
 		if (barber == null) {
 			return false;
 		} else {
-			BarberDAO.getInstance().incluir(barber);
+			BarberDAO.getInstance().insert(barber);
 			return true;
 		}
 	}
-	//this method change data of barber
+
+	// this method change data of barber
 	public boolean alterar(String name, Barber barber) throws SQLException {
 		if (barber == null) {
 			return false;
 		} else {
 			Barber barber_change = barber;
-			BarberDAO.getInstance()
-					.alterar(name, barber_change, barber);
+			BarberDAO.getInstance().alterar(name, barber_change, barber);
 			return true;
 		}
 	}
-	//this method exclude barber
+
+	// this method exclude barber
 	public boolean delete(Barber barber) throws SQLException {
 		if (barber == null) {
 			return false;
@@ -59,16 +61,18 @@ public class BarberController {
 			return true;
 		}
 	}
-	//this show results of search
+
+	// this show results of search
 	public ResultSet search() throws SQLException {
 		return BarberDAO.getInstance().search();
 	}
-	//this show results of barber registred
-	public ResultSet showRegisteredBarbers(Barber barber)
-			throws SQLException {
+
+	// this show results of barber registred
+	public ResultSet showRegisteredBarbers(Barber barber) throws SQLException {
 		return BarberDAO.getInstance().showRegisteredBarbers(barber);
 	}
-	//this show results of seach barber by name
+
+	// this show results of seach barber by name
 	public ResultSet searchPorNome(Barber barber) throws SQLException {
 		return BarberDAO.getInstance().searchByName(barber);
 	}

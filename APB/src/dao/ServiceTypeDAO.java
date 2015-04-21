@@ -20,7 +20,7 @@ public class ServiceTypeDAO {
 		return instance;
 	}
 	//this method include type of service provided
-	public boolean incluir(ServiceType tipoServico) throws SQLException {
+	public boolean insert(ServiceType tipoServico) throws SQLException {
 		if (tipoServico == null)
 			return false;
 
@@ -71,7 +71,7 @@ public class ServiceTypeDAO {
 
 		return rs;
 	}
-	//this method search by name type of service 
+	//this method search by name type of service
 	public ResultSet pesquisarPorNome(ServiceType servico) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection

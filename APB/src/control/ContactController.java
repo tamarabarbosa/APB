@@ -2,7 +2,7 @@
  * Package: Controller
  * Class: ContactController.java
  *
- * Description: This class is reponsible to make a CRUD of barber in the phonebook  
+ * Description: This class is reponsible to make a CRUD of barber in the phonebook
  * atributes and necessary methods to attribute them.
  */
 
@@ -26,7 +26,7 @@ public class ContactController {
 		if (phonebook == null) {
 			return false;
 		} else {
-			PhonebookDAO.getInstance().incluir(phonebook);
+			PhonebookDAO.getInstance().insert(phonebook);
 			return true;
 		}
 	}

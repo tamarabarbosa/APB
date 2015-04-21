@@ -16,7 +16,7 @@ public class PhonebookDAOTest {
 	Phonebook contato = new Phonebook();
 	Phonebook contato2 = new Phonebook();
 	AgendaDAO agendaDAO = AgendaDAO.getInstance();
-	
+
 	@Test
 	public void getInstanceDeAgendaDAODeveRetonarInstanciaCorrente() {
 		assertEquals(AgendaDAO.getInstance(), agendaDAO);
@@ -25,7 +25,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void inserirDeAgendaDAODeveCadastrarUmContato() {
 		try {
-			assertTrue(agendaDAO.incluir(contato));
+			assertTrue(agendaDAO.insert(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -39,7 +39,7 @@ public class PhonebookDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void alterarDeAgendaDAODeveEnviarUmContato() {
 		try {
@@ -48,16 +48,16 @@ public class PhonebookDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void inserirDeAgendaDAOPassandoUmContatoNulo() {
 		try {
-			assertFalse(agendaDAO.incluir(null));
+			assertFalse(agendaDAO.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void excluirDeAgendaDAOPassandoUmContatoNulo() {
 		try {
@@ -66,7 +66,7 @@ public class PhonebookDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void alterarDeAgendaDAOPassandoUmContatoNulo() {
 		try {
@@ -75,7 +75,7 @@ public class PhonebookDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void alterarDeAgendaDAOPassandoUmAgendaAleradoNulo() {
 		try {
@@ -89,7 +89,7 @@ public class PhonebookDAOTest {
 	public void mostrarContatosAgendaDAODeveMostrarContato() {
 		try {
 			ResultSet rs = agendaDAO.mostrarContatosCadastrados(contato);
-			
+
 			while (rs.next()) {
 				String nome = rs.getString("nome");
 				assertNotNull(nome);
@@ -98,12 +98,12 @@ public class PhonebookDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void pesquisaPorNomeDeAgendaDAODeveMostrarContato() {
 		try {
 			ResultSet rs = agendaDAO.pesquisarPorNome(contato);
-			
+
 			while (rs.next()) {
 				String nome = rs.getString("nome");
 				assertNotNull(nome);
@@ -112,12 +112,12 @@ public class PhonebookDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void pesquisarPorTelefoneDeBarbeiroDAODeveMostrarBarbeiros() {
 		try {
 			ResultSet rs = agendaDAO.pesquisarPorTelefone(contato);
-			
+
 			while (rs.next()) {
 				String nome = rs.getString("nome");
 				assertNotNull(nome);
@@ -126,5 +126,5 @@ public class PhonebookDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 }

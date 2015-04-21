@@ -16,7 +16,7 @@ public class ServiceTypeController {
 		if (tipoServico == null) {
 			return false;
 		} else {
-			ServiceTypeDAO.getInstance().incluir(tipoServico);
+			ServiceTypeDAO.getInstance().insert(tipoServico);
 			return true;
 		}
 	}

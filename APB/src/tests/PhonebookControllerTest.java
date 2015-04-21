@@ -29,7 +29,7 @@ public class PhonebookControllerTest {
 	}
 
 	AgendaController agendaController = AgendaController.getInstance();
-	
+
 	@Test
 	public void getInstanceDeAgendaControllerDeveRetornarInstanciaCorrente() {
 		assertEquals(AgendaController.getInstance(), agendaController);
@@ -38,7 +38,7 @@ public class PhonebookControllerTest {
 	@Test
 	public void inserirDeAgendaControllerDeveEnviarUm() {
 		try {
-			assertTrue(agendaController.incluir(contato));
+			assertTrue(agendaController.insert(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -53,7 +53,7 @@ public class PhonebookControllerTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void alterarDeAgendaControllerDeveEnviarUmaAgendaAlterada() {
 		try {
@@ -66,7 +66,7 @@ public class PhonebookControllerTest {
 	@Test
 	public void inserirAgendaNaoPodePassarAgendaNullo() {
 		try {
-			assertFalse(agendaController.incluir(null));
+			assertFalse(agendaController.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -89,13 +89,13 @@ public class PhonebookControllerTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void mostrarContatosDeAgendaControllerDeveMostrarUmContato() throws SQLException {
 		ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
 		while(rs.next());
 	}
-	
+
 	@Test
 	public void pesquisarPorNomeDeAgendaControllerDeveMostrarUmContato() throws SQLException {
 		ResultSet rs = agendaController.pesquisarPorNome(contato);
@@ -107,5 +107,5 @@ public class PhonebookControllerTest {
 		ResultSet rs = agendaController.pesquisarPorTelefone(contato);
 		while(rs.next());
 	}
-	
+
 }

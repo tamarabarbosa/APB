@@ -30,7 +30,7 @@ public class BarberDAO {
 	}
 
 	// include the new barber in the database
-	public boolean incluir(Barber barber) throws SQLException {
+	public boolean insert(Barber barber) throws SQLException {
 		if (barber == null)
 			return false;
 

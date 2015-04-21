@@ -38,7 +38,7 @@ public class ServiceProvidedDAOTest {
 	}
 
 	ServicoPrestadoDAO servicoDAO = ServicoPrestadoDAO.getInstance();
-	
+
 	@Test
 	public void getInstanceDeServicoPrestadoDAODeveRetonarInstanciaCorrente() {
 		assertEquals(ServicoPrestadoDAO.getInstance(), servicoDAO);
@@ -47,7 +47,7 @@ public class ServiceProvidedDAOTest {
 	@Test
 	public void inserirDeServicoPrestadoDAODeveCadastrarUmServicoPrestado() {
 		try {
-			assertTrue(servicoDAO.incluir(servico));
+			assertTrue(servicoDAO.insert(servico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -62,16 +62,16 @@ public class ServiceProvidedDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void inserirDeServicoPrestadoDAOPassandoUmServicoNulo() {
 		try {
-			assertFalse(servicoDAO.incluir(null));
+			assertFalse(servicoDAO.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void excluirDeServicoPrestadoDAOPassandoUmServicoNulo() {
 		try {

@@ -23,7 +23,7 @@ public class DoneServiceDAO {
 	}
 
 	// this method include a new job done
-	public boolean incluir(DoneService servico) throws SQLException {
+	public boolean insert(DoneService servico) throws SQLException {
 		if (servico != null) {
 			this.updateQuery("INSERT INTO "
 					+ "DoneService (nome, preco, barbeiro, data) VALUES ("

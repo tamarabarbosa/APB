@@ -28,7 +28,7 @@ public class DoneServiceController {
 	// Method used to insert a service
 	public boolean inserir(DoneService servico) throws SQLException {
 		if (servico != null) {
-			DoneServiceDAO.getInstance().incluir(servico);
+			DoneServiceDAO.getInstance().insert(servico);
 			return true;
 		} else {
 			return false;

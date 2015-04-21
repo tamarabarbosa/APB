@@ -21,7 +21,7 @@ public class PhonebookDAO {
 		return instance;
 	}
 
-	public boolean incluir(Phonebook phonebook) throws SQLException {
+	public boolean insert(Phonebook phonebook) throws SQLException {
 		if (phonebook == null)
 			return false;
 

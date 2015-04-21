@@ -16,7 +16,7 @@ public class TypeServiceDAOTest {
 	TipoServico tiposervico = new TipoServico();
 	TipoServico tiposervico2 = new TipoServico();
 	TipoServicoDAO servicoDAO = TipoServicoDAO.getInstance();
-	
+
 	@Test
 	public void getInstanceDeTipoServicoDAODeveRetonarInstanciaCorrente() {
 		assertEquals(TipoServicoDAO.getInstance(), servicoDAO);
@@ -25,7 +25,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void inserirDeTipoServicoDAODeveCadastrarUmTipoServico() {
 		try {
-			assertTrue(servicoDAO.incluir(tiposervico));
+			assertTrue(servicoDAO.insert(tiposervico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -39,7 +39,7 @@ public class TypeServiceDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void alterarDeTipoServicoDAODeveEnviarUmTipoServico() {
 		try {
@@ -48,16 +48,16 @@ public class TypeServiceDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void inserirDeTipoServicoDAOPassandoUmServicoNulo() {
 		try {
-			assertFalse(servicoDAO.incluir(null));
+			assertFalse(servicoDAO.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void excluirDeTipoServicoDAOPassandoUmServicoNulo() {
 		try {
@@ -66,7 +66,7 @@ public class TypeServiceDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void alterarDeTipoServicoDAOPassandoUmServicoNulo() {
 		try {
@@ -75,7 +75,7 @@ public class TypeServiceDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void alterarDeTipoServicoDAOPassandoUmServicoAlteradoNulo() {
 		try {
@@ -84,12 +84,12 @@ public class TypeServiceDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void mostrarServicosDeTipoServicoDAODeveMostrarServico() {
 		try {
 			ResultSet rs = servicoDAO.mostrarTipoServicoCadastrados(tiposervico);
-			
+
 			while (rs.next()) {
 				String nome = rs.getString("nome");
 				assertNotNull(nome);
@@ -98,12 +98,12 @@ public class TypeServiceDAOTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void pesquisarPorNomeDeTipoServicoDAODeveMostrarServico() {
 		try {
 			ResultSet rs = servicoDAO.pesquisarPorNome(tiposervico);
-			
+
 			while (rs.next()) {
 				String nome = rs.getString("nome");
 				assertNotNull(nome);

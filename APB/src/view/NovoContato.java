@@ -67,21 +67,21 @@ public class NovoContato extends JFrame {
 					phonebook.setDescricao(textFieldDescricao.getText());
 
 					AgendaController agendaController = AgendaController.getInstance();
-					agendaController.incluir(phonebook);
+					agendaController.insert(phonebook);
 
 					JOptionPane.showMessageDialog(null, "Contato "
 							+ textFieldNome.getText()
 							+ " foi adicionado com sucesso");
-					
+
 					textFieldNome.setText("");
 					textFieldTelefone.setText("");
 					textFieldDescricao.setText("");
-					
+
 					dispose();
 					CadastrarAgenda frame =  new CadastrarAgenda();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-					
+
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (BarbeiroException e1) {
@@ -148,7 +148,7 @@ public class NovoContato extends JFrame {
 		lblDescricao.setBounds(22, 117, 64, 14);
 		contentPane.add(lblDescricao);
 	}
-	
+
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Aten��o",
 				JOptionPane.INFORMATION_MESSAGE);
