@@ -31,7 +31,7 @@ public class BarberControllerTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	BarbeiroController barbeiroController = BarbeiroController.getInstance();
 
 	@Test
@@ -58,14 +58,14 @@ public class BarberControllerTest {
 	}
 
 	@Test
-	public void alterarDeBarbeiroControllerDeveEnviarUmBarbeiro() {
+	public void changeDeBarbeiroControllerDeveEnviarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroController.alterar(barbeiro.getNome(), barbeiro));
+			assertTrue(barbeiroController.change(barbeiro.getNome(), barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void inserirBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
@@ -74,7 +74,7 @@ public class BarberControllerTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void excluirBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
@@ -83,28 +83,28 @@ public class BarberControllerTest {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
-	public void alterarBarbeiroNaoPodePassarBarbeiroNullo() {
+	public void changeBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
-			assertFalse(barbeiroController.alterar(null, null));
+			assertFalse(barbeiroController.change(null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void procurarPorBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
 		ResultSet rs = barbeiroController.pesquisar();
 		while (rs.next());
 	}
-	
+
 	@Test
 	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
 		ResultSet rs = barbeiroController.mostrarBarbeirosCadastrados(barbeiro);
 		while(rs.next());
 	}
-	
+
 	@Test
 	public void pesquisarPorNomeDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
 		ResultSet rs = barbeiroController.pesquisarPorNome(barbeiro);

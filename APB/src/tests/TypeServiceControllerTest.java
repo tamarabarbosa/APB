@@ -17,7 +17,7 @@ public class TypeServiceControllerTest {
 
 	TipoServico servico = new TipoServico();
 	TipoServicoController servicoController = TipoServicoController.getInstance();
-	
+
 	@Before
 	public void setUp(){
 		try {
@@ -52,9 +52,9 @@ public class TypeServiceControllerTest {
 	}
 
 	@Test
-	public void alterarDeTipoServicoControllerDeveAlterarUmTipoServico() {
+	public void changeDeTipoServicoControllerDeveAlterarUmTipoServico() {
 		try {
-			assertTrue(servicoController.alterar(servico.getNomeTipoServico(),servico));
+			assertTrue(servicoController.change(servico.getNomeTipoServico(),servico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,20 +79,20 @@ public class TypeServiceControllerTest {
 	}
 
 	@Test
-	public void alterarTipoServicoNaoPodePassarTipoServicoNullo() {
+	public void changeTipoServicoNaoPodePassarTipoServicoNullo() {
 		try {
-			assertFalse(servicoController.alterar(null,null));
+			assertFalse(servicoController.change(null,null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
 		ResultSet rs = servicoController.mostrarTipoServicoCadastrados(servico);
 		while(rs.next());
 	}
-	
+
 	@Test
 	public void pesquisarPorNomeDeTipoServicoControllerDeveMostrarUmServico() throws SQLException {
 		ResultSet rs = servicoController.pesquisarPorNome(servico);

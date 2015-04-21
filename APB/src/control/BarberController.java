@@ -42,12 +42,12 @@ public class BarberController {
 	}
 
 	// this method change data of barber
-	public boolean alterar(String name, Barber barber) throws SQLException {
+	public boolean change(String name, Barber barber) throws SQLException {
 		if (barber == null) {
 			return false;
 		} else {
 			Barber barber_change = barber;
-			BarberDAO.getInstance().alterar(name, barber_change, barber);
+			BarberDAO.getInstance().change(name, barber_change, barber);
 			return true;
 		}
 	}

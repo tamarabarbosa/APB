@@ -41,9 +41,9 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void alterarDeAgendaDAODeveEnviarUmContato() {
+	public void changeDeAgendaDAODeveEnviarUmContato() {
 		try {
-			assertTrue(agendaDAO.alterar(contato.getNome(),contato, contato2));
+			assertTrue(agendaDAO.change(contato.getNome(),contato, contato2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,18 +68,18 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void alterarDeAgendaDAOPassandoUmContatoNulo() {
+	public void changeDeAgendaDAOPassandoUmContatoNulo() {
 		try {
-			assertFalse(agendaDAO.alterar(contato.getNome(),contato, null));
+			assertFalse(agendaDAO.change(contato.getNome(),contato, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void alterarDeAgendaDAOPassandoUmAgendaAleradoNulo() {
+	public void changeDeAgendaDAOPassandoUmAgendaAleradoNulo() {
 		try {
-			assertFalse(agendaDAO.alterar(contato.getNome(), null, contato));
+			assertFalse(agendaDAO.change(contato.getNome(), null, contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

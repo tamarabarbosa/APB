@@ -37,7 +37,7 @@ public class ContactController {
 			return false;
 		} else {
 			Phonebook phonebook_change = phonebook;
-			PhonebookDAO.getInstance().alterar(name, phonebook_change,
+			PhonebookDAO.getInstance().change(name, phonebook_change,
 					phonebook);
 			return true;
 		}

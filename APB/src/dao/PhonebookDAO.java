@@ -33,7 +33,7 @@ public class PhonebookDAO {
 		return true;
 	}
 
-	public boolean alterar(String nome, Phonebook Phonebook_alterado,
+	public boolean change(String nome, Phonebook Phonebook_alterado,
 			Phonebook Phonebook) throws SQLException {
 		if (Phonebook == null || Phonebook_alterado == null)
 			return false;

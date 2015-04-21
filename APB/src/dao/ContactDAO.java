@@ -35,7 +35,7 @@ public class ContactDAO {
 	}
 
 	// this method change data on the schedule
-	public boolean alterar(String nome, Phonebook agenda_alterado,
+	public boolean change(String nome, Phonebook agenda_alterado,
 			Phonebook phonebook) throws SQLException {
 		if (phonebook == null || agenda_alterado == null)
 			return false;

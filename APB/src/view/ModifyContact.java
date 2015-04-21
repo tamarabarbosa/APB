@@ -109,7 +109,7 @@ public class ModifyContact extends JFrame {
 
 					AgendaController AgendaController = control.AgendaController
 							.getInstance();
-					AgendaController.alterar(nome, phonebook);
+					AgendaController.change(nome, phonebook);
 
 					JOptionPane.showMessageDialog(null, "Agenda "
 							+ textFieldNome.getText()

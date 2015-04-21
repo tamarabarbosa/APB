@@ -45,7 +45,7 @@ public class BarberDAO {
 	}
 
 	// update the barber in the database
-	public boolean alterar(String nome, Barber barber_change, Barber barber)
+	public boolean change(String nome, Barber barber_change, Barber barber)
 			throws SQLException {
 		if (barber_change == null || barber == null)
 			return false;

@@ -41,9 +41,9 @@ public class TypeServiceDAOTest {
 	}
 
 	@Test
-	public void alterarDeTipoServicoDAODeveEnviarUmTipoServico() {
+	public void changeDeTipoServicoDAODeveEnviarUmTipoServico() {
 		try {
-			assertTrue(servicoDAO.alterar(tiposervico.getNomeTipoServico(),tiposervico, tiposervico2));
+			assertTrue(servicoDAO.change(tiposervico.getNomeTipoServico(),tiposervico, tiposervico2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -68,18 +68,18 @@ public class TypeServiceDAOTest {
 	}
 
 	@Test
-	public void alterarDeTipoServicoDAOPassandoUmServicoNulo() {
+	public void changeDeTipoServicoDAOPassandoUmServicoNulo() {
 		try {
-			assertFalse(servicoDAO.alterar(tiposervico.getNomeTipoServico(), tiposervico, null));
+			assertFalse(servicoDAO.change(tiposervico.getNomeTipoServico(), tiposervico, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void alterarDeTipoServicoDAOPassandoUmServicoAlteradoNulo() {
+	public void changeDeTipoServicoDAOPassandoUmServicoAlteradoNulo() {
 		try {
-			assertFalse(servicoDAO.alterar(tiposervico.getNomeTipoServico(), null, tiposervico));
+			assertFalse(servicoDAO.change(tiposervico.getNomeTipoServico(), null, tiposervico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

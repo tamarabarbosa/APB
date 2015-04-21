@@ -98,7 +98,7 @@ public class ModifyServiceType extends JFrame {
 
 					ServiceTypeController tipoServicoController = ServiceTypeController
 							.getInstance();
-					tipoServicoController.alterar(nome, tipoServico);
+					tipoServicoController.change(nome, tipoServico);
 
 					JOptionPane.showMessageDialog(null, "Tipo de Serviço "
 							+ textFieldNome.getText()

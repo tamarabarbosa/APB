@@ -83,11 +83,11 @@ public class PesquisarContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					
+
 					for (int i = 0; i< modelo.getRowCount(); i++){
 						modelo.removeRow(i);
 					}
-					
+
 					Phonebook contato = new Phonebook();
 					AgendaController agendaController = AgendaController
 							.getInstance();
@@ -117,11 +117,11 @@ public class PesquisarContato extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 
 				try {
-					
+
 					for (int i = 0; i< modelo.getRowCount(); i++){
 						modelo.removeRow(i);
 					}
-					
+
 					Phonebook contato = new Phonebook();
 					AgendaController agendaController = AgendaController
 							.getInstance();
@@ -134,9 +134,9 @@ public class PesquisarContato extends JFrame {
 						dados[0] = rs.getString("nome");
 						dados[1] = rs.getString("telefone");
 						dados[2] = rs.getString("descricao");
-						
+
 						modelo.addRow(dados);
-						
+
 						table.updateUI();
 					}
 				} catch (SQLException e) {
@@ -162,7 +162,7 @@ public class PesquisarContato extends JFrame {
 					frame.setLocationRelativeTo(null);
 
 				} catch (ArrayIndexOutOfBoundsException e1) {
-					mostrarMensagemDeErro("Selecione um contato para alterar");
+					mostrarMensagemDeErro("Selecione um contato para change");
 				}
 			}
 		});

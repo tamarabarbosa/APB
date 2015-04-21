@@ -135,7 +135,7 @@ public class ModifyBarber extends JFrame {
 
 					BarbeiroController barbeiroController = BarbeiroController
 							.getInstance();
-					barbeiroController.alterar(nome, barbeiro);
+					barbeiroController.change(nome, barbeiro);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 							+ textFieldNome.getText()

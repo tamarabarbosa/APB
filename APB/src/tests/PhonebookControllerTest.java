@@ -55,9 +55,9 @@ public class PhonebookControllerTest {
 	}
 
 	@Test
-	public void alterarDeAgendaControllerDeveEnviarUmaAgendaAlterada() {
+	public void changeDeAgendaControllerDeveEnviarUmaAgendaAlterada() {
 		try {
-			assertTrue(agendaController.alterar(contato.getNome(),contato));
+			assertTrue(agendaController.change(contato.getNome(),contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -82,9 +82,9 @@ public class PhonebookControllerTest {
 	}
 
 	@Test
-	public void alterarAgendaNaoPodePassarAgendaNullo() {
+	public void changeAgendaNaoPodePassarAgendaNullo() {
 		try {
-			assertFalse(agendaController.alterar(null,null));
+			assertFalse(agendaController.change(null,null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -31,7 +31,7 @@ public class ServiceTypeDAO {
 		return true;
 	}
 	//this method change type of service provided
-	public boolean alterar(String nome, ServiceType tipoServico_alterado,
+	public boolean change(String nome, ServiceType tipoServico_alterado,
 			ServiceType tipoServico) throws SQLException {
 		if (tipoServico_alterado == null || tipoServico == null)
 			return false;
