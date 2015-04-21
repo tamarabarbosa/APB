@@ -11,9 +11,9 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import model.Barbeiro;
-import control.BarbeiroController;
-import exception.BarbeiroException;
+import model.Barber;
+import control.BarberController;
+import exception.BarberException;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 @SuppressWarnings("serial")
-public class NovoBarbeiro extends JFrame {
+public class NovoBarber extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -38,7 +38,7 @@ public class NovoBarbeiro extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovoBarbeiro frame = new NovoBarbeiro();
+					NovoBarber frame = new NovoBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -48,12 +48,12 @@ public class NovoBarbeiro extends JFrame {
 		});
 	}
 
-	public NovoBarbeiro() throws ParseException {
+	public NovoBarber() throws ParseException {
 		inicializarComponentes();
 	}
 
 	public void inicializarComponentes() throws ParseException {
-		setTitle("Cadastrar Barbeiro");
+		setTitle("Cadastrar Barber");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 253);
 		contentPane = new JPanel();
@@ -116,25 +116,25 @@ public class NovoBarbeiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent k) {
 				try {
-					Barbeiro barber = new Barbeiro();
+					Barber barber = new Barber();
 					barber.setNome(textFieldNome.getText());
 					barber.setCpf(textFieldCpf.getText());
 					barber.setRg(textFieldRg.getText());
 					barber.setTelefone(textFieldTelefone.getText());
 					barber.setCadeira(textFieldCadeira.getText());
 
-					BarbeiroController barberController = BarbeiroController.getInstance();
-					barberController.inserir(barber);
+					BarberController barberController = BarberController.getInstance();
+					barberController.insert(barber);
 
-					JOptionPane.showMessageDialog(null, "Barbeiro "
+					JOptionPane.showMessageDialog(null, "Barber "
 							+ textFieldNome.getText()
 							+ " foi cadastrado com sucesso");
 
 					dispose();
-					CadastrarBarbeiro frame = new CadastrarBarbeiro();
+					CadastrarBarber frame = new CadastrarBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-				} catch (BarbeiroException e) {
+				} catch (BarberException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -169,7 +169,7 @@ public class NovoBarbeiro extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarBarbeiro frame = new CadastrarBarbeiro();
+				CadastrarBarber frame = new CadastrarBarber();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

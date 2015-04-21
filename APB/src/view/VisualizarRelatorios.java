@@ -33,10 +33,10 @@ public class VisualizarRelatorios extends JFrame {
 	private JPanel contentPane;
 	private double total = 0;
 	private String numero;
-	List<String> servicos = new ArrayList<String>();
+	List<String> jobs = new ArrayList<String>();
 	private int contador = 0;
-	private int numeroTotalDeServicos = 0;
-	private double valorTotalDoServico = 0;
+	private int numeroTotalDeJobs = 0;
+	private double valorTotalDoJob = 0;
 	private double valorTotalASerPAgo = 0;
 	private double total2 = 0;
 
@@ -95,12 +95,12 @@ public class VisualizarRelatorios extends JFrame {
 
 			report.setBarber(PesquisarRelatorio.barber);
 
-			ResultSet rs = relatorioController.pesquisarPorBarbeiro(report);
+			ResultSet rs = relatorioController.pesquisarPorBarber(report);
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("name")) == false) {
-					servicos.add(rs.getString("name"));
+				if (jobs.contains(rs.getString("name")) == false) {
+					jobs.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -108,47 +108,47 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						valorTotalDoJob = valorTotalDoJob + valor;
 
-						numeroTotalDeServicos++;
+						numeroTotalDeJobs++;
 					}
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = jobs.get(i);
+				dados[1] = Integer.toString(numeroTotalDeJobs);
+				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
+						.valueOf(decimal.format(valorTotalDoJob));
+				valorTotalASerPAgo = valorTotalDoJob / 2;
 				dados[3] = Double.toString(valorTotalASerPAgo)
 						.replace(".", ",")
 						.valueOf(decimal.format(valorTotalASerPAgo));
 
-				total = total + valorTotalDoServico;
+				total = total + valorTotalDoJob;
 				total2 = total2 + valorTotalASerPAgo;
 				modelo.addRow(dados);
 
-				numeroTotalDeServicos = 0;
+				numeroTotalDeJobs = 0;
 				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				valorTotalDoJob = 0;
 			}
 		}
 		if (PesquisarRelatorio.tipoBusca == 2) {
 
 			report.setBarber(PesquisarRelatorio.barber);
-			report.setServiceType(PesquisarRelatorio.servico);
+			report.setServiceType(PesquisarRelatorio.job);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorBarbeiroEServico(report);
+					.pesquisarPorBarberEJob(report);
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("name")) == false) {
-					servicos.add(rs.getString("name"));
+				if (jobs.contains(rs.getString("name")) == false) {
+					jobs.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -156,34 +156,34 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						valorTotalDoJob = valorTotalDoJob + valor;
 
-						numeroTotalDeServicos++;
+						numeroTotalDeJobs++;
 					}
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = jobs.get(i);
+				dados[1] = Integer.toString(numeroTotalDeJobs);
+				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
+						.valueOf(decimal.format(valorTotalDoJob));
+				valorTotalASerPAgo = valorTotalDoJob / 2;
 				dados[3] = Double.toString(valorTotalASerPAgo)
 						.replace(".", ",")
 						.valueOf(decimal.format(valorTotalASerPAgo));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
+				total = total + valorTotalDoJob;
 				total2 = total2 + valorTotalASerPAgo;
 
-				numeroTotalDeServicos = 0;
+				numeroTotalDeJobs = 0;
 				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				valorTotalDoJob = 0;
 			}
 		}
 		if (PesquisarRelatorio.tipoBusca == 3) {
@@ -193,12 +193,12 @@ public class VisualizarRelatorios extends JFrame {
 			report.setInitialDate(PesquisarRelatorio.dataInicial);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataEBarbeiro(report);
+					.pesquisarPorDataEBarber(report);
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("name")) == false) {
-					servicos.add(rs.getString("name"));
+				if (jobs.contains(rs.getString("name")) == false) {
+					jobs.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -206,50 +206,50 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						valorTotalDoJob = valorTotalDoJob + valor;
 
-						numeroTotalDeServicos++;
+						numeroTotalDeJobs++;
 					}
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = jobs.get(i);
+				dados[1] = Integer.toString(numeroTotalDeJobs);
+				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
+						.valueOf(decimal.format(valorTotalDoJob));
+				valorTotalASerPAgo = valorTotalDoJob / 2;
 				dados[3] = Double.toString(valorTotalASerPAgo)
 						.replace(".", ",")
 						.valueOf(decimal.format(valorTotalASerPAgo));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
+				total = total + valorTotalDoJob;
 				total2 = total2 + valorTotalASerPAgo;
 
-				numeroTotalDeServicos = 0;
+				numeroTotalDeJobs = 0;
 				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				valorTotalDoJob = 0;
 			}
 		}
 		if (PesquisarRelatorio.tipoBusca == 4) {
 
 			report.setBarber(PesquisarRelatorio.barber);
-			report.setServiceType(PesquisarRelatorio.servico);
+			report.setServiceType(PesquisarRelatorio.job);
 			report.setEndDate(PesquisarRelatorio.dataFinal);
 			report.setInitialDate(PesquisarRelatorio.dataInicial);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataBarbeiroEServico(report);
+					.pesquisarPorDataBarberEJob(report);
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("name")) == false) {
-					servicos.add(rs.getString("name"));
+				if (jobs.contains(rs.getString("name")) == false) {
+					jobs.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -257,47 +257,47 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						valorTotalDoJob = valorTotalDoJob + valor;
 
-						numeroTotalDeServicos++;
+						numeroTotalDeJobs++;
 					}
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = jobs.get(i);
+				dados[1] = Integer.toString(numeroTotalDeJobs);
+				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
+						.valueOf(decimal.format(valorTotalDoJob));
+				valorTotalASerPAgo = valorTotalDoJob / 2;
 				dados[3] = Double.toString(valorTotalASerPAgo)
 						.replace(".", ",")
 						.valueOf(decimal.format(valorTotalASerPAgo));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
+				total = total + valorTotalDoJob;
 				total2 = total2 + valorTotalASerPAgo;
 
-				numeroTotalDeServicos = 0;
+				numeroTotalDeJobs = 0;
 				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				valorTotalDoJob = 0;
 
 			}
 		}
 		if (PesquisarRelatorio.tipoBusca == 5) {
 
-			report.setServiceType(PesquisarRelatorio.servico);
+			report.setServiceType(PesquisarRelatorio.job);
 
-			ResultSet rs = relatorioController.pesquisarPorServico(report);
+			ResultSet rs = relatorioController.pesquisarPorJob(report);
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("name")) == false) {
-					servicos.add(rs.getString("name"));
+				if (jobs.contains(rs.getString("name")) == false) {
+					jobs.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -305,48 +305,48 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						valorTotalDoJob = valorTotalDoJob + valor;
 
-						numeroTotalDeServicos++;
+						numeroTotalDeJobs++;
 					}
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = jobs.get(i);
+				dados[1] = Integer.toString(numeroTotalDeJobs);
+				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
+						.valueOf(decimal.format(valorTotalDoJob));
+				valorTotalASerPAgo = valorTotalDoJob / 2;
 				dados[3] = Double.toString(valorTotalASerPAgo)
 						.replace(".", ",")
 						.valueOf(decimal.format(valorTotalASerPAgo));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
+				total = total + valorTotalDoJob;
 				total2 = total2 + valorTotalASerPAgo;
 
-				numeroTotalDeServicos = 0;
+				numeroTotalDeJobs = 0;
 				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				valorTotalDoJob = 0;
 			}
 		}
 		if (PesquisarRelatorio.tipoBusca == 6) {
 
-			report.setServiceType(PesquisarRelatorio.servico);
+			report.setServiceType(PesquisarRelatorio.job);
 			report.setEndDate(PesquisarRelatorio.dataFinal);
 			report.setInitialDate(PesquisarRelatorio.dataInicial);
 
-			ResultSet rs = relatorioController.pesquisarPorDataEServico(report);
+			ResultSet rs = relatorioController.pesquisarPorDataEJob(report);
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("name")) == false) {
-					servicos.add(rs.getString("name"));
+				if (jobs.contains(rs.getString("name")) == false) {
+					jobs.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -354,34 +354,34 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						valorTotalDoJob = valorTotalDoJob + valor;
 
-						numeroTotalDeServicos++;
+						numeroTotalDeJobs++;
 					}
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = jobs.get(i);
+				dados[1] = Integer.toString(numeroTotalDeJobs);
+				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
+						.valueOf(decimal.format(valorTotalDoJob));
+				valorTotalASerPAgo = valorTotalDoJob / 2;
 				dados[3] = Double.toString(valorTotalASerPAgo)
 						.replace(".", ",")
 						.valueOf(decimal.format(valorTotalASerPAgo));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
+				total = total + valorTotalDoJob;
 				total2 = total2 + valorTotalASerPAgo;
 
-				numeroTotalDeServicos = 0;
+				numeroTotalDeJobs = 0;
 				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				valorTotalDoJob = 0;
 			}
 		}
 		if (PesquisarRelatorio.tipoBusca == 7) {
@@ -393,8 +393,8 @@ public class VisualizarRelatorios extends JFrame {
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("name")) == false) {
-					servicos.add(rs.getString("name"));
+				if (jobs.contains(rs.getString("name")) == false) {
+					jobs.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -402,34 +402,34 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
-						valorTotalDoServico = valorTotalDoServico + valor;
+						valorTotalDoJob = valorTotalDoJob + valor;
 
-						numeroTotalDeServicos++;
+						numeroTotalDeJobs++;
 					}
 				}
 
 				String[] dados = new String[4];
-				dados[0] = servicos.get(i);
-				dados[1] = Integer.toString(numeroTotalDeServicos);
-				dados[2] = Double.toString(valorTotalDoServico)
+				dados[0] = jobs.get(i);
+				dados[1] = Integer.toString(numeroTotalDeJobs);
+				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
-						.valueOf(decimal.format(valorTotalDoServico));
-				valorTotalASerPAgo = valorTotalDoServico / 2;
+						.valueOf(decimal.format(valorTotalDoJob));
+				valorTotalASerPAgo = valorTotalDoJob / 2;
 				dados[3] = Double.toString(valorTotalASerPAgo)
 						.replace(".", ",")
 						.valueOf(decimal.format(valorTotalASerPAgo));
 
 				modelo.addRow(dados);
 
-				total = total + valorTotalDoServico;
+				total = total + valorTotalDoJob;
 				total2 = total2 + valorTotalASerPAgo;
 
-				numeroTotalDeServicos = 0;
+				numeroTotalDeJobs = 0;
 				valorTotalASerPAgo = 0;
-				valorTotalDoServico = 0;
+				valorTotalDoJob = 0;
 			}
 		}
 		JButton btnPesquisar = new JButton("Pesquisar");
@@ -551,12 +551,12 @@ public class VisualizarRelatorios extends JFrame {
 		lblNewLabel.setBounds(6, 4, 235, 14);
 		painelTotalPago.add(lblNewLabel);
 
-		JLabel lblvalorTotalDoBarbeiro = new JLabel("R$ "
+		JLabel lblvalorTotalDoBarber = new JLabel("R$ "
 				+ String.valueOf(decimal.format(total2)));
-		lblvalorTotalDoBarbeiro.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblvalorTotalDoBarbeiro.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblvalorTotalDoBarbeiro.setBounds(476, 4, 174, 14);
-		painelTotalPago.add(lblvalorTotalDoBarbeiro);
+		lblvalorTotalDoBarber.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblvalorTotalDoBarber.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblvalorTotalDoBarber.setBounds(476, 4, 174, 14);
+		painelTotalPago.add(lblvalorTotalDoBarber);
 	}
 
 	private CategoryDataset createDatasetRelatorio() throws SQLException,
@@ -570,43 +570,43 @@ public class VisualizarRelatorios extends JFrame {
 				report.setBarber(PesquisarRelatorio.barber);
 
 				rs = ReportController.getInstance()
-						.pesquisarPorBarbeiro(report);
+						.pesquisarPorBarber(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 2) {
 				report.setBarber(PesquisarRelatorio.barber);
-				report.setServiceType(PesquisarRelatorio.servico);
+				report.setServiceType(PesquisarRelatorio.job);
 
 				rs = ReportController.getInstance()
-						.pesquisarPorBarbeiroEServico(report);
+						.pesquisarPorBarberEJob(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 3) {
 				report.setBarber(PesquisarRelatorio.barber);
 				report.setEndDate(PesquisarRelatorio.dataFinal);
 				report.setInitialDate(PesquisarRelatorio.dataInicial);
 
-				rs = ReportController.getInstance().pesquisarPorDataEBarbeiro(
+				rs = ReportController.getInstance().pesquisarPorDataEBarber(
 						report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 4) {
 				report.setBarber(PesquisarRelatorio.barber);
-				report.setServiceType(PesquisarRelatorio.servico);
+				report.setServiceType(PesquisarRelatorio.job);
 				report.setEndDate(PesquisarRelatorio.dataFinal);
 				report.setInitialDate(PesquisarRelatorio.dataInicial);
 
 				rs = ReportController.getInstance()
-						.pesquisarPorDataBarbeiroEServico(report);
+						.pesquisarPorDataBarberEJob(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 5) {
-				report.setServiceType(PesquisarRelatorio.servico);
+				report.setServiceType(PesquisarRelatorio.job);
 
-				rs = ReportController.getInstance().pesquisarPorServico(report);
+				rs = ReportController.getInstance().pesquisarPorJob(report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 6) {
-				report.setServiceType(PesquisarRelatorio.servico);
+				report.setServiceType(PesquisarRelatorio.job);
 				report.setEndDate(PesquisarRelatorio.dataFinal);
 				report.setInitialDate(PesquisarRelatorio.dataInicial);
 
-				rs = ReportController.getInstance().pesquisarPorDataEServico(
+				rs = ReportController.getInstance().pesquisarPorDataEJob(
 						report);
 			}
 			if (PesquisarRelatorio.tipoBusca == 7) {

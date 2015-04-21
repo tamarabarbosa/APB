@@ -33,10 +33,10 @@ public class PesquisarRelatorio extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtDataInicial;
 	private JTextField txtDataFinal;
-	private JTextField txtBarbeiro;
-	private JTextField txtServico;
+	private JTextField txtBarber;
+	private JTextField txtJob;
 	public static int tipoBusca = 0;
-	public static String servico = "servico";
+	public static String job = "job";
 	public static String barber = "barber";
 	public static String dataInicial = "dataInicial";
 	public static String dataFinal = "dataFinal";
@@ -115,76 +115,76 @@ public class PesquisarRelatorio extends JFrame {
 		lblDataFinal.setBounds(114, 53, 71, 14);
 		panelData.add(lblDataFinal);
 
-		JPanel panelBarbeiro = new JPanel();
-		panelBarbeiro.setLayout(null);
-		panelBarbeiro.setBorder(new TitledBorder(UIManager
-				.getBorder("TitledBorder.border"), "Por Barbeiro",
+		JPanel panelBarber = new JPanel();
+		panelBarber.setLayout(null);
+		panelBarber.setBorder(new TitledBorder(UIManager
+				.getBorder("TitledBorder.border"), "Por Barber",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelBarbeiro.setBounds(10, 119, 221, 62);
-		contentPane.add(panelBarbeiro);
+		panelBarber.setBounds(10, 119, 221, 62);
+		contentPane.add(panelBarber);
 
-		txtBarbeiro = new JTextField();
-		txtBarbeiro.setText("Nome do barber");
-		txtBarbeiro.setEnabled(false);
-		txtBarbeiro.setColumns(10);
-		txtBarbeiro.setBounds(71, 23, 140, 20);
-		panelBarbeiro.add(txtBarbeiro);
+		txtBarber = new JTextField();
+		txtBarber.setText("Nome do barber");
+		txtBarber.setEnabled(false);
+		txtBarber.setColumns(10);
+		txtBarber.setBounds(71, 23, 140, 20);
+		panelBarber.add(txtBarber);
 
-		final Checkbox checkBarbeiro = new Checkbox("Ativar");
-		checkBarbeiro.addItemListener(new ItemListener() {
+		final Checkbox checkBarber = new Checkbox("Ativar");
+		checkBarber.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if (checkBarbeiro.getState() == false) {
-					txtBarbeiro.setEnabled(false);
-					txtBarbeiro.setText("Nome do barber");
+				if (checkBarber.getState() == false) {
+					txtBarber.setEnabled(false);
+					txtBarber.setText("Nome do barber");
 				} else {
-					txtBarbeiro.setEnabled(true);
-					txtBarbeiro.setText("");
+					txtBarber.setEnabled(true);
+					txtBarber.setText("");
 				}
 			}
 		});
 
-		checkBarbeiro.setBounds(6, 23, 59, 23);
-		panelBarbeiro.add(checkBarbeiro);
+		checkBarber.setBounds(6, 23, 59, 23);
+		panelBarber.add(checkBarber);
 
-		JPanel panelServico = new JPanel();
-		panelServico.setLayout(null);
-		panelServico.setBorder(new TitledBorder(UIManager
+		JPanel panelJob = new JPanel();
+		panelJob.setLayout(null);
+		panelJob.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "Por Servi\u00E7o",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panelServico.setBounds(10, 189, 221, 62);
-		contentPane.add(panelServico);
+		panelJob.setBounds(10, 189, 221, 62);
+		contentPane.add(panelJob);
 
-		txtServico = new JTextField();
-		txtServico.setText("Tipo de Servi\u00E7o");
-		txtServico.setEnabled(false);
-		txtServico.setColumns(10);
-		txtServico.setBounds(71, 23, 140, 20);
-		panelServico.add(txtServico);
+		txtJob = new JTextField();
+		txtJob.setText("Tipo de Servi\u00E7o");
+		txtJob.setEnabled(false);
+		txtJob.setColumns(10);
+		txtJob.setBounds(71, 23, 140, 20);
+		panelJob.add(txtJob);
 
-		final Checkbox checkServico = new Checkbox("Ativar");
-		checkServico.addItemListener(new ItemListener() {
+		final Checkbox checkJob = new Checkbox("Ativar");
+		checkJob.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if (checkServico.getState() == false) {
-					txtServico.setEnabled(false);
-					txtServico.setText("Tipo de Servi\u00E7o");
+				if (checkJob.getState() == false) {
+					txtJob.setEnabled(false);
+					txtJob.setText("Tipo de Servi\u00E7o");
 				} else {
-					txtServico.setEnabled(true);
-					txtServico.setText("");
+					txtJob.setEnabled(true);
+					txtJob.setText("");
 				}
 			}
 		});
-		checkServico.setBounds(6, 23, 59, 23);
-		panelServico.add(checkServico);
+		checkJob.setBounds(6, 23, 59, 23);
+		panelJob.add(checkJob);
 
 		JButton btnConcluir = new JButton("Concluir");
 		btnConcluir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
-				if (txtBarbeiro.getText().equals("")) {
+				if (txtBarber.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
 							"Digite o name do barber.");
-				} else if (txtServico.getText().equals("")) {
+				} else if (txtJob.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
 							"Digite um tipo de serviço.");
 				} else if (txtDataFinal.getText().equals("")) {
@@ -195,63 +195,63 @@ public class PesquisarRelatorio extends JFrame {
 							"Digite uma data inicial");
 				} else {
 
-					if (checkBarbeiro.getState() == true
+					if (checkBarber.getState() == true
 							&& checkPorData.getState() == false
-							&& checkServico.getState() == false) {
-						barber = txtBarbeiro.getText();
+							&& checkJob.getState() == false) {
+						barber = txtBarber.getText();
 						tipoBusca = 1;
 					}
 
-					if (checkBarbeiro.getState() == true
+					if (checkBarber.getState() == true
 							&& checkPorData.getState() == false
-							&& checkServico.getState() == true) {
-						barber = txtBarbeiro.getText();
-						servico = txtServico.getText();
+							&& checkJob.getState() == true) {
+						barber = txtBarber.getText();
+						job = txtJob.getText();
 						tipoBusca = 2;
 					}
-					if (checkBarbeiro.getState() == true
+					if (checkBarber.getState() == true
 							&& checkPorData.getState() == true
-							&& checkServico.getState() == false) {
-						barber = txtBarbeiro.getText();
+							&& checkJob.getState() == false) {
+						barber = txtBarber.getText();
 						dataInicial = txtDataInicial.getText();
 						dataFinal = txtDataFinal.getText();
 						tipoBusca = 3;
 					}
-					if (checkBarbeiro.getState() == true
+					if (checkBarber.getState() == true
 							&& checkPorData.getState() == true
-							&& checkServico.getState() == true) {
-						barber = txtBarbeiro.getText();
+							&& checkJob.getState() == true) {
+						barber = txtBarber.getText();
 						dataInicial = txtDataInicial.getText();
 						dataFinal = txtDataFinal.getText();
-						servico = txtServico.getText();
+						job = txtJob.getText();
 						tipoBusca = 4;
 					}
-					if (checkBarbeiro.getState() == false
+					if (checkBarber.getState() == false
 							&& checkPorData.getState() == false
-							&& checkServico.getState() == true) {
-						servico = txtServico.getText();
+							&& checkJob.getState() == true) {
+						job = txtJob.getText();
 						tipoBusca = 5;
 					}
-					if (checkBarbeiro.getState() == false
+					if (checkBarber.getState() == false
 							&& checkPorData.getState() == true
-							&& checkServico.getState() == true) {
+							&& checkJob.getState() == true) {
 						dataInicial = txtDataInicial.getText();
 						dataFinal = txtDataFinal.getText();
-						servico = txtServico.getText();
+						job = txtJob.getText();
 						tipoBusca = 6;
 					}
-					if (checkBarbeiro.getState() == false
+					if (checkBarber.getState() == false
 							&& checkPorData.getState() == true
-							&& checkServico.getState() == false) {
+							&& checkJob.getState() == false) {
 						dataInicial = txtDataInicial.getText();
 						dataFinal = txtDataFinal.getText();
 						tipoBusca = 7;
 					}
 				}
 
-				if (checkBarbeiro.getState() == false
+				if (checkBarber.getState() == false
 						&& checkPorData.getState() == false
-						&& checkServico.getState() == false) {
+						&& checkJob.getState() == false) {
 					JOptionPane.showMessageDialog(null,
 							"Selecione uma opção de busca");
 				}

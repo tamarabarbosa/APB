@@ -23,7 +23,7 @@ public class ReceiptDAOTest {
 	@Before
 	public void setUp() throws ReciboException, ParseException {
 		try {
-			report.setBarbeiro("Fulano");
+			report.setBarber("Fulano");
 			report.setDataFinal("09/09/2013");
 			report.setDataInicial("01/01/2013");
 
@@ -43,8 +43,8 @@ public class ReceiptDAOTest {
 	public void pesquisarPorDataEBArbeiroDAODeveMostrarUmRecibo() {
 		try {
 			ReciboDAO reciboDAO = ReciboDAO.getInstance();
-			ResultSet rs = reciboDAO.pesquisarServicosDoBarbeiro(
-					report.getBarbeiro(), report.getDataInicial(),
+			ResultSet rs = reciboDAO.pesquisarJobsDoBarber(
+					report.getBarber(), report.getDataInicial(),
 					report.getDataFinal());
 
 			while (rs.next()) {

@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
-import model.ServicoPrestado;
+import model.JobPrestado;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,10 +14,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.ServicoPrestadoController;
+import control.JobPrestadoController;
 
 import dao.FactoryConnection;
-import exception.ServicoException;
+import exception.JobException;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -29,7 +29,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 @SuppressWarnings("serial")
-public class PesquisarServicoPrestado extends JFrame {
+public class PesquisarJobPrestado extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -40,7 +40,7 @@ public class PesquisarServicoPrestado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
+					PesquisarJobPrestado frame = new PesquisarJobPrestado();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class PesquisarServicoPrestado extends JFrame {
 		});
 	}
 
-	public PesquisarServicoPrestado() {
+	public PesquisarJobPrestado() {
 		inicializarComponentes();
 	}
 
@@ -80,27 +80,27 @@ public class PesquisarServicoPrestado extends JFrame {
 		lblPesquisar.setBounds(20, 137, 66, 14);
 		contentPane.add(lblPesquisar);
 
-		JButton btnPesquisarServico = new JButton("Pesquisar Serviço");
-		btnPesquisarServico.addActionListener(new ActionListener() {
+		JButton btnPesquisarJob = new JButton("Pesquisar Serviço");
+		btnPesquisarJob.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeServico(textField.getText());
+					JobPrestado job = new JobPrestado();
+					job.setNomeJob(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT name, preco, barber, data FROM servicoprestado WHERE name = '"
-									+ servico.getNomeServico() + "' ORDER BY data;");
+							"SELECT name, preco, barber, data FROM jobprestado WHERE name = '"
+									+ job.getNomeJob() + "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
 						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
-						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
+						dados[3] = job.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
-				} catch (ServicoException e) {
+				} catch (JobException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -110,31 +110,31 @@ public class PesquisarServicoPrestado extends JFrame {
 
 			}
 		});
-		btnPesquisarServico.setBounds(10, 168, 148, 23);
-		contentPane.add(btnPesquisarServico);
+		btnPesquisarJob.setBounds(10, 168, 148, 23);
+		contentPane.add(btnPesquisarJob);
 
-		JButton btnPesquisarBarbeiro = new JButton("Pesquisar Barbeiro");
-		btnPesquisarBarbeiro.addMouseListener(new MouseAdapter() {
+		JButton btnPesquisarBarber = new JButton("Pesquisar Barber");
+		btnPesquisarBarber.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeBarbeiro(textField.getText());
+					JobPrestado job = new JobPrestado();
+					job.setNomeBarber(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT name, preco, barber, data FROM servicoprestado WHERE barber = '"
-									+ servico.getNomeBarbeiro() + "' ORDER BY data;");
+							"SELECT name, preco, barber, data FROM jobprestado WHERE barber = '"
+									+ job.getNomeBarber() + "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
 						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
-						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
+						dados[3] = job.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
-				} catch (ServicoException e) {
+				} catch (JobException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -144,8 +144,8 @@ public class PesquisarServicoPrestado extends JFrame {
 
 			}
 		});
-		btnPesquisarBarbeiro.setBounds(168, 168, 148, 23);
-		contentPane.add(btnPesquisarBarbeiro);
+		btnPesquisarBarber.setBounds(168, 168, 148, 23);
+		contentPane.add(btnPesquisarBarber);
 
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addMouseListener(new MouseAdapter() {
@@ -156,27 +156,27 @@ public class PesquisarServicoPrestado extends JFrame {
 					String barber = (String) table.getValueAt(table.getSelectedRow(), 1);
 					String valor = (String) table.getValueAt(table.getSelectedRow(), 2);
 					String data = (String) table.getValueAt(table.getSelectedRow(), 3);
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeServico(name);
-					servico.setNomeBarbeiro(barber);
-					servico.setPreco(valor);
-					servico.setData(data);
+					JobPrestado job = new JobPrestado();
+					job.setNomeJob(name);
+					job.setNomeBarber(barber);
+					job.setPreco(valor);
+					job.setData(data);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + name + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
-						servicoController.delete(servico);
+						JobPrestadoController jobController = JobPrestadoController.getInstance();
+						jobController.delete(job);
 
 						dispose();
-						CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+						CadastrarJobPrestado frame = new CadastrarJobPrestado();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
 					mostrarMensagemDeErro("Selecione um Serviço para remover");
-				} catch (ServicoException e) {
+				} catch (JobException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -194,7 +194,7 @@ public class PesquisarServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+				CadastrarJobPrestado frame = new CadastrarJobPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -207,27 +207,27 @@ public class PesquisarServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					ServicoPrestado servico = new ServicoPrestado();
-					servico.setData(textField.getText());
+					JobPrestado job = new JobPrestado();
+					job.setData(textField.getText());
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"Select name, preco, barber, data from servicoprestado where data = '"
-									+ servico.getData() + "' order by data;");
+							"Select name, preco, barber, data from jobprestado where data = '"
+									+ job.getData() + "' order by data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
 						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
-						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
+						dados[3] = job.ConverterDataParaABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (ParseException e) {
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (ServicoException e) {
+				} catch (JobException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
 

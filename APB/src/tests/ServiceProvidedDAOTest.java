@@ -5,49 +5,49 @@ import static org.junit.Assert.*;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.ServicoPrestado;
+import model.JobPrestado;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import dao.ServicoPrestadoDAO;
-import exception.ServicoException;
+import dao.JobPrestadoDAO;
+import exception.JobException;
 
 public class ServiceProvidedDAOTest {
 
-	ServicoPrestado servico = new ServicoPrestado();
-	ServicoPrestado servico2 = new ServicoPrestado();
+	JobPrestado job = new JobPrestado();
+	JobPrestado job2 = new JobPrestado();
 	@Before
 	public void setUp() {
 		try {
-			servico.setNomeServico("Corte");
-			servico.setNomeBarbeiro("Alessandro");
-			servico.setData("10/10/2010");
-			servico.setPreco("10,00");
-			servico2.setNomeServico("Barba");
-			servico2.setNomeBarbeiro("Luciano");
-			servico2.setData("01/01/2010");
-			servico2.setPreco("9,90");
+			job.setNomeJob("Corte");
+			job.setNomeBarber("Alessandro");
+			job.setData("10/10/2010");
+			job.setPreco("10,00");
+			job2.setNomeJob("Barba");
+			job2.setNomeBarber("Luciano");
+			job2.setData("01/01/2010");
+			job2.setPreco("9,90");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-		} catch (ServicoException e) {
+		} catch (JobException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
 
-	ServicoPrestadoDAO servicoDAO = ServicoPrestadoDAO.getInstance();
+	JobPrestadoDAO jobDAO = JobPrestadoDAO.getInstance();
 
 	@Test
-	public void getInstanceDeServicoPrestadoDAODeveRetonarInstanciaCorrente() {
-		assertEquals(ServicoPrestadoDAO.getInstance(), servicoDAO);
+	public void getInstanceDeJobPrestadoDAODeveRetonarInstanciaCorrente() {
+		assertEquals(JobPrestadoDAO.getInstance(), jobDAO);
 	}
 
 	@Test
-	public void inserirDeServicoPrestadoDAODeveCadastrarUmServicoPrestado() {
+	public void insertDeJobPrestadoDAODeveCadastrarUmJobPrestado() {
 		try {
-			assertTrue(servicoDAO.insert(servico));
+			assertTrue(jobDAO.insert(job));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -55,27 +55,27 @@ public class ServiceProvidedDAOTest {
 	}
 
 	@Test
-	public void deleteDeServicoPrestadoDAODeveEnviarUmServicoPrestado() {
+	public void deleteDeJobPrestadoDAODeveEnviarUmJobPrestado() {
 		try {
-			assertTrue(servicoDAO.delete(servico));
+			assertTrue(jobDAO.delete(job));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void inserirDeServicoPrestadoDAOPassandoUmServicoNulo() {
+	public void insertDeJobPrestadoDAOPassandoUmJobNulo() {
 		try {
-			assertFalse(servicoDAO.insert(null));
+			assertFalse(jobDAO.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteDeServicoPrestadoDAOPassandoUmServicoNulo() {
+	public void deleteDeJobPrestadoDAOPassandoUmJobNulo() {
 		try {
-			assertFalse(servicoDAO.delete(null));
+			assertFalse(jobDAO.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

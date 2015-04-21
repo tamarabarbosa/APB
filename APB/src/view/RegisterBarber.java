@@ -47,7 +47,7 @@ public class RegisterBarber extends JFrame {
 
 	// Method that initialize the panel in the frame
 	public void inicializarComponentes() {
-		setTitle("Barbeiro");
+		setTitle("Barber");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 678, 490);
 		contentPane = new JPanel();
@@ -89,9 +89,9 @@ public class RegisterBarber extends JFrame {
 			// This method is used to create a table that contains the contacts
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				NovoBarbeiro frame;
+				NovoBarber frame;
 				try {
-					frame = new NovoBarbeiro();
+					frame = new NovoBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (ParseException e1) {
@@ -116,7 +116,7 @@ public class RegisterBarber extends JFrame {
 					frame.setLocationRelativeTo(null);
 					dispose();
 				} catch (ArrayIndexOutOfBoundsException e1) {
-					mostrarMensagemDeErro("Selecione um Barbeiro para Alterar");
+					mostrarMensagemDeErro("Selecione um Barber para Alterar");
 				}
 			}
 		});
@@ -149,7 +149,7 @@ public class RegisterBarber extends JFrame {
 						frame.setLocationRelativeTo(null);
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
-					mostrarMensagemDeErro("Selecione um Barbeiro para remover");
+					mostrarMensagemDeErro("Selecione um Barber para remover");
 				} catch (BarberException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {

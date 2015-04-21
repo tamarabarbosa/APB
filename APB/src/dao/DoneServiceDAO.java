@@ -23,14 +23,14 @@ public class DoneServiceDAO {
 	}
 
 	// this method include a new job done
-	public boolean insert(DoneService servico) throws SQLException {
-		if (servico != null) {
+	public boolean insert(DoneService job) throws SQLException {
+		if (job != null) {
 			this.updateQuery("INSERT INTO "
 					+ "DoneService (name, preco, barber, data) VALUES ("
-					+ "\"" + servico.getServiceName() + "\", " + "\""
-					+ servico.getPrice() + "\", " + "\""
-					+ servico.getBarberName() + "\", " + "\""
-					+ servico.getDate() + "\"); ");
+					+ "\"" + job.getServiceName() + "\", " + "\""
+					+ job.getPrice() + "\", " + "\""
+					+ job.getBarberName() + "\", " + "\""
+					+ job.getDate() + "\"); ");
 			return true;
 		}
 
@@ -38,10 +38,10 @@ public class DoneServiceDAO {
 	}
 
 	// this method exclude a job done
-	public boolean delete(DoneService servico) throws SQLException {
-		if (servico != null) {
+	public boolean delete(DoneService job) throws SQLException {
+		if (job != null) {
 			this.updateQuery("DELETE FROM DoneService WHERE "
-					+ "DoneService.idDoneService = \"" + pesquisar(servico)
+					+ "DoneService.idDoneService = \"" + pesquisar(job)
 					+ "\";");
 			return true;
 		}
@@ -50,15 +50,15 @@ public class DoneServiceDAO {
 	}
 
 	// this method realize a seach to job done
-	private String pesquisar(DoneService servico) throws SQLException {
+	private String pesquisar(DoneService job) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
 				.prepareStatement("SELECT * FROM DoneService WHERE "
-						+ "DoneService.name = \"" + servico.getServiceName()
-						+ "\" AND DoneService.preco = \"" + servico.getPrice()
+						+ "DoneService.name = \"" + job.getServiceName()
+						+ "\" AND DoneService.preco = \"" + job.getPrice()
 						+ "\" AND DoneService.barber = \""
-						+ servico.getBarberName()
-						+ "\" AND DoneService.data = \"" + servico.getDate()
+						+ job.getBarberName()
+						+ "\" AND DoneService.data = \"" + job.getDate()
 						+ "\";");
 		ResultSet rs = preparedStatement.executeQuery();
 		rs.next();
@@ -76,7 +76,7 @@ public class DoneServiceDAO {
 	}
 
 	// this method show the done services and registered
-	public ResultSet mostrarServicosPrestadosCadastrados(DoneService servico)
+	public ResultSet mostrarJobsPrestadosCadastrados(DoneService job)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection

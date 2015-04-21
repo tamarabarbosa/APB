@@ -1,3 +1,11 @@
+/*
+ * Package: Controller
+ * Class: DoneServiceController.java
+ *
+ * Description: This class is reponsible to do a CRUD of services done
+ * atributes and necessary methods to attribute them.
+ */
+
 package control;
 
 import java.sql.ResultSet;
@@ -26,9 +34,9 @@ public class DoneServiceController {
 	private static DoneServiceController instance;
 
 	// Method used to insert a service
-	public boolean inserir(DoneService servico) throws SQLException {
-		if (servico != null) {
-			DoneServiceDAO.getInstance().insert(servico);
+	public boolean insert(DoneService job) throws SQLException {
+		if (job != null) {
+			DoneServiceDAO.getInstance().insert(job);
 			return true;
 		} else {
 			return false;
@@ -36,9 +44,9 @@ public class DoneServiceController {
 	}
 
 	// Method used to delete a service
-	public boolean delete(DoneService servico) throws SQLException {
-		if (servico != null) {
-			DoneServiceDAO.getInstance().delete(servico);
+	public boolean delete(DoneService job) throws SQLException {
+		if (job != null) {
+			DoneServiceDAO.getInstance().delete(job);
 			return true;
 		} else {
 			return false;
@@ -46,10 +54,10 @@ public class DoneServiceController {
 	}
 
 	// Method that gives access to the registered services
-	public ResultSet mostrarServicosPrestadosCadastrados(DoneService servico)
+	public ResultSet mostrarJobsPrestadosCadastrados(DoneService job)
 			throws SQLException {
 		return DoneServiceDAO.getInstance()
-				.mostrarServicosPrestadosCadastrados(servico);
+				.mostrarJobsPrestadosCadastrados(job);
 	}
 
 }

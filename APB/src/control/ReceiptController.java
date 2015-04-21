@@ -1,3 +1,11 @@
+/*
+ * Package: Controller
+ * Class: DoneServiceController.java
+ *
+ * Description: This class is reponsible to make a registre of receipt
+ * atributes and necessary methods to attribute them.
+ */
+
 package control;
 
 import java.sql.ResultSet;
@@ -26,10 +34,10 @@ public class ReceiptController {
 	}
 
 	// show results of search of barber service
-	public ResultSet pesquisarServicosDoBarbeiro(String barber,
+	public ResultSet pesquisarJobsDoBarber(String barber,
 			String dataInicial, String dataFinal) throws SQLException {
 
-		return ReceiptDAO.getInstance().pesquisarServicosDoBarbeiro(barber,
+		return ReceiptDAO.getInstance().pesquisarJobsDoBarber(barber,
 				dataInicial, dataFinal);
 
 	}

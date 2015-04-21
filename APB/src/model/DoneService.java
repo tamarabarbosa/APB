@@ -2,7 +2,7 @@
  * Package: model
  * Class: DoneService.java
  *
- * Description: This class is reponsible to model the service done by the barber in system with all its 
+ * Description: This class is reponsible to model the service done by the barber in system with all its
  * atributes and necessary methods to attribute them.
 */
 
@@ -27,8 +27,8 @@ public class DoneService {
 	//Declaration of constants along the class
 	private final String INVALID_SERVICE_NAME = "Nome do Serviço Inválido";
 	private final String EMPTY_SERVICE_NAME = "Nome do Serviço em Branco";
-	private final String INVALID_BARBER = "Nome do Barbeiro em Branco";
-	private final String EMPTY_BARBER = "Insira um Barbeiro responsável pelo serviço";
+	private final String INVALID_BARBER = "Nome do Barber em Branco";
+	private final String EMPTY_BARBER = "Insira um Barber responsável pelo serviço";
 	private final String INVALID_PRICE = "Preço Inválido";
 	private final String EMPTY_PRICE = "Preço em Branco";
 	private final String EMPTY_DATE = "Data em Branco";
@@ -36,7 +36,7 @@ public class DoneService {
 
 	/**
 	* Constructor.
-	* 
+	*
 	* @param serviceName if the name of the service to be done.
 	* @param price is the price tag of the service.
 	* @param barberName is the name of barber that done the service.
@@ -115,7 +115,7 @@ public class DoneService {
 
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 			String stringDateBR = sdf2.format(dateISO);
-			
+
 			this.date = stringDateBR;
 		} else
 			throw new ServiceException(INVALID_DATE);
@@ -126,10 +126,10 @@ public class DoneService {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateISO = sdf.parse(date);
-		
+
 		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
 		String stringDateBR = sdf2.format(dateISO);
-		
+
 		return stringDateBR;
 	}
 }

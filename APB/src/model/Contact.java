@@ -2,7 +2,7 @@
  * Package: model
  * Class: Contact.java
  *
- * Description: This class is reponsible to model the custumer in system with all its 
+ * Description: This class is reponsible to model the custumer in system with all its
  * atributes and necessary methods to attribute them.
 */
 
@@ -28,7 +28,7 @@ public class Contact {
 
 	/**
 	* Constructor.
-	* 
+	*
 	* @param name is the name of the barber.
 	* @param phoneNumber is the phone number of the barber.
 	* @param description is the description of the service.
@@ -66,15 +66,15 @@ public class Contact {
 		return description;
 	}
 
-	/**	 
+	/**
 	* Set the name of the barber to search in appoiment book, case the name doesn't
 	* exist or the field setted empty, the method return an warning while
 	* the user doesn't fill correctly.
 	*
  	* @param name is the name of the barber to be placed into name.
- 	* 
- 	* @exception BarbeiroException if the field setted empty.
- 	* @exception BarbeiroExcepetion if the name of barber doesn't exist. 
+ 	*
+ 	* @exception BarberException if the field setted empty.
+ 	* @exception BarberExcepetion if the name of barber doesn't exist.
  	*/
 	public void setName(String name) throws BarberException {
 		if ("".equals(name))
@@ -85,15 +85,15 @@ public class Contact {
 			throw new BarberException(INVALID_NAME);
 	}
 
-	/**	 
+	/**
 	* Set the phone number of the barber to search in appoiment book, case the tphone number doesn't
 	* exist or the field setted empty, the method return an warning while
 	* the user doesn't fill correctly.
 	*
  	* @param phoneNumber is the phone number of the barber to be placed into phoneNumber.
  	*
- 	* @exception BarbeiroException if the field setted empty.
- 	* @exception BarbeiroExcepetion if the phone number of barber doesn't exist. 
+ 	* @exception BarberException if the field setted empty.
+ 	* @exception BarberExcepetion if the phone number of barber doesn't exist.
  	*/
 	public void setPhoneNumber(String phoneNumber) throws BarberException {
 		if ("".equals(phoneNumber))
@@ -104,7 +104,7 @@ public class Contact {
 			throw new BarberException(INVALID_PHONE);
 	}
 
-	/**	 
+	/**
 	* Set the description of the service that the barber will do.
 	*
  	* @param description is the description of the service to be placed into description.

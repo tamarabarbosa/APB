@@ -6,19 +6,19 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Barbeiro;
+import model.Barber;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import dao.BarbeiroDAO;
+import dao.BarberDAO;
 import dao.FactoryConnection;
-import exception.BarbeiroException;
+import exception.BarberException;
 
 public class BarberDAOTest {
 
-	Barbeiro barber = new Barbeiro();
-	Barbeiro barber2 = new Barbeiro();
+	Barber barber = new Barber();
+	Barber barber2 = new Barber();
 	@Before
 	public void setUp() {
 		try {
@@ -33,26 +33,26 @@ public class BarberDAOTest {
 			barber2.setCpf("02919594150");
 			barber2.setCadeira("5");
 
-			BarbeiroDAO barberDao = BarbeiroDAO.getInstance();
+			BarberDAO barberDao = BarberDAO.getInstance();
 			barberDao.insert(barber);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-		} catch (BarbeiroException e) {
+		} catch (BarberException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	BarbeiroDAO barberDAO = BarbeiroDAO.getInstance();
+	BarberDAO barberDAO = BarberDAO.getInstance();
 
 	@Test
-	public void getInstanceDeBarbeiroDAODeveRetonarInstanciaCorrente() {
-		assertEquals(BarbeiroDAO.getInstance(), barberDAO);
+	public void getInstanceDeBarberDAODeveRetonarInstanciaCorrente() {
+		assertEquals(BarberDAO.getInstance(), barberDAO);
 	}
 
 	@Test
-	public void inserirDeBarbeiroDAODeveCadastrarUmBarbeiro() {
+	public void insertDeBarberDAODeveCadastrarUmBarber() {
 		try {
 			assertTrue(barberDAO.insert(barber));
 
@@ -69,7 +69,7 @@ public class BarberDAOTest {
 	}
 
 	@Test (expected = AssertionError.class)
-	public void deleteDeBarbeiroDAODeveEnviarUmBarbeiro() {
+	public void deleteDeBarberDAODeveEnviarUmBarber() {
 		try {
 			assertTrue(barberDAO.delete(barber));
 
@@ -85,7 +85,7 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void changeDeBarbeiroDaoDeveAlterarUmBarbeiro() {
+	public void changeDeBarberDaoDeveAlterarUmBarber() {
 		try {
 			assertTrue(barberDAO.change(barber.getNome(), barber, barber2));
 
@@ -106,7 +106,7 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void inserirDeBarbeiroDAOPassandoUmBarbeiroNulo() {
+	public void insertDeBarberDAOPassandoUmBarberNulo() {
 		try {
 			assertFalse(barberDAO.insert(null));
 		} catch (SQLException e) {
@@ -115,7 +115,7 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void deleteDeBarbeiroDAOPassandoUmBarbeiroNulo() {
+	public void deleteDeBarberDAOPassandoUmBarberNulo() {
 		try {
 			assertFalse(barberDAO.delete(null));
 		} catch (SQLException e) {
@@ -124,7 +124,7 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void changeDeBarbeiroDaoPassandoUmBarbeiroNulo() {
+	public void changeDeBarberDaoPassandoUmBarberNulo() {
 		try {
 			assertFalse(barberDAO.change(barber.getNome(), null, null));
 		} catch (SQLException e) {
@@ -133,7 +133,7 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void changeDeBarbeiroDaoPassandoUmBarbeiroAlteradoNulo() {
+	public void changeDeBarberDaoPassandoUmBarberAlteradoNulo() {
 		try {
 			assertFalse(barberDAO.change(barber.getNome(), null, barber));
 		} catch (SQLException e) {
@@ -142,7 +142,7 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void pesquisarDeBarbeiroDAODeveMostrarUmBarbeiro() {
+	public void pesquisarDeBarberDAODeveMostrarUmBarber() {
 		try {
 			ResultSet rs = barberDAO.pesquisar();
 
@@ -156,9 +156,9 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void mostrarBarbeirosCadastradosDeBarbeiroDAODeveMostrarBarbeiros() {
+	public void mostrarBarbersCadastradosDeBarberDAODeveMostrarBarbers() {
 		try {
-			ResultSet rs = barberDAO.mostrarBarbeirosCadastrados(barber);
+			ResultSet rs = barberDAO.mostrarBarbersCadastrados(barber);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -170,7 +170,7 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorNomeDeBarbeiroDAODeveMostrarBarbeiros() {
+	public void pesquisarPorNomeDeBarberDAODeveMostrarBarbers() {
 		try {
 			ResultSet rs = barberDAO.pesquisarPorNome(barber);
 

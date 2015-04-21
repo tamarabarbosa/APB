@@ -2,7 +2,7 @@
  * Package: model
  * Class: Report.java
  *
- * Description: This class is reponsible to model the Report in system with all its 
+ * Description: This class is reponsible to model the Report in system with all its
  * atributes and necessary methods to attribute them.
  */
 
@@ -25,12 +25,12 @@ public class Report {
 	// Declaration of the constants along the class
 	private final String END_DATE_EMPTY = "Data final em Branco";
 	private final String INITIAL_DATE_EMPTY = "Data inicial em Branco";
-	private final String BARBER_EMPTY = "Barbeiro em Branco";
+	private final String BARBER_EMPTY = "Barber em Branco";
 	private final String SERVICE_TYPE_EMPTY = "Tipo do Serviço em Branco";
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param initialDate
 	 *            is when the service started.
 	 * @param endDate

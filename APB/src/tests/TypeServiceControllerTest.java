@@ -5,97 +5,97 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.TipoServico;
+import model.TipoJob;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import control.TipoServicoController;
-import exception.ServicoException;
+import control.TipoJobController;
+import exception.JobException;
 
 public class TypeServiceControllerTest {
 
-	TipoServico servico = new TipoServico();
-	TipoServicoController servicoController = TipoServicoController.getInstance();
+	TipoJob job = new TipoJob();
+	TipoJobController jobController = TipoJobController.getInstance();
 
 	@Before
 	public void setUp(){
 		try {
-			servico.setNomeTipoServico("Corte");
-			servico.setPreco("15,00");
-		} catch (ServicoException e) {
+			job.setNomeTipoJob("Corte");
+			job.setPreco("15,00");
+		} catch (JobException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void getInstanceDeTipoServicoControllerDeveRetornarInstanciaCorrente() {
-		assertEquals(TipoServicoController.getInstance(), servicoController);
+	public void getInstanceDeTipoJobControllerDeveRetornarInstanciaCorrente() {
+		assertEquals(TipoJobController.getInstance(), jobController);
 	}
 
 	@Test
-	public void inserirDeTipoServicoControllerDeveEnviarUmTipoServico() {
+	public void insertDeTipoJobControllerDeveEnviarUmTipoJob() {
 		try {
-			assertTrue(servicoController.inserir(servico));
+			assertTrue(jobController.insert(job));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteDeTipoServicoControllerDeveRemoverUmTipoServico() {
+	public void deleteDeTipoJobControllerDeveRemoverUmTipoJob() {
 		try {
-			assertTrue(servicoController.delete(servico));
+			assertTrue(jobController.delete(job));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeDeTipoServicoControllerDeveAlterarUmTipoServico() {
+	public void changeDeTipoJobControllerDeveAlterarUmTipoJob() {
 		try {
-			assertTrue(servicoController.change(servico.getNomeTipoServico(),servico));
+			assertTrue(jobController.change(job.getNomeTipoJob(),job));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void inserirTipoServicoNaoPodePassarTipoServicoNullo() {
+	public void insertTipoJobNaoPodePassarTipoJobNullo() {
 		try {
-			assertFalse(servicoController.inserir(null));
+			assertFalse(jobController.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteTipoServicoNaoPodePassarTipoServicoNullo() {
+	public void deleteTipoJobNaoPodePassarTipoJobNullo() {
 		try {
-			assertFalse(servicoController.delete(null));
+			assertFalse(jobController.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeTipoServicoNaoPodePassarTipoServicoNullo() {
+	public void changeTipoJobNaoPodePassarTipoJobNullo() {
 		try {
-			assertFalse(servicoController.change(null,null));
+			assertFalse(jobController.change(null,null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void mostrarBarbeirosDeBarbeiroControllerDeveMostrarUmBarbeiro() throws SQLException {
-		ResultSet rs = servicoController.mostrarTipoServicoCadastrados(servico);
+	public void mostrarBarbersDeBarberControllerDeveMostrarUmBarber() throws SQLException {
+		ResultSet rs = jobController.mostrarTipoJobCadastrados(job);
 		while(rs.next());
 	}
 
 	@Test
-	public void pesquisarPorNomeDeTipoServicoControllerDeveMostrarUmServico() throws SQLException {
-		ResultSet rs = servicoController.pesquisarPorNome(servico);
+	public void pesquisarPorNomeDeTipoJobControllerDeveMostrarUmJob() throws SQLException {
+		ResultSet rs = jobController.pesquisarPorNome(job);
 		while(rs.next());
 	}
 

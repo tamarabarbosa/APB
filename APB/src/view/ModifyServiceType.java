@@ -42,7 +42,7 @@ public class ModifyServiceType extends JFrame {
 
 	// These methods are used to initialize the components
 	public ModifyServiceType() {
-		setTitle("Alterar Tipo Servico");
+		setTitle("Alterar Tipo Job");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 436, 163);
 		contentPane = new JPanel();
@@ -69,11 +69,11 @@ public class ModifyServiceType extends JFrame {
 		contentPane.add(labelCadeira);
 
 		try {
-			ServiceType tiposervico = new ServiceType();
-			ServiceTypeController servicoController = ServiceTypeController
+			ServiceType tipojob = new ServiceType();
+			ServiceTypeController jobController = ServiceTypeController
 					.getInstance();
-			tiposervico.setNameServiceType(ServiceType.getTempName());
-			ResultSet rs = ServiceTypeController.pesquisarPorNome(tiposervico);
+			tipojob.setNameServiceType(ServiceType.getTempName());
+			ResultSet rs = ServiceTypeController.pesquisarPorNome(tipojob);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));
@@ -92,20 +92,20 @@ public class ModifyServiceType extends JFrame {
 			// application
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ServiceType tipoServico = new ServiceType();
-					tipoServico.setNameServiceType(textFieldNome.getText());
-					tipoServico.setPrice(textFieldPreco.getText());
+					ServiceType tipoJob = new ServiceType();
+					tipoJob.setNameServiceType(textFieldNome.getText());
+					tipoJob.setPrice(textFieldPreco.getText());
 
-					ServiceTypeController tipoServicoController = ServiceTypeController
+					ServiceTypeController tipoJobController = ServiceTypeController
 							.getInstance();
-					tipoServicoController.change(name, tipoServico);
+					tipoJobController.change(name, tipoJob);
 
 					JOptionPane.showMessageDialog(null, "Tipo de Serviço "
 							+ textFieldNome.getText()
 							+ " foi alterado com sucesso");
 
 					dispose();
-					CadastrarTipoServico frame = new CadastrarTipoServico();
+					CadastrarTipoJob frame = new CadastrarTipoJob();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (ServiceException e1) {
@@ -135,7 +135,7 @@ public class ModifyServiceType extends JFrame {
 			// This method is used to initialize the text fields on the frame
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CadastrarTipoServico frame = new CadastrarTipoServico();
+				CadastrarTipoJob frame = new CadastrarTipoJob();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

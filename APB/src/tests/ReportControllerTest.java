@@ -17,80 +17,80 @@ import exception.RelatorioException;
 public class ReportControllerTest {
 
 	Report report = new Report();
-	
-	
+
+
 	@Before
 	public void setUp() throws RelatorioException, ParseException {
 		try {
-			report.setBarbeiro("Luciano");
+			report.setBarber("Luciano");
 			report.setDataFinal("09/09/2013");
 			report.setDataInicial("01/01/2013");
-			report.setTipoServico("corte");
+			report.setTipoJob("corte");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	@Test
 	public void getInstanceDeRelatorioDAODeveRetonarInstanciaCorrente() {
 		RelatorioController relatorioController = RelatorioController.getInstance();
 		assertEquals(RelatorioController.getInstance(), relatorioController);
 	}
-	
+
 	@Test
-	public void procurarPorServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorJobDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorServico(report);
-		
+		ResultSet rs = relatorioController.pesquisarPorJob(report);
+
 		while(rs.next());
 	}
-	
+
 	@Test
 	public void procurarPorDataDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
 		ResultSet rs = relatorioController.pesquisarPorData(report);
-		
+
 		while(rs.next());
 	}
-	
+
 	@Test
-	public void procurarPorBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorBarberEJobDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorBarbeiroEServico(report);
-		
+		ResultSet rs = relatorioController.pesquisarPorBarberEJob(report);
+
 		while(rs.next());
 	}
-	
+
 	@Test
-	public void procurarPorDataBarbeiroEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorDataBarberEJobDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataBarbeiroEServico(report);
-		
+		ResultSet rs = relatorioController.pesquisarPorDataBarberEJob(report);
+
 		while(rs.next());
 	}
-	
+
 	@Test
-	public void procurarPorDataEBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorDataEBarberDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataEBarbeiro(report);
-		
+		ResultSet rs = relatorioController.pesquisarPorDataEBarber(report);
+
 		while(rs.next());
 	}
-	
+
 	@Test
-	public void procurarPorDataEServicoDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorDataEJobDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataEServico(report);
-		
+		ResultSet rs = relatorioController.pesquisarPorDataEJob(report);
+
 		while(rs.next());
 	}
-	
+
 	@Test
-	public void procurarPorBarbeiroDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
+	public void procurarPorBarberDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorBarbeiro(report);
-		
+		ResultSet rs = relatorioController.pesquisarPorBarber(report);
+
 		while(rs.next());
 	}
 

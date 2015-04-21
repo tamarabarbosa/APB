@@ -10,11 +10,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.TipoServicoController;
+import control.TipoJobController;
 
-import exception.ServicoException;
+import exception.JobException;
 
-import model.TipoServico;
+import model.TipoJob;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -24,10 +24,10 @@ import java.sql.SQLException;
 
 
 @SuppressWarnings("serial")
-public class NovoTipoServico extends JFrame {
+public class NovoTipoJob extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldServico;
+	private JTextField textFieldJob;
 	private JTextField textFieldPreco;
 
 	/**
@@ -37,7 +37,7 @@ public class NovoTipoServico extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovoTipoServico frame = new NovoTipoServico();
+					NovoTipoJob frame = new NovoTipoJob();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class NovoTipoServico extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public NovoTipoServico() {
+	public NovoTipoJob() {
 		setTitle("Cadastar novo tipo de servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 180);
@@ -58,14 +58,14 @@ public class NovoTipoServico extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblServico = new JLabel("Serviço:");
-		lblServico.setBounds(29, 33, 46, 14);
-		contentPane.add(lblServico);
+		JLabel lblJob = new JLabel("Serviço:");
+		lblJob.setBounds(29, 33, 46, 14);
+		contentPane.add(lblJob);
 
-		textFieldServico = new JTextField();
-		textFieldServico.setBounds(100, 30, 170, 20);
-		contentPane.add(textFieldServico);
-		textFieldServico.setColumns(10);
+		textFieldJob = new JTextField();
+		textFieldJob.setBounds(100, 30, 170, 20);
+		contentPane.add(textFieldJob);
+		textFieldJob.setColumns(10);
 
 		textFieldPreco = new JTextField();
 		textFieldPreco.setBounds(100, 63, 170, 20);
@@ -75,30 +75,30 @@ public class NovoTipoServico extends JFrame {
 		JLabel lblPreco = new JLabel("Pre\u00E7o (R$):");
 		lblPreco.setBounds(29, 65, 65, 17);
 		contentPane.add(lblPreco);
-		
+
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					TipoServico tipoServico = new TipoServico();
-					tipoServico.setNomeTipoServico(textFieldServico.getText());
-					tipoServico.setPreco(textFieldPreco.getText());
+					TipoJob tipoJob = new TipoJob();
+					tipoJob.setNomeTipoJob(textFieldJob.getText());
+					tipoJob.setPreco(textFieldPreco.getText());
 
-					TipoServicoController tipoServicoController = TipoServicoController
+					TipoJobController tipoJobController = TipoJobController
 							.getInstance();
-					tipoServicoController.inserir(tipoServico);
+					tipoJobController.insert(tipoJob);
 
 					JOptionPane.showMessageDialog(null, "Serviço "
-							+ textFieldServico.getText()
+							+ textFieldJob.getText()
 							+ " foi cadastrado com sucesso");
 
 					dispose();
-					CadastrarTipoServico frame = new CadastrarTipoServico();
+					CadastrarTipoJob frame = new CadastrarTipoJob();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 
-				} catch (ServicoException e) {
+				} catch (JobException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (IllegalArgumentException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -112,7 +112,7 @@ public class NovoTipoServico extends JFrame {
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CadastrarTipoServico frame = new CadastrarTipoServico();
+				CadastrarTipoJob frame = new CadastrarTipoJob();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();

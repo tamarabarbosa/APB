@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import control.PhonebookController;
-import exception.BarbeiroException;
+import exception.BarberException;
 
 public class PhonebookControllerTest {
 
@@ -23,7 +23,7 @@ public class PhonebookControllerTest {
 			contato.setNome("Corte");
 			contato.setTelefone("3895-5698");
 			contato.setDescricao("AAA");
-		} catch (BarbeiroException e) {
+		} catch (BarberException e) {
 			e.printStackTrace();
 		}
 	}
@@ -36,7 +36,7 @@ public class PhonebookControllerTest {
 	}
 
 	@Test
-	public void inserirDePhonebookControllerDeveEnviarUm() {
+	public void insertDePhonebookControllerDeveEnviarUm() {
 		try {
 			assertTrue(phonebookController.insert(contato));
 		} catch (SQLException e) {
@@ -64,7 +64,7 @@ public class PhonebookControllerTest {
 	}
 
 	@Test
-	public void inserirPhonebookNaoPodePassarPhonebookNullo() {
+	public void insertPhonebookNaoPodePassarPhonebookNullo() {
 		try {
 			assertFalse(phonebookController.insert(null));
 		} catch (SQLException e) {

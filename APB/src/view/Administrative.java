@@ -57,34 +57,34 @@ public class Administrative extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 
-		JButton btnBarbeiro = new JButton("Barbeiro");
-		btnBarbeiro.addMouseListener(new MouseAdapter() {
+		JButton btnBarber = new JButton("Barber");
+		btnBarber.addMouseListener(new MouseAdapter() {
 			@Override
 			// This method is used to create the button and the action that open
 			// the Phonebook frame
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarBarbeiro frame = new CadastrarBarbeiro();
+				CadastrarBarber frame = new CadastrarBarber();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnBarbeiro.setBounds(10, 45, 157, 37);
-		panel.add(btnBarbeiro);
+		btnBarber.setBounds(10, 45, 157, 37);
+		panel.add(btnBarber);
 
-		JButton btnTipoServico = new JButton("Tipo de Servi\u00E7o");
-		btnTipoServico.addActionListener(new ActionListener() {
+		JButton btnTipoJob = new JButton("Tipo de Servi\u00E7o");
+		btnTipoJob.addActionListener(new ActionListener() {
 			// This method is used to create the button and the action that open
 			// the Service Type frame
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CadastrarTipoServico frame = new CadastrarTipoServico();
+				CadastrarTipoJob frame = new CadastrarTipoJob();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnTipoServico.setBounds(215, 45, 149, 37);
-		panel.add(btnTipoServico);
+		btnTipoJob.setBounds(215, 45, 149, 37);
+		panel.add(btnTipoJob);
 
 		JButton btnPhonebook = new JButton("Phonebook");
 		btnPhonebook.addMouseListener(new MouseAdapter() {

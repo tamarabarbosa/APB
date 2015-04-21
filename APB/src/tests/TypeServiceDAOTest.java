@@ -5,90 +5,90 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.TipoServico;
+import model.TipoJob;
 
 import org.junit.Test;
 
-import dao.TipoServicoDAO;
+import dao.TipoJobDAO;
 
 public class TypeServiceDAOTest {
 
-	TipoServico tiposervico = new TipoServico();
-	TipoServico tiposervico2 = new TipoServico();
-	TipoServicoDAO servicoDAO = TipoServicoDAO.getInstance();
+	TipoJob tipojob = new TipoJob();
+	TipoJob tipojob2 = new TipoJob();
+	TipoJobDAO jobDAO = TipoJobDAO.getInstance();
 
 	@Test
-	public void getInstanceDeTipoServicoDAODeveRetonarInstanciaCorrente() {
-		assertEquals(TipoServicoDAO.getInstance(), servicoDAO);
+	public void getInstanceDeTipoJobDAODeveRetonarInstanciaCorrente() {
+		assertEquals(TipoJobDAO.getInstance(), jobDAO);
 	}
 
 	@Test
-	public void inserirDeTipoServicoDAODeveCadastrarUmTipoServico() {
+	public void insertDeTipoJobDAODeveCadastrarUmTipoJob() {
 		try {
-			assertTrue(servicoDAO.insert(tiposervico));
+			assertTrue(jobDAO.insert(tipojob));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteDeTipoServicoDAODeveEnviarUmTipoServico() {
+	public void deleteDeTipoJobDAODeveEnviarUmTipoJob() {
 		try {
-			assertTrue(servicoDAO.delete(tiposervico));
+			assertTrue(jobDAO.delete(tipojob));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeDeTipoServicoDAODeveEnviarUmTipoServico() {
+	public void changeDeTipoJobDAODeveEnviarUmTipoJob() {
 		try {
-			assertTrue(servicoDAO.change(tiposervico.getNomeTipoServico(),tiposervico, tiposervico2));
+			assertTrue(jobDAO.change(tipojob.getNomeTipoJob(),tipojob, tipojob2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void inserirDeTipoServicoDAOPassandoUmServicoNulo() {
+	public void insertDeTipoJobDAOPassandoUmJobNulo() {
 		try {
-			assertFalse(servicoDAO.insert(null));
+			assertFalse(jobDAO.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteDeTipoServicoDAOPassandoUmServicoNulo() {
+	public void deleteDeTipoJobDAOPassandoUmJobNulo() {
 		try {
-			assertFalse(servicoDAO.delete(null));
+			assertFalse(jobDAO.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeDeTipoServicoDAOPassandoUmServicoNulo() {
+	public void changeDeTipoJobDAOPassandoUmJobNulo() {
 		try {
-			assertFalse(servicoDAO.change(tiposervico.getNomeTipoServico(), tiposervico, null));
+			assertFalse(jobDAO.change(tipojob.getNomeTipoJob(), tipojob, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeDeTipoServicoDAOPassandoUmServicoAlteradoNulo() {
+	public void changeDeTipoJobDAOPassandoUmJobAlteradoNulo() {
 		try {
-			assertFalse(servicoDAO.change(tiposervico.getNomeTipoServico(), null, tiposervico));
+			assertFalse(jobDAO.change(tipojob.getNomeTipoJob(), null, tipojob));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void mostrarServicosDeTipoServicoDAODeveMostrarServico() {
+	public void mostrarJobsDeTipoJobDAODeveMostrarJob() {
 		try {
-			ResultSet rs = servicoDAO.mostrarTipoServicoCadastrados(tiposervico);
+			ResultSet rs = jobDAO.mostrarTipoJobCadastrados(tipojob);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -100,9 +100,9 @@ public class TypeServiceDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorNomeDeTipoServicoDAODeveMostrarServico() {
+	public void pesquisarPorNomeDeTipoJobDAODeveMostrarJob() {
 		try {
-			ResultSet rs = servicoDAO.pesquisarPorNome(tiposervico);
+			ResultSet rs = jobDAO.pesquisarPorNome(tipojob);
 
 			while (rs.next()) {
 				String name = rs.getString("name");

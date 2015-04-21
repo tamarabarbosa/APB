@@ -12,35 +12,35 @@ public class ServiceTypeController {
 	private static ServiceTypeController instance;
 
 	// Method that modify a service type on the system
-	public boolean inserir(ServiceType tipoServico) throws SQLException {
-		if (tipoServico == null) {
+	public boolean insert(ServiceType tipoJob) throws SQLException {
+		if (tipoJob == null) {
 			return false;
 		} else {
-			ServiceTypeDAO.getInstance().insert(tipoServico);
+			ServiceTypeDAO.getInstance().insert(tipoJob);
 			return true;
 		}
 	}
 
 	// Method that change a service type on the system
-	public boolean change(String name, ServiceType tipoServico)
+	public boolean change(String name, ServiceType tipoJob)
 			throws SQLException {
-		if (tipoServico == null) {
+		if (tipoJob == null) {
 			return false;
 		} else {
-			ServiceType tipoServico_alterado = tipoServico;
-			ServiceTypeDAO.getInstance().change(name, tipoServico_alterado,
-					tipoServico);
+			ServiceType tipoJob_alterado = tipoJob;
+			ServiceTypeDAO.getInstance().change(name, tipoJob_alterado,
+					tipoJob);
 			return true;
 		}
 	}
 
 	// Method that delete a service type on the system
-	public boolean delete(ServiceType tipoServico) throws SQLException {
+	public boolean delete(ServiceType tipoJob) throws SQLException {
 
-		if (tipoServico == null) {
+		if (tipoJob == null) {
 			return false;
 		} else {
-			ServiceTypeDAO.getInstance().delete(tipoServico);
+			ServiceTypeDAO.getInstance().delete(tipoJob);
 			return true;
 		}
 	}
@@ -61,15 +61,15 @@ public class ServiceTypeController {
 
 	// Return a ResultSet interface object with the service types registered on
 	// the system
-	public ResultSet mostrarTipoServicoCadastrados(ServiceType servico)
+	public ResultSet mostrarTipoJobCadastrados(ServiceType job)
 			throws SQLException {
-		return ServiceTypeDAO.getInstance().mostrarTipoServicoCadastrados(
-				servico);
+		return ServiceTypeDAO.getInstance().mostrarTipoJobCadastrados(
+				job);
 	}
 
 	// Search for an specific service type name
-	public static ResultSet pesquisarPorNome(ServiceType servico) throws SQLException {
-		return ServiceTypeDAO.getInstance().pesquisarPorNome(servico);
+	public static ResultSet pesquisarPorNome(ServiceType job) throws SQLException {
+		return ServiceTypeDAO.getInstance().pesquisarPorNome(job);
 	}
 
 }

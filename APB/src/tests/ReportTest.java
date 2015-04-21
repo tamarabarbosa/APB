@@ -20,8 +20,8 @@ public class ReportTest {
 		try {
 			report = new Report();
 
-			report.setBarbeiro("Chico");
-			report.setTipoServico("barba");
+			report.setBarber("Chico");
+			report.setTipoJob("barba");
 			report.setDataInicial("01/01/2013");
 			report.setDataFinal("09/09/2013");
 
@@ -71,7 +71,7 @@ public class ReportTest {
 	@Test (expected = NullPointerException.class)
 	public void barberNaoPodeSerSettadoNulo() {
 		try {
-			report.setBarbeiro(null);
+			report.setBarber(null);
 		} catch (RelatorioException e){
 			e.printStackTrace();
 		}
@@ -80,32 +80,32 @@ public class ReportTest {
 	@Test (expected = AssertionError.class)
 	public void barberNaoPodeSerSettoEmBranco() {
 		try {
-			report.setBarbeiro("");
+			report.setBarber("");
 		} catch (RelatorioException e){
 			e.printStackTrace();
 		}
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void tipoDeServicoNaoPodeSerSettadoNulo() {
+	public void tipoDeJobNaoPodeSerSettadoNulo() {
 		try {
-			report.setTipoServico(null);
+			report.setTipoJob(null);
 		} catch (RelatorioException e){
 			e.printStackTrace();
 		}
 	}
 
 	@Test (expected = AssertionError.class)
-	public void tipoDeServicoNaoPodeSerSettoEmBranco() {
+	public void tipoDeJobNaoPodeSerSettoEmBranco() {
 		try {
-			report.setTipoServico("");
+			report.setTipoJob("");
 		} catch (RelatorioException e){
 			e.printStackTrace();
 		}
 	}
 
 	@Test (expected = IllegalArgumentException.class)
-	public void construtorDeRelatorioNaoPodePassarBarbeiroNulo() {
+	public void construtorDeRelatorioNaoPodePassarBarberNulo() {
 		try {
 			new Report ("2013-01-01", "2013-01-01", null, "barba");
 		} catch(RelatorioException e){
@@ -132,7 +132,7 @@ public class ReportTest {
 	}
 
 	@Test (expected = IllegalArgumentException.class)
-	public void construtorDeRelatorioNaoPodePassarTipoServicoNulo() {
+	public void construtorDeRelatorioNaoPodePassarTipoJobNulo() {
 		try {
 			new Report ("2013-01-01", "2013-01-01", "Chico", null);
 		} catch (RelatorioException e){
@@ -151,13 +151,13 @@ public class ReportTest {
 	}
 
 	@Test
-	public void metodoParaTestarGetterDeBarbeiro() {
-		assertEquals("Chico", report.getBarbeiro());
+	public void metodoParaTestarGetterDeBarber() {
+		assertEquals("Chico", report.getBarber());
 	}
 
 	@Test
-	public void metodoParaTestarGetterDeTipoDeServico() {
-		assertEquals("barba", report.getTipoServico());
+	public void metodoParaTestarGetterDeTipoDeJob() {
+		assertEquals("barba", report.getTipoJob());
 	}
 
 	@Test

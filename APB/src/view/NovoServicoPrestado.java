@@ -13,9 +13,9 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import control.ServicoPrestadoController;
-import exception.ServicoException;
-import model.ServicoPrestado;
+import control.JobPrestadoController;
+import exception.JobException;
+import model.JobPrestado;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -32,7 +32,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
-public class NovoServicoPrestado extends JFrame {
+public class NovoJobPrestado extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textValor;
@@ -41,7 +41,7 @@ public class NovoServicoPrestado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovoServicoPrestado frame = new NovoServicoPrestado();
+					NovoJobPrestado frame = new NovoJobPrestado();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class NovoServicoPrestado extends JFrame {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public NovoServicoPrestado() {
+	public NovoJobPrestado() {
 		setTitle("Criar nova presta\u00E7\u00E3o de servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 214);
@@ -60,9 +60,9 @@ public class NovoServicoPrestado extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		JLabel lblServico = new JLabel("Servi\u00E7o:");
-		lblServico.setBounds(27, 25, 46, 14);
-		contentPane.add(lblServico);
+		JLabel lblJob = new JLabel("Servi\u00E7o:");
+		lblJob.setBounds(27, 25, 46, 14);
+		contentPane.add(lblJob);
 
 		JLabel lblRealizadoPor = new JLabel("Realizado por:");
 		lblRealizadoPor.setBounds(27, 56, 92, 14);
@@ -77,24 +77,24 @@ public class NovoServicoPrestado extends JFrame {
 		textValor.setBounds(129, 84, 114, 20);
 		contentPane.add(textValor);
 
-		final JComboBox comboBoxBarbeiro = new JComboBox();
-		comboBoxBarbeiro.setModel(new DefaultComboBoxModel(
+		final JComboBox comboBoxBarber = new JComboBox();
+		comboBoxBarber.setModel(new DefaultComboBoxModel(
 				new String[] { "Selecione um barber" }));
-		comboBoxBarbeiro.setBounds(129, 53, 289, 20);
-		contentPane.add(comboBoxBarbeiro);
+		comboBoxBarber.setBounds(129, 53, 289, 20);
+		contentPane.add(comboBoxBarber);
 
-		final JComboBox comboBoxServico = new JComboBox();
-		comboBoxServico.addItemListener(new ItemListener() {
+		final JComboBox comboBoxJob = new JComboBox();
+		comboBoxJob.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				Connection connection;
-				if (comboBoxServico.getSelectedIndex() != 0)
+				if (comboBoxJob.getSelectedIndex() != 0)
 					try {
-						String[] name = comboBoxServico.getSelectedItem()
+						String[] name = comboBoxJob.getSelectedItem()
 								.toString().split(" - ");
 						connection = FactoryConnection.getInstance()
 								.getConnection();
 						java.sql.PreparedStatement pst1 = connection
-								.prepareStatement("SELECT preco FROM tipoServico WHERE name = \""
+								.prepareStatement("SELECT preco FROM tipoJob WHERE name = \""
 										+ name[1] + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
@@ -106,11 +106,11 @@ public class NovoServicoPrestado extends JFrame {
 			}
 
 		});
-		comboBoxServico.setModel(new DefaultComboBoxModel(
+		comboBoxJob.setModel(new DefaultComboBoxModel(
 				new String[] { "Selecione um tipo de servi\u00E7o" }));
-		comboBoxServico.setMaximumRowCount(4);
-		comboBoxServico.setBounds(129, 22, 289, 20);
-		contentPane.add(comboBoxServico);
+		comboBoxJob.setMaximumRowCount(4);
+		comboBoxJob.setBounds(129, 22, 289, 20);
+		contentPane.add(comboBoxJob);
 		try {
 			int cont = 0;
 			Connection connection = FactoryConnection.getInstance()
@@ -118,19 +118,19 @@ public class NovoServicoPrestado extends JFrame {
 			java.sql.PreparedStatement pst = connection
 					.prepareStatement("SELECT name, cadeira FROM barber ORDER BY cadeira;");
 			java.sql.PreparedStatement pst2 = connection
-					.prepareStatement("SELECT name FROM tiposervico;");
+					.prepareStatement("SELECT name FROM tipojob;");
 			ResultSet rs = pst.executeQuery();
 			ResultSet rs2 = pst2.executeQuery();
 
 			while (rs.next()) {
 				String name = rs.getString("name");
 				String cadeira = rs.getString("cadeira");
-				comboBoxBarbeiro.addItem(cadeira + " - " + name);
+				comboBoxBarber.addItem(cadeira + " - " + name);
 			}
 			while (rs2.next()) {
 				cont++;
 				String name = rs2.getString("name");
-				comboBoxServico.addItem(cont + " - " + name);
+				comboBoxJob.addItem(cont + " - " + name);
 			}
 
 		} catch (SQLException e) {
@@ -142,10 +142,10 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					if (comboBoxServico.getSelectedIndex() == 0)
+					if (comboBoxJob.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
 								"Você deve selecionar um tipo de serviço.");
-					else if (comboBoxBarbeiro.getSelectedIndex() == 0)
+					else if (comboBoxBarber.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
 								"Você deve selecionar um barber.");
 					else {
@@ -155,31 +155,31 @@ public class NovoServicoPrestado extends JFrame {
 								"yyyy-MM-dd");
 						data = sdf.format(d);
 
-						String[] name = comboBoxServico.getSelectedItem()
+						String[] name = comboBoxJob.getSelectedItem()
 								.toString().split(" - ");
-						String[] barber = comboBoxBarbeiro.getSelectedItem()
+						String[] barber = comboBoxBarber.getSelectedItem()
 								.toString().split(" - ");
 
-						ServicoPrestado servico_prestado = new ServicoPrestado();
+						JobPrestado job_prestado = new JobPrestado();
 
-						servico_prestado.setNomeBarbeiro(barber[1]);
-						servico_prestado.setNomeServico(name[1]);
-						servico_prestado.setPreco(textValor.getText());
-						servico_prestado.setData(data);
+						job_prestado.setNomeBarber(barber[1]);
+						job_prestado.setNomeJob(name[1]);
+						job_prestado.setPreco(textValor.getText());
+						job_prestado.setData(data);
 
-						ServicoPrestadoController servicoController = ServicoPrestadoController
+						JobPrestadoController jobController = JobPrestadoController
 								.getInstance();
-						servicoController.inserir(servico_prestado);
+						jobController.insert(job_prestado);
 
 						JOptionPane.showMessageDialog(null,
 								"Serviço criado com sucesso");
 
-						comboBoxBarbeiro.setSelectedIndex(0);
-						comboBoxServico.setSelectedIndex(0);
+						comboBoxBarber.setSelectedIndex(0);
+						comboBoxJob.setSelectedIndex(0);
 
 						textValor.setText("");
 					}
-				} catch (ServicoException e) {
+				} catch (JobException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -197,8 +197,8 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				textValor.setText("");
-				comboBoxBarbeiro.setSelectedIndex(0);
-				comboBoxServico.setSelectedIndex(0);
+				comboBoxBarber.setSelectedIndex(0);
+				comboBoxJob.setSelectedIndex(0);
 			}
 		});
 		botaoLimparCampos.setBounds(152, 129, 148, 23);
@@ -209,7 +209,7 @@ public class NovoServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+				CadastrarJobPrestado frame = new CadastrarJobPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

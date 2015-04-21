@@ -92,7 +92,7 @@ public class ModifyContact extends JFrame {
 			name = textFieldNome.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
-		} catch (BarbeiroException e) {
+		} catch (BarberException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
 
@@ -119,7 +119,7 @@ public class ModifyContact extends JFrame {
 					CadastrarPhonebook frame = new CadastrarPhonebook();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-				} catch (BarbeiroException e1) {
+				} catch (BarberException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException k) {
 					mostrarMensagemDeErro(k.getMessage());

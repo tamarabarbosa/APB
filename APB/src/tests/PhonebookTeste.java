@@ -7,8 +7,8 @@ import junit.framework.AssertionFailedError;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.BarbeiroException;
-import exception.ServicoException;
+import exception.BarberException;
+import exception.JobException;
 import model.Phonebook;
 
 public class PhonebookTeste {
@@ -20,7 +20,7 @@ public class PhonebookTeste {
 		try {
 			contato.setNome("Alessandro");
 			contato.setTelefone("4568-9856");
-		} catch (BarbeiroException e1) {
+		} catch (BarberException e1) {
 			e1.printStackTrace();
 		}
 		contato.setDescricao("ASDAS");
@@ -50,38 +50,38 @@ public class PhonebookTeste {
 	}
 
 
-	@Test(expected = BarbeiroException.class)
-	public void nameDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
+	@Test(expected = BarberException.class)
+	public void nameDoBarberNaoPodePassarQuandoEmBranco() throws BarberException{
 		contato.setNome("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
-	@Test(expected = BarbeiroException.class)
-	public void telefoneDoBarbeiroNaoPodePassarQuandoEmBranco() throws BarbeiroException{
+	@Test(expected = BarberException.class)
+	public void telefoneDoBarberNaoPodePassarQuandoEmBranco() throws BarberException{
 		contato.setTelefone("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
-	@Test(expected = BarbeiroException.class)
-	public void nameDoBarbeiroNaoPodePassarQuandoForaDeFormato() throws BarbeiroException{
+	@Test(expected = BarberException.class)
+	public void nameDoBarberNaoPodePassarQuandoForaDeFormato() throws BarberException{
 		contato.setNome("ASDAS!!");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
-	@Test(expected = BarbeiroException.class)
-	public void telefoneDoBarbeiroNaoPodePassarQuandoForaDeFormato() throws BarbeiroException{
+	@Test(expected = BarberException.class)
+	public void telefoneDoBarberNaoPodePassarQuandoForaDeFormato() throws BarberException{
 		contato.setTelefone("45645aa-a54654");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
 
 	@Test (expected = AssertionError.class)
-	public void getterDeTempNomeDeveRetornarValorPassado() throws ServicoException {
+	public void getterDeTempNomeDeveRetornarValorPassado() throws JobException {
 		assertEquals("Barba", Phonebook.getTempNome());
 	}
 
 	@Test (expected = AssertionFailedError.class)
-	public void setterDeTempNomeNaoPodeSerNulo() throws ServicoException {
+	public void setterDeTempNomeNaoPodeSerNulo() throws JobException {
 		Phonebook.setTempNome(null);
 		Assert.fail("Deve lançar exceção");
 	}
@@ -94,7 +94,7 @@ public class PhonebookTeste {
 	}
 
 	@Test
-	public void tempNomeValido() throws BarbeiroException {
+	public void tempNomeValido() throws BarberException {
 		Phonebook.setTempNome("Paulo");
 		assertEquals("Paulo", Phonebook.getTempNome());
 	}

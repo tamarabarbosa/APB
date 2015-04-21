@@ -6,71 +6,71 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.ServicoPrestado;
+import model.JobPrestado;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import control.ServicoPrestadoController;
-import exception.ServicoException;
+import control.JobPrestadoController;
+import exception.JobException;
 
 public class ServiceProvidedControllerTest {
-	ServicoPrestado servico = new ServicoPrestado();
-	ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
+	JobPrestado job = new JobPrestado();
+	JobPrestadoController jobController = JobPrestadoController.getInstance();
 
 	@Before
-	public void setUp() throws ServicoException, ParseException {
-		servico.setNomeServico("Corte");
-		servico.setNomeBarbeiro("Joao");
-		servico.setPreco("125,23");
-		servico.setData("20/12/2013");
+	public void setUp() throws JobException, ParseException {
+		job.setNomeJob("Corte");
+		job.setNomeBarber("Joao");
+		job.setPreco("125,23");
+		job.setData("20/12/2013");
 
 	}
 
 	@Test
-	public void getInstanceDeServicoPrestadoControllerDeveRetornarInstanciaCorrente() {
-		assertEquals(ServicoPrestadoController.getInstance(), servicoController);
+	public void getInstanceDeJobPrestadoControllerDeveRetornarInstanciaCorrente() {
+		assertEquals(JobPrestadoController.getInstance(), jobController);
 	}
 
 	@Test
-	public void inserirDeServicoPrestadoControllerDeveEnviarUm() {
+	public void insertDeJobPrestadoControllerDeveEnviarUm() {
 		try {
-			assertTrue(servicoController.inserir(servico));
+			assertTrue(jobController.insert(job));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteDeServicoPrestadoControllerDeveEnviarUmaservicoprestado() {
+	public void deleteDeJobPrestadoControllerDeveEnviarUmajobprestado() {
 		try {
-			assertTrue(servicoController.delete(servico));
+			assertTrue(jobController.delete(job));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void inserirServicoPrestadoNaoPodePassarServicoPrestadoNullo() {
+	public void insertJobPrestadoNaoPodePassarJobPrestadoNullo() {
 		try {
-			assertFalse(servicoController.inserir(null));
+			assertFalse(jobController.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteServicoPrestadoNaoPodePassarServicoPrestadoNullo() {
+	public void deleteJobPrestadoNaoPodePassarJobPrestadoNullo() {
 		try {
-			assertFalse(servicoController.delete(null));
+			assertFalse(jobController.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void mostrarServicoPrestadoDeServicoPrestadoControllerDeveMostrarUmServico() throws SQLException {
-		ResultSet rs = servicoController.mostrarServicosPrestadosCadastrados(servico);
+	public void mostrarJobPrestadoDeJobPrestadoControllerDeveMostrarUmJob() throws SQLException {
+		ResultSet rs = jobController.mostrarJobsPrestadosCadastrados(job);
 		while(rs.next());
 	}
 }

@@ -2,7 +2,7 @@
  * Package: Controller
  * Class: ContactController.java
  *
- * Description: This class is reponsible to make a CRUD of barber in the phonebook
+ * Description: This class is reponsible to make a registre of barber in the phonebook
  * atributes and necessary methods to attribute them.
  */
 

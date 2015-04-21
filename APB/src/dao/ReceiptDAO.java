@@ -17,10 +17,10 @@ public class ReceiptDAO {
 		return instance;
 	}
 	//this method search on the schedule works done by the barber
-	public ResultSet pesquisarServicosDoBarbeiro(String barber, String dataInicial, String dataFinal) throws SQLException{
+	public ResultSet pesquisarJobsDoBarber(String barber, String dataInicial, String dataFinal) throws SQLException{
 
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+		PreparedStatement pst = connection.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
 				+dataInicial+"' AND '"+ dataFinal+"' AND barber = '"
 				+barber+"';");
 		ResultSet rs = pst.executeQuery();

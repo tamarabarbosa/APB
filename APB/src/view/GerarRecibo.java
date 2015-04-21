@@ -21,7 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
-import control.BarbeiroController;
+import control.BarberController;
 import control.ReciboController;
 
 import java.awt.event.MouseAdapter;
@@ -107,16 +107,16 @@ public class GerarRecibo extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		final JComboBox comboBoxBarbeiros = new JComboBox();
-		comboBoxBarbeiros.setModel(new DefaultComboBoxModel(
+		final JComboBox comboBoxBarbers = new JComboBox();
+		comboBoxBarbers.setModel(new DefaultComboBoxModel(
 				new String[] { "Selecione um barber" }));
-		comboBoxBarbeiros.setBounds(10, 32, 304, 26);
-		contentPane.add(comboBoxBarbeiros);
+		comboBoxBarbers.setBounds(10, 32, 304, 26);
+		contentPane.add(comboBoxBarbers);
 
 		try {
-			ResultSet rs = BarbeiroController.getInstance().pesquisar();
+			ResultSet rs = BarberController.getInstance().pesquisar();
 			while (rs.next()) {
-				comboBoxBarbeiros.addItem(rs.getString("cadeira") + " - "
+				comboBoxBarbers.addItem(rs.getString("cadeira") + " - "
 						+ rs.getString("name"));
 			}
 		} catch (SQLException e) {
@@ -150,7 +150,7 @@ public class GerarRecibo extends JFrame {
 				ReciboController reciboController = ReciboController
 						.getInstance();
 				try {
-					if (comboBoxBarbeiros.getSelectedIndex() != 0) {
+					if (comboBoxBarbers.getSelectedIndex() != 0) {
 						CreateDocx docx = new CreateDocx("docx");
 
 						HashMap paramsCabeca = new HashMap();
@@ -160,7 +160,7 @@ public class GerarRecibo extends JFrame {
 						HashMap paramsLinhaAssinatura = new HashMap();
 						HashMap paramsTexto4 = new HashMap();
 						HashMap paramsQuebraLinha = new HashMap();
-						HashMap paramsAssinaturaBarbeiro = new HashMap();
+						HashMap paramsAssinaturaBarber = new HashMap();
 
 						paramsCabeca.put("b", "single");
 						paramsCabeca.put("jc", "center");
@@ -182,19 +182,19 @@ public class GerarRecibo extends JFrame {
 						paramsTexto4.put("jc", "center");
 						paramsTexto4.put("b", "single");
 
-						paramsAssinaturaBarbeiro.put("jc", "center");
-						paramsAssinaturaBarbeiro.put("b", "single");
+						paramsAssinaturaBarber.put("jc", "center");
+						paramsAssinaturaBarber.put("b", "single");
 
 						final String dataInicialIso = ConverterDataParaISO(textFieldDataInicial
 								.getText());
 						final String dataFinalIso = ConverterDataParaISO(textFieldDataFinal
 								.getText());
 
-						String[] name = comboBoxBarbeiros.getSelectedItem()
+						String[] name = comboBoxBarbers.getSelectedItem()
 								.toString().split(" - ");
 
 						ResultSet rs = reciboController.getInstance()
-								.pesquisarServicosDoBarbeiro(name[1],
+								.pesquisarJobsDoBarber(name[1],
 										dataInicialIso, dataFinalIso);
 						while (rs.next()) {
 							numero = rs.getString("preco").replace(",", ".");
@@ -231,7 +231,7 @@ public class GerarRecibo extends JFrame {
 						docx.addText(RAZAO_SOCIAL, paramsTexto4);
 						docx.addBreak("line");
 						docx.addText(LINHA, paramsLinhaAssinatura);
-						docx.addText(name[1], paramsAssinaturaBarbeiro);
+						docx.addText(name[1], paramsAssinaturaBarber);
 
 						docx.createDocx("Recibo " + name[1] + " "
 								+ ConverterDataParaABNTSemBarra(dataInicialIso)

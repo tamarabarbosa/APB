@@ -2,7 +2,7 @@
  * Package: model
  * Class: Phonebook.java
  *
- * Description: This class is reponsible to model the appointment book in system with all its 
+ * Description: This class is reponsible to model the appointment book in system with all its
  * atributes and necessary methods to attribute them.
  */
 
@@ -29,7 +29,7 @@ public class Phonebook {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param name
 	 *            is the name of someone.
 	 * @param phoneNumber
@@ -77,10 +77,10 @@ public class Phonebook {
 	 *
 	 * @param name
 	 *            is the name of the barber to be placed into name.
-	 * 
+	 *
 	 * @exception BarberException
 	 *                if the field setted empty.
-	 * @exception BarbeiroExcepetion
+	 * @exception BarberExcepetion
 	 *                if the name of barber doesn't exist.
 	 */
 	public void setName(String name) throws BarberException {
@@ -103,7 +103,7 @@ public class Phonebook {
 	 *
 	 * @exception BarberException
 	 *                if the field setted empty.
-	 * @exception BarbeiroExcepetion
+	 * @exception BarberExcepetion
 	 *                if the phone number of barber doesn't exist.
 	 */
 	public void setPhoneNumber(String phoneNumber) throws BarberException {

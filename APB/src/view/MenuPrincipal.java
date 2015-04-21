@@ -52,7 +52,7 @@ public class MenuPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(UIManager
 				.getBorder("TitledBorder.border"), "Menu Principal",
@@ -60,7 +60,7 @@ public class MenuPrincipal extends JFrame {
 		panel.setBounds(10, 11, 505, 138);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		JButton btnAdministrativo = new JButton("Administrativo");
 		btnAdministrativo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,19 +72,19 @@ public class MenuPrincipal extends JFrame {
 		});
 		btnAdministrativo.setBounds(10, 60, 157, 37);
 		panel.add(btnAdministrativo);
-		
-		JButton btnServicosPrestados = new JButton("Servi\u00E7os Prestados");
-		btnServicosPrestados.addActionListener(new ActionListener() {
+
+		JButton btnJobsPrestados = new JButton("Servi\u00E7os Prestados");
+		btnJobsPrestados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CadastrarServicoPrestado frame = new CadastrarServicoPrestado();
+				CadastrarJobPrestado frame = new CadastrarJobPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnServicosPrestados.setBounds(179, 60, 157, 37);
-		panel.add(btnServicosPrestados);
-		
+		btnJobsPrestados.setBounds(179, 60, 157, 37);
+		panel.add(btnJobsPrestados);
+
 		JButton btnRelatorios = new JButton("Relat\u00F3rios");
 		btnRelatorios.addMouseListener(new MouseAdapter() {
 			@Override
@@ -109,7 +109,7 @@ public class MenuPrincipal extends JFrame {
 		btnRelatorios.setBounds(346, 60, 149, 37);
 		panel.add(btnRelatorios);
 	}
-	
+
 	private void mostrarMensagemDeErro(String informacao) {
 		JOptionPane.showMessageDialog(null, informacao, "Atenção",
 				JOptionPane.INFORMATION_MESSAGE);

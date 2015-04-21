@@ -47,7 +47,7 @@ public class ModifyBarber extends JFrame {
 	// Constructor
 	public ModifyBarber() {
 
-		setTitle("Alterar Barbeiro");
+		setTitle("Alterar Barber");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 475, 283);
 		contentPane = new JPanel();
@@ -101,10 +101,10 @@ public class ModifyBarber extends JFrame {
 		contentPane.add(labelCadeira);
 
 		try {
-			Barbeiro barber = new Barbeiro();
-			BarbeiroController barberController = BarbeiroController
+			Barber barber = new Barber();
+			BarberController barberController = BarberController
 					.getInstance();
-			barber.setNome(Barbeiro.getTempNome());
+			barber.setNome(Barber.getTempNome());
 
 			ResultSet rs = barberController.pesquisarPorNome(barber);
 
@@ -118,7 +118,7 @@ public class ModifyBarber extends JFrame {
 			name = textFieldCpf.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
-		} catch (BarbeiroException e) {
+		} catch (BarberException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
 
@@ -126,27 +126,27 @@ public class ModifyBarber extends JFrame {
 		buttonSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Barbeiro barber = new Barbeiro();
+					Barber barber = new Barber();
 					barber.setNome(textFieldNome.getText());
 					barber.setCpf(textFieldCpf.getText());
 					barber.setRg(textFieldRg.getText());
 					barber.setTelefone(textFieldTelefone.getText());
 					barber.setCadeira(textFieldCadeira.getText());
 
-					BarbeiroController barberController = BarbeiroController
+					BarberController barberController = BarberController
 							.getInstance();
 					barberController.change(name, barber);
 
-					JOptionPane.showMessageDialog(null, "Barbeiro "
+					JOptionPane.showMessageDialog(null, "Barber "
 							+ textFieldNome.getText()
 							+ " foi alterado com sucesso");
 
 					dispose();
-					CadastrarBarbeiro frame = new CadastrarBarbeiro();
+					CadastrarBarber frame = new CadastrarBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 
-				} catch (BarbeiroException e1) {
+				} catch (BarberException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException k) {
 					mostrarMensagemDeErro(k.getMessage());
@@ -172,7 +172,7 @@ public class ModifyBarber extends JFrame {
 		buttonVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CadastrarBarbeiro frame = new CadastrarBarbeiro();
+				CadastrarBarber frame = new CadastrarBarber();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

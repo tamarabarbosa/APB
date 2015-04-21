@@ -66,11 +66,11 @@ public class NewServiceType extends JFrame {
 				new String[] { "Serviço", "Valor" });
 		final JTable table = new JTable(modelo);
 		try {
-			ServiceTypeController servicoController = ServiceTypeController
+			ServiceTypeController jobController = ServiceTypeController
 					.getInstance();
-			ServiceType servico = new ServiceType();
-			ResultSet rs = servicoController
-					.mostrarTipoServicoCadastrados(servico);
+			ServiceType job = new ServiceType();
+			ResultSet rs = jobController
+					.mostrarTipoJobCadastrados(job);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("name");
@@ -90,7 +90,7 @@ public class NewServiceType extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 
 				dispose();
-				NovoTipoServico frame = new NovoTipoServico();
+				NovoTipoJob frame = new NovoTipoJob();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 
@@ -129,10 +129,10 @@ public class NewServiceType extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String name = (String) table.getValueAt(table.getSelectedRow(),
 						0);
-				ServiceType tipoServico = new ServiceType();
+				ServiceType tipoJob = new ServiceType();
 
 				try {
-					tipoServico.setNameServiceType(name);
+					tipoJob.setNameServiceType(name);
 				} catch (ServiceException e1) {
 					e1.printStackTrace();
 				}
@@ -141,10 +141,10 @@ public class NewServiceType extends JFrame {
 						"Remover " + name + " da lista?");
 
 				if (confirmacao == JOptionPane.YES_OPTION) {
-					ServiceTypeController tipoServicoController = ServiceTypeController
+					ServiceTypeController tipoJobController = ServiceTypeController
 							.getInstance();
 					try {
-						tipoServicoController.delete(tipoServico);
+						tipoJobController.delete(tipoJob);
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}

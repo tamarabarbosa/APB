@@ -23,7 +23,7 @@ public class ReportDAO {
 	public ResultSet pesquisarPorData(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
 						+ report.getDataInicial()
 						+ "' AND '"
 						+ report.getDataFinal() + "';");
@@ -32,84 +32,84 @@ public class ReportDAO {
 		return rs;
 	}
 	//this method search by report date by barber in the database
-	public ResultSet pesquisarPorDataEBarbeiro(Report report)
+	public ResultSet pesquisarPorDataEBarber(Report report)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
 						+ report.getDataInicial()
 						+ "' AND '"
 						+ report.getDataFinal()
 						+ "' AND barber = '"
-						+ report.getBarbeiro() + "';");
+						+ report.getBarber() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
 	//this method search by service date by date in the database
-	public ResultSet pesquisarPorDataEServico(Report report)
+	public ResultSet pesquisarPorDataEJob(Report report)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
 						+ report.getDataInicial()
 						+ "' AND '"
 						+ report.getDataFinal()
 						+ "' AND name = '"
-						+ report.getTipoServico() + "';");
+						+ report.getTipoJob() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 
 	}
 	//this method search report by barber
-	public ResultSet pesquisarPorBarbeiro(Report report)
+	public ResultSet pesquisarPorBarber(Report report)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE barber = '"
-						+ report.getBarbeiro() + "';");
+				.prepareStatement("SELECT * FROM jobprestado WHERE barber = '"
+						+ report.getBarber() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
 	//this method search by barber and service
-	public ResultSet pesquisarPorBarbeiroEServico(Report report)
+	public ResultSet pesquisarPorBarberEJob(Report report)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE barber = '"
-						+ report.getBarbeiro()
+				.prepareStatement("SELECT * FROM jobprestado WHERE barber = '"
+						+ report.getBarber()
 						+ "' AND name = '"
-						+ report.getTipoServico() + "';");
+						+ report.getTipoJob() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
 	//this method search by service
-	public ResultSet pesquisarPorServico(Report report)
+	public ResultSet pesquisarPorJob(Report report)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE name = '"
-						+ report.getTipoServico() + "';");
+				.prepareStatement("SELECT * FROM jobprestado WHERE name = '"
+						+ report.getTipoJob() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
 	//this method search by date, barber and service
-	public ResultSet pesquisarPorDataBarbeiroEServico(Report report)
+	public ResultSet pesquisarPorDataBarberEJob(Report report)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
 						+ report.getDataInicial()
 						+ "' AND '"
 						+ report.getDataFinal()
 						+ "' AND barber = '"
-						+ report.getBarbeiro()
+						+ report.getBarber()
 						+ "' AND name = '"
-						+ report.getTipoServico() + "';");
+						+ report.getTipoJob() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;

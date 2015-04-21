@@ -23,7 +23,7 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void inserirDePhonebookDAODeveCadastrarUmContato() {
+	public void insertDePhonebookDAODeveCadastrarUmContato() {
 		try {
 			assertTrue(phonebookDAO.insert(contato));
 		} catch (SQLException e) {
@@ -50,7 +50,7 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void inserirDePhonebookDAOPassandoUmContatoNulo() {
+	public void insertDePhonebookDAOPassandoUmContatoNulo() {
 		try {
 			assertFalse(phonebookDAO.insert(null));
 		} catch (SQLException e) {
@@ -114,7 +114,7 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorTelefoneDeBarbeiroDAODeveMostrarBarbeiros() {
+	public void pesquisarPorTelefoneDeBarberDAODeveMostrarBarbers() {
 		try {
 			ResultSet rs = phonebookDAO.pesquisarPorTelefone(contato);
 

@@ -60,17 +60,17 @@ public class RegisterDoneService extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			DoneServiceController servicoController = DoneServiceController
+			DoneServiceController jobController = DoneServiceController
 					.getInstance();
-			DoneService servico = new DoneService();
-			ResultSet rs = servicoController
-					.mostrarServicosPrestadosCadastrados(servico);
+			DoneService job = new DoneService();
+			ResultSet rs = jobController
+					.mostrarJobsPrestadosCadastrados(job);
 			while (rs.next()) {
 				String[] dados = new String[4];
 				dados[0] = rs.getString("name");
 				dados[1] = rs.getString("barber");
 				dados[2] = rs.getString("preco");
-				dados[3] = servico.ConvertTOABNT(rs.getString("data"));
+				dados[3] = job.ConvertTOABNT(rs.getString("data"));
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {
@@ -88,7 +88,7 @@ public class RegisterDoneService extends JFrame {
 			// application
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				NovoServicoPrestado frame = new NovoServicoPrestado();
+				NovoJobPrestado frame = new NovoJobPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -101,7 +101,7 @@ public class RegisterDoneService extends JFrame {
 			@Override
 			// This method is used to create a table that contains the contacts
 			public void mouseClicked(MouseEvent e) {
-				PesquisarServicoPrestado frame = new PesquisarServicoPrestado();
+				PesquisarJobPrestado frame = new PesquisarJobPrestado();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
@@ -123,19 +123,19 @@ public class RegisterDoneService extends JFrame {
 							table.getSelectedRow(), 2);
 					String data = (String) table.getValueAt(
 							table.getSelectedRow(), 3);
-					DoneService servico = new DoneService();
-					servico.setServiceName(name);
-					servico.setBarberName(barber);
-					servico.setPrice(valor);
-					servico.setDate(data);
+					DoneService job = new DoneService();
+					job.setServiceName(name);
+					job.setBarberName(barber);
+					job.setPrice(valor);
+					job.setDate(data);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + name + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						DoneServiceController servicoController = DoneServiceController
+						DoneServiceController jobController = DoneServiceController
 								.getInstance();
-						servicoController.delete(servico);
+						jobController.delete(job);
 
 						dispose();
 						RegisterDoneService frame = new RegisterDoneService();
