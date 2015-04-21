@@ -22,13 +22,13 @@ public class ServiceTypeController {
 	}
 
 	// Method that change a service type on the system
-	public boolean change(String nome, ServiceType tipoServico)
+	public boolean change(String name, ServiceType tipoServico)
 			throws SQLException {
 		if (tipoServico == null) {
 			return false;
 		} else {
 			ServiceType tipoServico_alterado = tipoServico;
-			ServiceTypeDAO.getInstance().change(nome, tipoServico_alterado,
+			ServiceTypeDAO.getInstance().change(name, tipoServico_alterado,
 					tipoServico);
 			return true;
 		}

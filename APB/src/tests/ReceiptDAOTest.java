@@ -11,7 +11,7 @@ import model.Report;
 import org.junit.Before;
 import org.junit.Test;
 
-import dao.AgendaDAO;
+import dao.PhonebookDAO;
 import dao.ReciboDAO;
 import exception.ReciboException;
 import exception.RelatorioException;
@@ -48,12 +48,12 @@ public class ReceiptDAOTest {
 					report.getDataFinal());
 
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertEquals("Corte", nome);
+				String name = rs.getString("name");
+				assertEquals("Corte", name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			
+
 		}
 
 	}

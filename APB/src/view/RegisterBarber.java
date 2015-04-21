@@ -70,7 +70,7 @@ public class RegisterBarber extends JFrame {
 			ResultSet rs = barberController.showRegisteredBarbers(barber);
 			while (rs.next()) {
 				String[] dados = new String[5];
-				dados[0] = rs.getString("nome");
+				dados[0] = rs.getString("name");
 				dados[1] = rs.getString("cpf");
 				dados[2] = rs.getString("rg");
 				dados[3] = rs.getString("telefone");
@@ -130,13 +130,13 @@ public class RegisterBarber extends JFrame {
 			// the frame that register a new barber
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					String nome = (String) table.getValueAt(
+					String name = (String) table.getValueAt(
 							table.getSelectedRow(), 0);
 					Barber barber = new Barber();
-					barber.setName(nome);
+					barber.setName(name);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
-							"Remover " + nome + " da lista?");
+							"Remover " + name + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
 						BarberController barberController = BarberController

@@ -21,7 +21,7 @@ public class ContactController {
 	private ContactController() {
 	}
 
-	// this method include barber on the agenda
+	// this method include barber on the phonebook
 	public boolean include(Phonebook phonebook) throws SQLException {
 		if (phonebook == null) {
 			return false;
@@ -31,7 +31,7 @@ public class ContactController {
 		}
 	}
 
-	// this method change barber on the agenda
+	// this method change barber on the phonebook
 	public boolean change(String name, Phonebook phonebook) throws SQLException {
 		if (phonebook == null) {
 			return false;
@@ -43,7 +43,7 @@ public class ContactController {
 		}
 	}
 
-	// this method exclude barber on the agenda
+	// this method exclude barber on the phonebook
 	public boolean delete(Phonebook contact) throws SQLException {
 		if (contact == null) {
 			return false;
@@ -53,7 +53,7 @@ public class ContactController {
 		}
 	}
 
-	// this method check if the instance is null case dont he set new agenda
+	// this method check if the instance is null case dont he set new phonebook
 	public static ContactController getInstance() {
 		if (instance == null) {
 			instance = new ContactController();

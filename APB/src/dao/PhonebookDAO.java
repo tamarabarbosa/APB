@@ -26,23 +26,23 @@ public class PhonebookDAO {
 			return false;
 
 		this.updateQuery("INSERT INTO "
-				+ "PhoneNumber (nome, telefone, descricao) VALUES (" + "\""
+				+ "PhoneNumber (name, telefone, descricao) VALUES (" + "\""
 				+ Phonebook.getName() + "\", " + "\""
 				+ Phonebook.getPhoneNumber() + "\", " + "\""
 				+ Phonebook.getDescription() + "\"); ");
 		return true;
 	}
 
-	public boolean change(String nome, Phonebook Phonebook_alterado,
+	public boolean change(String name, Phonebook Phonebook_alterado,
 			Phonebook Phonebook) throws SQLException {
 		if (Phonebook == null || Phonebook_alterado == null)
 			return false;
 
-		this.updateQuery("UPDATE Phonebook SET " + "nome = \""
+		this.updateQuery("UPDATE Phonebook SET " + "name = \""
 				+ Phonebook_alterado.getName() + "\", " + "telefone = \""
 				+ Phonebook_alterado.getPhoneNumber() + "\", "
 				+ "descricao = \"" + Phonebook_alterado.getDescription() + "\""
-				+ " WHERE " + " Phonebook.nome = \"" + nome + "\";");
+				+ " WHERE " + " Phonebook.name = \"" + name + "\";");
 
 		return true;
 	}
@@ -77,7 +77,7 @@ public class PhonebookDAO {
 	public ResultSet pesquisarPorNome(Phonebook contato) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM Phonebook WHERE " + "nome = '"
+				.prepareStatement("SELECT * FROM Phonebook WHERE " + "name = '"
 						+ contato.getName() + "';");
 		ResultSet rs = pst.executeQuery();
 

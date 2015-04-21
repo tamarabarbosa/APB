@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.AgendaController;
+import control.PhonebookController;
 import exception.BarbeiroException;
 import model.Phonebook;
 
@@ -89,14 +89,14 @@ public class PesquisarContato extends JFrame {
 					}
 
 					Phonebook contato = new Phonebook();
-					AgendaController agendaController = AgendaController
+					PhonebookController phonebookController = PhonebookController
 							.getInstance();
 					contato.setNome(textField.getText());
-					ResultSet rs = agendaController.pesquisarPorNome(contato);
+					ResultSet rs = phonebookController.pesquisarPorNome(contato);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
-						dados[0] = rs.getString("nome");
+						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("telefone");
 						dados[2] = rs.getString("descricao");
 						modelo.addRow(dados);
@@ -123,15 +123,15 @@ public class PesquisarContato extends JFrame {
 					}
 
 					Phonebook contato = new Phonebook();
-					AgendaController agendaController = AgendaController
+					PhonebookController phonebookController = PhonebookController
 							.getInstance();
 					contato.setTelefone(textField.getText());
-					ResultSet rs = agendaController
+					ResultSet rs = phonebookController
 							.pesquisarPorTelefone(contato);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
-						dados[0] = rs.getString("nome");
+						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("telefone");
 						dados[2] = rs.getString("descricao");
 
@@ -175,21 +175,21 @@ public class PesquisarContato extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				try {
-					String nome = (String) table.getValueAt(
+					String name = (String) table.getValueAt(
 							table.getSelectedRow(), 0);
 					String telefone = (String) table.getValueAt(
 							table.getSelectedRow(), 1);
 					Phonebook phonebook = new Phonebook();
-					phonebook.setNome(nome);
+					phonebook.setNome(name);
 					phonebook.setTelefone(telefone);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
-							"Remover " + nome + " da lista?");
+							"Remover " + name + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						AgendaController agendaController = AgendaController
+						PhonebookController phonebookController = PhonebookController
 								.getInstance();
-						agendaController.delete(phonebook);
+						phonebookController.delete(phonebook);
 
 						dispose();
 						PesquisarContato frame = new PesquisarContato();
@@ -213,7 +213,7 @@ public class PesquisarContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarAgenda frame = new CadastrarAgenda();
+				CadastrarPhonebook frame = new CadastrarPhonebook();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

@@ -9,90 +9,90 @@ import model.Phonebook;
 
 import org.junit.Test;
 
-import dao.AgendaDAO;
+import dao.PhonebookDAO;
 
 public class PhonebookDAOTest {
 
 	Phonebook contato = new Phonebook();
 	Phonebook contato2 = new Phonebook();
-	AgendaDAO agendaDAO = AgendaDAO.getInstance();
+	PhonebookDAO phonebookDAO = PhonebookDAO.getInstance();
 
 	@Test
-	public void getInstanceDeAgendaDAODeveRetonarInstanciaCorrente() {
-		assertEquals(AgendaDAO.getInstance(), agendaDAO);
+	public void getInstanceDePhonebookDAODeveRetonarInstanciaCorrente() {
+		assertEquals(PhonebookDAO.getInstance(), phonebookDAO);
 	}
 
 	@Test
-	public void inserirDeAgendaDAODeveCadastrarUmContato() {
+	public void inserirDePhonebookDAODeveCadastrarUmContato() {
 		try {
-			assertTrue(agendaDAO.insert(contato));
+			assertTrue(phonebookDAO.insert(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteDeAgendaDAODeveEnviarUmAgenda() {
+	public void deleteDePhonebookDAODeveEnviarUmPhonebook() {
 		try {
-			assertTrue(agendaDAO.delete(contato));
+			assertTrue(phonebookDAO.delete(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeDeAgendaDAODeveEnviarUmContato() {
+	public void changeDePhonebookDAODeveEnviarUmContato() {
 		try {
-			assertTrue(agendaDAO.change(contato.getNome(),contato, contato2));
+			assertTrue(phonebookDAO.change(contato.getNome(),contato, contato2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void inserirDeAgendaDAOPassandoUmContatoNulo() {
+	public void inserirDePhonebookDAOPassandoUmContatoNulo() {
 		try {
-			assertFalse(agendaDAO.insert(null));
+			assertFalse(phonebookDAO.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteDeAgendaDAOPassandoUmContatoNulo() {
+	public void deleteDePhonebookDAOPassandoUmContatoNulo() {
 		try {
-			assertFalse(agendaDAO.delete(null));
+			assertFalse(phonebookDAO.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeDeAgendaDAOPassandoUmContatoNulo() {
+	public void changeDePhonebookDAOPassandoUmContatoNulo() {
 		try {
-			assertFalse(agendaDAO.change(contato.getNome(),contato, null));
+			assertFalse(phonebookDAO.change(contato.getNome(),contato, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeDeAgendaDAOPassandoUmAgendaAleradoNulo() {
+	public void changeDePhonebookDAOPassandoUmPhonebookAleradoNulo() {
 		try {
-			assertFalse(agendaDAO.change(contato.getNome(), null, contato));
+			assertFalse(phonebookDAO.change(contato.getNome(), null, contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void mostrarContatosAgendaDAODeveMostrarContato() {
+	public void mostrarContatosPhonebookDAODeveMostrarContato() {
 		try {
-			ResultSet rs = agendaDAO.mostrarContatosCadastrados(contato);
+			ResultSet rs = phonebookDAO.mostrarContatosCadastrados(contato);
 
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+				String name = rs.getString("name");
+				assertNotNull(name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -100,13 +100,13 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void pesquisaPorNomeDeAgendaDAODeveMostrarContato() {
+	public void pesquisaPorNomeDePhonebookDAODeveMostrarContato() {
 		try {
-			ResultSet rs = agendaDAO.pesquisarPorNome(contato);
+			ResultSet rs = phonebookDAO.pesquisarPorNome(contato);
 
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+				String name = rs.getString("name");
+				assertNotNull(name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,11 +116,11 @@ public class PhonebookDAOTest {
 	@Test
 	public void pesquisarPorTelefoneDeBarbeiroDAODeveMostrarBarbeiros() {
 		try {
-			ResultSet rs = agendaDAO.pesquisarPorTelefone(contato);
+			ResultSet rs = phonebookDAO.pesquisarPorTelefone(contato);
 
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+				String name = rs.getString("name");
+				assertNotNull(name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

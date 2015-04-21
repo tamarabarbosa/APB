@@ -10,7 +10,7 @@ import model.Phonebook;
 import org.junit.Before;
 import org.junit.Test;
 
-import control.AgendaController;
+import control.PhonebookController;
 import exception.BarbeiroException;
 
 public class PhonebookControllerTest {
@@ -28,17 +28,17 @@ public class PhonebookControllerTest {
 		}
 	}
 
-	AgendaController agendaController = AgendaController.getInstance();
+	PhonebookController phonebookController = PhonebookController.getInstance();
 
 	@Test
-	public void getInstanceDeAgendaControllerDeveRetornarInstanciaCorrente() {
-		assertEquals(AgendaController.getInstance(), agendaController);
+	public void getInstanceDePhonebookControllerDeveRetornarInstanciaCorrente() {
+		assertEquals(PhonebookController.getInstance(), phonebookController);
 	}
 
 	@Test
-	public void inserirDeAgendaControllerDeveEnviarUm() {
+	public void inserirDePhonebookControllerDeveEnviarUm() {
 		try {
-			assertTrue(agendaController.insert(contato));
+			assertTrue(phonebookController.insert(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -46,65 +46,65 @@ public class PhonebookControllerTest {
 	}
 
 	@Test
-	public void deleteDeAgendaControllerDeveEnviarUmaAgenda() {
+	public void deleteDePhonebookControllerDeveEnviarUmaPhonebook() {
 		try {
-			assertTrue(agendaController.delete(contato));
+			assertTrue(phonebookController.delete(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeDeAgendaControllerDeveEnviarUmaAgendaAlterada() {
+	public void changeDePhonebookControllerDeveEnviarUmaPhonebookAlterada() {
 		try {
-			assertTrue(agendaController.change(contato.getNome(),contato));
+			assertTrue(phonebookController.change(contato.getNome(),contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void inserirAgendaNaoPodePassarAgendaNullo() {
+	public void inserirPhonebookNaoPodePassarPhonebookNullo() {
 		try {
-			assertFalse(agendaController.insert(null));
+			assertFalse(phonebookController.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void deleteAgendaNaoPodePassarAgendaNullo() {
+	public void deletePhonebookNaoPodePassarPhonebookNullo() {
 		try {
-			assertFalse(agendaController.delete(null));
+			assertFalse(phonebookController.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void changeAgendaNaoPodePassarAgendaNullo() {
+	public void changePhonebookNaoPodePassarPhonebookNullo() {
 		try {
-			assertFalse(agendaController.change(null,null));
+			assertFalse(phonebookController.change(null,null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void mostrarContatosDeAgendaControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = agendaController.mostrarContatosCadastrados(contato);
+	public void mostrarContatosDePhonebookControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = phonebookController.mostrarContatosCadastrados(contato);
 		while(rs.next());
 	}
 
 	@Test
-	public void pesquisarPorNomeDeAgendaControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = agendaController.pesquisarPorNome(contato);
+	public void pesquisarPorNomeDePhonebookControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = phonebookController.pesquisarPorNome(contato);
 		while(rs.next());
 	}
 
 	@Test
-	public void pesquisarPorTelefoneDeAgendaControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = agendaController.pesquisarPorTelefone(contato);
+	public void pesquisarPorTelefoneDePhonebookControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = phonebookController.pesquisarPorTelefone(contato);
 		while(rs.next());
 	}
 

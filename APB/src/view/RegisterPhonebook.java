@@ -39,7 +39,7 @@ public class RegisterPhonebook extends JFrame {
 
 	// Class constructor
 	public RegisterPhonebook() {
-		setTitle("Agenda de Contatos");
+		setTitle("Phonebook de Contatos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 575, 472);
 		contentPane = new JPanel();
@@ -68,13 +68,13 @@ public class RegisterPhonebook extends JFrame {
 		scrollPane.setViewportView(table);
 
 		try {
-			ContactController agendaController = ContactController
+			ContactController phonebookController = ContactController
 					.getInstance();
 			Phonebook contato = new Phonebook();
-			ResultSet rs = agendaController.showContactsRegistered(contato);
+			ResultSet rs = phonebookController.showContactsRegistered(contato);
 			while (rs.next()) {
 				String[] dados = new String[3];
-				dados[0] = rs.getString("nome");
+				dados[0] = rs.getString("name");
 				dados[1] = rs.getString("telefone");
 				dados[2] = rs.getString("descricao");
 				modelo.addRow(dados);

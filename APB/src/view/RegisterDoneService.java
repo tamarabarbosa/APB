@@ -67,7 +67,7 @@ public class RegisterDoneService extends JFrame {
 					.mostrarServicosPrestadosCadastrados(servico);
 			while (rs.next()) {
 				String[] dados = new String[4];
-				dados[0] = rs.getString("nome");
+				dados[0] = rs.getString("name");
 				dados[1] = rs.getString("barber");
 				dados[2] = rs.getString("preco");
 				dados[3] = servico.ConvertTOABNT(rs.getString("data"));
@@ -115,7 +115,7 @@ public class RegisterDoneService extends JFrame {
 			// This method is used to initialize the buttons
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					String nome = (String) table.getValueAt(
+					String name = (String) table.getValueAt(
 							table.getSelectedRow(), 0);
 					String barber = (String) table.getValueAt(
 							table.getSelectedRow(), 1);
@@ -124,13 +124,13 @@ public class RegisterDoneService extends JFrame {
 					String data = (String) table.getValueAt(
 							table.getSelectedRow(), 3);
 					DoneService servico = new DoneService();
-					servico.setServiceName(nome);
+					servico.setServiceName(name);
 					servico.setBarberName(barber);
 					servico.setPrice(valor);
 					servico.setDate(data);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
-							"Remover " + nome + " da lista?");
+							"Remover " + name + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
 						DoneServiceController servicoController = DoneServiceController

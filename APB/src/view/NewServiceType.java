@@ -26,7 +26,7 @@ import java.sql.SQLException;
 public class NewServiceType extends JFrame {
 
 	private JPanel contentPane;
-	private static String nomeTemp;
+	private static String nameTemp;
 
 	/**
 	 * Launch the application.
@@ -73,7 +73,7 @@ public class NewServiceType extends JFrame {
 					.mostrarTipoServicoCadastrados(servico);
 			while (rs.next()) {
 				String[] dados = new String[5];
-				dados[0] = rs.getString("nome");
+				dados[0] = rs.getString("name");
 				dados[1] = rs.getString("preco");
 				modelo.addRow(dados);
 			}
@@ -127,18 +127,18 @@ public class NewServiceType extends JFrame {
 			@Override
 			// // VIEW method that performs a delete of a Type of Service
 			public void mouseClicked(MouseEvent e) {
-				String nome = (String) table.getValueAt(table.getSelectedRow(),
+				String name = (String) table.getValueAt(table.getSelectedRow(),
 						0);
 				ServiceType tipoServico = new ServiceType();
 
 				try {
-					tipoServico.setNameServiceType(nome);
+					tipoServico.setNameServiceType(name);
 				} catch (ServiceException e1) {
 					e1.printStackTrace();
 				}
 
 				int confirmacao = JOptionPane.showConfirmDialog(null,
-						"Remover " + nome + " da lista?");
+						"Remover " + name + " da lista?");
 
 				if (confirmacao == JOptionPane.YES_OPTION) {
 					ServiceTypeController tipoServicoController = ServiceTypeController
@@ -176,7 +176,7 @@ public class NewServiceType extends JFrame {
 
 	// temporaryName getter
 	public static String getNomeTemp() {
-		return nomeTemp;
+		return nameTemp;
 	}
 
 	// Display the error message that occurred

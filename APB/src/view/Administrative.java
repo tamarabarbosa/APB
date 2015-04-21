@@ -86,20 +86,20 @@ public class Administrative extends JFrame {
 		btnTipoServico.setBounds(215, 45, 149, 37);
 		panel.add(btnTipoServico);
 
-		JButton btnAgenda = new JButton("Agenda");
-		btnAgenda.addMouseListener(new MouseAdapter() {
+		JButton btnPhonebook = new JButton("Phonebook");
+		btnPhonebook.addMouseListener(new MouseAdapter() {
 			@Override
 			// This method is used to create the button and the action that open
 			// the Phonebook frame
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarAgenda frame = new CadastrarAgenda();
+				CadastrarPhonebook frame = new CadastrarPhonebook();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
 		});
-		btnAgenda.setBounds(10, 93, 157, 37);
-		panel.add(btnAgenda);
+		btnPhonebook.setBounds(10, 93, 157, 37);
+		panel.add(btnPhonebook);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addActionListener(new ActionListener() {

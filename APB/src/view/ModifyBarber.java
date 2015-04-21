@@ -28,7 +28,7 @@ public class ModifyBarber extends JFrame {
 	private JTextField textFieldRg;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldCadeira;
-	private String nome;
+	private String name;
 	private JTextField textFieldCpf;
 
 	public static void main(String[] args) {
@@ -109,13 +109,13 @@ public class ModifyBarber extends JFrame {
 			ResultSet rs = barberController.pesquisarPorNome(barber);
 
 			while (rs.next()) {
-				textFieldNome.setText(rs.getString("nome"));
+				textFieldNome.setText(rs.getString("name"));
 				textFieldCpf.setText(rs.getString("cpf"));
 				textFieldRg.setText(rs.getString("rg"));
 				textFieldTelefone.setText(rs.getString("telefone"));
 				textFieldCadeira.setText(rs.getString("cadeira"));
 			}
-			nome = textFieldCpf.getText();
+			name = textFieldCpf.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		} catch (BarbeiroException e) {
@@ -135,7 +135,7 @@ public class ModifyBarber extends JFrame {
 
 					BarbeiroController barberController = BarbeiroController
 							.getInstance();
-					barberController.change(nome, barber);
+					barberController.change(name, barber);
 
 					JOptionPane.showMessageDialog(null, "Barbeiro "
 							+ textFieldNome.getText()

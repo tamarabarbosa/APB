@@ -89,12 +89,12 @@ public class PesquisarServicoPrestado extends JFrame {
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT nome, preco, barber, data FROM servicoprestado WHERE nome = '"
+							"SELECT name, preco, barber, data FROM servicoprestado WHERE name = '"
 									+ servico.getNomeServico() + "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
-						dados[0] = rs.getString("nome");
+						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
 						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
@@ -123,12 +123,12 @@ public class PesquisarServicoPrestado extends JFrame {
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT nome, preco, barber, data FROM servicoprestado WHERE barber = '"
+							"SELECT name, preco, barber, data FROM servicoprestado WHERE barber = '"
 									+ servico.getNomeBarbeiro() + "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
-						dados[0] = rs.getString("nome");
+						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
 						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));
@@ -152,18 +152,18 @@ public class PesquisarServicoPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					String nome = (String) table.getValueAt(table.getSelectedRow(), 0);
+					String name = (String) table.getValueAt(table.getSelectedRow(), 0);
 					String barber = (String) table.getValueAt(table.getSelectedRow(), 1);
 					String valor = (String) table.getValueAt(table.getSelectedRow(), 2);
 					String data = (String) table.getValueAt(table.getSelectedRow(), 3);
 					ServicoPrestado servico = new ServicoPrestado();
-					servico.setNomeServico(nome);
+					servico.setNomeServico(name);
 					servico.setNomeBarbeiro(barber);
 					servico.setPreco(valor);
 					servico.setData(data);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
-							"Remover " + nome + " da lista?");
+							"Remover " + name + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
 						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
@@ -212,12 +212,12 @@ public class PesquisarServicoPrestado extends JFrame {
 
 					connection = FactoryConnection.getInstance().getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"Select nome, preco, barber, data from servicoprestado where data = '"
+							"Select name, preco, barber, data from servicoprestado where data = '"
 									+ servico.getData() + "' order by data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
-						dados[0] = rs.getString("nome");
+						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
 						dados[3] = servico.ConverterDataParaABNT(rs.getString("data"));

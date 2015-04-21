@@ -35,7 +35,7 @@ public class BarberDAO {
 			return false;
 
 		this.updateQuery("INSERT INTO "
-				+ "barber (nome, cpf, rg, telefone, cadeira) VALUES (" + "\""
+				+ "barber (name, cpf, rg, telefone, cadeira) VALUES (" + "\""
 				+ barber.getName() + "\", " + "\"" + barber.getCpf() + "\", "
 				+ "\"" + barber.getRg() + "\", " + "\""
 				+ barber.getPhoneNumber() + "\", " + "\"" + barber.getChair()
@@ -45,16 +45,16 @@ public class BarberDAO {
 	}
 
 	// update the barber in the database
-	public boolean change(String nome, Barber barber_change, Barber barber)
+	public boolean change(String name, Barber barber_change, Barber barber)
 			throws SQLException {
 		if (barber_change == null || barber == null)
 			return false;
 
-		this.updateQuery("UPDATE barber SET nome = '" + barber_change.getName()
+		this.updateQuery("UPDATE barber SET name = '" + barber_change.getName()
 				+ "', " + "cpf = '" + barber_change.getCpf() + "', " + "rg = '"
 				+ barber_change.getRg() + "', " + "telefone = '"
 				+ barber_change.getPhoneNumber() + "', " + "cadeira = '"
-				+ barber_change.getChair() + "' WHERE" + " cpf = '" + nome
+				+ barber_change.getChair() + "' WHERE" + " cpf = '" + name
 				+ "';");
 
 		return true;
@@ -65,7 +65,7 @@ public class BarberDAO {
 		if (barber == null)
 			return false;
 
-		this.updateQuery("DELETE FROM barber WHERE " + "barber.nome = \""
+		this.updateQuery("DELETE FROM barber WHERE " + "barber.name = \""
 				+ barber.getName() + "\";");
 		return true;
 	}
@@ -94,7 +94,7 @@ public class BarberDAO {
 	public ResultSet showRegisteredBarbers(Barber barber) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
-				"Select nome, cpf, rg, telefone, cadeira from barber;");
+				"Select name, cpf, rg, telefone, cadeira from barber;");
 
 		return rs;
 	}
@@ -103,7 +103,7 @@ public class BarberDAO {
 	public ResultSet searchByName(Barber barber) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM barber WHERE nome = '"
+				.prepareStatement("SELECT * FROM barber WHERE name = '"
 						+ barber.getName() + "';");
 		ResultSet rs = pst.executeQuery();
 

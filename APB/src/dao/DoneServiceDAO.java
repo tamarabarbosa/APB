@@ -26,7 +26,7 @@ public class DoneServiceDAO {
 	public boolean insert(DoneService servico) throws SQLException {
 		if (servico != null) {
 			this.updateQuery("INSERT INTO "
-					+ "DoneService (nome, preco, barber, data) VALUES ("
+					+ "DoneService (name, preco, barber, data) VALUES ("
 					+ "\"" + servico.getServiceName() + "\", " + "\""
 					+ servico.getPrice() + "\", " + "\""
 					+ servico.getBarberName() + "\", " + "\""
@@ -54,7 +54,7 @@ public class DoneServiceDAO {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
 				.prepareStatement("SELECT * FROM DoneService WHERE "
-						+ "DoneService.nome = \"" + servico.getServiceName()
+						+ "DoneService.name = \"" + servico.getServiceName()
 						+ "\" AND DoneService.preco = \"" + servico.getPrice()
 						+ "\" AND DoneService.barber = \""
 						+ servico.getBarberName()
@@ -82,7 +82,7 @@ public class DoneServiceDAO {
 		ResultSet rs = connection
 				.createStatement()
 				.executeQuery(
-						"SELECT nome, preco, barber, data FROM DoneService ORDER BY data;");
+						"SELECT name, preco, barber, data FROM DoneService ORDER BY data;");
 
 		return rs;
 	}

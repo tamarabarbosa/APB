@@ -183,7 +183,7 @@ public class PesquisarRelatorio extends JFrame {
 
 				if (txtBarbeiro.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"Digite o nome do barber.");
+							"Digite o name do barber.");
 				} else if (txtServico.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
 							"Digite um tipo de serviço.");

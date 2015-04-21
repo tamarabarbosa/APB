@@ -117,7 +117,7 @@ public class GerarRecibo extends JFrame {
 			ResultSet rs = BarbeiroController.getInstance().pesquisar();
 			while (rs.next()) {
 				comboBoxBarbeiros.addItem(rs.getString("cadeira") + " - "
-						+ rs.getString("nome"));
+						+ rs.getString("name"));
 			}
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
@@ -190,11 +190,11 @@ public class GerarRecibo extends JFrame {
 						final String dataFinalIso = ConverterDataParaISO(textFieldDataFinal
 								.getText());
 
-						String[] nome = comboBoxBarbeiros.getSelectedItem()
+						String[] name = comboBoxBarbeiros.getSelectedItem()
 								.toString().split(" - ");
 
 						ResultSet rs = reciboController.getInstance()
-								.pesquisarServicosDoBarbeiro(nome[1],
+								.pesquisarServicosDoBarbeiro(name[1],
 										dataInicialIso, dataFinalIso);
 						while (rs.next()) {
 							numero = rs.getString("preco").replace(",", ".");
@@ -210,7 +210,7 @@ public class GerarRecibo extends JFrame {
 						String valor = ("VALOR R$ " + decimal.format(total));
 
 						String texto = "                    Recebi do Sr. "
-								+ nome[1] + " a importância supra de R$ "
+								+ name[1] + " a importância supra de R$ "
 								+ (decimal.format(total)) + ", "
 								+ "referente ao Aluguel do período de "
 								+ dataInic + " até " + dataFin
@@ -231,9 +231,9 @@ public class GerarRecibo extends JFrame {
 						docx.addText(RAZAO_SOCIAL, paramsTexto4);
 						docx.addBreak("line");
 						docx.addText(LINHA, paramsLinhaAssinatura);
-						docx.addText(nome[1], paramsAssinaturaBarbeiro);
+						docx.addText(name[1], paramsAssinaturaBarbeiro);
 
-						docx.createDocx("Recibo " + nome[1] + " "
+						docx.createDocx("Recibo " + name[1] + " "
 								+ ConverterDataParaABNTSemBarra(dataInicialIso)
 								+ " - "
 								+ ConverterDataParaABNTSemBarra(dataFinalIso));

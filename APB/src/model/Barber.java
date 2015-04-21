@@ -2,7 +2,7 @@
  * Package: model
  * Class: Barber.java
  *
- * Description: This class is reponsible to model the barber in system with all its 
+ * Description: This class is reponsible to model the barber in system with all its
  * atributes and necessary methods to attribute them.
  */
 
@@ -55,7 +55,7 @@ public class Barber {
 	 * @param chair
 	 *            is the chair that the barber will work, to be placed into
 	 *            chair.
-	 * 
+	 *
 	 * @exception BarberException
 	 *                as parameter.
 	 * @throws IllegalArgumentException
@@ -95,7 +95,7 @@ public class Barber {
 
 	/**
 	 * Get the current name.
-	 * 
+	 *
 	 * @return current name of the barber in system.
 	 */
 	public String getName() {
@@ -104,7 +104,7 @@ public class Barber {
 
 	/**
 	 * Get the current IR (Indivdual Registration).
-	 * 
+	 *
 	 * @return current IR (Indivdual Registration) of the barber in system.
 	 */
 	public String getCpf() {
@@ -113,7 +113,7 @@ public class Barber {
 
 	/**
 	 * Get the current ID.
-	 * 
+	 *
 	 * @return current ID of the barber in system.
 	 */
 	public String getRg() {
@@ -122,7 +122,7 @@ public class Barber {
 
 	/**
 	 * Get the current phone number.
-	 * 
+	 *
 	 * @return current phone number of the barber in system.
 	 */
 	public String getPhoneNumber() {
@@ -131,7 +131,7 @@ public class Barber {
 
 	/**
 	 * Get the current chair.
-	 * 
+	 *
 	 * @return current chair of the barber in system.
 	 */
 	public String getChair() {
@@ -145,13 +145,13 @@ public class Barber {
 	 *
 	 * @param name
 	 *            is the name of the barber to be placed into name.
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if the name returns a null value.
 	 * @throws BarberException
 	 *             if the user didn't fill de name field.
 	 * @throws BarberException
-	 *             if the name can't be placed in nome.
+	 *             if the name can't be placed in name.
 	 */
 	public void setName(String name) throws BarberException {
 		if (name == null)
@@ -172,7 +172,7 @@ public class Barber {
 	 * @param cpf
 	 *            is the Individual Registration of the barber to be placed into
 	 *            cpfe.
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if the cpf returns a null value.
 	 * @throws BarberException
@@ -207,7 +207,7 @@ public class Barber {
 	 *
 	 * @param id
 	 *            is the ID of the barber to be placed into id.
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if the id returns a null value.
 	 * @throws BarberException
@@ -238,7 +238,7 @@ public class Barber {
 	 * @param phoneNumber
 	 *            is the phone number of the barber to be placed into
 	 *            phoneNumber.
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if the phoneNumber returns a null value.
 	 * @throws BarberException
@@ -266,7 +266,7 @@ public class Barber {
 	 *
 	 * @param chair
 	 *            is the chair of the barber to be placed into chair.
-	 * 
+	 *
 	 * @throws NullPointerException
 	 *             if the chair returns a null value.
 	 * @throws BarberException
@@ -291,7 +291,7 @@ public class Barber {
 
 	/**
 	 * Get the current temporary name.
-	 * 
+	 *
 	 * @return current temporary name of the barber in system.
 	 */
 	public static String getTempName() {

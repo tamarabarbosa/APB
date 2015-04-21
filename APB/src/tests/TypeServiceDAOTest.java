@@ -91,8 +91,8 @@ public class TypeServiceDAOTest {
 			ResultSet rs = servicoDAO.mostrarTipoServicoCadastrados(tiposervico);
 
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+				String name = rs.getString("name");
+				assertNotNull(name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -105,8 +105,8 @@ public class TypeServiceDAOTest {
 			ResultSet rs = servicoDAO.pesquisarPorNome(tiposervico);
 
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertNotNull(nome);
+				String name = rs.getString("name");
+				assertNotNull(name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

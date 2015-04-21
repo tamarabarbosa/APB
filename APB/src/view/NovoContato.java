@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-import control.AgendaController;
+import control.PhonebookController;
 import exception.BarbeiroException;
 import model.Phonebook;
 
@@ -66,8 +66,8 @@ public class NovoContato extends JFrame {
 					phonebook.setTelefone(textFieldTelefone.getText());
 					phonebook.setDescricao(textFieldDescricao.getText());
 
-					AgendaController agendaController = AgendaController.getInstance();
-					agendaController.insert(phonebook);
+					PhonebookController phonebookController = PhonebookController.getInstance();
+					phonebookController.insert(phonebook);
 
 					JOptionPane.showMessageDialog(null, "Contato "
 							+ textFieldNome.getText()
@@ -78,7 +78,7 @@ public class NovoContato extends JFrame {
 					textFieldDescricao.setText("");
 
 					dispose();
-					CadastrarAgenda frame =  new CadastrarAgenda();
+					CadastrarPhonebook frame =  new CadastrarPhonebook();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 
@@ -99,7 +99,7 @@ public class NovoContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarAgenda frame = new CadastrarAgenda();
+				CadastrarPhonebook frame = new CadastrarPhonebook();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

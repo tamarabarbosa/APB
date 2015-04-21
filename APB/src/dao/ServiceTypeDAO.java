@@ -24,22 +24,22 @@ public class ServiceTypeDAO {
 		if (tipoServico == null)
 			return false;
 
-		this.updateQuery("INSERT INTO " + "tiposervico (nome, preco) VALUES ("
+		this.updateQuery("INSERT INTO " + "tiposervico (name, preco) VALUES ("
 				+ "\"" + tipoServico.getNameServiceType() + "\", " + "\""
 				+ tipoServico.getPrice() + "\"); ");
 
 		return true;
 	}
 	//this method change type of service provided
-	public boolean change(String nome, ServiceType tipoServico_alterado,
+	public boolean change(String name, ServiceType tipoServico_alterado,
 			ServiceType tipoServico) throws SQLException {
 		if (tipoServico_alterado == null || tipoServico == null)
 			return false;
 
-		this.updateQuery("UPDATE tiposervico SET nome = '"
+		this.updateQuery("UPDATE tiposervico SET name = '"
 				+ tipoServico_alterado.getNameServiceType() + "', "
 				+ "preco = '" + tipoServico_alterado.getPrice() + "' WHERE"
-				+ " nome = '" + nome + "';");
+				+ " name = '" + name + "';");
 
 		return true;
 	}
@@ -49,7 +49,7 @@ public class ServiceTypeDAO {
 			return false;
 
 		this.updateQuery("DELETE FROM tiposervico WHERE "
-				+ "tipoServico.nome = \"" + tipoServico.getNameServiceType()
+				+ "tipoServico.name = \"" + tipoServico.getNameServiceType()
 				+ "\";");
 		return true;
 	}
@@ -76,7 +76,7 @@ public class ServiceTypeDAO {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM tiposervico WHERE "
-						+ "nome = '" + servico.getNameServiceType() + "';");
+						+ "name = '" + servico.getNameServiceType() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;

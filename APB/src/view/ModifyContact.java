@@ -26,7 +26,7 @@ public class ModifyContact extends JFrame {
 	private JTextField textFieldNome;
 	private JTextField textFieldTelefone;
 	private JTextField textFieldDescricao;
-	private String nome;
+	private String name;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -80,16 +80,16 @@ public class ModifyContact extends JFrame {
 
 		try {
 			Phonebook contato = new Phonebook();
-			AgendaController agendaController = AgendaController.getInstance();
+			PhonebookController phonebookController = PhonebookController.getInstance();
 			contato.setNome(Phonebook.getTempNome());
-			ResultSet rs = agendaController.pesquisarPorNome(contato);
+			ResultSet rs = phonebookController.pesquisarPorNome(contato);
 
 			while (rs.next()) {
-				textFieldNome.setText(rs.getString("nome"));
+				textFieldNome.setText(rs.getString("name"));
 				textFieldTelefone.setText(rs.getString("telefone"));
 				textFieldDescricao.setText(rs.getString("descricao"));
 			}
-			nome = textFieldNome.getText();
+			name = textFieldNome.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		} catch (BarbeiroException e) {
@@ -107,16 +107,16 @@ public class ModifyContact extends JFrame {
 					phonebook.setTelefone(textFieldTelefone.getText());
 					phonebook.setDescricao(textFieldDescricao.getText());
 
-					AgendaController AgendaController = control.AgendaController
+					PhonebookController PhonebookController = control.PhonebookController
 							.getInstance();
-					AgendaController.change(nome, phonebook);
+					PhonebookController.change(name, phonebook);
 
-					JOptionPane.showMessageDialog(null, "Agenda "
+					JOptionPane.showMessageDialog(null, "Phonebook "
 							+ textFieldNome.getText()
 							+ " foi alterado com sucesso");
 
 					dispose();
-					CadastrarAgenda frame = new CadastrarAgenda();
+					CadastrarPhonebook frame = new CadastrarPhonebook();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (BarbeiroException e1) {
@@ -137,7 +137,7 @@ public class ModifyContact extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				dispose();
-				CadastrarAgenda frame = new CadastrarAgenda();
+				CadastrarPhonebook frame = new CadastrarPhonebook();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

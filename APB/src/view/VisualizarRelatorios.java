@@ -99,8 +99,8 @@ public class VisualizarRelatorios extends JFrame {
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("nome")) == false) {
-					servicos.add(rs.getString("nome"));
+				if (servicos.contains(rs.getString("name")) == false) {
+					servicos.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -108,7 +108,7 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+					if (servicos.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
@@ -147,8 +147,8 @@ public class VisualizarRelatorios extends JFrame {
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("nome")) == false) {
-					servicos.add(rs.getString("nome"));
+				if (servicos.contains(rs.getString("name")) == false) {
+					servicos.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -156,7 +156,7 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+					if (servicos.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
@@ -197,8 +197,8 @@ public class VisualizarRelatorios extends JFrame {
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("nome")) == false) {
-					servicos.add(rs.getString("nome"));
+				if (servicos.contains(rs.getString("name")) == false) {
+					servicos.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -206,7 +206,7 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+					if (servicos.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
@@ -248,8 +248,8 @@ public class VisualizarRelatorios extends JFrame {
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("nome")) == false) {
-					servicos.add(rs.getString("nome"));
+				if (servicos.contains(rs.getString("name")) == false) {
+					servicos.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -257,7 +257,7 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+					if (servicos.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
@@ -296,8 +296,8 @@ public class VisualizarRelatorios extends JFrame {
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("nome")) == false) {
-					servicos.add(rs.getString("nome"));
+				if (servicos.contains(rs.getString("name")) == false) {
+					servicos.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -305,7 +305,7 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+					if (servicos.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
@@ -345,8 +345,8 @@ public class VisualizarRelatorios extends JFrame {
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("nome")) == false) {
-					servicos.add(rs.getString("nome"));
+				if (servicos.contains(rs.getString("name")) == false) {
+					servicos.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -354,7 +354,7 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+					if (servicos.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;
@@ -393,8 +393,8 @@ public class VisualizarRelatorios extends JFrame {
 
 			while (rs.next()) {
 
-				if (servicos.contains(rs.getString("nome")) == false) {
-					servicos.add(rs.getString("nome"));
+				if (servicos.contains(rs.getString("name")) == false) {
+					servicos.add(rs.getString("name"));
 					contador++;
 				}
 			}
@@ -402,7 +402,7 @@ public class VisualizarRelatorios extends JFrame {
 			for (int i = 0; i < contador; i++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (servicos.get(i).equals(rs.getString("nome"))) {
+					if (servicos.get(i).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoServico = valorTotalDoServico + valor;

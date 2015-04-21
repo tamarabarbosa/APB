@@ -89,13 +89,13 @@ public class NovoServicoPrestado extends JFrame {
 				Connection connection;
 				if (comboBoxServico.getSelectedIndex() != 0)
 					try {
-						String[] nome = comboBoxServico.getSelectedItem()
+						String[] name = comboBoxServico.getSelectedItem()
 								.toString().split(" - ");
 						connection = FactoryConnection.getInstance()
 								.getConnection();
 						java.sql.PreparedStatement pst1 = connection
-								.prepareStatement("SELECT preco FROM tipoServico WHERE nome = \""
-										+ nome[1] + "\";");
+								.prepareStatement("SELECT preco FROM tipoServico WHERE name = \""
+										+ name[1] + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
 
@@ -116,21 +116,21 @@ public class NovoServicoPrestado extends JFrame {
 			Connection connection = FactoryConnection.getInstance()
 					.getConnection();
 			java.sql.PreparedStatement pst = connection
-					.prepareStatement("SELECT nome, cadeira FROM barber ORDER BY cadeira;");
+					.prepareStatement("SELECT name, cadeira FROM barber ORDER BY cadeira;");
 			java.sql.PreparedStatement pst2 = connection
-					.prepareStatement("SELECT nome FROM tiposervico;");
+					.prepareStatement("SELECT name FROM tiposervico;");
 			ResultSet rs = pst.executeQuery();
 			ResultSet rs2 = pst2.executeQuery();
 
 			while (rs.next()) {
-				String nome = rs.getString("nome");
+				String name = rs.getString("name");
 				String cadeira = rs.getString("cadeira");
-				comboBoxBarbeiro.addItem(cadeira + " - " + nome);
+				comboBoxBarbeiro.addItem(cadeira + " - " + name);
 			}
 			while (rs2.next()) {
 				cont++;
-				String nome = rs2.getString("nome");
-				comboBoxServico.addItem(cont + " - " + nome);
+				String name = rs2.getString("name");
+				comboBoxServico.addItem(cont + " - " + name);
 			}
 
 		} catch (SQLException e) {
@@ -155,7 +155,7 @@ public class NovoServicoPrestado extends JFrame {
 								"yyyy-MM-dd");
 						data = sdf.format(d);
 
-						String[] nome = comboBoxServico.getSelectedItem()
+						String[] name = comboBoxServico.getSelectedItem()
 								.toString().split(" - ");
 						String[] barber = comboBoxBarbeiro.getSelectedItem()
 								.toString().split(" - ");
@@ -163,7 +163,7 @@ public class NovoServicoPrestado extends JFrame {
 						ServicoPrestado servico_prestado = new ServicoPrestado();
 
 						servico_prestado.setNomeBarbeiro(barber[1]);
-						servico_prestado.setNomeServico(nome[1]);
+						servico_prestado.setNomeServico(name[1]);
 						servico_prestado.setPreco(textValor.getText());
 						servico_prestado.setData(data);
 

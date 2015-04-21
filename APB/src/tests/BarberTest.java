@@ -210,7 +210,7 @@ public class BarberTest {
 	}
 
 	@Test (expected = BarbeiroException.class)
-	public void nomeComNumero() throws BarbeiroException {
+	public void nameComNumero() throws BarbeiroException {
 		barber.setNome("J040");
 		Assert.fail("Deve lançar uma exceção");
 	}
@@ -239,7 +239,7 @@ public class BarberTest {
 	}
 
 	@Test (expected =  BarbeiroException.class)
-	public void nomePassadoEmBrancro() throws BarbeiroException {
+	public void namePassadoEmBrancro() throws BarbeiroException {
 		barber.setNome("");
 		Assert.fail("Deve lançar uma exceção");
 	}

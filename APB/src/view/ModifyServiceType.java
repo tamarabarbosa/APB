@@ -25,7 +25,7 @@ public class ModifyServiceType extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTextField textFieldPreco;
-	private String nome;
+	private String name;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -76,10 +76,10 @@ public class ModifyServiceType extends JFrame {
 			ResultSet rs = ServiceTypeController.pesquisarPorNome(tiposervico);
 
 			while (rs.next()) {
-				textFieldNome.setText(rs.getString("nome"));
+				textFieldNome.setText(rs.getString("name"));
 				textFieldPreco.setText(rs.getString("preco"));
 			}
-			nome = textFieldNome.getText();
+			name = textFieldNome.getText();
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		} catch (ServiceException e) {
@@ -98,7 +98,7 @@ public class ModifyServiceType extends JFrame {
 
 					ServiceTypeController tipoServicoController = ServiceTypeController
 							.getInstance();
-					tipoServicoController.change(nome, tipoServico);
+					tipoServicoController.change(name, tipoServico);
 
 					JOptionPane.showMessageDialog(null, "Tipo de Serviço "
 							+ textFieldNome.getText()

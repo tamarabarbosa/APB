@@ -43,10 +43,10 @@ public class ReportDAOTest {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
 			ResultSet rs = relatorioDAO.pesquisarPorData(report);
-			
+
 			while(rs.next()) {
-				String nome = rs.getString("nome");
-				assertEquals("Corte", nome);
+				String name = rs.getString("name");
+				assertEquals("Corte", name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -59,10 +59,10 @@ public class ReportDAOTest {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
 			ResultSet rs = relatorioDAO.pesquisarPorDataEServico(report);
-			
+
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertEquals("Corte", nome);
+				String name = rs.getString("name");
+				assertEquals("Corte", name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,10 +75,10 @@ public class ReportDAOTest {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
 			ResultSet rs = relatorioDAO.pesquisarPorBarbeiro(report);
-			
+
 			while(rs.next()) {
-				String nome = rs.getString("nome");
-				assertEquals("Corte", nome);
+				String name = rs.getString("name");
+				assertEquals("Corte", name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -91,10 +91,10 @@ public class ReportDAOTest {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
 			ResultSet rs = relatorioDAO.pesquisarPorBarbeiroEServico(report);
-			
+
 			while(rs.next()) {
-				String nome = rs.getString("nome");
-				assertEquals("Corte", nome);
+				String name = rs.getString("name");
+				assertEquals("Corte", name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -107,10 +107,10 @@ public class ReportDAOTest {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
 			ResultSet rs = relatorioDAO.pesquisarPorServico(report);
-			
+
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertEquals("Corte", nome);
+				String name = rs.getString("name");
+				assertEquals("Corte", name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -123,32 +123,32 @@ public class ReportDAOTest {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
 			ResultSet rs = relatorioDAO.pesquisarPorDataEBarbeiro(report);
-			
+
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertEquals("Corte", nome);
+				String name = rs.getString("name");
+				assertEquals("Corte", name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	@Test
 	public void pesquisarPorDataBarbeiroEServicoDAODeveMostrarUmRelatorio(){
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
 			ResultSet rs = relatorioDAO.pesquisarPorDataBarbeiroEServico(report);
-			
+
 			while (rs.next()) {
-				String nome = rs.getString("nome");
-				assertEquals("Corte", nome);
+				String name = rs.getString("name");
+				assertEquals("Corte", name);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
+
+
 	}
 
 }
