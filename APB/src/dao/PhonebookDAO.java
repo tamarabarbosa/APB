@@ -33,15 +33,15 @@ public class PhonebookDAO {
 		return true;
 	}
 
-	public boolean change(String name, Phonebook Phonebook_alterado,
+	public boolean change(String name, Phonebook Phonebook_change,
 			Phonebook Phonebook) throws SQLException {
-		if (Phonebook == null || Phonebook_alterado == null)
+		if (Phonebook == null || Phonebook_change == null)
 			return false;
 
 		this.updateQuery("UPDATE Phonebook SET " + "name = \""
-				+ Phonebook_alterado.getName() + "\", " + "telefone = \""
-				+ Phonebook_alterado.getPhoneNumber() + "\", "
-				+ "descricao = \"" + Phonebook_alterado.getDescription() + "\""
+				+ Phonebook_change.getName() + "\", " + "telefone = \""
+				+ Phonebook_change.getPhoneNumber() + "\", "
+				+ "descricao = \"" + Phonebook_change.getDescription() + "\""
 				+ " WHERE " + " Phonebook.name = \"" + name + "\";");
 
 		return true;

@@ -87,7 +87,7 @@ public class ReportTest {
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void tipoDeJobNaoPodeSerSettadoNulo() {
+	public void typeDeJobNaoPodeSerSettadoNulo() {
 		try {
 			report.setTipoJob(null);
 		} catch (RelatorioException e){
@@ -96,7 +96,7 @@ public class ReportTest {
 	}
 
 	@Test (expected = AssertionError.class)
-	public void tipoDeJobNaoPodeSerSettoEmBranco() {
+	public void typeDeJobNaoPodeSerSettoEmBranco() {
 		try {
 			report.setTipoJob("");
 		} catch (RelatorioException e){

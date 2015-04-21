@@ -113,7 +113,7 @@ public class ModifyContact extends JFrame {
 
 					JOptionPane.showMessageDialog(null, "Phonebook "
 							+ textFieldNome.getText()
-							+ " foi alterado com sucesso");
+							+ " foi change com sucesso");
 
 					dispose();
 					CadastrarPhonebook frame = new CadastrarPhonebook();

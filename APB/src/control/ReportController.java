@@ -1,3 +1,11 @@
+/*
+ * Package: Controller
+ * Class: DoneServiceController.java
+ *
+ * Description: This class is reponsible to make a report of date, barber and job
+ * atributes and necessary methods to attribute them.
+ */
+
 package control;
 
 import java.sql.ResultSet;

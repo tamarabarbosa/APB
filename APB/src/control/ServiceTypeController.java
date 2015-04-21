@@ -1,3 +1,11 @@
+/*
+ * Package: Controller
+ * Class: ServiceTypeController.java
+ *
+ * Description: This class is reponsible to inform to what job is done
+ * atributes and necessary methods to attribute them.
+ */
+
 package control;
 
 import java.sql.ResultSet;
@@ -12,35 +20,35 @@ public class ServiceTypeController {
 	private static ServiceTypeController instance;
 
 	// Method that modify a service type on the system
-	public boolean insert(ServiceType tipoJob) throws SQLException {
-		if (tipoJob == null) {
+	public boolean insert(ServiceType typeJob) throws SQLException {
+		if (typeJob == null) {
 			return false;
 		} else {
-			ServiceTypeDAO.getInstance().insert(tipoJob);
+			ServiceTypeDAO.getInstance().insert(typeJob);
 			return true;
 		}
 	}
 
 	// Method that change a service type on the system
-	public boolean change(String name, ServiceType tipoJob)
+	public boolean change(String name, ServiceType typeJob)
 			throws SQLException {
-		if (tipoJob == null) {
+		if (typeJob == null) {
 			return false;
 		} else {
-			ServiceType tipoJob_alterado = tipoJob;
-			ServiceTypeDAO.getInstance().change(name, tipoJob_alterado,
-					tipoJob);
+			ServiceType typeJob_change = typeJob;
+			ServiceTypeDAO.getInstance().change(name, typeJob_change,
+					typeJob);
 			return true;
 		}
 	}
 
 	// Method that delete a service type on the system
-	public boolean delete(ServiceType tipoJob) throws SQLException {
+	public boolean delete(ServiceType typeJob) throws SQLException {
 
-		if (tipoJob == null) {
+		if (typeJob == null) {
 			return false;
 		} else {
-			ServiceTypeDAO.getInstance().delete(tipoJob);
+			ServiceTypeDAO.getInstance().delete(typeJob);
 			return true;
 		}
 	}

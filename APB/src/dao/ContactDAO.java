@@ -35,15 +35,15 @@ public class ContactDAO {
 	}
 
 	// this method change data on the schedule
-	public boolean change(String name, Phonebook phonebook_alterado,
+	public boolean change(String name, Phonebook phonebook_change,
 			Phonebook phonebook) throws SQLException {
-		if (phonebook == null || phonebook_alterado == null)
+		if (phonebook == null || phonebook_change == null)
 			return false;
 
 		this.updateQuery("UPDATE phonebook SET " + "name = \""
-				+ phonebook_alterado.getName() + "\", " + "telefone = \""
-				+ phonebook_alterado.getPhoneNumber() + "\", " + "descricao = \""
-				+ phonebook_alterado.getDescription() + "\"" + " WHERE "
+				+ phonebook_change.getName() + "\", " + "telefone = \""
+				+ phonebook_change.getPhoneNumber() + "\", " + "descricao = \""
+				+ phonebook_change.getDescription() + "\"" + " WHERE "
 				+ " phonebook.name = \"" + name + "\";");
 
 		return true;

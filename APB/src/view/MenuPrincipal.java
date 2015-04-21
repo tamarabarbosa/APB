@@ -90,7 +90,7 @@ public class MenuPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					PesquisarRelatorio.tipoBusca = 0;
+					PesquisarRelatorio.typeBusca = 0;
 					VisualizarRelatorios frame = new VisualizarRelatorios();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);

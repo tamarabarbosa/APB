@@ -35,7 +35,7 @@ public class PesquisarRelatorio extends JFrame {
 	private JTextField txtDataFinal;
 	private JTextField txtBarber;
 	private JTextField txtJob;
-	public static int tipoBusca = 0;
+	public static int typeBusca = 0;
 	public static String job = "job";
 	public static String barber = "barber";
 	public static String dataInicial = "dataInicial";
@@ -186,7 +186,7 @@ public class PesquisarRelatorio extends JFrame {
 							"Digite o name do barber.");
 				} else if (txtJob.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"Digite um tipo de serviço.");
+							"Digite um type de serviço.");
 				} else if (txtDataFinal.getText().equals("")) {
 					JOptionPane
 							.showMessageDialog(null, "Digite uma data final");
@@ -199,7 +199,7 @@ public class PesquisarRelatorio extends JFrame {
 							&& checkPorData.getState() == false
 							&& checkJob.getState() == false) {
 						barber = txtBarber.getText();
-						tipoBusca = 1;
+						typeBusca = 1;
 					}
 
 					if (checkBarber.getState() == true
@@ -207,7 +207,7 @@ public class PesquisarRelatorio extends JFrame {
 							&& checkJob.getState() == true) {
 						barber = txtBarber.getText();
 						job = txtJob.getText();
-						tipoBusca = 2;
+						typeBusca = 2;
 					}
 					if (checkBarber.getState() == true
 							&& checkPorData.getState() == true
@@ -215,7 +215,7 @@ public class PesquisarRelatorio extends JFrame {
 						barber = txtBarber.getText();
 						dataInicial = txtDataInicial.getText();
 						dataFinal = txtDataFinal.getText();
-						tipoBusca = 3;
+						typeBusca = 3;
 					}
 					if (checkBarber.getState() == true
 							&& checkPorData.getState() == true
@@ -224,13 +224,13 @@ public class PesquisarRelatorio extends JFrame {
 						dataInicial = txtDataInicial.getText();
 						dataFinal = txtDataFinal.getText();
 						job = txtJob.getText();
-						tipoBusca = 4;
+						typeBusca = 4;
 					}
 					if (checkBarber.getState() == false
 							&& checkPorData.getState() == false
 							&& checkJob.getState() == true) {
 						job = txtJob.getText();
-						tipoBusca = 5;
+						typeBusca = 5;
 					}
 					if (checkBarber.getState() == false
 							&& checkPorData.getState() == true
@@ -238,14 +238,14 @@ public class PesquisarRelatorio extends JFrame {
 						dataInicial = txtDataInicial.getText();
 						dataFinal = txtDataFinal.getText();
 						job = txtJob.getText();
-						tipoBusca = 6;
+						typeBusca = 6;
 					}
 					if (checkBarber.getState() == false
 							&& checkPorData.getState() == true
 							&& checkJob.getState() == false) {
 						dataInicial = txtDataInicial.getText();
 						dataFinal = txtDataFinal.getText();
-						tipoBusca = 7;
+						typeBusca = 7;
 					}
 				}
 
@@ -255,7 +255,7 @@ public class PesquisarRelatorio extends JFrame {
 					JOptionPane.showMessageDialog(null,
 							"Selecione uma opção de busca");
 				}
-				if (tipoBusca!=0){
+				if (typeBusca!=0){
 					try {
 						VisualizarRelatorios frame = new VisualizarRelatorios();
 						frame.setVisible(true);

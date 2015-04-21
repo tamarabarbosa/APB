@@ -69,11 +69,11 @@ public class ModifyServiceType extends JFrame {
 		contentPane.add(labelCadeira);
 
 		try {
-			ServiceType tipojob = new ServiceType();
+			ServiceType typejob = new ServiceType();
 			ServiceTypeController jobController = ServiceTypeController
 					.getInstance();
-			tipojob.setNameServiceType(ServiceType.getTempName());
-			ResultSet rs = ServiceTypeController.pesquisarPorNome(tipojob);
+			typejob.setNameServiceType(ServiceType.getTempName());
+			ResultSet rs = ServiceTypeController.pesquisarPorNome(typejob);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));
@@ -92,17 +92,17 @@ public class ModifyServiceType extends JFrame {
 			// application
 			public void actionPerformed(ActionEvent e) {
 				try {
-					ServiceType tipoJob = new ServiceType();
-					tipoJob.setNameServiceType(textFieldNome.getText());
-					tipoJob.setPrice(textFieldPreco.getText());
+					ServiceType typeJob = new ServiceType();
+					typeJob.setNameServiceType(textFieldNome.getText());
+					typeJob.setPrice(textFieldPreco.getText());
 
-					ServiceTypeController tipoJobController = ServiceTypeController
+					ServiceTypeController typeJobController = ServiceTypeController
 							.getInstance();
-					tipoJobController.change(name, tipoJob);
+					typeJobController.change(name, typeJob);
 
 					JOptionPane.showMessageDialog(null, "Tipo de Serviço "
 							+ textFieldNome.getText()
-							+ " foi alterado com sucesso");
+							+ " foi change com sucesso");
 
 					dispose();
 					CadastrarTipoJob frame = new CadastrarTipoJob();

@@ -50,7 +50,7 @@ public class NovoTipoJob extends JFrame {
 	 * Create the frame.
 	 */
 	public NovoTipoJob() {
-		setTitle("Cadastar novo tipo de servi\u00E7o");
+		setTitle("Cadastar novo type de servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 320, 180);
 		contentPane = new JPanel();
@@ -81,13 +81,13 @@ public class NovoTipoJob extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					TipoJob tipoJob = new TipoJob();
-					tipoJob.setNomeTipoJob(textFieldJob.getText());
-					tipoJob.setPreco(textFieldPreco.getText());
+					TipoJob typeJob = new TipoJob();
+					typeJob.setNomeTipoJob(textFieldJob.getText());
+					typeJob.setPreco(textFieldPreco.getText());
 
-					TipoJobController tipoJobController = TipoJobController
+					TipoJobController typeJobController = TipoJobController
 							.getInstance();
-					tipoJobController.insert(tipoJob);
+					typeJobController.insert(typeJob);
 
 					JOptionPane.showMessageDialog(null, "Serviço "
 							+ textFieldJob.getText()

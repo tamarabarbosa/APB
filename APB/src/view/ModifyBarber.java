@@ -139,7 +139,7 @@ public class ModifyBarber extends JFrame {
 
 					JOptionPane.showMessageDialog(null, "Barber "
 							+ textFieldNome.getText()
-							+ " foi alterado com sucesso");
+							+ " foi change com sucesso");
 
 					dispose();
 					CadastrarBarber frame = new CadastrarBarber();

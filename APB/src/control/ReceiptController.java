@@ -1,6 +1,6 @@
 /*
  * Package: Controller
- * Class: DoneServiceController.java
+ * Class: ReceiptController.java
  *
  * Description: This class is reponsible to make a registre of receipt
  * atributes and necessary methods to attribute them.

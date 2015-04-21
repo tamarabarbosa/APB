@@ -20,36 +20,36 @@ public class ServiceTypeDAO {
 		return instance;
 	}
 	//this method include type of service provided
-	public boolean insert(ServiceType tipoJob) throws SQLException {
-		if (tipoJob == null)
+	public boolean insert(ServiceType typeJob) throws SQLException {
+		if (typeJob == null)
 			return false;
 
-		this.updateQuery("INSERT INTO " + "tipojob (name, preco) VALUES ("
-				+ "\"" + tipoJob.getNameServiceType() + "\", " + "\""
-				+ tipoJob.getPrice() + "\"); ");
+		this.updateQuery("INSERT INTO " + "typejob (name, preco) VALUES ("
+				+ "\"" + typeJob.getNameServiceType() + "\", " + "\""
+				+ typeJob.getPrice() + "\"); ");
 
 		return true;
 	}
 	//this method change type of service provided
-	public boolean change(String name, ServiceType tipoJob_alterado,
-			ServiceType tipoJob) throws SQLException {
-		if (tipoJob_alterado == null || tipoJob == null)
+	public boolean change(String name, ServiceType typeJob_change,
+			ServiceType typeJob) throws SQLException {
+		if (typeJob_change == null || typeJob == null)
 			return false;
 
-		this.updateQuery("UPDATE tipojob SET name = '"
-				+ tipoJob_alterado.getNameServiceType() + "', "
-				+ "preco = '" + tipoJob_alterado.getPrice() + "' WHERE"
+		this.updateQuery("UPDATE typejob SET name = '"
+				+ typeJob_change.getNameServiceType() + "', "
+				+ "preco = '" + typeJob_change.getPrice() + "' WHERE"
 				+ " name = '" + name + "';");
 
 		return true;
 	}
 	//this method exclude type of service provided
-	public boolean delete(ServiceType tipoJob) throws SQLException {
-		if (tipoJob == null)
+	public boolean delete(ServiceType typeJob) throws SQLException {
+		if (typeJob == null)
 			return false;
 
-		this.updateQuery("DELETE FROM tipojob WHERE "
-				+ "tipoJob.name = \"" + tipoJob.getNameServiceType()
+		this.updateQuery("DELETE FROM typejob WHERE "
+				+ "typeJob.name = \"" + typeJob.getNameServiceType()
 				+ "\";");
 		return true;
 	}
@@ -67,7 +67,7 @@ public class ServiceTypeDAO {
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
-				"SELECT * FROM tipojob;");
+				"SELECT * FROM typejob;");
 
 		return rs;
 	}
@@ -75,7 +75,7 @@ public class ServiceTypeDAO {
 	public ResultSet pesquisarPorNome(ServiceType job) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM tipojob WHERE "
+				.prepareStatement("SELECT * FROM typejob WHERE "
 						+ "name = '" + job.getNameServiceType() + "';");
 		ResultSet rs = pst.executeQuery();
 

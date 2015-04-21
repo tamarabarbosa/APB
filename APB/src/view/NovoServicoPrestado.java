@@ -94,7 +94,7 @@ public class NovoJobPrestado extends JFrame {
 						connection = FactoryConnection.getInstance()
 								.getConnection();
 						java.sql.PreparedStatement pst1 = connection
-								.prepareStatement("SELECT preco FROM tipoJob WHERE name = \""
+								.prepareStatement("SELECT preco FROM typeJob WHERE name = \""
 										+ name[1] + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
@@ -107,7 +107,7 @@ public class NovoJobPrestado extends JFrame {
 
 		});
 		comboBoxJob.setModel(new DefaultComboBoxModel(
-				new String[] { "Selecione um tipo de servi\u00E7o" }));
+				new String[] { "Selecione um type de servi\u00E7o" }));
 		comboBoxJob.setMaximumRowCount(4);
 		comboBoxJob.setBounds(129, 22, 289, 20);
 		contentPane.add(comboBoxJob);
@@ -118,7 +118,7 @@ public class NovoJobPrestado extends JFrame {
 			java.sql.PreparedStatement pst = connection
 					.prepareStatement("SELECT name, cadeira FROM barber ORDER BY cadeira;");
 			java.sql.PreparedStatement pst2 = connection
-					.prepareStatement("SELECT name FROM tipojob;");
+					.prepareStatement("SELECT name FROM typejob;");
 			ResultSet rs = pst.executeQuery();
 			ResultSet rs2 = pst2.executeQuery();
 
@@ -144,7 +144,7 @@ public class NovoJobPrestado extends JFrame {
 				try {
 					if (comboBoxJob.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
-								"Você deve selecionar um tipo de serviço.");
+								"Você deve selecionar um type de serviço.");
 					else if (comboBoxBarber.getSelectedIndex() == 0)
 						JOptionPane.showMessageDialog(null,
 								"Você deve selecionar um barber.");

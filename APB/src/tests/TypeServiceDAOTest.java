@@ -13,8 +13,8 @@ import dao.TipoJobDAO;
 
 public class TypeServiceDAOTest {
 
-	TipoJob tipojob = new TipoJob();
-	TipoJob tipojob2 = new TipoJob();
+	TipoJob typejob = new TipoJob();
+	TipoJob typejob2 = new TipoJob();
 	TipoJobDAO jobDAO = TipoJobDAO.getInstance();
 
 	@Test
@@ -25,7 +25,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void insertDeTipoJobDAODeveCadastrarUmTipoJob() {
 		try {
-			assertTrue(jobDAO.insert(tipojob));
+			assertTrue(jobDAO.insert(typejob));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -34,7 +34,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void deleteDeTipoJobDAODeveEnviarUmTipoJob() {
 		try {
-			assertTrue(jobDAO.delete(tipojob));
+			assertTrue(jobDAO.delete(typejob));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -43,7 +43,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void changeDeTipoJobDAODeveEnviarUmTipoJob() {
 		try {
-			assertTrue(jobDAO.change(tipojob.getNomeTipoJob(),tipojob, tipojob2));
+			assertTrue(jobDAO.change(typejob.getNomeTipoJob(),typejob, typejob2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,7 +70,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void changeDeTipoJobDAOPassandoUmJobNulo() {
 		try {
-			assertFalse(jobDAO.change(tipojob.getNomeTipoJob(), tipojob, null));
+			assertFalse(jobDAO.change(typejob.getNomeTipoJob(), typejob, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +79,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void changeDeTipoJobDAOPassandoUmJobAlteradoNulo() {
 		try {
-			assertFalse(jobDAO.change(tipojob.getNomeTipoJob(), null, tipojob));
+			assertFalse(jobDAO.change(typejob.getNomeTipoJob(), null, typejob));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -88,7 +88,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void mostrarJobsDeTipoJobDAODeveMostrarJob() {
 		try {
-			ResultSet rs = jobDAO.mostrarTipoJobCadastrados(tipojob);
+			ResultSet rs = jobDAO.mostrarTipoJobCadastrados(typejob);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -102,7 +102,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void pesquisarPorNomeDeTipoJobDAODeveMostrarJob() {
 		try {
-			ResultSet rs = jobDAO.pesquisarPorNome(tipojob);
+			ResultSet rs = jobDAO.pesquisarPorNome(typejob);
 
 			while (rs.next()) {
 				String name = rs.getString("name");

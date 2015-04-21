@@ -129,10 +129,10 @@ public class NewServiceType extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				String name = (String) table.getValueAt(table.getSelectedRow(),
 						0);
-				ServiceType tipoJob = new ServiceType();
+				ServiceType typeJob = new ServiceType();
 
 				try {
-					tipoJob.setNameServiceType(name);
+					typeJob.setNameServiceType(name);
 				} catch (ServiceException e1) {
 					e1.printStackTrace();
 				}
@@ -141,10 +141,10 @@ public class NewServiceType extends JFrame {
 						"Remover " + name + " da lista?");
 
 				if (confirmacao == JOptionPane.YES_OPTION) {
-					ServiceTypeController tipoJobController = ServiceTypeController
+					ServiceTypeController typeJobController = ServiceTypeController
 							.getInstance();
 					try {
-						tipoJobController.delete(tipoJob);
+						typeJobController.delete(typeJob);
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
