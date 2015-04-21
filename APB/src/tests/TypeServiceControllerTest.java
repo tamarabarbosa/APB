@@ -43,9 +43,9 @@ public class TypeServiceControllerTest {
 	}
 
 	@Test
-	public void excluirDeTipoServicoControllerDeveRemoverUmTipoServico() {
+	public void deleteDeTipoServicoControllerDeveRemoverUmTipoServico() {
 		try {
-			assertTrue(servicoController.excluir(servico));
+			assertTrue(servicoController.delete(servico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,9 +70,9 @@ public class TypeServiceControllerTest {
 	}
 
 	@Test
-	public void excluirTipoServicoNaoPodePassarTipoServicoNullo() {
+	public void deleteTipoServicoNaoPodePassarTipoServicoNullo() {
 		try {
-			assertFalse(servicoController.excluir(null));
+			assertFalse(servicoController.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

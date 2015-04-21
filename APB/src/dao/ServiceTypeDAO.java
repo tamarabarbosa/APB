@@ -44,7 +44,7 @@ public class ServiceTypeDAO {
 		return true;
 	}
 	//this method exclude type of service provided
-	public boolean excluir(ServiceType tipoServico) throws SQLException {
+	public boolean delete(ServiceType tipoServico) throws SQLException {
 		if (tipoServico == null)
 			return false;
 

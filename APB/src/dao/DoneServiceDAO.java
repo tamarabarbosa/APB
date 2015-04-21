@@ -38,7 +38,7 @@ public class DoneServiceDAO {
 	}
 
 	// this method exclude a job done
-	public boolean excluir(DoneService servico) throws SQLException {
+	public boolean delete(DoneService servico) throws SQLException {
 		if (servico != null) {
 			this.updateQuery("DELETE FROM DoneService WHERE "
 					+ "DoneService.idDoneService = \"" + pesquisar(servico)

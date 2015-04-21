@@ -49,9 +49,9 @@ public class BarberControllerTest {
 	}
 
 	@Test
-	public void excluirDeBarbeiroControllerDeveEnviarUmBarbeiro() {
+	public void deleteDeBarbeiroControllerDeveEnviarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroController.excluir(barbeiro));
+			assertTrue(barbeiroController.delete(barbeiro));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -76,9 +76,9 @@ public class BarberControllerTest {
 	}
 
 	@Test
-	public void excluirBarbeiroNaoPodePassarBarbeiroNullo() {
+	public void deleteBarbeiroNaoPodePassarBarbeiroNullo() {
 		try {
-			assertFalse(barbeiroController.excluir(null));
+			assertFalse(barbeiroController.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

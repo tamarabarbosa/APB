@@ -32,9 +32,9 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void excluirDeAgendaDAODeveEnviarUmAgenda() {
+	public void deleteDeAgendaDAODeveEnviarUmAgenda() {
 		try {
-			assertTrue(agendaDAO.excluir(contato));
+			assertTrue(agendaDAO.delete(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -59,9 +59,9 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void excluirDeAgendaDAOPassandoUmContatoNulo() {
+	public void deleteDeAgendaDAOPassandoUmContatoNulo() {
 		try {
-			assertFalse(agendaDAO.excluir(null));
+			assertFalse(agendaDAO.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

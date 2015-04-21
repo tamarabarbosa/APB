@@ -36,9 +36,9 @@ public class DoneServiceController {
 	}
 
 	// Method used to delete a service
-	public boolean excluir(DoneService servico) throws SQLException {
+	public boolean delete(DoneService servico) throws SQLException {
 		if (servico != null) {
-			DoneServiceDAO.getInstance().excluir(servico);
+			DoneServiceDAO.getInstance().delete(servico);
 			return true;
 		} else {
 			return false;

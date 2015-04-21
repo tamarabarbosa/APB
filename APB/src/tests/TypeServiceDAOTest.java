@@ -32,9 +32,9 @@ public class TypeServiceDAOTest {
 	}
 
 	@Test
-	public void excluirDeTipoServicoDAODeveEnviarUmTipoServico() {
+	public void deleteDeTipoServicoDAODeveEnviarUmTipoServico() {
 		try {
-			assertTrue(servicoDAO.excluir(tiposervico));
+			assertTrue(servicoDAO.delete(tiposervico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -59,9 +59,9 @@ public class TypeServiceDAOTest {
 	}
 
 	@Test
-	public void excluirDeTipoServicoDAOPassandoUmServicoNulo() {
+	public void deleteDeTipoServicoDAOPassandoUmServicoNulo() {
 		try {
-			assertFalse(servicoDAO.excluir(null));
+			assertFalse(servicoDAO.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -35,12 +35,12 @@ public class ServiceTypeController {
 	}
 
 	// Method that delete a service type on the system
-	public boolean excluir(ServiceType tipoServico) throws SQLException {
+	public boolean delete(ServiceType tipoServico) throws SQLException {
 
 		if (tipoServico == null) {
 			return false;
 		} else {
-			ServiceTypeDAO.getInstance().excluir(tipoServico);
+			ServiceTypeDAO.getInstance().delete(tipoServico);
 			return true;
 		}
 	}

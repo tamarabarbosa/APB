@@ -144,7 +144,7 @@ public class NewServiceType extends JFrame {
 					ServiceTypeController tipoServicoController = ServiceTypeController
 							.getInstance();
 					try {
-						tipoServicoController.excluir(tipoServico);
+						tipoServicoController.delete(tipoServico);
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}

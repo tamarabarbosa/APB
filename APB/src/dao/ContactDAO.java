@@ -50,7 +50,7 @@ public class ContactDAO {
 	}
 
 	// this method exclude one event on the schedule
-	public boolean excluir(Phonebook contato) throws SQLException {
+	public boolean delete(Phonebook contato) throws SQLException {
 		if (contato == null)
 			return false;
 

@@ -47,7 +47,7 @@ public class PhonebookDAO {
 		return true;
 	}
 
-	public boolean excluir(Phonebook contato) throws SQLException {
+	public boolean delete(Phonebook contato) throws SQLException {
 		if (contato == null)
 			return false;
 

@@ -48,7 +48,7 @@ public class ContactController {
 		if (contact == null) {
 			return false;
 		} else {
-			PhonebookDAO.getInstance().excluir(contact);
+			PhonebookDAO.getInstance().delete(contact);
 			return true;
 		}
 	}

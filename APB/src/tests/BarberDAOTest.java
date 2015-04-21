@@ -69,9 +69,9 @@ public class BarberDAOTest {
 	}
 
 	@Test (expected = AssertionError.class)
-	public void excluirDeBarbeiroDAODeveEnviarUmBarbeiro() {
+	public void deleteDeBarbeiroDAODeveEnviarUmBarbeiro() {
 		try {
-			assertTrue(barbeiroDAO.excluir(barbeiro));
+			assertTrue(barbeiroDAO.delete(barbeiro));
 
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			ResultSet rs = connection.createStatement().executeQuery("SELECT nome FROM barbeiro WHERE "
@@ -115,9 +115,9 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void excluirDeBarbeiroDAOPassandoUmBarbeiroNulo() {
+	public void deleteDeBarbeiroDAOPassandoUmBarbeiroNulo() {
 		try {
-			assertFalse(barbeiroDAO.excluir(null));
+			assertFalse(barbeiroDAO.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

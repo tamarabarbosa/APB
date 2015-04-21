@@ -55,9 +55,9 @@ public class ServiceProvidedDAOTest {
 	}
 
 	@Test
-	public void excluirDeServicoPrestadoDAODeveEnviarUmServicoPrestado() {
+	public void deleteDeServicoPrestadoDAODeveEnviarUmServicoPrestado() {
 		try {
-			assertTrue(servicoDAO.excluir(servico));
+			assertTrue(servicoDAO.delete(servico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -73,9 +73,9 @@ public class ServiceProvidedDAOTest {
 	}
 
 	@Test
-	public void excluirDeServicoPrestadoDAOPassandoUmServicoNulo() {
+	public void deleteDeServicoPrestadoDAOPassandoUmServicoNulo() {
 		try {
-			assertFalse(servicoDAO.excluir(null));
+			assertFalse(servicoDAO.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -135,7 +135,7 @@ public class RegisterDoneService extends JFrame {
 					if (confirmacao == JOptionPane.YES_OPTION) {
 						DoneServiceController servicoController = DoneServiceController
 								.getInstance();
-						servicoController.excluir(servico);
+						servicoController.delete(servico);
 
 						dispose();
 						RegisterDoneService frame = new RegisterDoneService();

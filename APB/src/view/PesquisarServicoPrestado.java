@@ -167,7 +167,7 @@ public class PesquisarServicoPrestado extends JFrame {
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
 						ServicoPrestadoController servicoController = ServicoPrestadoController.getInstance();
-						servicoController.excluir(servico);
+						servicoController.delete(servico);
 
 						dispose();
 						CadastrarServicoPrestado frame = new CadastrarServicoPrestado();

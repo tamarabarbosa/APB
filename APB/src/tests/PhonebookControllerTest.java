@@ -46,9 +46,9 @@ public class PhonebookControllerTest {
 	}
 
 	@Test
-	public void excluirDeAgendaControllerDeveEnviarUmaAgenda() {
+	public void deleteDeAgendaControllerDeveEnviarUmaAgenda() {
 		try {
-			assertTrue(agendaController.excluir(contato));
+			assertTrue(agendaController.delete(contato));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -73,9 +73,9 @@ public class PhonebookControllerTest {
 	}
 
 	@Test
-	public void excluirAgendaNaoPodePassarAgendaNullo() {
+	public void deleteAgendaNaoPodePassarAgendaNullo() {
 		try {
-			assertFalse(agendaController.excluir(null));
+			assertFalse(agendaController.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

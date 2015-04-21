@@ -26,7 +26,7 @@ public class ServiceProvidedControllerTest {
 		servico.setData("20/12/2013");
 
 	}
-	
+
 	@Test
 	public void getInstanceDeServicoPrestadoControllerDeveRetornarInstanciaCorrente() {
 		assertEquals(ServicoPrestadoController.getInstance(), servicoController);
@@ -42,9 +42,9 @@ public class ServiceProvidedControllerTest {
 	}
 
 	@Test
-	public void excluirDeServicoPrestadoControllerDeveEnviarUmaservicoprestado() {
+	public void deleteDeServicoPrestadoControllerDeveEnviarUmaservicoprestado() {
 		try {
-			assertTrue(servicoController.excluir(servico));
+			assertTrue(servicoController.delete(servico));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -60,14 +60,14 @@ public class ServiceProvidedControllerTest {
 	}
 
 	@Test
-	public void excluirServicoPrestadoNaoPodePassarServicoPrestadoNullo() {
+	public void deleteServicoPrestadoNaoPodePassarServicoPrestadoNullo() {
 		try {
-			assertFalse(servicoController.excluir(null));
+			assertFalse(servicoController.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void mostrarServicoPrestadoDeServicoPrestadoControllerDeveMostrarUmServico() throws SQLException {
 		ResultSet rs = servicoController.mostrarServicosPrestadosCadastrados(servico);

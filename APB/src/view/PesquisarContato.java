@@ -189,7 +189,7 @@ public class PesquisarContato extends JFrame {
 					if (confirmacao == JOptionPane.YES_OPTION) {
 						AgendaController agendaController = AgendaController
 								.getInstance();
-						agendaController.excluir(phonebook);
+						agendaController.delete(phonebook);
 
 						dispose();
 						PesquisarContato frame = new PesquisarContato();
