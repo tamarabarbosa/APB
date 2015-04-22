@@ -116,7 +116,7 @@ public class NovoJobPrestado extends JFrame {
 			Connection connection = FactoryConnection.getInstance()
 					.getConnection();
 			java.sql.PreparedStatement pst = connection
-					.prepareStatement("SELECT name, cadeira FROM barber ORDER BY cadeira;");
+					.prepareStatement("SELECT name, chair FROM barber ORDER BY chair;");
 			java.sql.PreparedStatement pst2 = connection
 					.prepareStatement("SELECT name FROM typejob;");
 			ResultSet rs = pst.executeQuery();
@@ -124,8 +124,8 @@ public class NovoJobPrestado extends JFrame {
 
 			while (rs.next()) {
 				String name = rs.getString("name");
-				String cadeira = rs.getString("cadeira");
-				comboBoxBarber.addItem(cadeira + " - " + name);
+				String chair = rs.getString("chair");
+				comboBoxBarber.addItem(chair + " - " + name);
 			}
 			while (rs2.next()) {
 				cont++;

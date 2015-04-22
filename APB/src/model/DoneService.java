@@ -27,8 +27,8 @@ public class DoneService {
 	//Declaration of constants along the class
 	private final String INVALID_SERVICE_NAME = "Nome do Serviço Inválido";
 	private final String EMPTY_SERVICE_NAME = "Nome do Serviço em Branco";
-	private final String INVALID_BARBER = "Nome do Barber em Branco";
-	private final String EMPTY_BARBER = "Insira um Barber responsável pelo serviço";
+	private final String INVALID_BARBER = "Nome do Barbeiro em Branco";
+	private final String EMPTY_BARBER = "Insira um Barbeiro responsável pelo serviço";
 	private final String INVALID_PRICE = "Preço Inválido";
 	private final String EMPTY_PRICE = "Preço em Branco";
 	private final String EMPTY_DATE = "Data em Branco";

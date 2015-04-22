@@ -64,9 +64,9 @@ public class ModifyServiceType extends JFrame {
 		textFieldPreco.setBounds(121, 42, 289, 20);
 		contentPane.add(textFieldPreco);
 
-		JLabel labelCadeira = new JLabel("Pre\u00E7o:");
-		labelCadeira.setBounds(21, 45, 61, 14);
-		contentPane.add(labelCadeira);
+		JLabel labelChair = new JLabel("Pre\u00E7o:");
+		labelChair.setBounds(21, 45, 61, 14);
+		contentPane.add(labelChair);
 
 		try {
 			ServiceType typejob = new ServiceType();

@@ -31,8 +31,8 @@ public class Barber {
 	private final String INVALID_RG = "RG Inválido";
 	private final String INVALID_PHONE = "Phone Inválido";
 	private final String EMPTY_PHONE = "Phone em Branco";
-	private final String INVALID_CHAIR = "Cadeira Inválida";
-	private final String EMPTY_CHAIR = "Campo Cadeira em Branco";
+	private final String INVALID_CHAIR = "Chair Inválida";
+	private final String EMPTY_CHAIR = "Campo Chair em Branco";
 
 	// Constructor of the barber
 	public Barber() {
@@ -260,7 +260,7 @@ public class Barber {
 	}
 
 	/**
-	 * Set the chair of the barber in system, in case of the field "Cadeira"
+	 * Set the chair of the barber in system, in case of the field "Chair"
 	 * isn't filled the method return an warning while the user doesn't fill
 	 * correctly.
 	 *

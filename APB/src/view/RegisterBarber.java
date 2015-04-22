@@ -60,7 +60,7 @@ public class RegisterBarber extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Nome", "CPF", "RG", "Phone", "Cadeira" });
+				new String[] { "Nome", "CPF", "RG", "Phone", "Chair" });
 		final JTable table = new JTable(modelo);
 
 		try {
@@ -74,7 +74,7 @@ public class RegisterBarber extends JFrame {
 				dados[1] = rs.getString("cpf");
 				dados[2] = rs.getString("rg");
 				dados[3] = rs.getString("telefone");
-				dados[4] = rs.getString("cadeira");
+				dados[4] = rs.getString("chair");
 				modelo.addRow(dados);
 			}
 		} catch (SQLException e) {

@@ -27,7 +27,7 @@ public class ModifyBarber extends JFrame {
 	private JTextField textFieldNome;
 	private JTextField textFieldRg;
 	private JTextField textFieldPhone;
-	private JTextField textFieldCadeira;
+	private JTextField textFieldChair;
 	private String name;
 	private JTextField textFieldCpf;
 
@@ -91,14 +91,14 @@ public class ModifyBarber extends JFrame {
 		labelPhone.setBounds(21, 108, 61, 14);
 		contentPane.add(labelPhone);
 
-		textFieldCadeira = new JTextField();
-		textFieldCadeira.setColumns(10);
-		textFieldCadeira.setBounds(92, 133, 354, 20);
-		contentPane.add(textFieldCadeira);
+		textFieldChair = new JTextField();
+		textFieldChair.setColumns(10);
+		textFieldChair.setBounds(92, 133, 354, 20);
+		contentPane.add(textFieldChair);
 
-		JLabel labelCadeira = new JLabel("Cadeira:");
-		labelCadeira.setBounds(21, 139, 61, 14);
-		contentPane.add(labelCadeira);
+		JLabel labelChair = new JLabel("Chair:");
+		labelChair.setBounds(21, 139, 61, 14);
+		contentPane.add(labelChair);
 
 		try {
 			Barber barber = new Barber();
@@ -113,7 +113,7 @@ public class ModifyBarber extends JFrame {
 				textFieldCpf.setText(rs.getString("cpf"));
 				textFieldRg.setText(rs.getString("rg"));
 				textFieldPhone.setText(rs.getString("telefone"));
-				textFieldCadeira.setText(rs.getString("cadeira"));
+				textFieldChair.setText(rs.getString("chair"));
 			}
 			name = textFieldCpf.getText();
 		} catch (SQLException e) {
@@ -131,7 +131,7 @@ public class ModifyBarber extends JFrame {
 					barber.setCpf(textFieldCpf.getText());
 					barber.setRg(textFieldRg.getText());
 					barber.setPhone(textFieldPhone.getText());
-					barber.setCadeira(textFieldCadeira.getText());
+					barber.setChair(textFieldChair.getText());
 
 					BarberController barberController = BarberController
 							.getInstance();
@@ -162,7 +162,7 @@ public class ModifyBarber extends JFrame {
 				textFieldNome.setText("");
 				textFieldRg.setText("");
 				textFieldPhone.setText("");
-				textFieldCadeira.setText("");
+				textFieldChair.setText("");
 			}
 		});
 		buttonLimpar.setBounds(308, 196, 138, 23);

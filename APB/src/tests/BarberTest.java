@@ -24,7 +24,7 @@ public class BarberTest {
 			barber.setRg("418757896");
 			barber.setPhone("3389-9085");
 			barber.setCpf("02919594150");
-			barber.setCadeira("10");
+			barber.setChair("10");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarberException e) {
@@ -73,9 +73,9 @@ public class BarberTest {
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void barberNaoPodePossuirCadeiraNuloPassandoPeloSetter() {
+	public void barberNaoPodePossuirChairNuloPassandoPeloSetter() {
 		try {
-			barber.setCadeira(null);
+			barber.setChair(null);
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
@@ -122,7 +122,7 @@ public class BarberTest {
 	}
 
 	@Test (expected = IllegalArgumentException.class)
-	public void contrutorDeBarberNaoPodePassarComCadeiraNulo() {
+	public void contrutorDeBarberNaoPodePassarComChairNulo() {
 		try {
 			new Barber("Alessandro", "493.751.185-84", "2258256", "3389-9085", null);
 		} catch (BarberException e) {
@@ -150,9 +150,9 @@ public class BarberTest {
 	}
 
 	@Test (expected = AssertionError.class)
-	public void numeroDaCadeiraNaoPodeSerUmaLetra() {
+	public void numeroDaChairNaoPodeSerUmaLetra() {
 		try {
-			barber.setCadeira("asd");
+			barber.setChair("asd");
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
@@ -188,8 +188,8 @@ public class BarberTest {
 	}
 
 	@Test
-	public void testeParaGetterDeCadeiraDeBarber() {
-		assertEquals("10", barber.getCadeira());
+	public void testeParaGetterDeChairDeBarber() {
+		assertEquals("10", barber.getChair());
 	}
 
 	@Test
@@ -251,19 +251,19 @@ public class BarberTest {
 	}
 
 	@Test (expected =  BarberException.class)
-	public void cadeiraPassadoEmBrancro() throws BarberException {
-		barber.setCadeira("");
+	public void chairPassadoEmBrancro() throws BarberException {
+		barber.setChair("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 	@Test (expected =  AssertionError.class)
-	public void cadeiraPassadoComoZero() throws BarberException {
-		barber.setCadeira("0");
+	public void chairPassadoComoZero() throws BarberException {
+		barber.setChair("0");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
 	@Test (expected = BarberException.class)
-	public void cadeiraPassadoComMaisDeDoisDigitos() throws BarberException {
-		barber.setCadeira("1000");
+	public void chairPassadoComMaisDeDoisDigitos() throws BarberException {
+		barber.setChair("1000");
 		Assert.fail("Deve lançar uma exceção");
 	}
 

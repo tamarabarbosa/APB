@@ -20,11 +20,11 @@ public class BarberControllerTest {
 	@Before
 	public void setUp() {
 		try {
-			barber.setNome("Alessandro");
+			barber.setName("Alessandro");
 			barber.setRg("418757896");
 			barber.setPhone("3389-9085");
 			barber.setCpf("02919594150");
-			barber.setCadeira("5");
+			barber.setChair("5");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarberException e) {

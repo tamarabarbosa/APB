@@ -116,7 +116,7 @@ public class GerarRecibo extends JFrame {
 		try {
 			ResultSet rs = BarberController.getInstance().pesquisar();
 			while (rs.next()) {
-				comboBoxBarbers.addItem(rs.getString("cadeira") + " - "
+				comboBoxBarbers.addItem(rs.getString("chair") + " - "
 						+ rs.getString("name"));
 			}
 		} catch (SQLException e) {

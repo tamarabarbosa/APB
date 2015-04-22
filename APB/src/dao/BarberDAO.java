@@ -35,7 +35,7 @@ public class BarberDAO {
 			return false;
 
 		this.updateQuery("INSERT INTO "
-				+ "barber (name, cpf, rg, telefone, cadeira) VALUES (" + "\""
+				+ "barber (name, cpf, rg, telefone, chair) VALUES (" + "\""
 				+ barber.getName() + "\", " + "\"" + barber.getCpf() + "\", "
 				+ "\"" + barber.getRg() + "\", " + "\""
 				+ barber.getPhoneNumber() + "\", " + "\"" + barber.getChair()
@@ -53,7 +53,7 @@ public class BarberDAO {
 		this.updateQuery("UPDATE barber SET name = '" + barber_change.getName()
 				+ "', " + "cpf = '" + barber_change.getCpf() + "', " + "rg = '"
 				+ barber_change.getRg() + "', " + "telefone = '"
-				+ barber_change.getPhoneNumber() + "', " + "cadeira = '"
+				+ barber_change.getPhoneNumber() + "', " + "chair = '"
 				+ barber_change.getChair() + "' WHERE" + " cpf = '" + name
 				+ "';");
 
@@ -94,7 +94,7 @@ public class BarberDAO {
 	public ResultSet showRegisteredBarbers(Barber barber) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
-				"Select name, cpf, rg, telefone, cadeira from barber;");
+				"Select name, cpf, rg, telefone, chair from barber;");
 
 		return rs;
 	}

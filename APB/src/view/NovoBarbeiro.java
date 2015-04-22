@@ -30,8 +30,8 @@ public class NovoBarber extends JFrame {
 	private JTextField textFieldPhone;
 	private JButton botaoSalvar;
 	private JButton botaoLimparCampos;
-	private JTextField textFieldCadeira;
-	private JLabel lblCadeira;
+	private JTextField textFieldChair;
+	private JLabel lblChair;
 	private JButton botaoVoltar;
 
 	public static void main(String[] args) {
@@ -104,9 +104,9 @@ public class NovoBarber extends JFrame {
 		lblPhone.setBounds(21, 107, 61, 14);
 		getContentPane().add(lblPhone);
 
-		lblCadeira = new JLabel("Cadeira:");
-		lblCadeira.setBounds(21, 136, 61, 14);
-		contentPane.add(lblCadeira);
+		lblChair = new JLabel("Chair:");
+		lblChair.setBounds(21, 136, 61, 14);
+		contentPane.add(lblChair);
 
 
 
@@ -121,7 +121,7 @@ public class NovoBarber extends JFrame {
 					barber.setCpf(textFieldCpf.getText());
 					barber.setRg(textFieldRg.getText());
 					barber.setPhone(textFieldPhone.getText());
-					barber.setCadeira(textFieldCadeira.getText());
+					barber.setChair(textFieldChair.getText());
 
 					BarberController barberController = BarberController.getInstance();
 					barberController.insert(barber);
@@ -143,10 +143,10 @@ public class NovoBarber extends JFrame {
 
 		});
 
-		textFieldCadeira = new JTextField();
-		textFieldCadeira.setBounds(92, 133, 354, 20);
-		contentPane.add(textFieldCadeira);
-		textFieldCadeira.setColumns(10);
+		textFieldChair = new JTextField();
+		textFieldChair.setBounds(92, 133, 354, 20);
+		contentPane.add(textFieldChair);
+		textFieldChair.setColumns(10);
 		botaoSalvar.setBounds(10, 177, 125, 23);
 		contentPane.add(botaoSalvar);
 
@@ -158,7 +158,7 @@ public class NovoBarber extends JFrame {
 				textFieldCpf.setText("");
 				textFieldRg.setText("");
 				textFieldPhone.setText("");
-				textFieldCadeira.setText("");
+				textFieldChair.setText("");
 			}
 		});
 		botaoLimparCampos.setBounds(308, 177, 138, 23);

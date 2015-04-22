@@ -26,12 +26,12 @@ public class BarberDAOTest {
 			barber.setRg("418757896");
 			barber.setPhone("3389-9085");
 			barber.setCpf("02919594150");
-			barber.setCadeira("5");
+			barber.setChair("5");
 			barber2.setNome("Luciano");
 			barber2.setRg("418757896");
 			barber2.setPhone("3389-9085");
 			barber2.setCpf("02919594150");
-			barber2.setCadeira("5");
+			barber2.setChair("5");
 
 			BarberDAO barberDao = BarberDAO.getInstance();
 			barberDao.insert(barber);
