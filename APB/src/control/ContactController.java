@@ -76,7 +76,7 @@ public class ContactController {
 
 	// show results by phone
 	public ResultSet searchByPhonebook(Phonebook contact) throws SQLException {
-		return PhonebookDAO.getInstance().searchByTelefone(contact);
+		return PhonebookDAO.getInstance().searchByPhone(contact);
 	}
 
 }

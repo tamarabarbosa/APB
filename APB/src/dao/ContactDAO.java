@@ -58,12 +58,12 @@ public class ContactDAO {
 	}
 
 	// this method exclude one event on the schedule
-	public boolean delete(Phonebook contato) throws SQLException {
-		if (contato == null)
+	public boolean delete(Phonebook contact) throws SQLException {
+		if (contact == null)
 			return false;
 
 		this.updateQuery("DELETE FROM phonebook WHERE " + "phonebook.telefone = \""
-				+ contato.getPhoneNumber() + "\";");
+				+ contact.getPhoneNumber() + "\";");
 		return true;
 	}
 
@@ -78,7 +78,7 @@ public class ContactDAO {
 	}
 
 	// this method shows contacts registred on the schedule
-	public ResultSet mostrarContatosCadastrados(Phonebook contato)
+	public ResultSet mostrarContatosCadastrados(Phonebook contact)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
@@ -88,23 +88,23 @@ public class ContactDAO {
 	}
 
 	// this method search by name in the schedule
-	public ResultSet searchByNome(Phonebook contato) throws SQLException {
+	public ResultSet searchByNome(Phonebook contact) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM phonebook WHERE " + "name = '"
-						+ contato.getName() + "';");
+						+ contact.getName() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
 
 	// this method search by phone in the schedule
-	public ResultSet searchByTelefone(Phonebook contato)
+	public ResultSet searchByPhone(Phonebook contact)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM phonebook WHERE "
-						+ "telefone = '" + contato.getPhoneNumber() + "';");
+						+ "telefone = '" + contact.getPhoneNumber() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;

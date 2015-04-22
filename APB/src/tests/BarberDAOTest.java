@@ -24,12 +24,12 @@ public class BarberDAOTest {
 		try {
 			barber.setNome("Alessandro");
 			barber.setRg("418757896");
-			barber.setTelefone("3389-9085");
+			barber.setPhone("3389-9085");
 			barber.setCpf("02919594150");
 			barber.setCadeira("5");
 			barber2.setNome("Luciano");
 			barber2.setRg("418757896");
-			barber2.setTelefone("3389-9085");
+			barber2.setPhone("3389-9085");
 			barber2.setCpf("02919594150");
 			barber2.setCadeira("5");
 

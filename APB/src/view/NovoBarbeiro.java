@@ -27,7 +27,7 @@ public class NovoBarber extends JFrame {
 	private JTextField textFieldNome;
 	private JTextField textFieldCpf;
 	private JTextField textFieldRg;
-	private JTextField textFieldTelefone;
+	private JTextField textFieldPhone;
 	private JButton botaoSalvar;
 	private JButton botaoLimparCampos;
 	private JTextField textFieldCadeira;
@@ -95,14 +95,14 @@ public class NovoBarber extends JFrame {
 		lblRg.setBounds(21, 76, 46, 14);
 		getContentPane().add(lblRg);
 
-		textFieldTelefone = new JFormattedTextField(mascraFormatTel);
-		textFieldTelefone.setBounds(92, 104, 354, 20);
-		getContentPane().add(textFieldTelefone);
-		textFieldTelefone.setColumns(10);
+		textFieldPhone = new JFormattedTextField(mascraFormatTel);
+		textFieldPhone.setBounds(92, 104, 354, 20);
+		getContentPane().add(textFieldPhone);
+		textFieldPhone.setColumns(10);
 
-		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(21, 107, 61, 14);
-		getContentPane().add(lblTelefone);
+		JLabel lblPhone = new JLabel("Phone:");
+		lblPhone.setBounds(21, 107, 61, 14);
+		getContentPane().add(lblPhone);
 
 		lblCadeira = new JLabel("Cadeira:");
 		lblCadeira.setBounds(21, 136, 61, 14);
@@ -120,7 +120,7 @@ public class NovoBarber extends JFrame {
 					barber.setNome(textFieldNome.getText());
 					barber.setCpf(textFieldCpf.getText());
 					barber.setRg(textFieldRg.getText());
-					barber.setTelefone(textFieldTelefone.getText());
+					barber.setPhone(textFieldPhone.getText());
 					barber.setCadeira(textFieldCadeira.getText());
 
 					BarberController barberController = BarberController.getInstance();
@@ -157,7 +157,7 @@ public class NovoBarber extends JFrame {
 				textFieldNome.setText("");
 				textFieldCpf.setText("");
 				textFieldRg.setText("");
-				textFieldTelefone.setText("");
+				textFieldPhone.setText("");
 				textFieldCadeira.setText("");
 			}
 		});

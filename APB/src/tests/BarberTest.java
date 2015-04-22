@@ -22,7 +22,7 @@ public class BarberTest {
 			barber =  new Barber();
 			barber.setNome("Alessandro");
 			barber.setRg("418757896");
-			barber.setTelefone("3389-9085");
+			barber.setPhone("3389-9085");
 			barber.setCpf("02919594150");
 			barber.setCadeira("10");
 		} catch (NullPointerException e) {
@@ -63,9 +63,9 @@ public class BarberTest {
 	}
 
 	@Test (expected = NullPointerException.class)
-	public void barberNaoPodePossuirTelefoneNuloPassandoPeloSetter() {
+	public void barberNaoPodePossuirPhoneNuloPassandoPeloSetter() {
 		try {
-			barber.setTelefone(null);
+			barber.setPhone(null);
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
@@ -113,7 +113,7 @@ public class BarberTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public void contrutorDeBarberNaoPodePassarComTelefoneNulo() {
+	public void contrutorDeBarberNaoPodePassarComPhoneNulo() {
 		try {
 			new Barber("Alessandro", "493.751.185-84", "2258256", null, "10");
 		} catch (BarberException e) {
@@ -159,9 +159,9 @@ public class BarberTest {
 	}
 
 	@Test (expected = AssertionError.class)
-	public void numeroDoTelefoneNaoPodeConterLetras() {
+	public void numeroDoPhoneNaoPodeConterLetras() {
 		try {
-			barber.setTelefone("65465a4");
+			barber.setPhone("65465a4");
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
@@ -183,8 +183,8 @@ public class BarberTest {
 	}
 
 	@Test
-	public void testeParaGetterDeTelefoneDeBarber() {
-		assertEquals("3389-9085", barber.getTelefone());
+	public void testeParaGetterDePhoneDeBarber() {
+		assertEquals("3389-9085", barber.getPhone());
 	}
 
 	@Test
@@ -246,7 +246,7 @@ public class BarberTest {
 
 	@Test (expected =  BarberException.class)
 	public void telefonePassadoEmBrancro() throws BarberException {
-		barber.setTelefone("");
+		barber.setPhone("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 

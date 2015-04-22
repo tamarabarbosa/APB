@@ -15,14 +15,14 @@ import exception.BarberException;
 
 public class PhonebookControllerTest {
 
-	Phonebook contato = new Phonebook();
+	Phonebook contact = new Phonebook();
 
 	@Before
 	public void setUp() {
 		try {
-			contato.setNome("Corte");
-			contato.setTelefone("3895-5698");
-			contato.setDescricao("AAA");
+			contact.setNome("Corte");
+			contact.setPhone("3895-5698");
+			contact.setDescricao("AAA");
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
@@ -38,7 +38,7 @@ public class PhonebookControllerTest {
 	@Test
 	public void insertDePhonebookControllerDeveEnviarUm() {
 		try {
-			assertTrue(phonebookController.insert(contato));
+			assertTrue(phonebookController.insert(contact));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -48,7 +48,7 @@ public class PhonebookControllerTest {
 	@Test
 	public void deleteDePhonebookControllerDeveEnviarUmaPhonebook() {
 		try {
-			assertTrue(phonebookController.delete(contato));
+			assertTrue(phonebookController.delete(contact));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -57,7 +57,7 @@ public class PhonebookControllerTest {
 	@Test
 	public void changeDePhonebookControllerDeveEnviarUmaPhonebookAlterada() {
 		try {
-			assertTrue(phonebookController.change(contato.getNome(),contato));
+			assertTrue(phonebookController.change(contact.getNome(),contact));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -92,19 +92,19 @@ public class PhonebookControllerTest {
 
 	@Test
 	public void mostrarContatosDePhonebookControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = phonebookController.mostrarContatosCadastrados(contato);
+		ResultSet rs = phonebookController.mostrarContatosCadastrados(contact);
 		while(rs.next());
 	}
 
 	@Test
 	public void searchByNomeDePhonebookControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = phonebookController.searchByNome(contato);
+		ResultSet rs = phonebookController.searchByNome(contact);
 		while(rs.next());
 	}
 
 	@Test
-	public void searchByTelefoneDePhonebookControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = phonebookController.searchByTelefone(contato);
+	public void searchByPhoneDePhonebookControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = phonebookController.searchByPhone(contact);
 		while(rs.next());
 	}
 

@@ -55,12 +55,12 @@ public class PhonebookDAO {
 		return true;
 	}
 
-	public boolean delete(Phonebook contato) throws SQLException {
-		if (contato == null)
+	public boolean delete(Phonebook contact) throws SQLException {
+		if (contact == null)
 			return false;
 
 		this.updateQuery("DELETE FROM Phonebook WHERE "
-				+ "Phonebook.telefone = \"" + contato.getPhoneNumber() + "\";");
+				+ "Phonebook.telefone = \"" + contact.getPhoneNumber() + "\";");
 		return true;
 	}
 
@@ -73,7 +73,7 @@ public class PhonebookDAO {
 		connection.close();
 	}
 
-	public ResultSet mostrarContatosCadastrados(Phonebook contato)
+	public ResultSet mostrarContatosCadastrados(Phonebook contact)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
@@ -82,22 +82,22 @@ public class PhonebookDAO {
 		return rs;
 	}
 
-	public ResultSet searchByNome(Phonebook contato) throws SQLException {
+	public ResultSet searchByNome(Phonebook contact) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM Phonebook WHERE " + "name = '"
-						+ contato.getName() + "';");
+						+ contact.getName() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
 
-	public ResultSet searchByTelefone(Phonebook contato)
+	public ResultSet searchByPhone(Phonebook contact)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM Phonebook WHERE "
-						+ "telefone = '" + contato.getPhoneNumber() + "';");
+						+ "telefone = '" + contact.getPhoneNumber() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;

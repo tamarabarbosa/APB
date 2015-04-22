@@ -26,7 +26,7 @@ public class ModifyBarber extends JFrame {
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 	private JTextField textFieldRg;
-	private JTextField textFieldTelefone;
+	private JTextField textFieldPhone;
 	private JTextField textFieldCadeira;
 	private String name;
 	private JTextField textFieldCpf;
@@ -82,14 +82,14 @@ public class ModifyBarber extends JFrame {
 		labelRg.setBounds(21, 77, 46, 14);
 		contentPane.add(labelRg);
 
-		textFieldTelefone = new JTextField();
-		textFieldTelefone.setColumns(10);
-		textFieldTelefone.setBounds(92, 102, 354, 20);
-		contentPane.add(textFieldTelefone);
+		textFieldPhone = new JTextField();
+		textFieldPhone.setColumns(10);
+		textFieldPhone.setBounds(92, 102, 354, 20);
+		contentPane.add(textFieldPhone);
 
-		JLabel labelTelefone = new JLabel("Telefone:");
-		labelTelefone.setBounds(21, 108, 61, 14);
-		contentPane.add(labelTelefone);
+		JLabel labelPhone = new JLabel("Phone:");
+		labelPhone.setBounds(21, 108, 61, 14);
+		contentPane.add(labelPhone);
 
 		textFieldCadeira = new JTextField();
 		textFieldCadeira.setColumns(10);
@@ -112,7 +112,7 @@ public class ModifyBarber extends JFrame {
 				textFieldNome.setText(rs.getString("name"));
 				textFieldCpf.setText(rs.getString("cpf"));
 				textFieldRg.setText(rs.getString("rg"));
-				textFieldTelefone.setText(rs.getString("telefone"));
+				textFieldPhone.setText(rs.getString("telefone"));
 				textFieldCadeira.setText(rs.getString("cadeira"));
 			}
 			name = textFieldCpf.getText();
@@ -130,7 +130,7 @@ public class ModifyBarber extends JFrame {
 					barber.setNome(textFieldNome.getText());
 					barber.setCpf(textFieldCpf.getText());
 					barber.setRg(textFieldRg.getText());
-					barber.setTelefone(textFieldTelefone.getText());
+					barber.setPhone(textFieldPhone.getText());
 					barber.setCadeira(textFieldCadeira.getText());
 
 					BarberController barberController = BarberController
@@ -161,7 +161,7 @@ public class ModifyBarber extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				textFieldNome.setText("");
 				textFieldRg.setText("");
-				textFieldTelefone.setText("");
+				textFieldPhone.setText("");
 				textFieldCadeira.setText("");
 			}
 		});

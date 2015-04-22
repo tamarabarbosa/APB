@@ -22,7 +22,7 @@ public class BarberControllerTest {
 		try {
 			barber.setNome("Alessandro");
 			barber.setRg("418757896");
-			barber.setTelefone("3389-9085");
+			barber.setPhone("3389-9085");
 			barber.setCpf("02919594150");
 			barber.setCadeira("5");
 		} catch (NullPointerException e) {

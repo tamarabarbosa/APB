@@ -29,8 +29,8 @@ public class Barber {
 	private final String EMPTY_CPF = "CPF em Branco";
 	private final String EMPTY_RG = "RG em Branco";
 	private final String INVALID_RG = "RG Inválido";
-	private final String INVALID_PHONE = "Telefone Inválido";
-	private final String EMPTY_PHONE = "Telefone em Branco";
+	private final String INVALID_PHONE = "Phone Inválido";
+	private final String EMPTY_PHONE = "Phone em Branco";
 	private final String INVALID_CHAIR = "Cadeira Inválida";
 	private final String EMPTY_CHAIR = "Campo Cadeira em Branco";
 
@@ -232,7 +232,7 @@ public class Barber {
 
 	/**
 	 * Set the phone number of the barber in system, in case of the field
-	 * "Telefone" isn't filled the method return an warning while the user
+	 * "Phone" isn't filled the method return an warning while the user
 	 * doesn't fill correctly.
 	 *
 	 * @param phoneNumber

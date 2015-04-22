@@ -13,8 +13,8 @@ import dao.PhonebookDAO;
 
 public class PhonebookDAOTest {
 
-	Phonebook contato = new Phonebook();
-	Phonebook contato2 = new Phonebook();
+	Phonebook contact = new Phonebook();
+	Phonebook contact2 = new Phonebook();
 	PhonebookDAO phonebookDAO = PhonebookDAO.getInstance();
 
 	@Test
@@ -25,7 +25,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void insertDePhonebookDAODeveCadastrarUmContato() {
 		try {
-			assertTrue(phonebookDAO.insert(contato));
+			assertTrue(phonebookDAO.insert(contact));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -34,7 +34,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void deleteDePhonebookDAODeveEnviarUmPhonebook() {
 		try {
-			assertTrue(phonebookDAO.delete(contato));
+			assertTrue(phonebookDAO.delete(contact));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -43,7 +43,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void changeDePhonebookDAODeveEnviarUmContato() {
 		try {
-			assertTrue(phonebookDAO.change(contato.getNome(),contato, contato2));
+			assertTrue(phonebookDAO.change(contact.getNome(),contact, contact2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,7 +70,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void changeDePhonebookDAOPassandoUmContatoNulo() {
 		try {
-			assertFalse(phonebookDAO.change(contato.getNome(),contato, null));
+			assertFalse(phonebookDAO.change(contact.getNome(),contact, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +79,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void changeDePhonebookDAOPassandoUmPhonebookAleradoNulo() {
 		try {
-			assertFalse(phonebookDAO.change(contato.getNome(), null, contato));
+			assertFalse(phonebookDAO.change(contact.getNome(), null, contact));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -88,7 +88,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void mostrarContatosPhonebookDAODeveMostrarContato() {
 		try {
-			ResultSet rs = phonebookDAO.mostrarContatosCadastrados(contato);
+			ResultSet rs = phonebookDAO.mostrarContatosCadastrados(contact);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -102,7 +102,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void pesquisaPorNomeDePhonebookDAODeveMostrarContato() {
 		try {
-			ResultSet rs = phonebookDAO.searchByNome(contato);
+			ResultSet rs = phonebookDAO.searchByNome(contact);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -114,9 +114,9 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void searchByTelefoneDeBarberDAODeveMostrarBarbers() {
+	public void searchByPhoneDeBarberDAODeveMostrarBarbers() {
 		try {
-			ResultSet rs = phonebookDAO.searchByTelefone(contato);
+			ResultSet rs = phonebookDAO.searchByPhone(contact);
 
 			while (rs.next()) {
 				String name = rs.getString("name");

@@ -13,64 +13,64 @@ import model.Phonebook;
 
 public class PhonebookTeste {
 
-	Phonebook contato = new Phonebook();
+	Phonebook contact = new Phonebook();
 
 	@Before
 	public void setUp(){
 		try {
-			contato.setNome("Alessandro");
-			contato.setTelefone("4568-9856");
+			contact.setNome("Alessandro");
+			contact.setPhone("4568-9856");
 		} catch (BarberException e1) {
 			e1.printStackTrace();
 		}
-		contato.setDescricao("ASDAS");
+		contact.setDescricao("ASDAS");
 	}
 
 	@Test
 	public void contrutorDePhonebookDeveFuncionar(){
-		Phonebook contato = new Phonebook("Alessandro", "6589-5689", "aaaa");
-		assertEquals("Alessandro", contato.getNome());
-		assertEquals("6589-5689", contato.getTelefone());
-		assertEquals("aaaa", contato.getDescricao());
+		Phonebook contact = new Phonebook("Alessandro", "6589-5689", "aaaa");
+		assertEquals("Alessandro", contact.getNome());
+		assertEquals("6589-5689", contact.getPhone());
+		assertEquals("aaaa", contact.getDescricao());
 	}
 
 	@Test
 	public void getterDeNomeDeveFuncionar(){
-		assertEquals("Alessandro", contato.getNome());
+		assertEquals("Alessandro", contact.getNome());
 	}
 
 	@Test
-	public void getterDeTelefoneDeveFuncionar(){
-		assertEquals("4568-9856", contato.getTelefone());
+	public void getterDePhoneDeveFuncionar(){
+		assertEquals("4568-9856", contact.getPhone());
 	}
 
 	@Test
 	public void getterDeDescricaoDeveFuncionar(){
-		assertEquals("ASDAS", contato.getDescricao());
+		assertEquals("ASDAS", contact.getDescricao());
 	}
 
 
 	@Test(expected = BarberException.class)
 	public void nameDoBarberNaoPodePassarQuandoEmBranco() throws BarberException{
-		contato.setNome("");
+		contact.setNome("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
 	@Test(expected = BarberException.class)
 	public void telefoneDoBarberNaoPodePassarQuandoEmBranco() throws BarberException{
-		contato.setTelefone("");
+		contact.setPhone("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
 	@Test(expected = BarberException.class)
 	public void nameDoBarberNaoPodePassarQuandoForaDeFormato() throws BarberException{
-		contato.setNome("ASDAS!!");
+		contact.setNome("ASDAS!!");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
 	@Test(expected = BarberException.class)
 	public void telefoneDoBarberNaoPodePassarQuandoForaDeFormato() throws BarberException{
-		contato.setTelefone("45645aa-a54654");
+		contact.setPhone("45645aa-a54654");
 		Assert.fail("Deve lançar uma exceção");
 	}
 

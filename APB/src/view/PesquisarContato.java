@@ -61,7 +61,7 @@ public class PesquisarContato extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Nome", "Telefone", "Descrição" });
+				new String[] { "Nome", "Phone", "Descrição" });
 		final JTable table = new JTable(modelo);
 
 		table.getColumnModel().getColumn(0).setResizable(false);
@@ -88,11 +88,11 @@ public class PesquisarContato extends JFrame {
 						modelo.removeRow(i);
 					}
 
-					Phonebook contato = new Phonebook();
+					Phonebook contact = new Phonebook();
 					PhonebookController phonebookController = PhonebookController
 							.getInstance();
-					contato.setNome(textField.getText());
-					ResultSet rs = phonebookController.searchByNome(contato);
+					contact.setNome(textField.getText());
+					ResultSet rs = phonebookController.searchByNome(contact);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
@@ -111,8 +111,8 @@ public class PesquisarContato extends JFrame {
 		btnPesquisarNome.setBounds(82, 168, 160, 23);
 		contentPane.add(btnPesquisarNome);
 
-		JButton btnPesquisarTelefone = new JButton("Pesquisar Telefone");
-		btnPesquisarTelefone.addMouseListener(new MouseAdapter() {
+		JButton btnPesquisarPhone = new JButton("Pesquisar Phone");
+		btnPesquisarPhone.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 
@@ -122,12 +122,12 @@ public class PesquisarContato extends JFrame {
 						modelo.removeRow(i);
 					}
 
-					Phonebook contato = new Phonebook();
+					Phonebook contact = new Phonebook();
 					PhonebookController phonebookController = PhonebookController
 							.getInstance();
-					contato.setTelefone(textField.getText());
+					contact.setPhone(textField.getText());
 					ResultSet rs = phonebookController
-							.searchByTelefone(contato);
+							.searchByPhone(contact);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
@@ -146,8 +146,8 @@ public class PesquisarContato extends JFrame {
 				}
 			}
 		});
-		btnPesquisarTelefone.setBounds(264, 168, 160, 23);
-		contentPane.add(btnPesquisarTelefone);
+		btnPesquisarPhone.setBounds(264, 168, 160, 23);
+		contentPane.add(btnPesquisarPhone);
 
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addMouseListener(new MouseAdapter() {
@@ -162,7 +162,7 @@ public class PesquisarContato extends JFrame {
 					frame.setLocationRelativeTo(null);
 
 				} catch (ArrayIndexOutOfBoundsException e1) {
-					mostrarMensagemDeErro("Selecione um contato para change");
+					mostrarMensagemDeErro("Selecione um contact para change");
 				}
 			}
 		});
@@ -181,7 +181,7 @@ public class PesquisarContato extends JFrame {
 							table.getSelectedRow(), 1);
 					Phonebook phonebook = new Phonebook();
 					phonebook.setNome(name);
-					phonebook.setTelefone(telefone);
+					phonebook.setPhone(telefone);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + name + " da lista?");
@@ -197,7 +197,7 @@ public class PesquisarContato extends JFrame {
 						frame.setLocationRelativeTo(null);
 					}
 				} catch (ArrayIndexOutOfBoundsException e1) {
-					mostrarMensagemDeErro("Selecione um contato para remover");
+					mostrarMensagemDeErro("Selecione um contact para remover");
 				} catch (BarberException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (SQLException e1) {

@@ -1,3 +1,10 @@
+/*
+ * Package: DAO
+ * Class: ServiceTypeDAO.java
+ *
+ * Description: This class is reponsible make a connection to ServiceTypeDAO to database and indicating the type of service done.
+ * atributes and necessary methods to attribute them.
+ */
 package dao;
 
 import java.sql.Connection;

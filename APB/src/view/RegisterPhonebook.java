@@ -52,7 +52,7 @@ public class RegisterPhonebook extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Nome", "Telefone", "Descri\u00E7\u00E3o" }) {
+				new String[] { "Nome", "Phone", "Descri\u00E7\u00E3o" }) {
 			boolean[] columnEditables = new boolean[] { false, false, false };
 
 			// Method that initialize the frame
@@ -70,8 +70,8 @@ public class RegisterPhonebook extends JFrame {
 		try {
 			ContactController phonebookController = ContactController
 					.getInstance();
-			Phonebook contato = new Phonebook();
-			ResultSet rs = phonebookController.showContactsRegistered(contato);
+			Phonebook contact = new Phonebook();
+			ResultSet rs = phonebookController.showContactsRegistered(contact);
 			while (rs.next()) {
 				String[] dados = new String[3];
 				dados[0] = rs.getString("name");

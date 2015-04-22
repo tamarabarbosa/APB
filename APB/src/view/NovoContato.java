@@ -26,7 +26,7 @@ public class NovoContato extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
-	private JTextField textFieldTelefone;
+	private JTextField textFieldPhone;
 	private JTextField textFieldDescricao;
 
 	public static void main(String[] args) {
@@ -63,7 +63,7 @@ public class NovoContato extends JFrame {
 				try {
 					Phonebook phonebook = new Phonebook();
 					phonebook.setNome(textFieldNome.getText());
-					phonebook.setTelefone(textFieldTelefone.getText());
+					phonebook.setPhone(textFieldPhone.getText());
 					phonebook.setDescricao(textFieldDescricao.getText());
 
 					PhonebookController phonebookController = PhonebookController.getInstance();
@@ -74,7 +74,7 @@ public class NovoContato extends JFrame {
 							+ " foi adicionado com sucesso");
 
 					textFieldNome.setText("");
-					textFieldTelefone.setText("");
+					textFieldPhone.setText("");
 					textFieldDescricao.setText("");
 
 					dispose();
@@ -113,7 +113,7 @@ public class NovoContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				textFieldNome.setText("");
-				textFieldTelefone.setText("");
+				textFieldPhone.setText("");
 				textFieldDescricao.setText("");
 			}
 		});
@@ -126,10 +126,10 @@ public class NovoContato extends JFrame {
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
-		textFieldTelefone = new JFormattedTextField(mascraFormatTel);
-		textFieldTelefone.setBounds(85, 67, 327, 20);
-		contentPane.add(textFieldTelefone);
-		textFieldTelefone.setColumns(10);
+		textFieldPhone = new JFormattedTextField(mascraFormatTel);
+		textFieldPhone.setBounds(85, 67, 327, 20);
+		contentPane.add(textFieldPhone);
+		textFieldPhone.setColumns(10);
 
 		textFieldDescricao = new JTextField();
 		textFieldDescricao.setBounds(85, 117, 327, 44);
@@ -140,9 +140,9 @@ public class NovoContato extends JFrame {
 		lblNome.setBounds(22, 26, 46, 14);
 		contentPane.add(lblNome);
 
-		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(22, 70, 64, 14);
-		contentPane.add(lblTelefone);
+		JLabel lblPhone = new JLabel("Phone:");
+		lblPhone.setBounds(22, 70, 64, 14);
+		contentPane.add(lblPhone);
 
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricao.setBounds(22, 117, 64, 14);

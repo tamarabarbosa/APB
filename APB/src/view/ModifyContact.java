@@ -24,7 +24,7 @@ public class ModifyContact extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
-	private JTextField textFieldTelefone;
+	private JTextField textFieldPhone;
 	private JTextField textFieldDescricao;
 	private String name;
 
@@ -56,10 +56,10 @@ public class ModifyContact extends JFrame {
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
-		textFieldTelefone = new JTextField();
-		textFieldTelefone.setBounds(83, 53, 341, 20);
-		contentPane.add(textFieldTelefone);
-		textFieldTelefone.setColumns(10);
+		textFieldPhone = new JTextField();
+		textFieldPhone.setBounds(83, 53, 341, 20);
+		contentPane.add(textFieldPhone);
+		textFieldPhone.setColumns(10);
 
 		textFieldDescricao = new JTextField();
 		textFieldDescricao.setBounds(83, 84, 341, 41);
@@ -70,23 +70,23 @@ public class ModifyContact extends JFrame {
 		lblNome.setBounds(10, 25, 46, 14);
 		contentPane.add(lblNome);
 
-		JLabel lblTelefone = new JLabel("Telefone:");
-		lblTelefone.setBounds(10, 56, 46, 14);
-		contentPane.add(lblTelefone);
+		JLabel lblPhone = new JLabel("Phone:");
+		lblPhone.setBounds(10, 56, 46, 14);
+		contentPane.add(lblPhone);
 
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricao.setBounds(10, 97, 63, 14);
 		contentPane.add(lblDescricao);
 
 		try {
-			Phonebook contato = new Phonebook();
+			Phonebook contact = new Phonebook();
 			PhonebookController phonebookController = PhonebookController.getInstance();
-			contato.setNome(Phonebook.getTempNome());
-			ResultSet rs = phonebookController.searchByNome(contato);
+			contact.setNome(Phonebook.getTempNome());
+			ResultSet rs = phonebookController.searchByNome(contact);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));
-				textFieldTelefone.setText(rs.getString("telefone"));
+				textFieldPhone.setText(rs.getString("telefone"));
 				textFieldDescricao.setText(rs.getString("descricao"));
 			}
 			name = textFieldNome.getText();
@@ -104,7 +104,7 @@ public class ModifyContact extends JFrame {
 				try {
 					Phonebook phonebook = new Phonebook();
 					phonebook.setNome(textFieldNome.getText());
-					phonebook.setTelefone(textFieldTelefone.getText());
+					phonebook.setPhone(textFieldPhone.getText());
 					phonebook.setDescricao(textFieldDescricao.getText());
 
 					PhonebookController PhonebookController = control.PhonebookController

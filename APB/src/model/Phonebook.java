@@ -24,8 +24,8 @@ public class Phonebook {
 	// Declaration of the constants along the class
 	private final String INVALID_NAME = "Nome Inválido";
 	private final String EMPTY_NAME = "Nome em Branco";
-	private final String INVALID_PHONE = "Telefone Inválido";
-	private final String EMPTY_PHONE = "Telefone em Branco";
+	private final String INVALID_PHONE = "Phone Inválido";
+	private final String EMPTY_PHONE = "Phone em Branco";
 
 	/**
 	 * Constructor.

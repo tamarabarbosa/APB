@@ -60,7 +60,7 @@ public class RegisterBarber extends JFrame {
 		contentPane.add(scrollPane);
 
 		final DefaultTableModel modelo = new DefaultTableModel(null,
-				new String[] { "Nome", "CPF", "RG", "Telefone", "Cadeira" });
+				new String[] { "Nome", "CPF", "RG", "Phone", "Cadeira" });
 		final JTable table = new JTable(modelo);
 
 		try {
