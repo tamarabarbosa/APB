@@ -40,7 +40,7 @@ public class ReceiptDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorDataEBArbeiroDAODeveMostrarUmRecibo() {
+	public void searchByDataEBArbeiroDAODeveMostrarUmRecibo() {
 		try {
 			ReciboDAO reciboDAO = ReciboDAO.getInstance();
 			ResultSet rs = reciboDAO.pesquisarJobsDoBarber(

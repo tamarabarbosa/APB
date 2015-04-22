@@ -106,7 +106,7 @@ public class ModifyBarber extends JFrame {
 					.getInstance();
 			barber.setNome(Barber.getTempNome());
 
-			ResultSet rs = barberController.pesquisarPorNome(barber);
+			ResultSet rs = barberController.searchByNome(barber);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));

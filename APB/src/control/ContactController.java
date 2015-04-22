@@ -71,12 +71,12 @@ public class ContactController {
 
 	// show results by name
 	public ResultSet searchByName(Phonebook contact) throws SQLException {
-		return PhonebookDAO.getInstance().pesquisarPorNome(contact);
+		return PhonebookDAO.getInstance().searchByNome(contact);
 	}
 
 	// show results by phone
 	public ResultSet searchByPhonebook(Phonebook contact) throws SQLException {
-		return PhonebookDAO.getInstance().pesquisarPorTelefone(contact);
+		return PhonebookDAO.getInstance().searchByTelefone(contact);
 	}
 
 }

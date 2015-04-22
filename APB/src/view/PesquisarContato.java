@@ -92,7 +92,7 @@ public class PesquisarContato extends JFrame {
 					PhonebookController phonebookController = PhonebookController
 							.getInstance();
 					contato.setNome(textField.getText());
-					ResultSet rs = phonebookController.pesquisarPorNome(contato);
+					ResultSet rs = phonebookController.searchByNome(contato);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
@@ -127,7 +127,7 @@ public class PesquisarContato extends JFrame {
 							.getInstance();
 					contato.setTelefone(textField.getText());
 					ResultSet rs = phonebookController
-							.pesquisarPorTelefone(contato);
+							.searchByTelefone(contato);
 
 					while (rs.next()) {
 						String[] dados = new String[3];

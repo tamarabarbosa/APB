@@ -41,7 +41,7 @@ public class ReportControllerTest {
 	@Test
 	public void procurarPorJobDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorJob(report);
+		ResultSet rs = relatorioController.searchByJob(report);
 
 		while(rs.next());
 	}
@@ -49,7 +49,7 @@ public class ReportControllerTest {
 	@Test
 	public void procurarPorDataDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorData(report);
+		ResultSet rs = relatorioController.searchByData(report);
 
 		while(rs.next());
 	}
@@ -57,7 +57,7 @@ public class ReportControllerTest {
 	@Test
 	public void procurarPorBarberEJobDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorBarberEJob(report);
+		ResultSet rs = relatorioController.searchByBarberEJob(report);
 
 		while(rs.next());
 	}
@@ -65,7 +65,7 @@ public class ReportControllerTest {
 	@Test
 	public void procurarPorDataBarberEJobDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataBarberEJob(report);
+		ResultSet rs = relatorioController.searchByDataBarberEJob(report);
 
 		while(rs.next());
 	}
@@ -73,7 +73,7 @@ public class ReportControllerTest {
 	@Test
 	public void procurarPorDataEBarberDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataEBarber(report);
+		ResultSet rs = relatorioController.searchByDataEBarber(report);
 
 		while(rs.next());
 	}
@@ -81,7 +81,7 @@ public class ReportControllerTest {
 	@Test
 	public void procurarPorDataEJobDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorDataEJob(report);
+		ResultSet rs = relatorioController.searchByDataEJob(report);
 
 		while(rs.next());
 	}
@@ -89,7 +89,7 @@ public class ReportControllerTest {
 	@Test
 	public void procurarPorBarberDeRelatorioControllerDeveMostrarUmRelatorio() throws SQLException {
 		RelatorioController relatorioController = new RelatorioController();
-		ResultSet rs = relatorioController.pesquisarPorBarber(report);
+		ResultSet rs = relatorioController.searchByBarber(report);
 
 		while(rs.next());
 	}

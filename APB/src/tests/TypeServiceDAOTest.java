@@ -100,9 +100,9 @@ public class TypeServiceDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorNomeDeTipoJobDAODeveMostrarJob() {
+	public void searchByNomeDeTipoJobDAODeveMostrarJob() {
 		try {
-			ResultSet rs = jobDAO.pesquisarPorNome(typejob);
+			ResultSet rs = jobDAO.searchByNome(typejob);
 
 			while (rs.next()) {
 				String name = rs.getString("name");

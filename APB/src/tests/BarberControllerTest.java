@@ -106,8 +106,8 @@ public class BarberControllerTest {
 	}
 
 	@Test
-	public void pesquisarPorNomeDeBarberControllerDeveMostrarUmBarber() throws SQLException {
-		ResultSet rs = barberController.pesquisarPorNome(barber);
+	public void searchByNomeDeBarberControllerDeveMostrarUmBarber() throws SQLException {
+		ResultSet rs = barberController.searchByNome(barber);
 		while(rs.next());
 	}
 }

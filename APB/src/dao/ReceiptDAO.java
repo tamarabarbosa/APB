@@ -1,3 +1,11 @@
+/*
+ * Package: DAO
+ * Class: ReceiptDAO.java
+ *
+ * Description: This class is reponsible make a connection to Receipt to database through FactoryConnection
+ * atributes and necessary methods to attribute them.
+ */
+
 package dao;
 
 import java.sql.Connection;

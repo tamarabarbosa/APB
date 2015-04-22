@@ -102,7 +102,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void pesquisaPorNomeDePhonebookDAODeveMostrarContato() {
 		try {
-			ResultSet rs = phonebookDAO.pesquisarPorNome(contato);
+			ResultSet rs = phonebookDAO.searchByNome(contato);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -114,9 +114,9 @@ public class PhonebookDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorTelefoneDeBarberDAODeveMostrarBarbers() {
+	public void searchByTelefoneDeBarberDAODeveMostrarBarbers() {
 		try {
-			ResultSet rs = phonebookDAO.pesquisarPorTelefone(contato);
+			ResultSet rs = phonebookDAO.searchByTelefone(contato);
 
 			while (rs.next()) {
 				String name = rs.getString("name");

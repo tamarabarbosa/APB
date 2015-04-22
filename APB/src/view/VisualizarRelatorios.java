@@ -95,7 +95,7 @@ public class VisualizarRelatorios extends JFrame {
 
 			report.setBarber(PesquisarRelatorio.barber);
 
-			ResultSet rs = relatorioController.pesquisarPorBarber(report);
+			ResultSet rs = relatorioController.searchByBarber(report);
 
 			while (rs.next()) {
 
@@ -143,7 +143,7 @@ public class VisualizarRelatorios extends JFrame {
 			report.setServiceType(PesquisarRelatorio.job);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorBarberEJob(report);
+					.searchByBarberEJob(report);
 
 			while (rs.next()) {
 
@@ -193,7 +193,7 @@ public class VisualizarRelatorios extends JFrame {
 			report.setInitialDate(PesquisarRelatorio.dataInicial);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataEBarber(report);
+					.searchByDataEBarber(report);
 
 			while (rs.next()) {
 
@@ -244,7 +244,7 @@ public class VisualizarRelatorios extends JFrame {
 			report.setInitialDate(PesquisarRelatorio.dataInicial);
 
 			ResultSet rs = relatorioController
-					.pesquisarPorDataBarberEJob(report);
+					.searchByDataBarberEJob(report);
 
 			while (rs.next()) {
 
@@ -292,7 +292,7 @@ public class VisualizarRelatorios extends JFrame {
 
 			report.setServiceType(PesquisarRelatorio.job);
 
-			ResultSet rs = relatorioController.pesquisarPorJob(report);
+			ResultSet rs = relatorioController.searchByJob(report);
 
 			while (rs.next()) {
 
@@ -341,7 +341,7 @@ public class VisualizarRelatorios extends JFrame {
 			report.setEndDate(PesquisarRelatorio.dataFinal);
 			report.setInitialDate(PesquisarRelatorio.dataInicial);
 
-			ResultSet rs = relatorioController.pesquisarPorDataEJob(report);
+			ResultSet rs = relatorioController.searchByDataEJob(report);
 
 			while (rs.next()) {
 
@@ -389,7 +389,7 @@ public class VisualizarRelatorios extends JFrame {
 			report.setEndDate(PesquisarRelatorio.dataFinal);
 			report.setInitialDate(PesquisarRelatorio.dataInicial);
 
-			ResultSet rs = relatorioController.pesquisarPorData(report);
+			ResultSet rs = relatorioController.searchByData(report);
 
 			while (rs.next()) {
 
@@ -570,21 +570,21 @@ public class VisualizarRelatorios extends JFrame {
 				report.setBarber(PesquisarRelatorio.barber);
 
 				rs = ReportController.getInstance()
-						.pesquisarPorBarber(report);
+						.searchByBarber(report);
 			}
 			if (PesquisarRelatorio.typeBusca == 2) {
 				report.setBarber(PesquisarRelatorio.barber);
 				report.setServiceType(PesquisarRelatorio.job);
 
 				rs = ReportController.getInstance()
-						.pesquisarPorBarberEJob(report);
+						.searchByBarberEJob(report);
 			}
 			if (PesquisarRelatorio.typeBusca == 3) {
 				report.setBarber(PesquisarRelatorio.barber);
 				report.setEndDate(PesquisarRelatorio.dataFinal);
 				report.setInitialDate(PesquisarRelatorio.dataInicial);
 
-				rs = ReportController.getInstance().pesquisarPorDataEBarber(
+				rs = ReportController.getInstance().searchByDataEBarber(
 						report);
 			}
 			if (PesquisarRelatorio.typeBusca == 4) {
@@ -594,26 +594,26 @@ public class VisualizarRelatorios extends JFrame {
 				report.setInitialDate(PesquisarRelatorio.dataInicial);
 
 				rs = ReportController.getInstance()
-						.pesquisarPorDataBarberEJob(report);
+						.searchByDataBarberEJob(report);
 			}
 			if (PesquisarRelatorio.typeBusca == 5) {
 				report.setServiceType(PesquisarRelatorio.job);
 
-				rs = ReportController.getInstance().pesquisarPorJob(report);
+				rs = ReportController.getInstance().searchByJob(report);
 			}
 			if (PesquisarRelatorio.typeBusca == 6) {
 				report.setServiceType(PesquisarRelatorio.job);
 				report.setEndDate(PesquisarRelatorio.dataFinal);
 				report.setInitialDate(PesquisarRelatorio.dataInicial);
 
-				rs = ReportController.getInstance().pesquisarPorDataEJob(
+				rs = ReportController.getInstance().searchByDataEJob(
 						report);
 			}
 			if (PesquisarRelatorio.typeBusca == 7) {
 				report.setEndDate(PesquisarRelatorio.dataFinal);
 				report.setInitialDate(PesquisarRelatorio.dataInicial);
 
-				rs = ReportController.getInstance().pesquisarPorData(report);
+				rs = ReportController.getInstance().searchByData(report);
 			}
 		}
 

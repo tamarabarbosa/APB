@@ -94,8 +94,8 @@ public class TypeServiceControllerTest {
 	}
 
 	@Test
-	public void pesquisarPorNomeDeTipoJobControllerDeveMostrarUmJob() throws SQLException {
-		ResultSet rs = jobController.pesquisarPorNome(job);
+	public void searchByNomeDeTipoJobControllerDeveMostrarUmJob() throws SQLException {
+		ResultSet rs = jobController.searchByNome(job);
 		while(rs.next());
 	}
 

@@ -82,7 +82,7 @@ public class ModifyContact extends JFrame {
 			Phonebook contato = new Phonebook();
 			PhonebookController phonebookController = PhonebookController.getInstance();
 			contato.setNome(Phonebook.getTempNome());
-			ResultSet rs = phonebookController.pesquisarPorNome(contato);
+			ResultSet rs = phonebookController.searchByNome(contato);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));

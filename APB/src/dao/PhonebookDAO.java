@@ -1,3 +1,11 @@
+/*
+ * Package: DAO
+ * Class: PhonebookDAO.java
+ *
+ * Description: This class is reponsible make a connection to Phonebook to database
+ * atributes and necessary methods to attribute them.
+ */
+
 package dao;
 
 import java.sql.Connection;
@@ -74,7 +82,7 @@ public class PhonebookDAO {
 		return rs;
 	}
 
-	public ResultSet pesquisarPorNome(Phonebook contato) throws SQLException {
+	public ResultSet searchByNome(Phonebook contato) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM Phonebook WHERE " + "name = '"
@@ -84,7 +92,7 @@ public class PhonebookDAO {
 		return rs;
 	}
 
-	public ResultSet pesquisarPorTelefone(Phonebook contato)
+	public ResultSet searchByTelefone(Phonebook contato)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection

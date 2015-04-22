@@ -42,7 +42,7 @@ public class ReportDAOTest {
 	public void procurarPorDataDeRelatorioDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorData(report);
+			ResultSet rs = relatorioDAO.searchByData(report);
 
 			while(rs.next()) {
 				String name = rs.getString("name");
@@ -55,10 +55,10 @@ public class ReportDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorDataEJobDAODeveMostrarUmRelatorio() {
+	public void searchByDataEJobDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorDataEJob(report);
+			ResultSet rs = relatorioDAO.searchByDataEJob(report);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -71,10 +71,10 @@ public class ReportDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorBArbeiroDAODeveMostrarUmRelatorio() {
+	public void searchByBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorBarber(report);
+			ResultSet rs = relatorioDAO.searchByBarber(report);
 
 			while(rs.next()) {
 				String name = rs.getString("name");
@@ -87,10 +87,10 @@ public class ReportDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorBArbeiroEJobDAODeveMostrarUmRelatorio() {
+	public void searchByBArbeiroEJobDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorBarberEJob(report);
+			ResultSet rs = relatorioDAO.searchByBarberEJob(report);
 
 			while(rs.next()) {
 				String name = rs.getString("name");
@@ -103,10 +103,10 @@ public class ReportDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorJobDAODeveMostrarUmRelatorio() {
+	public void searchByJobDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorJob(report);
+			ResultSet rs = relatorioDAO.searchByJob(report);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -119,10 +119,10 @@ public class ReportDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorDataEBArbeiroDAODeveMostrarUmRelatorio() {
+	public void searchByDataEBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorDataEBarber(report);
+			ResultSet rs = relatorioDAO.searchByDataEBarber(report);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -135,10 +135,10 @@ public class ReportDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorDataBarberEJobDAODeveMostrarUmRelatorio(){
+	public void searchByDataBarberEJobDAODeveMostrarUmRelatorio(){
 		try {
 			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-			ResultSet rs = relatorioDAO.pesquisarPorDataBarberEJob(report);
+			ResultSet rs = relatorioDAO.searchByDataBarberEJob(report);
 
 			while (rs.next()) {
 				String name = rs.getString("name");

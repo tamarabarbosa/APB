@@ -88,7 +88,7 @@ public class ContactDAO {
 	}
 
 	// this method search by name in the schedule
-	public ResultSet pesquisarPorNome(Phonebook contato) throws SQLException {
+	public ResultSet searchByNome(Phonebook contato) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM phonebook WHERE " + "name = '"
@@ -99,7 +99,7 @@ public class ContactDAO {
 	}
 
 	// this method search by phone in the schedule
-	public ResultSet pesquisarPorTelefone(Phonebook contato)
+	public ResultSet searchByTelefone(Phonebook contato)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection

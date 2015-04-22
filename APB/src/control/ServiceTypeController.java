@@ -76,8 +76,8 @@ public class ServiceTypeController {
 	}
 
 	// Search for an specific service type name
-	public static ResultSet pesquisarPorNome(ServiceType job) throws SQLException {
-		return ServiceTypeDAO.getInstance().pesquisarPorNome(job);
+	public static ResultSet searchByNome(ServiceType job) throws SQLException {
+		return ServiceTypeDAO.getInstance().searchByNome(job);
 	}
 
 }

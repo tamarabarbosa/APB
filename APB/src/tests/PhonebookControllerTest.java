@@ -97,14 +97,14 @@ public class PhonebookControllerTest {
 	}
 
 	@Test
-	public void pesquisarPorNomeDePhonebookControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = phonebookController.pesquisarPorNome(contato);
+	public void searchByNomeDePhonebookControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = phonebookController.searchByNome(contato);
 		while(rs.next());
 	}
 
 	@Test
-	public void pesquisarPorTelefoneDePhonebookControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = phonebookController.pesquisarPorTelefone(contato);
+	public void searchByTelefoneDePhonebookControllerDeveMostrarUmContato() throws SQLException {
+		ResultSet rs = phonebookController.searchByTelefone(contato);
 		while(rs.next());
 	}
 

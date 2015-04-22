@@ -73,7 +73,7 @@ public class ModifyServiceType extends JFrame {
 			ServiceTypeController jobController = ServiceTypeController
 					.getInstance();
 			typejob.setNameServiceType(ServiceType.getTempName());
-			ResultSet rs = ServiceTypeController.pesquisarPorNome(typejob);
+			ResultSet rs = ServiceTypeController.searchByNome(typejob);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));

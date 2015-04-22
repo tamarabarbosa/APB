@@ -170,9 +170,9 @@ public class BarberDAOTest {
 	}
 
 	@Test
-	public void pesquisarPorNomeDeBarberDAODeveMostrarBarbers() {
+	public void searchByNomeDeBarberDAODeveMostrarBarbers() {
 		try {
-			ResultSet rs = barberDAO.pesquisarPorNome(barber);
+			ResultSet rs = barberDAO.searchByNome(barber);
 
 			while (rs.next()) {
 				String name = rs.getString("name");

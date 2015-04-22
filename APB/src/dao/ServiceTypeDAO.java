@@ -72,7 +72,7 @@ public class ServiceTypeDAO {
 		return rs;
 	}
 	//this method search by name type of service
-	public ResultSet pesquisarPorNome(ServiceType job) throws SQLException {
+	public ResultSet searchByNome(ServiceType job) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM typejob WHERE "
