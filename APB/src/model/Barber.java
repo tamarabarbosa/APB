@@ -29,10 +29,10 @@ public class Barber {
 	private final String EMPTY_CPF = "CPF em Branco";
 	private final String EMPTY_RG = "RG em Branco";
 	private final String INVALID_RG = "RG Inválido";
-	private final String INVALID_PHONE = "Phone Inválido";
-	private final String EMPTY_PHONE = "Phone em Branco";
-	private final String INVALID_CHAIR = "Chair Inválida";
-	private final String EMPTY_CHAIR = "Campo Chair em Branco";
+	private final String INVALID_PHONE = "Telefone Inválido";
+	private final String EMPTY_PHONE = "Telefone em Branco";
+	private final String INVALID_CHAIR = "Cadeira Inválida";
+	private final String EMPTY_CHAIR = "Campo Cadeira em Branco";
 
 	// Constructor of the barber
 	public Barber() {
@@ -182,6 +182,8 @@ public class Barber {
 	 */
 	public void setIr(String cpf) throws BarberException {
 		// Sample of valid IR: 493.751.185-84
+
+		// This block verify if CPF is valid
 		try {
 			if (cpf == null)
 				throw new NullPointerException(EMPTY_CPF);
@@ -189,8 +191,12 @@ public class Barber {
 				throw new AssertionError(EMPTY_CPF);
 			else if (cpf
 					.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
-				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]
-						+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
+				cpf = cpf.split("[\\. | -]")
+				[0] + cpf.split("[\\. | -]")
+				[1] + cpf.split("[\\. | -]")
+				[2] + cpf.split("[\\. | -]")
+				[3];
+
 			if (validateCPF(cpf))
 				this.cpf = cpf;
 			else
@@ -325,7 +331,7 @@ public class Barber {
 			d1 = d1 + (11 - nCount) * digitCPF;
 			d2 = d2 + (12 - nCount) * digitCPF;
 		}
-		;
+
 
 		rest = d1 % 11;
 
