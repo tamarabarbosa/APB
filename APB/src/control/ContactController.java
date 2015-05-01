@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import dao.PhonebookDAO;
+import model.Contact;
 import model.Phonebook;
 
 public class ContactController {
@@ -22,7 +23,7 @@ public class ContactController {
 	}
 
 	// this method include barber on the phonebook
-	public boolean include(Phonebook phonebook) throws SQLException {
+	public boolean include(Contact phonebook) throws SQLException {
 		if (phonebook == null) {
 			return false;
 		} else {

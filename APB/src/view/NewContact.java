@@ -12,8 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 
-import control.PhonebookController;
+import control.ContactController;
 import exception.BarberException;
+import model.Contact;
 import model.Phonebook;
 
 import java.awt.event.MouseEvent;
@@ -22,7 +23,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 @SuppressWarnings("serial")
-public class NovoContato extends JFrame {
+public class NewContact extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -33,7 +34,7 @@ public class NovoContato extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovoContato frame = new NovoContato();
+					NewContact frame = new NewContact();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +43,7 @@ public class NovoContato extends JFrame {
 		});
 	}
 
-	public NovoContato() throws ParseException {
+	public NewContact() throws ParseException {
 		inicializarComponentes();
 	}
 
@@ -61,13 +62,14 @@ public class NovoContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Phonebook phonebook = new Phonebook();
-					phonebook.setNome(textFieldNome.getText());
-					phonebook.setPhone(textFieldPhone.getText());
-					phonebook.setDescricao(textFieldDescricao.getText());
+					Contact phonebook = new Contact();
+					phonebook.setName(textFieldNome.getText());
+					phonebook.setName(textFieldPhone.getText());
+					phonebook.setDescription(textFieldDescricao.getText());
 
-					PhonebookController phonebookController = PhonebookController.getInstance();
-					phonebookController.insert(phonebook);
+					ContactController phonebookController = ContactController
+							.getInstance();
+					phonebookController.include(phonebook);
 
 					JOptionPane.showMessageDialog(null, "Contato "
 							+ textFieldNome.getText()
@@ -78,7 +80,7 @@ public class NovoContato extends JFrame {
 					textFieldDescricao.setText("");
 
 					dispose();
-					CadastrarPhonebook frame =  new CadastrarPhonebook();
+					RegisterPhonebook frame = new RegisterPhonebook();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 
@@ -99,7 +101,7 @@ public class NovoContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarPhonebook frame = new CadastrarPhonebook();
+				RegisterPhonebook frame = new RegisterPhonebook();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
