@@ -317,31 +317,33 @@ public class Barber {
 
 	// This method verify if the IR was filled correctly
 	private boolean validateCPF(final String cpf) {
-		int d1, d2;
+		int resultDigit1, resultDigit2;
 		int digit1, digit2, rest;
 		int digitCPF;
 		String result;
 
-		d1 = d2 = digit1 = digit2 = rest = 0;
+		resultDigit1 = resultDigit2 = digit1 = digit2 = rest = 0;
 
+		//convert a string to array of integer
 		for (int nCount = 1; nCount < cpf.length() - 1; nCount++) {
 			digitCPF = Integer.valueOf(cpf.substring(nCount - 1, nCount))
 					.intValue();
 
-			d1 = d1 + (11 - nCount) * digitCPF;
-			d2 = d2 + (12 - nCount) * digitCPF;
+			resultDigit1 = resultDigit1 + (11 - nCount) * digitCPF;
+			resultDigit2 = resultDigit2 + (12 - nCount) * digitCPF;
 		}
 
-
-		rest = d1 % 11;
+		//calculate the first number(DIV) of cpf
+		rest = resultDigit1 % 11;
 
 		if (rest < 2)
 			digit1 = 0;
 		else
 			digit1 = 11 - rest;
 
-		d2 += 2 * digit1;
-		rest = (d2 % 11);
+		resultDigit2 += 2 * digit1;
+		//calculate the Second number(DIV) of cpf
+		rest = (resultDigit2 % 11);
 
 		if (rest < 2)
 			digit2 = 0;
