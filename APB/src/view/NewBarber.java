@@ -21,7 +21,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 @SuppressWarnings("serial")
-public class NovoBarber extends JFrame {
+public class NewBarber extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -38,7 +38,7 @@ public class NovoBarber extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovoBarber frame = new NovoBarber();
+					NewBarber frame = new NewBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -48,7 +48,7 @@ public class NovoBarber extends JFrame {
 		});
 	}
 
-	public NovoBarber() throws ParseException {
+	public NewBarber() throws ParseException {
 		inicializarComponentes();
 	}
 
@@ -62,11 +62,8 @@ public class NovoBarber extends JFrame {
 		getContentPane().setLayout(null);
 		contentPane.setLayout(null);
 
-
-
 		MaskFormatter mascraFormatTel = new MaskFormatter("(##)####-####");
 		MaskFormatter mascraFormatCpf = new MaskFormatter("###.###.###-##");
-
 
 		textFieldNome = new JTextField();
 		textFieldNome.setBounds(92, 11, 354, 20);
@@ -108,22 +105,20 @@ public class NovoBarber extends JFrame {
 		lblChair.setBounds(21, 136, 61, 14);
 		contentPane.add(lblChair);
 
-
-
-
 		botaoSalvar = new JButton("Salvar");
 		botaoSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent k) {
 				try {
 					Barber barber = new Barber();
-					barber.setNome(textFieldNome.getText());
-					barber.setCpf(textFieldCpf.getText());
-					barber.setRg(textFieldRg.getText());
-					barber.setPhone(textFieldPhone.getText());
+					barber.setName(textFieldNome.getText());
+					barber.setId(textFieldCpf.getText());
+					barber.setIr(textFieldRg.getText());
+					barber.setPhoneNumber(textFieldPhone.getText());
 					barber.setChair(textFieldChair.getText());
 
-					BarberController barberController = BarberController.getInstance();
+					BarberController barberController = BarberController
+							.getInstance();
 					barberController.insert(barber);
 
 					JOptionPane.showMessageDialog(null, "Barber "
@@ -131,7 +126,7 @@ public class NovoBarber extends JFrame {
 							+ " foi cadastrado com sucesso");
 
 					dispose();
-					CadastrarBarber frame = new CadastrarBarber();
+					RegisterBarber frame = new RegisterBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (BarberException e) {
@@ -169,7 +164,7 @@ public class NovoBarber extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarBarber frame = new CadastrarBarber();
+				RegisterBarber frame = new RegisterBarber();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
