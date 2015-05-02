@@ -10,6 +10,7 @@ package model;
 
 import java.util.Date;
 
+import exception.BarberException;
 import exception.ServiceException;
 import exception.ServiceException;
 
@@ -47,23 +48,58 @@ public class DoneService {
 		this.barberName = barberName;
 	}
 
+	/**
+	 * Get the current Service Name.
+	 *
+	 * @return current ServiceName of service name in appointment book
+	 */
 	public String getServiceName() {
 		return serviceName;
 	}
-
+	
+	/**
+	 * Get the current Barber Name
+	 * 
+	 * @return current name of Barber in appointment book
+	 */
 	public String getBarberName() {
 		return barberName;
 	}
-
+	
+	/**
+	 * Get the current Price
+	 * 
+	 * @return current price of service in appointment book
+	 */
 	public String getPrice() {
 		return price;
 	}
-
+	
+	/**
+	 * Get the Date
+	 * 
+	 * @return current Date of service in appointment book
+	 */
 	public String getDate() {
 		return date;
 	}
 
 	// Service name setter
+	
+	/**
+	 * Set the service name of the service of to search in appointment book, case the
+	 * name doesn't exist or the field setted empty, the method return
+	 * an warning while the user doesn't fill correctly.
+	 *
+	 * @param name
+	 *            is the name of service to be placed into
+	 *            ServiceName.
+	 *
+	 * @exception ServiceException
+	 *                if the field setted empty.
+	 * @exception ServiceException
+	 *                if the service name doesn't exist.
+	 */
 	public void setServiceName(String serviceName) throws ServiceException {
 		if (serviceName == null)
 			throw new NullPointerException(EMPTY_SERVICE_NAME);
@@ -76,6 +112,21 @@ public class DoneService {
 	}
 
 	// Barber name setter
+	/**
+	 * Set the Barber name of to search in appointment book, case the
+	 * Barber name doesn't exist or the field setted empty, the method return
+	 * an warning while the user doesn't fill correctly.
+	 *
+	 * @param barberName
+	 *            is the name of Barber to be placed into
+	 *            BarberName.
+	 *
+	 * @exception ServiceException
+	 *                if the field setted empty.
+	 * @exception ServiceException
+	 *                if the barber name doesn't exist.
+	 */
+	
 	public void setBarberName(String barberName) throws ServiceException {
 		if (barberName == null)
 			throw new NullPointerException(EMPTY_BARBER);
