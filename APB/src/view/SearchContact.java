@@ -13,9 +13,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.PhonebookController;
+import control.ContactController;
 import exception.BarberException;
-import model.Phonebook;
+import model.Contact;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,7 +25,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 @SuppressWarnings("serial")
-public class PesquisarContato extends JFrame {
+public class SearchContact extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
@@ -34,7 +34,7 @@ public class PesquisarContato extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PesquisarContato frame = new PesquisarContato();
+					SearchContact frame = new SearchContact();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class PesquisarContato extends JFrame {
 		});
 	}
 
-	public PesquisarContato() {
+	public SearchContact() {
 		inicializarComponentes();
 	}
 
@@ -84,15 +84,15 @@ public class PesquisarContato extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 
-					for (int i = 0; i< modelo.getRowCount(); i++){
+					for (int i = 0; i < modelo.getRowCount(); i++) {
 						modelo.removeRow(i);
 					}
 
-					Phonebook contact = new Phonebook();
-					PhonebookController phonebookController = PhonebookController
+					Contact contact = new Contact();
+					ContactController ContactController = control.ContactController
 							.getInstance();
-					contact.setNome(textField.getText());
-					ResultSet rs = phonebookController.searchByNome(contact);
+					contact.setName(textField.getText());
+					ResultSet rs = ContactController.searchByName(contact);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
@@ -118,16 +118,15 @@ public class PesquisarContato extends JFrame {
 
 				try {
 
-					for (int i = 0; i< modelo.getRowCount(); i++){
+					for (int i = 0; i < modelo.getRowCount(); i++) {
 						modelo.removeRow(i);
 					}
 
-					Phonebook contact = new Phonebook();
-					PhonebookController phonebookController = PhonebookController
+					Contact contact = new Contact();
+					ContactController ContactController = control.ContactController
 							.getInstance();
-					contact.setPhone(textField.getText());
-					ResultSet rs = phonebookController
-							.searchByPhone(contact);
+					contact.setPhoneNumber(textField.getText());
+					ResultSet rs = ContactController.searchByPhonebook(contact);
 
 					while (rs.next()) {
 						String[] dados = new String[3];
@@ -154,10 +153,10 @@ public class PesquisarContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					Phonebook.setTempNome(modelo.getValueAt(
+					Contact.setTempName(modelo.getValueAt(
 							table.getSelectedRow(), 0).toString());
 					dispose();
-					AlterarContato frame = new AlterarContato();
+					ModifyContact frame = new ModifyContact();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 
@@ -179,20 +178,20 @@ public class PesquisarContato extends JFrame {
 							table.getSelectedRow(), 0);
 					String telefone = (String) table.getValueAt(
 							table.getSelectedRow(), 1);
-					Phonebook phonebook = new Phonebook();
-					phonebook.setNome(name);
-					phonebook.setPhone(telefone);
+					Contact Contact = new Contact();
+					Contact.setName(name);
+					Contact.setPhoneNumber(telefone);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + name + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						PhonebookController phonebookController = PhonebookController
+						ContactController ContactController = control.ContactController
 								.getInstance();
-						phonebookController.delete(phonebook);
+						ContactController.delete(Contact);
 
 						dispose();
-						PesquisarContato frame = new PesquisarContato();
+						SearchContact frame = new SearchContact();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
@@ -213,7 +212,7 @@ public class PesquisarContato extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarPhonebook frame = new CadastrarPhonebook();
+				RegisterPhonebook frame = new RegisterPhonebook();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

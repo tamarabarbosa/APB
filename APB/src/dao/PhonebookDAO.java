@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.Contact;
 import model.Phonebook;
 import dao.FactoryConnection;
 
@@ -29,7 +30,7 @@ public class PhonebookDAO {
 		return instance;
 	}
 
-	public boolean insert(Phonebook phonebook) throws SQLException {
+	public boolean insert(Contact phonebook) throws SQLException {
 		if (phonebook == null)
 			return false;
 
@@ -55,7 +56,7 @@ public class PhonebookDAO {
 		return true;
 	}
 
-	public boolean delete(Phonebook contact) throws SQLException {
+	public boolean delete(Contact contact) throws SQLException {
 		if (contact == null)
 			return false;
 

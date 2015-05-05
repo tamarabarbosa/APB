@@ -45,7 +45,7 @@ public class ContactController {
 	}
 
 	// this method exclude barber on the phonebook
-	public boolean delete(Phonebook contact) throws SQLException {
+	public boolean delete(Contact contact) throws SQLException {
 		if (contact == null) {
 			return false;
 		} else {
@@ -71,12 +71,12 @@ public class ContactController {
 	}
 
 	// show results by name
-	public ResultSet searchByName(Phonebook contact) throws SQLException {
+	public ResultSet searchByName(Contact contact) throws SQLException {
 		return PhonebookDAO.getInstance().searchByNome(contact);
 	}
 
 	// show results by phone
-	public ResultSet searchByPhonebook(Phonebook contact) throws SQLException {
+	public ResultSet searchByPhonebook(Contact contact) throws SQLException {
 		return PhonebookDAO.getInstance().searchByPhone(contact);
 	}
 
