@@ -22,7 +22,7 @@ import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
 import control.BarberController;
-import control.ReciboController;
+import control.ReceiptController;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -30,7 +30,7 @@ import java.awt.event.MouseEvent;
 import com.javadocx.CreateDocx;
 
 @SuppressWarnings("serial")
-public class GerarRecibo extends JFrame {
+public class GenerateReceipt extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldDataInicial;
@@ -84,7 +84,7 @@ public class GerarRecibo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GerarRecibo frame = new GerarRecibo();
+					GenerateReceipt frame = new GenerateReceipt();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -98,7 +98,7 @@ public class GerarRecibo extends JFrame {
 	 *
 	 * @throws ParseException
 	 */
-	public GerarRecibo() throws ParseException {
+	public GenerateReceipt() throws ParseException {
 		setTitle("Gerar Recibo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 348, 264);
@@ -114,7 +114,7 @@ public class GerarRecibo extends JFrame {
 		contentPane.add(comboBoxBarbers);
 
 		try {
-			ResultSet rs = BarberController.getInstance().pesquisar();
+			ResultSet rs = BarberController.getInstance().search();
 			while (rs.next()) {
 				comboBoxBarbers.addItem(rs.getString("chair") + " - "
 						+ rs.getString("name"));
@@ -143,11 +143,11 @@ public class GerarRecibo extends JFrame {
 		lblDataFinal.setBounds(215, 89, 86, 14);
 		contentPane.add(lblDataFinal);
 
-		JButton btnGerarRecibo = new JButton("Gerar Recibo");
-		btnGerarRecibo.addMouseListener(new MouseAdapter() {
+		JButton btnGenerateReceipt = new JButton("Gerar Recibo");
+		btnGenerateReceipt.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				ReciboController reciboController = ReciboController
+				ReceiptController reciboController = ReceiptController
 						.getInstance();
 				try {
 					if (comboBoxBarbers.getSelectedIndex() != 0) {
@@ -238,7 +238,7 @@ public class GerarRecibo extends JFrame {
 								+ " - "
 								+ ConverterDataParaABNTSemBarra(dataFinalIso));
 
-						GerarRecibo frame = new GerarRecibo();
+						GenerateReceipt frame = new GenerateReceipt();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 						dispose();
@@ -255,15 +255,15 @@ public class GerarRecibo extends JFrame {
 				}
 			}
 		});
-		btnGerarRecibo.setBounds(202, 175, 112, 35);
-		contentPane.add(btnGerarRecibo);
+		btnGenerateReceipt.setBounds(202, 175, 112, 35);
+		contentPane.add(btnGenerateReceipt);
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				Administrativo frame = new Administrativo();
+				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
