@@ -1,7 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
-import model.JobPrestado;
+import model.DoneService;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,10 +14,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import control.JobPrestadoController;
+import control.DoneServiceController;
 
 import dao.FactoryConnection;
-import exception.JobException;
+import exception.ServiceException;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -84,23 +84,26 @@ public class SearchDoneService extends JFrame {
 		btnPesquisarJob.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					JobPrestado job = new JobPrestado();
-					job.setNomeJob(textField.getText());
+					DoneService job = new DoneService();
+					job.setServiceName(textField.getText());
 
-					connection = FactoryConnection.getInstance().getConnection();
-					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT name, preco, barber, data FROM jobprestado WHERE name = '"
-									+ job.getNomeJob() + "' ORDER BY data;");
+					connection = FactoryConnection.getInstance()
+							.getConnection();
+					ResultSet rs = connection.createStatement()
+							.executeQuery(
+									"SELECT name, preco, barber, data FROM DoneService WHERE name = '"
+											+ job.getServiceName()
+											+ "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
 						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
-						dados[3] = job.ConverterDataParaABNT(rs.getString("data"));
+						dados[3] = job.ConvertTOABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
-				} catch (JobException e) {
+				} catch (ServiceException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -118,23 +121,24 @@ public class SearchDoneService extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					JobPrestado job = new JobPrestado();
-					job.setNomeBarber(textField.getText());
+					DoneService job = new DoneService();
+					job.setBarberName(textField.getText());
 
-					connection = FactoryConnection.getInstance().getConnection();
+					connection = FactoryConnection.getInstance()
+							.getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"SELECT name, preco, barber, data FROM jobprestado WHERE barber = '"
-									+ job.getNomeBarber() + "' ORDER BY data;");
+							"SELECT name, preco, barber, data FROM DoneService WHERE barber = '"
+									+ job.getBarberName() + "' ORDER BY data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
 						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
-						dados[3] = job.ConverterDataParaABNT(rs.getString("data"));
+						dados[3] = job.ConvertTOABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
-				} catch (JobException e) {
+				} catch (ServiceException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -152,31 +156,36 @@ public class SearchDoneService extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					String name = (String) table.getValueAt(table.getSelectedRow(), 0);
-					String barber = (String) table.getValueAt(table.getSelectedRow(), 1);
-					String valor = (String) table.getValueAt(table.getSelectedRow(), 2);
-					String data = (String) table.getValueAt(table.getSelectedRow(), 3);
-					JobPrestado job = new JobPrestado();
-					job.setNomeJob(name);
-					job.setNomeBarber(barber);
-					job.setPreco(valor);
-					job.setData(data);
+					String name = (String) table.getValueAt(
+							table.getSelectedRow(), 0);
+					String barber = (String) table.getValueAt(
+							table.getSelectedRow(), 1);
+					String valor = (String) table.getValueAt(
+							table.getSelectedRow(), 2);
+					String data = (String) table.getValueAt(
+							table.getSelectedRow(), 3);
+					DoneService job = new DoneService();
+					job.setServiceName(name);
+					job.setBarberName(barber);
+					job.setPrice(valor);
+					job.setDate(data);
 
 					int confirmacao = JOptionPane.showConfirmDialog(null,
 							"Remover " + name + " da lista?");
 
 					if (confirmacao == JOptionPane.YES_OPTION) {
-						JobPrestadoController jobController = JobPrestadoController.getInstance();
+						DoneServiceController jobController = DoneServiceController
+								.getInstance();
 						jobController.delete(job);
 
 						dispose();
-						CadastrarJobPrestado frame = new CadastrarJobPrestado();
+						RegisterDoneService frame = new RegisterDoneService();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
 					mostrarMensagemDeErro("Selecione um Serviço para remover");
-				} catch (JobException e) {
+				} catch (ServiceException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -194,7 +203,7 @@ public class SearchDoneService extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarJobPrestado frame = new CadastrarJobPrestado();
+				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -207,27 +216,28 @@ public class SearchDoneService extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					JobPrestado job = new JobPrestado();
-					job.setData(textField.getText());
+					DoneService job = new DoneService();
+					job.setDate(textField.getText());
 
-					connection = FactoryConnection.getInstance().getConnection();
+					connection = FactoryConnection.getInstance()
+							.getConnection();
 					ResultSet rs = connection.createStatement().executeQuery(
-							"Select name, preco, barber, data from jobprestado where data = '"
-									+ job.getData() + "' order by data;");
+							"Select name, preco, barber, data from DoneService where data = '"
+									+ job.getDate() + "' order by data;");
 
 					while (rs.next()) {
 						String[] dados = new String[4];
 						dados[0] = rs.getString("name");
 						dados[1] = rs.getString("barber");
 						dados[2] = rs.getString("preco");
-						dados[3] = job.ConverterDataParaABNT(rs.getString("data"));
+						dados[3] = job.ConvertTOABNT(rs.getString("data"));
 						modelo.addRow(dados);
 					}
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (ParseException e) {
 					mostrarMensagemDeErro(e.getMessage());
-				} catch (JobException e) {
+				} catch (ServiceException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
 
