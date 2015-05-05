@@ -13,9 +13,9 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import control.JobPrestadoController;
-import exception.JobException;
-import model.JobPrestado;
+import control.DoneServiceController;
+import exception.ServiceException;
+import model.DoneService;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -32,7 +32,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
 @SuppressWarnings("serial")
-public class NovoJobPrestado extends JFrame {
+public class NewDoneService extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textValor;
@@ -41,7 +41,7 @@ public class NovoJobPrestado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					NovoJobPrestado frame = new NovoJobPrestado();
+					NewDoneService frame = new NewDoneService();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class NovoJobPrestado extends JFrame {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public NovoJobPrestado() {
+	public NewDoneService() {
 		setTitle("Criar nova presta\u00E7\u00E3o de servi\u00E7o");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 474, 214);
@@ -160,14 +160,14 @@ public class NovoJobPrestado extends JFrame {
 						String[] barber = comboBoxBarber.getSelectedItem()
 								.toString().split(" - ");
 
-						JobPrestado job_prestado = new JobPrestado();
+						DoneService job_prestado = new DoneService();
 
-						job_prestado.setNomeBarber(barber[1]);
-						job_prestado.setNomeJob(name[1]);
-						job_prestado.setPreco(textValor.getText());
-						job_prestado.setData(data);
+						job_prestado.setBarberName(barber[1]);
+						job_prestado.setServiceName(name[1]);
+						job_prestado.setPrice(textValor.getText());
+						job_prestado.setDate(data);
 
-						JobPrestadoController jobController = JobPrestadoController
+						DoneServiceController jobController = DoneServiceController
 								.getInstance();
 						jobController.insert(job_prestado);
 
@@ -179,7 +179,7 @@ public class NovoJobPrestado extends JFrame {
 
 						textValor.setText("");
 					}
-				} catch (JobException e) {
+				} catch (ServiceException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -209,7 +209,7 @@ public class NovoJobPrestado extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				CadastrarJobPrestado frame = new CadastrarJobPrestado();
+				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

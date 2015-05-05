@@ -4,7 +4,7 @@
  *
  * Description: This class is reponsible to model the service done by the barber in system with all its
  * atributes and necessary methods to attribute them.
-*/
+ */
 
 package model;
 
@@ -19,13 +19,13 @@ import java.text.SimpleDateFormat;
 
 public class DoneService {
 
-	//Declaration of the atributes to the service.
-	private String serviceName; //Name of service to be done.
-	private String barberName; 	//Name of barber that did the service.
-	private String price; 		//Price of service
-	private String date; 		//The date when the service was done.
+	// Declaration of the atributes to the service.
+	private String serviceName; // Name of service to be done.
+	private String barberName; // Name of barber that did the service.
+	private String price; // Price of service
+	private String date; // The date when the service was done.
 
-	//Declaration of constants along the class
+	// Declaration of constants along the class
 	private final String INVALID_SERVICE_NAME = "Nome do Serviço Inválido";
 	private final String EMPTY_SERVICE_NAME = "Nome do Serviço em Branco";
 	private final String INVALID_BARBER = "Nome do Barbeiro em Branco";
@@ -36,13 +36,9 @@ public class DoneService {
 	private final String INVALID_DATE = "Insira uma date válida";
 
 	/**
-	* Constructor.
-	*
-	* @param serviceName if the name of the service to be done.
-	* @param price is the price tag of the service.
-	* @param barberName is the name of barber that done the service.
-	*/
-	public DoneService(String serviceName, String price, String barberName) {
+	 * Constructor.
+	 */
+	public DoneService() {
 		this.serviceName = serviceName;
 		this.price = price;
 		this.barberName = barberName;
@@ -56,7 +52,7 @@ public class DoneService {
 	public String getServiceName() {
 		return serviceName;
 	}
-	
+
 	/**
 	 * Get the current Barber Name
 	 * 
@@ -65,7 +61,7 @@ public class DoneService {
 	public String getBarberName() {
 		return barberName;
 	}
-	
+
 	/**
 	 * Get the current Price
 	 * 
@@ -74,7 +70,7 @@ public class DoneService {
 	public String getPrice() {
 		return price;
 	}
-	
+
 	/**
 	 * Get the Date
 	 * 
@@ -85,15 +81,14 @@ public class DoneService {
 	}
 
 	// Service name setter
-	
+
 	/**
-	 * Set the service name of the service of to search in appointment book, case the
-	 * name doesn't exist or the field setted empty, the method return
+	 * Set the service name of the service of to search in appointment book,
+	 * case the name doesn't exist or the field setted empty, the method return
 	 * an warning while the user doesn't fill correctly.
 	 *
 	 * @param name
-	 *            is the name of service to be placed into
-	 *            ServiceName.
+	 *            is the name of service to be placed into ServiceName.
 	 *
 	 * @exception ServiceException
 	 *                if the field setted empty.
@@ -113,20 +108,19 @@ public class DoneService {
 
 	// Barber name setter
 	/**
-	 * Set the Barber name of to search in appointment book, case the
-	 * Barber name doesn't exist or the field setted empty, the method return
-	 * an warning while the user doesn't fill correctly.
+	 * Set the Barber name of to search in appointment book, case the Barber
+	 * name doesn't exist or the field setted empty, the method return an
+	 * warning while the user doesn't fill correctly.
 	 *
 	 * @param barberName
-	 *            is the name of Barber to be placed into
-	 *            BarberName.
+	 *            is the name of Barber to be placed into BarberName.
 	 *
 	 * @exception ServiceException
 	 *                if the field setted empty.
 	 * @exception ServiceException
 	 *                if the barber name doesn't exist.
 	 */
-	
+
 	public void setBarberName(String barberName) throws ServiceException {
 		if (barberName == null)
 			throw new NullPointerException(EMPTY_BARBER);
