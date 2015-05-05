@@ -69,8 +69,7 @@ public class NewServiceType extends JFrame {
 			ServiceTypeController jobController = ServiceTypeController
 					.getInstance();
 			ServiceType job = new ServiceType();
-			ResultSet rs = jobController
-					.mostrarTipoJobCadastrados(job);
+			ResultSet rs = jobController.mostrarTipoJobCadastrados(job);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("name");
@@ -90,7 +89,7 @@ public class NewServiceType extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 
 				dispose();
-				NovoTipoJob frame = new NovoTipoJob();
+				NewServiceType frame = new NewServiceType();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 
