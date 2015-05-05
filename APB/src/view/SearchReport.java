@@ -28,7 +28,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 @SuppressWarnings("serial")
-public class PesquisarRelatorio extends JFrame {
+public class SearchReport extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtDataInicial;
@@ -48,7 +48,7 @@ public class PesquisarRelatorio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					PesquisarRelatorio frame = new PesquisarRelatorio();
+					SearchReport frame = new SearchReport();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -62,7 +62,7 @@ public class PesquisarRelatorio extends JFrame {
 	 * 
 	 * @throws ParseException
 	 */
-	public PesquisarRelatorio() throws ParseException {
+	public SearchReport() throws ParseException {
 		setTitle("Tipo de Pesquisa do Relat\u00F3rio");
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
