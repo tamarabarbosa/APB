@@ -20,7 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
-import exception.RelatorioException;
+import exception.ReceiptException;
 
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
@@ -59,6 +59,7 @@ public class PesquisarRelatorio extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
 	 * @throws ParseException
 	 */
 	public PesquisarRelatorio() throws ParseException {
@@ -255,7 +256,7 @@ public class PesquisarRelatorio extends JFrame {
 					JOptionPane.showMessageDialog(null,
 							"Selecione uma opção de busca");
 				}
-				if (typeBusca!=0){
+				if (typeBusca != 0) {
 					try {
 						VisualizarRelatorios frame = new VisualizarRelatorios();
 						frame.setVisible(true);
@@ -263,7 +264,7 @@ public class PesquisarRelatorio extends JFrame {
 						dispose();
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
-					} catch (RelatorioException e) {
+					} catch (ReceiptException e) {
 						mostrarMensagemDeErro(e.getMessage());
 					} catch (NullPointerException e) {
 						mostrarMensagemDeErro(e.getMessage());
@@ -289,7 +290,7 @@ public class PesquisarRelatorio extends JFrame {
 					dispose();
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
-				} catch (RelatorioException e1) {
+				} catch (ReceiptException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (NullPointerException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
