@@ -10,6 +10,7 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
+import exception.ReceiptException;
 import exception.ReportException;
 
 import java.awt.event.ActionListener;
@@ -91,17 +92,16 @@ public class MainMenu extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				try {
 					SearchReport.typeBusca = 0;
-					VisualizarRelatorios frame = new VisualizarRelatorios();
+					ViewReports frame = new ViewReports();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
-				} catch (ReportException e1) {
-					e1.printStackTrace();
-				} catch (NullPointerException e1) {
-					e1.printStackTrace();
 				} catch (ParseException e1) {
+					e1.printStackTrace();
+				} catch (ReceiptException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
