@@ -28,7 +28,7 @@ import exception.ReceiptException;
 import exception.ReportException;
 
 @SuppressWarnings("serial")
-public class VisualizarRelatorios extends JFrame {
+public class ViewReports extends JFrame {
 
 	private JPanel contentPane;
 	private double total = 0;
@@ -46,7 +46,7 @@ public class VisualizarRelatorios extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VisualizarRelatorios frame = new VisualizarRelatorios();
+					ViewReports frame = new ViewReports();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					mostrarMensagemDeErro(e.getMessage());
@@ -55,7 +55,7 @@ public class VisualizarRelatorios extends JFrame {
 		});
 	}
 
-	public VisualizarRelatorios() throws SQLException, ReceiptException,
+	public ViewReports() throws SQLException, ReceiptException,
 			NullPointerException, ParseException {
 		setTitle("Relat\u00F3rios");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -91,9 +91,9 @@ public class VisualizarRelatorios extends JFrame {
 
 		Report report = new Report();
 
-		if (PesquisarRelatorio.typeBusca == 1) {
+		if (SearchReport.typeBusca == 1) {
 
-			report.setBarber(PesquisarRelatorio.barber);
+			report.setBarber(SearchReport.barber);
 
 			ResultSet rs = relatorioController.searchByBarber(report);
 
@@ -137,10 +137,10 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoJob = 0;
 			}
 		}
-		if (PesquisarRelatorio.typeBusca == 2) {
+		if (SearchReport.typeBusca == 2) {
 
-			report.setBarber(PesquisarRelatorio.barber);
-			report.setServiceType(PesquisarRelatorio.job);
+			report.setBarber(SearchReport.barber);
+			report.setServiceType(SearchReport.job);
 
 			ResultSet rs = relatorioController
 					.searchByBarberEJob(report);
@@ -186,11 +186,11 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoJob = 0;
 			}
 		}
-		if (PesquisarRelatorio.typeBusca == 3) {
+		if (SearchReport.typeBusca == 3) {
 
-			report.setBarber(PesquisarRelatorio.barber);
-			report.setEndDate(PesquisarRelatorio.dataFinal);
-			report.setInitialDate(PesquisarRelatorio.dataInicial);
+			report.setBarber(SearchReport.barber);
+			report.setEndDate(SearchReport.dataFinal);
+			report.setInitialDate(SearchReport.dataInicial);
 
 			ResultSet rs = relatorioController
 					.searchByDataEBarber(report);
@@ -236,12 +236,12 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoJob = 0;
 			}
 		}
-		if (PesquisarRelatorio.typeBusca == 4) {
+		if (SearchReport.typeBusca == 4) {
 
-			report.setBarber(PesquisarRelatorio.barber);
-			report.setServiceType(PesquisarRelatorio.job);
-			report.setEndDate(PesquisarRelatorio.dataFinal);
-			report.setInitialDate(PesquisarRelatorio.dataInicial);
+			report.setBarber(SearchReport.barber);
+			report.setServiceType(SearchReport.job);
+			report.setEndDate(SearchReport.dataFinal);
+			report.setInitialDate(SearchReport.dataInicial);
 
 			ResultSet rs = relatorioController
 					.searchByDataBarberEJob(report);
@@ -288,9 +288,9 @@ public class VisualizarRelatorios extends JFrame {
 
 			}
 		}
-		if (PesquisarRelatorio.typeBusca == 5) {
+		if (SearchReport.typeBusca == 5) {
 
-			report.setServiceType(PesquisarRelatorio.job);
+			report.setServiceType(SearchReport.job);
 
 			ResultSet rs = relatorioController.searchByJob(report);
 
@@ -335,11 +335,11 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoJob = 0;
 			}
 		}
-		if (PesquisarRelatorio.typeBusca == 6) {
+		if (SearchReport.typeBusca == 6) {
 
-			report.setServiceType(PesquisarRelatorio.job);
-			report.setEndDate(PesquisarRelatorio.dataFinal);
-			report.setInitialDate(PesquisarRelatorio.dataInicial);
+			report.setServiceType(SearchReport.job);
+			report.setEndDate(SearchReport.dataFinal);
+			report.setInitialDate(SearchReport.dataInicial);
 
 			ResultSet rs = relatorioController.searchByDataEJob(report);
 
@@ -384,10 +384,10 @@ public class VisualizarRelatorios extends JFrame {
 				valorTotalDoJob = 0;
 			}
 		}
-		if (PesquisarRelatorio.typeBusca == 7) {
+		if (SearchReport.typeBusca == 7) {
 
-			report.setEndDate(PesquisarRelatorio.dataFinal);
-			report.setInitialDate(PesquisarRelatorio.dataInicial);
+			report.setEndDate(SearchReport.dataFinal);
+			report.setInitialDate(SearchReport.dataInicial);
 
 			ResultSet rs = relatorioController.searchByData(report);
 
@@ -437,8 +437,8 @@ public class VisualizarRelatorios extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					PesquisarRelatorio.typeBusca = 0;
-					PesquisarRelatorio frame = new PesquisarRelatorio();
+					SearchReport.typeBusca = 0;
+					SearchReport frame = new SearchReport();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();
@@ -454,7 +454,7 @@ public class VisualizarRelatorios extends JFrame {
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				MenuPrincipal frame = new MenuPrincipal();
+				MainMenu frame = new MainMenu();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
@@ -484,7 +484,7 @@ public class VisualizarRelatorios extends JFrame {
 		contentPane.add(painelGrafico);
 		painelGrafico.setVisible(true);
 
-		if (PesquisarRelatorio.typeBusca != 0) {
+		if (SearchReport.typeBusca != 0) {
 			try {
 				CategoryDataset cds;
 				cds = createDatasetRelatorio();
@@ -518,7 +518,7 @@ public class VisualizarRelatorios extends JFrame {
 		btnGrafico.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				if (PesquisarRelatorio.typeBusca != 0) {
+				if (SearchReport.typeBusca != 0) {
 					painelGrafico.setVisible(true);
 					scrollPane.setVisible(false);
 				} else
@@ -565,53 +565,53 @@ public class VisualizarRelatorios extends JFrame {
 		Report report = new Report();
 		ResultSet rs = null;
 
-		if (PesquisarRelatorio.typeBusca != 0) {
-			if (PesquisarRelatorio.typeBusca == 1) {
-				report.setBarber(PesquisarRelatorio.barber);
+		if (SearchReport.typeBusca != 0) {
+			if (SearchReport.typeBusca == 1) {
+				report.setBarber(SearchReport.barber);
 
 				rs = ReportController.getInstance()
 						.searchByBarber(report);
 			}
-			if (PesquisarRelatorio.typeBusca == 2) {
-				report.setBarber(PesquisarRelatorio.barber);
-				report.setServiceType(PesquisarRelatorio.job);
+			if (SearchReport.typeBusca == 2) {
+				report.setBarber(SearchReport.barber);
+				report.setServiceType(SearchReport.job);
 
 				rs = ReportController.getInstance()
 						.searchByBarberEJob(report);
 			}
-			if (PesquisarRelatorio.typeBusca == 3) {
-				report.setBarber(PesquisarRelatorio.barber);
-				report.setEndDate(PesquisarRelatorio.dataFinal);
-				report.setInitialDate(PesquisarRelatorio.dataInicial);
+			if (SearchReport.typeBusca == 3) {
+				report.setBarber(SearchReport.barber);
+				report.setEndDate(SearchReport.dataFinal);
+				report.setInitialDate(SearchReport.dataInicial);
 
 				rs = ReportController.getInstance().searchByDataEBarber(
 						report);
 			}
-			if (PesquisarRelatorio.typeBusca == 4) {
-				report.setBarber(PesquisarRelatorio.barber);
-				report.setServiceType(PesquisarRelatorio.job);
-				report.setEndDate(PesquisarRelatorio.dataFinal);
-				report.setInitialDate(PesquisarRelatorio.dataInicial);
+			if (SearchReport.typeBusca == 4) {
+				report.setBarber(SearchReport.barber);
+				report.setServiceType(SearchReport.job);
+				report.setEndDate(SearchReport.dataFinal);
+				report.setInitialDate(SearchReport.dataInicial);
 
 				rs = ReportController.getInstance()
 						.searchByDataBarberEJob(report);
 			}
-			if (PesquisarRelatorio.typeBusca == 5) {
-				report.setServiceType(PesquisarRelatorio.job);
+			if (SearchReport.typeBusca == 5) {
+				report.setServiceType(SearchReport.job);
 
 				rs = ReportController.getInstance().searchByJob(report);
 			}
-			if (PesquisarRelatorio.typeBusca == 6) {
-				report.setServiceType(PesquisarRelatorio.job);
-				report.setEndDate(PesquisarRelatorio.dataFinal);
-				report.setInitialDate(PesquisarRelatorio.dataInicial);
+			if (SearchReport.typeBusca == 6) {
+				report.setServiceType(SearchReport.job);
+				report.setEndDate(SearchReport.dataFinal);
+				report.setInitialDate(SearchReport.dataInicial);
 
 				rs = ReportController.getInstance().searchByDataEJob(
 						report);
 			}
-			if (PesquisarRelatorio.typeBusca == 7) {
-				report.setEndDate(PesquisarRelatorio.dataFinal);
-				report.setInitialDate(PesquisarRelatorio.dataInicial);
+			if (SearchReport.typeBusca == 7) {
+				report.setEndDate(SearchReport.dataFinal);
+				report.setInitialDate(SearchReport.dataInicial);
 
 				rs = ReportController.getInstance().searchByData(report);
 			}
