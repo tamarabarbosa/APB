@@ -68,7 +68,7 @@ public class APB extends JFrame {
 			// application
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				MenuPrincipal frame = new MenuPrincipal();
+				MainMenu frame = new MainMenu();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
