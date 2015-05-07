@@ -47,7 +47,7 @@ public class GenerateReceipt extends JFrame {
 	 * Launch the application.
 	 */
 
-	public String ConverterDataParaABNT(String data) throws ParseException {
+	public String ConvertDateToABNT(String data) throws ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date dataISO = sdf.parse(data);
@@ -58,7 +58,7 @@ public class GenerateReceipt extends JFrame {
 		return databr;
 	}
 
-	public String ConverterDataParaABNTSemBarra(String data)
+	public String ConvertDateToABNTWhitoutToolbar(String data)
 			throws ParseException {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -70,7 +70,7 @@ public class GenerateReceipt extends JFrame {
 		return databr;
 	}
 
-	private String ConverterDataParaISO(String data) throws ParseException {
+	private String ConvertDateToISO(String data) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		Date dataABNT = sdf.parse(data);
 
@@ -185,17 +185,17 @@ public class GenerateReceipt extends JFrame {
 						paramsAssinaturaBarber.put("jc", "center");
 						paramsAssinaturaBarber.put("b", "single");
 
-						final String dataInicialIso = ConverterDataParaISO(textFieldDataInicial
+						final String dataInicialIso = ConvertDateToISO(textFieldDataInicial
 								.getText());
-						final String dataFinalIso = ConverterDataParaISO(textFieldDataFinal
+						final String dataFinalIso = ConvertDateToISO(textFieldDataFinal
 								.getText());
 
 						String[] name = comboBoxBarbers.getSelectedItem()
 								.toString().split(" - ");
 
 						ResultSet rs = reciboController.getInstance()
-								.pesquisarJobsDoBarber(name[1],
-										dataInicialIso, dataFinalIso);
+								.pesquisarJobsDoBarber(name[1], dataInicialIso,
+										dataFinalIso);
 						while (rs.next()) {
 							numero = rs.getString("preco").replace(",", ".");
 							double valor = Double.parseDouble(numero);
@@ -233,10 +233,12 @@ public class GenerateReceipt extends JFrame {
 						docx.addText(LINHA, paramsLinhaAssinatura);
 						docx.addText(name[1], paramsAssinaturaBarber);
 
-						docx.createDocx("Recibo " + name[1] + " "
-								+ ConverterDataParaABNTSemBarra(dataInicialIso)
+						docx.createDocx("Recibo "
+								+ name[1]
+								+ " "
+								+ ConvertDateToABNTWhitoutToolbar(dataInicialIso)
 								+ " - "
-								+ ConverterDataParaABNTSemBarra(dataFinalIso));
+								+ ConvertDateToABNTWhitoutToolbar(dataFinalIso));
 
 						GenerateReceipt frame = new GenerateReceipt();
 						frame.setVisible(true);
