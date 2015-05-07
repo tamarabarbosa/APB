@@ -64,7 +64,7 @@ public class Administrative extends JFrame {
 			// the Phonebook frame
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarBarber frame = new CadastrarBarber();
+				RegisterBarber frame = new RegisterBarber();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -78,7 +78,7 @@ public class Administrative extends JFrame {
 			// the Service Type frame
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CadastrarTipoJob frame = new CadastrarTipoJob();
+				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -93,7 +93,7 @@ public class Administrative extends JFrame {
 			// the Phonebook frame
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				CadastrarPhonebook frame = new CadastrarPhonebook();
+				RegisterPhonebook frame = new RegisterPhonebook();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -107,7 +107,7 @@ public class Administrative extends JFrame {
 			// the Service Type frame
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
-				MenuPrincipal frame = new MenuPrincipal();
+				MainMenu frame = new MainMenu();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -122,9 +122,9 @@ public class Administrative extends JFrame {
 			// the receipt frame
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				GerarRecibo frame = null;
+				GenerateReceipt frame = null;
 				try {
-					frame = new GerarRecibo();
+					frame = new GenerateReceipt();
 				} catch (ParseException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
