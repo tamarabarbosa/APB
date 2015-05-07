@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 
 import control.ContactController;
 import exception.BarberException;
+import model.Contact;
 import model.Phonebook;
 
 import java.awt.event.MouseAdapter;
@@ -79,10 +80,11 @@ public class ModifyContact extends JFrame {
 		contentPane.add(lblDescricao);
 
 		try {
-			Phonebook contact = new Phonebook();
-			PhonebookController phonebookController = PhonebookController.getInstance();
-			contact.setNome(Phonebook.getTempNome());
-			ResultSet rs = phonebookController.searchByNome(contact);
+			Contact contact = new Contact();
+			ContactController phonebookController = ContactController
+					.getInstance();
+			contact.setName(Phonebook.getTempName());
+			ResultSet rs = phonebookController.searchByName(contact);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));
@@ -102,12 +104,12 @@ public class ModifyContact extends JFrame {
 			// This method is used to initialize the buttons on the frame
 			public void mouseClicked(MouseEvent arg0) {
 				try {
-					Phonebook phonebook = new Phonebook();
-					phonebook.setNome(textFieldNome.getText());
-					phonebook.setPhone(textFieldPhone.getText());
-					phonebook.setDescricao(textFieldDescricao.getText());
+					Contact phonebook = new Contact();
+					phonebook.setName(textFieldNome.getText());
+					phonebook.setName(textFieldPhone.getText());
+					phonebook.setDescription(textFieldDescricao.getText());
 
-					PhonebookController PhonebookController = control.PhonebookController
+					ContactController PhonebookController = control.ContactController
 							.getInstance();
 					PhonebookController.change(name, phonebook);
 
@@ -116,7 +118,7 @@ public class ModifyContact extends JFrame {
 							+ " foi change com sucesso");
 
 					dispose();
-					CadastrarPhonebook frame = new CadastrarPhonebook();
+					RegisterPhonebook frame = new RegisterPhonebook();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (BarberException e1) {
@@ -137,7 +139,7 @@ public class ModifyContact extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 
 				dispose();
-				CadastrarPhonebook frame = new CadastrarPhonebook();
+				RegisterPhonebook frame = new RegisterPhonebook();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

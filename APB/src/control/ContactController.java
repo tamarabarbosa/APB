@@ -33,11 +33,11 @@ public class ContactController {
 	}
 
 	// this method change barber on the phonebook
-	public boolean change(String name, Phonebook phonebook) throws SQLException {
+	public boolean change(String name, Contact phonebook) throws SQLException {
 		if (phonebook == null) {
 			return false;
 		} else {
-			Phonebook phonebook_change = phonebook;
+			Contact phonebook_change = phonebook;
 			PhonebookDAO.getInstance().change(name, phonebook_change,
 					phonebook);
 			return true;

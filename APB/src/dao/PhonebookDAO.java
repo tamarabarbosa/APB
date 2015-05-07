@@ -42,16 +42,16 @@ public class PhonebookDAO {
 		return true;
 	}
 
-	public boolean change(String name, Phonebook Phonebook_change,
-			Phonebook Phonebook) throws SQLException {
-		if (Phonebook == null || Phonebook_change == null)
+	public boolean change(String name, Contact phonebook_change,
+			Contact phonebook) throws SQLException {
+		if (phonebook == null || phonebook_change == null)
 			return false;
 
 		this.updateQuery("UPDATE Phonebook SET " + "name = \""
-				+ Phonebook_change.getName() + "\", " + "telefone = \""
-				+ Phonebook_change.getPhoneNumber() + "\", "
-				+ "descricao = \"" + Phonebook_change.getDescription() + "\""
-				+ " WHERE " + " Phonebook.name = \"" + name + "\";");
+				+ phonebook_change.getName() + "\", " + "telefone = \""
+				+ phonebook_change.getPhoneNumber() + "\", " + "descricao = \""
+				+ phonebook_change.getDescription() + "\"" + " WHERE "
+				+ " Phonebook.name = \"" + name + "\";");
 
 		return true;
 	}
@@ -83,7 +83,7 @@ public class PhonebookDAO {
 		return rs;
 	}
 
-	public ResultSet searchByNome(Phonebook contact) throws SQLException {
+	public ResultSet searchByNome(Contact contact) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM Phonebook WHERE " + "name = '"
@@ -93,8 +93,7 @@ public class PhonebookDAO {
 		return rs;
 	}
 
-	public ResultSet searchByPhone(Phonebook contact)
-			throws SQLException {
+	public ResultSet searchByPhone(Contact contact) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM Phonebook WHERE "
