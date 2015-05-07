@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 
 @SuppressWarnings("serial")
-public class MenuPrincipal extends JFrame {
+public class MainMenu extends JFrame {
 
 	private JPanel contentPane;
 
@@ -31,7 +31,7 @@ public class MenuPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuPrincipal frame = new MenuPrincipal();
+					MainMenu frame = new MainMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class MenuPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public MenuPrincipal() {
+	public MainMenu() {
 		setTitle("APB");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 540, 200);
@@ -77,7 +77,7 @@ public class MenuPrincipal extends JFrame {
 		btnJobsPrestados.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CadastrarJobPrestado frame = new CadastrarJobPrestado();
+				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -90,7 +90,7 @@ public class MenuPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					PesquisarRelatorio.typeBusca = 0;
+					SearchReport.typeBusca = 0;
 					VisualizarRelatorios frame = new VisualizarRelatorios();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
