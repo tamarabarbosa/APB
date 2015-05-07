@@ -102,11 +102,10 @@ public class ModifyBarber extends JFrame {
 
 		try {
 			Barber barber = new Barber();
-			BarberController barberController = BarberController
-					.getInstance();
-			barber.setNome(Barber.getTempNome());
+			BarberController barberController = BarberController.getInstance();
+			barber.setName(Barber.getTempName());
 
-			ResultSet rs = barberController.searchByNome(barber);
+			ResultSet rs = barberController.searchPorNome(barber);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));
@@ -127,10 +126,10 @@ public class ModifyBarber extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Barber barber = new Barber();
-					barber.setNome(textFieldNome.getText());
+					barber.setName(textFieldNome.getText());
 					barber.setCpf(textFieldCpf.getText());
 					barber.setRg(textFieldRg.getText());
-					barber.setPhone(textFieldPhone.getText());
+					barber.setPhoneNumber(textFieldPhone.getText());
 					barber.setChair(textFieldChair.getText());
 
 					BarberController barberController = BarberController
@@ -142,7 +141,7 @@ public class ModifyBarber extends JFrame {
 							+ " foi change com sucesso");
 
 					dispose();
-					CadastrarBarber frame = new CadastrarBarber();
+					RegisterBarber frame = new RegisterBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 
@@ -172,7 +171,7 @@ public class ModifyBarber extends JFrame {
 		buttonVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CadastrarBarber frame = new CadastrarBarber();
+				RegisterBarber frame = new RegisterBarber();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}

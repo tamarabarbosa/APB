@@ -72,8 +72,8 @@ public class Barber {
 	public Barber(String name, String ir, String id, String phoneNumber,
 			String chair) throws BarberException {
 		this.name = name;
-		this.cpf = ir;
-		this.rg = id;
+		this.cpf = cpf;
+		this.rg = rg;
 		this.phoneNumber = phoneNumber;
 		this.chair = chair;
 
@@ -180,7 +180,7 @@ public class Barber {
 	 * @throws BarberException
 	 *             if the IR doesn't match with the valid IR.
 	 */
-	public void setIr(String cpf) throws BarberException {
+	public void setCpf(String cpf) throws BarberException {
 		// Sample of valid IR: 493.751.185-84
 
 		// This block verify if CPF is valid
@@ -191,11 +191,8 @@ public class Barber {
 				throw new AssertionError(EMPTY_CPF);
 			else if (cpf
 					.matches("[\\d]{3,3}.[\\d]{3,3}.[\\d]{3,3}-[\\d]{2,2}$"))
-				cpf = cpf.split("[\\. | -]")
-				[0] + cpf.split("[\\. | -]")
-				[1] + cpf.split("[\\. | -]")
-				[2] + cpf.split("[\\. | -]")
-				[3];
+				cpf = cpf.split("[\\. | -]")[0] + cpf.split("[\\. | -]")[1]
+						+ cpf.split("[\\. | -]")[2] + cpf.split("[\\. | -]")[3];
 
 			if (validateCPF(cpf))
 				this.cpf = cpf;
@@ -223,7 +220,7 @@ public class Barber {
 	 * @throws AssertionError
 	 *             if the user fill anything different of the valid ID.
 	 */
-	public void setId(String rg) throws BarberException {
+	public void setRg(String rg) throws BarberException {
 		if (rg == null)
 			throw new NullPointerException(EMPTY_RG);
 		else if ("".equals(rg))
@@ -238,8 +235,8 @@ public class Barber {
 
 	/**
 	 * Set the phone number of the barber in system, in case of the field
-	 * "Phone" isn't filled the method return an warning while the user
-	 * doesn't fill correctly.
+	 * "Phone" isn't filled the method return an warning while the user doesn't
+	 * fill correctly.
 	 *
 	 * @param phoneNumber
 	 *            is the phone number of the barber to be placed into
@@ -266,8 +263,8 @@ public class Barber {
 	}
 
 	/**
-	 * Set the chair of the barber in system, in case of the field "Chair"
-	 * isn't filled the method return an warning while the user doesn't fill
+	 * Set the chair of the barber in system, in case of the field "Chair" isn't
+	 * filled the method return an warning while the user doesn't fill
 	 * correctly.
 	 *
 	 * @param chair
@@ -324,7 +321,7 @@ public class Barber {
 
 		resultDigit1 = resultDigit2 = digit1 = digit2 = rest = 0;
 
-		//convert a string to array of integer
+		// convert a string to array of integer
 		for (int nCount = 1; nCount < cpf.length() - 1; nCount++) {
 			digitCPF = Integer.valueOf(cpf.substring(nCount - 1, nCount))
 					.intValue();
@@ -333,7 +330,7 @@ public class Barber {
 			resultDigit2 = resultDigit2 + (12 - nCount) * digitCPF;
 		}
 
-		//calculate the first number(DIV) of cpf
+		// calculate the first number(DIV) of cpf
 		rest = resultDigit1 % 11;
 
 		if (rest < 2)
@@ -342,7 +339,7 @@ public class Barber {
 			digit1 = 11 - rest;
 
 		resultDigit2 += 2 * digit1;
-		//calculate the Second number(DIV) of cpf
+		// calculate the Second number(DIV) of cpf
 		rest = (resultDigit2 % 11);
 
 		if (rest < 2)
