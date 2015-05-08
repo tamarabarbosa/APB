@@ -63,8 +63,7 @@ public class RegisterDoneService extends JFrame {
 			DoneServiceController jobController = DoneServiceController
 					.getInstance();
 			DoneService job = new DoneService();
-			ResultSet rs = jobController
-					.mostrarJobsPrestadosCadastrados(job);
+			ResultSet rs = jobController.mostrarJobsPrestadosCadastrados(job);
 			while (rs.next()) {
 				String[] dados = new String[4];
 				dados[0] = rs.getString("name");
@@ -88,7 +87,7 @@ public class RegisterDoneService extends JFrame {
 			// application
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				NovoJobPrestado frame = new NovoJobPrestado();
+				NewServiceType frame = new NewServiceType();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
@@ -101,7 +100,7 @@ public class RegisterDoneService extends JFrame {
 			@Override
 			// This method is used to create a table that contains the contacts
 			public void mouseClicked(MouseEvent e) {
-				PesquisarJobPrestado frame = new PesquisarJobPrestado();
+				SearchDoneService frame = new SearchDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 				dispose();
@@ -164,7 +163,7 @@ public class RegisterDoneService extends JFrame {
 			// the main frame
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				MenuPrincipal frame = new MenuPrincipal();
+				MainMenu frame = new MainMenu();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
