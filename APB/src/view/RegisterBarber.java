@@ -64,8 +64,7 @@ public class RegisterBarber extends JFrame {
 		final JTable table = new JTable(modelo);
 
 		try {
-			BarberController barberController = BarberController
-					.getInstance();
+			BarberController barberController = BarberController.getInstance();
 			Barber barber = new Barber();
 			ResultSet rs = barberController.showRegisteredBarbers(barber);
 			while (rs.next()) {
@@ -89,9 +88,9 @@ public class RegisterBarber extends JFrame {
 			// This method is used to create a table that contains the contacts
 			public void mouseClicked(MouseEvent e) {
 				dispose();
-				NovoBarber frame;
+				NewBarber frame;
 				try {
-					frame = new NovoBarber();
+					frame = new NewBarber();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (ParseException e1) {
