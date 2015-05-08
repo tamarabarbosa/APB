@@ -112,8 +112,8 @@ public class NewBarber extends JFrame {
 				try {
 					Barber barber = new Barber();
 					barber.setName(textFieldNome.getText());
-					barber.setId(textFieldCpf.getText());
-					barber.setIr(textFieldRg.getText());
+					barber.setCpf(textFieldCpf.getText());
+					barber.setRg(textFieldRg.getText());
 					barber.setPhoneNumber(textFieldPhone.getText());
 					barber.setChair(textFieldChair.getText());
 
