@@ -105,7 +105,7 @@ public class ModifyServiceType extends JFrame {
 							+ " foi change com sucesso");
 
 					dispose();
-					CadastrarTipoJob frame = new CadastrarTipoJob();
+					RegisterDoneService frame = new RegisterDoneService();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (ServiceException e1) {
@@ -135,7 +135,7 @@ public class ModifyServiceType extends JFrame {
 			// This method is used to initialize the text fields on the frame
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				CadastrarTipoJob frame = new CadastrarTipoJob();
+				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
 			}
