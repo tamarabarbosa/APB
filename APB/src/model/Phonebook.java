@@ -126,6 +126,7 @@ public class Phonebook {
 		this.description = description;
 	}
 
+	//Class methods
 	/**
 	* Get a temporary name, used to improve logical structures in methods.
 	*

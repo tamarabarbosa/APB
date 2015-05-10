@@ -39,10 +39,19 @@ public class Report {
 	 *            is the barber that did the service.
 	 * @param serviceType
 	 *            is the service type that was done.
+	 *
+	 * @exception IllegalArgumentException 
+	 * 								if the class set a null value to the initialDate.
+	 * @exception IllegalArgumentException 
+	 * 								if the class set a null value to the endDate.
+	 * @exception IllegalArgumentException 
+	 * 								if the class set a null value to the barber.
+	 * @exception IllegalArgumentException 
+	 * 								if the class set a null value to the serviceType.
 	 */
 	public Report(String initialDate, String endDate, String barber,
 			String serviceType) throws ReportException {
-		// super();
+
 		this.initialDate = initialDate;
 		this.endDate = endDate;
 		this.barber = barber;
@@ -61,9 +70,11 @@ public class Report {
 			throw new IllegalArgumentException(SERVICE_TYPE_EMPTY);
 	}
 
-	public Report() {
-	}
-
+	/**
+	 * Get the initial date of the service done.
+	 *
+	 * @return initialDate the date when the service started.
+	 */
 	public String getInitialDate() {
 		return initialDate;
 	}
