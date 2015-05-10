@@ -163,7 +163,19 @@ public class Report {
 		return barber;
 	}
 
-	// this setter define how the barber must be filled in report
+	/**
+	* Set the barber that did the service, case the user input
+	* an invalid date the method return an warning while the user
+	* doesn't fill correctly.
+	*
+	* @param barber
+	*			is the barber that did the service.
+	*
+	* @exception NullPointerException 
+	*					if the barber is setted with a null value.
+	* @exception AssertionError
+	*					if the barber is setted with empty field.
+	*/
 	public void setBarber(String barber) throws ReportException {
 		if (barber == null)
 			throw new NullPointerException(BARBER_EMPTY);
