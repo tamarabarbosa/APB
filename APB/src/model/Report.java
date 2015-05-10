@@ -120,7 +120,18 @@ public class Report {
 		return endDate;
 	}
 
-	// this setter define how the final date must be filled
+	/**
+	* Set the date when the the service finished in the report, according with
+	* brazilian standards.
+	*
+	* @param endDate 
+	*				is the date when the service finished.
+	*
+	* @exception NullPointerException 
+	*					if the endDate is setted with a null value.
+	* @exception AssertionError
+	*					if the endDate is setted with empty field.
+	*/
 	public void setEndDate(String endDate) throws ReportException,
 			NullPointerException, ParseException {
 
@@ -130,11 +141,11 @@ public class Report {
 			throw new AssertionError(END_DATE_EMPTY);
 		else {
 
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date dateISO = sdf.parse(endDate);
+			SimpleDateFormat dateBRFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Date dateISO = dateBRFormat.parse(endDate);
 
-			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-			String stringDateBR = sdf2.format(dateISO);
+			SimpleDateFormat dateUSFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String stringDateBR = dateUSFormat.format(dateISO);
 
 			this.endDate = stringDateBR;
 		}
