@@ -154,7 +154,21 @@ public class DoneService {
 			throw new ServiceException(INVALID_PRICE);
 	}
 
-	// Date setter
+	/**
+	* Set the date when the service was done, case the user input
+	* an invalid date the method return an warning while the user
+	* doesn't fill correctly.
+	*
+	* @param date 
+	*			is the current date of the done service.
+	*
+	* @exception NullPointerException 
+	* 							if the date is equal to a null value.
+	* @exception ServiceException 
+	*							if the date is setted empty.
+	* @exception ServiceException
+	*							if the user set an invalid date.
+	*/
 	public void setDate(String date) throws ServiceException, ParseException {
 
 		if (date == null)
