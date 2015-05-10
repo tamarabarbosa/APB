@@ -14,8 +14,7 @@ public class Phonebook {
 
 	// Declaration of the atributes to the phonebook
 	private static String name; // Name of someone to be add in phonebook.
-	private static String phoneNumber; // Phone number of someone to be add in
-								// phonebook.
+	private static String phoneNumber; // Phone number of someone to be add in phonebook.
 	private static String description; // Some description to add, if necessary.
 
 	// Declaration of instance variables
@@ -127,10 +126,22 @@ public class Phonebook {
 		this.description = description;
 	}
 
+	/**
+	* Get a temporary name, used to improve logical structures in methods.
+	*
+	* @return tempName
+	*				is an temporary name to help in logical structures. 
+	*/
 	public static String getTempName() {
 		return tempName;
 	}
 
+	/**
+	* Set the tempory name, used to improve logical structures in methods.
+	*
+	* @param tempName
+	*				is the temporary name used to help in logical.
+	*/
 	public static void setTempName(String tempName) {
 		Phonebook.tempName = tempName;
 	}
