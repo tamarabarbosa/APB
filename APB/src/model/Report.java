@@ -185,6 +185,12 @@ public class Report {
 			this.barber = barber;
 	}
 
+	/**
+	* Get the type of service that was done.
+	*
+	* @return serviceType
+	*				the type of service that was done.
+	*/
 	public String getServiceType() {
 		return serviceType;
 	}
