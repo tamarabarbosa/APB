@@ -73,7 +73,8 @@ public class Report {
 	/**
 	 * Get the initial date of the service done.
 	 *
-	 * @return initialDate the date when the service started.
+	 * @return initialDate 
+	 *				the date when the service started.
 	 */
 	public String getInitialDate() {
 		return initialDate;
@@ -114,7 +115,8 @@ public class Report {
 	/**
 	 * Get the final date when the service was done.
 	 *
-	 * @return endDate the date when the service was done.
+	 * @return 
+	 *		endDate the date when the service was done.
 	 */
 	public String getEndDate() {
 		return endDate;
@@ -151,6 +153,12 @@ public class Report {
 		}
 	}
 
+	/**
+	 * Get the barber that done the service.
+	 *
+	 * @return barber 
+	 *				the barber that did the service
+	 */
 	public String getBarber() {
 		return barber;
 	}
