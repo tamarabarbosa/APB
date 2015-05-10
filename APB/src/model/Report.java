@@ -217,14 +217,22 @@ public class Report {
 			this.serviceType = serviceType;
 	}
 
-	// this method converts the input date to according norms to ABNT
+	/**
+	* It's a method to validate the date beyond brazilian standards, and returns
+	* the right date to the class. 
+	*
+	* @param date
+	*			is the current date of the done service.
+	* @return stringDateBR
+	*			is the date with brazilian standards.
+	*/
 	public String ConvertToABNT(String date) throws ParseException {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateISO = sdf.parse(date);
+		SimpleDateFormat dateBRFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateISO = dateBRFormat.parse(date);
 
-		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
-		String stringDateBR = sdf2.format(dateISO);
+		SimpleDateFormat dateUSFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String stringDateBR = dateUSFormat.format(dateISO);
 
 		return stringDateBR;
 	}
