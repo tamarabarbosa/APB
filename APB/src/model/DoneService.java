@@ -179,25 +179,32 @@ public class DoneService {
 			this.date = date;
 		} else if (date.matches("[\\d]{1,2}/[\\d]{1,2}/[\\d]{1,4}")) {
 
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date dateISO = sdf.parse(date);
+			SimpleDateFormat dateBRFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Date dateISO = dateBRFormat.parse(date);
 
-			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-			String stringDateBR = sdf2.format(dateISO);
+			SimpleDateFormat dateUSFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String stringDateBR = dateUSFormat.format(dateISO);
 
 			this.date = stringDateBR;
 		} else
 			throw new ServiceException(INVALID_DATE);
 	}
 
-	// Method to convert service date to ABNT
+	/**
+	* Set the price of the service done by the barber, case the user input
+	* an invalid price the method return an warning while the user
+	* doesn't fill correctly.
+	* 
+	* @param price
+	*			is the price of service to be placed into price.
+	*/
 	public String ConvertTOABNT(String date) throws ParseException {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateISO = sdf.parse(date);
+		SimpleDateFormat dateBRFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateISO = dateBRFormat.parse(date);
 
-		SimpleDateFormat sdf2 = new SimpleDateFormat("dd/MM/yyyy");
-		String stringDateBR = sdf2.format(dateISO);
+		SimpleDateFormat dateUSFormat = new SimpleDateFormat("dd/MM/yyyy");
+		String stringDateBR = dateUSFormat.format(dateISO);
 
 		return stringDateBR;
 	}
