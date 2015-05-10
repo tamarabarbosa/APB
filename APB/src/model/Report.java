@@ -195,7 +195,19 @@ public class Report {
 		return serviceType;
 	}
 
-	// this setter define how the type of service must be filled
+	/**
+	* Set the type of service that was done, case the user input
+	* an invalid date the method return an warning while the user
+	* doesn't fill correctly.
+	*
+	* @param serviceType
+	*			is the type of service that was done.
+	*
+	* @exception NullPointerException 
+	*					if the serviceType is setted with a null value.
+	* @exception AssertionError
+	*					if the serviceType is setted with empty field.
+	*/
 	public void setServiceType(String serviceType) throws ReportException {
 		if (serviceType == null)
 			throw new NullPointerException(SERVICE_TYPE_EMPTY);
