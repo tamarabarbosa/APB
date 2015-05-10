@@ -79,7 +79,19 @@ public class Report {
 		return initialDate;
 	}
 
-	// this setter define how the inicial date must be filled
+	
+	/**
+	* Set the date of the the service started in the report, according with
+	* brazilian standards.
+	*
+	* @param initialDate 
+	*				is the date when the service started.
+	*
+	* @exception NullPointerException 
+	*					if the initialDate is setted with a null value.
+	* @exception AssertionError
+	*					if the initialDate is setted with empty field.
+	*/
 	public void setInitialDate(String initialDate) throws ReportException,
 			NullPointerException, ParseException {
 		if (initialDate == null)
@@ -88,11 +100,11 @@ public class Report {
 			throw new AssertionError(INITIAL_DATE_EMPTY);
 		else {
 
-			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-			Date dateISO = sdf.parse(initialDate);
+			SimpleDateFormat dateBRFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Date dateISO = dateBRFormat.parse(initialDate);
 
-			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-			String stringDateBR = sdf2.format(dateISO);
+			SimpleDateFormat dateUSFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String stringDateBR = dateUSFormat.format(dateISO);
 
 			this.initialDate = stringDateBR;
 		}
