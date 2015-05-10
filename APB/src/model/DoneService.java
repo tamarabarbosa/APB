@@ -37,8 +37,15 @@ public class DoneService {
 
 	/**
 	 * Constructor.
+	 *
+	 * @param serviceName
+	 *            is the name of the service.
+	 * @param price
+	 *            is the price of the service.
+	 * @param description
+	 *            is the description of the service.
 	 */
-	public DoneService() {
+	public DoneService(String serviceName, String price, String barberName) {
 		this.serviceName = serviceName;
 		this.price = price;
 		this.barberName = barberName;
