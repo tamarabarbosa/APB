@@ -191,12 +191,13 @@ public class DoneService {
 	}
 
 	/**
-	* Set the price of the service done by the barber, case the user input
-	* an invalid price the method return an warning while the user
-	* doesn't fill correctly.
-	* 
-	* @param price
-	*			is the price of service to be placed into price.
+	* It's a method to validate the date beyond brazilian standards, and returns
+	* the right date to the class. 
+	*
+	* @param date
+	*			is the current date of the done service.
+	* @return stringDateBR
+	*			is the date with brazilian standards.
 	*/
 	public String ConvertTOABNT(String date) throws ParseException {
 
