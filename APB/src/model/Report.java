@@ -111,6 +111,11 @@ public class Report {
 
 	}
 
+	/**
+	 * Get the final date when the service was done.
+	 *
+	 * @return endDate the date when the service was done.
+	 */
 	public String getEndDate() {
 		return endDate;
 	}
