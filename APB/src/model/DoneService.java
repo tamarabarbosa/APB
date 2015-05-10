@@ -80,8 +80,6 @@ public class DoneService {
 		return date;
 	}
 
-	// Service name setter
-
 	/**
 	 * Set the service name of the service of to search in appointment book,
 	 * case the name doesn't exist or the field setted empty, the method return
@@ -106,14 +104,13 @@ public class DoneService {
 			throw new ServiceException(INVALID_SERVICE_NAME);
 	}
 
-	// Barber name setter
 	/**
-	 * Set the Barber name of to search in appointment book, case the Barber
+	 * Set the Barber name to search in appointment book, case the Barber
 	 * name doesn't exist or the field setted empty, the method return an
 	 * warning while the user doesn't fill correctly.
 	 *
 	 * @param barberName
-	 *            is the name of Barber to be placed into BarberName.
+	 *            is the name of Barber to be placed into barberName.
 	 *
 	 * @exception ServiceException
 	 *                if the field setted empty.
@@ -132,7 +129,20 @@ public class DoneService {
 			throw new ServiceException(INVALID_BARBER);
 	}
 
-	// Price setter
+	/**
+	* Set the price of the service done by the barber, case the user input
+	* an invalid price the method return an warning while the user
+	* doesn't fill correctly.
+	* @param price
+	*			is the price of service to be placed into price.
+	*
+	* @exception NullPointerException
+	*						if the price is equal to a null value.
+	* @exception ServiceException
+	*						if the price is setted empty.  
+	* @exception ServiceException
+	*						if the user set any invalid price.
+	*/
 	public void setPrice(String price) throws ServiceException {
 		if (price == null)
 			throw new NullPointerException(EMPTY_PRICE);
