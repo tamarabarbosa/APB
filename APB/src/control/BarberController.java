@@ -16,8 +16,10 @@ import model.Barber;
 
 public class BarberController {
 
+	// Stores the current instance of the class
 	private static BarberController instance;
 
+	// Class constructor
 	private BarberController() {
 	}
 
@@ -41,15 +43,25 @@ public class BarberController {
 		}
 	}
 
-	// this method change data of barber
-	public boolean change(String name, Barber barber) throws SQLException {
-		if (barber == null) {
-			return false;
+	/**
+	 * Method that includes a new barber on DB
+	 * 
+	 * @param barberToInclude
+	 *            - Barber to be included on DB
+	 */
+	public boolean includeBarber(Barber barberToInclude) throws SQLException {
+		boolean returnMethodIncludeBarber;
+		if (barberToInclude == null) {
+			returnMethodIncludeBarber = false;
 		} else {
-			Barber barber_change = barber;
-			BarberDAO.getInstance().change(name, barber_change, barber);
-			return true;
+			returnMethodIncludeBarber = true;
 		}
+
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+
+		barberDAOInstance.includeBarber(barberToInclude);
+
+		return returnMethodIncludeBarber;
 	}
 
 	// this method exclude barber
@@ -62,19 +74,104 @@ public class BarberController {
 		}
 	}
 
-	// this show results of search
-	public ResultSet search() throws SQLException {
-		return BarberDAO.getInstance().search();
+	/**
+	 * Method that modify a barber registered on DB
+	 * 
+	 * @param barberToChangeName
+	 *            - String that contains the barber name that will be replaced
+	 * @param newBarber
+	 *            - Barber that will replace the old one (where
+	 *            'barberToChangeName' on DB)
+	 */
+	public boolean modifyBarber(String barberToChangeName, Barber newBarber)
+			throws SQLException {
+		boolean returnMethodModifyBarber;
+		if (newBarber == null) {
+			returnMethodModifyBarber = false;
+		} else {
+			returnMethodModifyBarber = true;
+		}
+
+		// Check use - Probably can be deleted
+		Barber changedBarber = newBarber;
+
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+
+		barberDAOInstance.changeBarber(barberToChangeName, changedBarber,
+				newBarber);
+
+		return returnMethodModifyBarber;
 	}
 
-	// this show results of barber registred
+	/**
+	 * Method that delete a barber registered on DB
+	 * 
+	 * @param barberToDelete
+	 *            - Barber to be deleted
+	 * @return true if the barber to delete exists
+	 */
+	public boolean deleteBarber(Barber barberToDelete) throws SQLException {
+		boolean returnMethodDeleteBarber;
+		if (barberToDelete == null) {
+			returnMethodDeleteBarber = false;
+		} else {
+			returnMethodDeleteBarber = true;
+		}
+
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+
+		barberDAOInstance.deleteBarber(barberToDelete);
+
+		return returnMethodDeleteBarber;
+	}
+
+	/**
+	 * Method that return all barber table (on BarberDAO) - Check the need of
+	 * this method
+	 * 
+	 * @param ResultSet
+	 *            - Return the barber searched
+	 */
+	public ResultSet searchBarbers() throws SQLException {
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+
+		ResultSet searchBarberResult = barberDAOInstance.searchBarber();
+
+		return searchBarberResult;
+	}
+
+	/**
+	 * Method that return all registered barbers on DB
+	 * 
+	 * @param barber
+	 *            - Check the need of this parameter. Never used, should be
+	 *            deleted.
+	 */
 	public ResultSet showRegisteredBarbers(Barber barber) throws SQLException {
-		return BarberDAO.getInstance().showRegisteredBarbers(barber);
+
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+
+		ResultSet showRegisteredBarberResult = barberDAOInstance
+				.showRegisteredBarber(barber);
+
+		return showRegisteredBarberResult;
 	}
 
-	// this show results of seach barber by name
-	public ResultSet searchPorNome(Barber barber) throws SQLException {
-		return BarberDAO.getInstance().searchByName(barber);
+	/**
+	 * Method that search for a specific barber on DB
+	 * 
+	 * @param barberToSearchFor
+	 *            - Barber to search for on DB
+	 */
+	public ResultSet searchBarberByName(Barber barberToSearchFor)
+			throws SQLException {
+
+		BarberDAO barberDAOInstance = BarberDAO.getInstance();
+
+		ResultSet searchByNameResult = barberDAOInstance
+				.searchByName(barberToSearchFor);
+
+		return searchByNameResult;
 	}
 
 }
