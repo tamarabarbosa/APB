@@ -40,7 +40,7 @@ public class Contact {
 	/**
 	 * Get the current name.
 	 *
-	 * @return current name of the barber in appoiment book
+	 * @return current name of the barber in appointment book
 	 */
 	public String getName() {
 		return name;
@@ -49,7 +49,7 @@ public class Contact {
 	/**
 	 * Get the current phone number.
 	 *
-	 * @return current phone number of the barber in appoiment book
+	 * @return current phone number of the barber in appointment book
 	 */
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -58,14 +58,14 @@ public class Contact {
 	/**
 	 * Get the current description of service.
 	 *
-	 * @return the description of the barber in appoiment book
+	 * @return the description of the barber in appointment book
 	 */
 	public String getDescription() {
 		return description;
 	}
 
 	/**
-	 * Set the name of the barber to search in appoiment book, case the name
+	 * Set the name of the barber to search in appointment book, case the name
 	 * doesn't exist or the field setted empty, the method return an warning
 	 * while the user doesn't fill correctly.
 	 *
@@ -87,7 +87,7 @@ public class Contact {
 	}
 
 	/**
-	 * Set the phone number of the barber to search in appoiment book, case the
+	 * Set the phone number of the barber to search in appointment book, case the
 	 * tphone number doesn't exist or the field setted empty, the method return
 	 * an warning while the user doesn't fill correctly.
 	 *
