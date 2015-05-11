@@ -38,7 +38,7 @@ public class BarberController {
 		if (barber == null) {
 			return false;
 		} else {
-			BarberDAO.getInstance().insert(barber);
+			BarberDAO.getInstance().includeBarber(barber);
 			return true;
 		}
 	}
@@ -69,7 +69,7 @@ public class BarberController {
 		if (barber == null) {
 			return false;
 		} else {
-			BarberDAO.getInstance().delete(barber);
+			BarberDAO.getInstance().deleteBarber(barber);
 			return true;
 		}
 	}
@@ -135,7 +135,7 @@ public class BarberController {
 	public ResultSet searchBarbers() throws SQLException {
 		BarberDAO barberDAOInstance = BarberDAO.getInstance();
 
-		ResultSet searchBarberResult = barberDAOInstance.searchBarber();
+		ResultSet searchBarberResult = barberDAOInstance.search();
 
 		return searchBarberResult;
 	}
