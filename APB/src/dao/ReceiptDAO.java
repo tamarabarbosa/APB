@@ -15,29 +15,86 @@ import java.sql.SQLException;
 
 public class ReceiptDAO {
 
+	// Stores the current instance of the class
 	private static ReceiptDAO instance;
 
-	private ReceiptDAO(){}
+	// General class constructor
+	private ReceiptDAO() {
+	}
 
-	public static ReceiptDAO getInstance(){
-		if(instance == null)
+	/**
+	 * @return The current instance if exists, or instantiate a new one if does
+	 *         not and return it
+	 */
+	public static ReceiptDAO getInstance() {
+		if (instance == null) {
 			instance = new ReceiptDAO();
+		} else {
+			// Nothing to do - because the condition "if" is just used to check
+			// the initial value of the variable
+		}
+
 		return instance;
 	}
-	//this method search on the schedule works done by the barber
-	public ResultSet pesquisarJobsDoBarber(String barber, String dataInicial, String dataFinal) throws SQLException{
 
-		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
-				+dataInicial+"' AND '"+ dataFinal+"' AND barber = '"
-				+barber+"';");
-		ResultSet rs = pst.executeQuery();
+	/**
+	 * Create a connection with DB
+	 * 
+	 * @return The connection established
+	 * @throws SQLException
+	 * @return - Return the connection with the database
+	 */
+	public Connection createConnectionWithDB() throws SQLException {
+		FactoryConnection factoryConnectionInstance = FactoryConnection
+				.getInstance();
+		Connection connection = factoryConnectionInstance.getConnection();
 
-		return rs;
+		return connection;
 	}
-	//this method is responsible by connection
+
+	/**
+	 * Method used to search barber services
+	 * 
+	 * @param barberName
+	 *            - Contains the barber name
+	 * @param initialDate
+	 *            - Receives the initial date
+	 * @param finalDate
+	 *            - Receives the final date
+	 * @throws SQLException
+	 * @return - Return the ResultSet of the selection of the search by a
+	 *         service
+	 */
+	public ResultSet barberServicesSearch(String barber, String dataInicial,
+			String dataFinal) throws SQLException {
+
+		Connection connection = createConnectionWithDB();
+
+		String sqlCodeToSelectFromGivenService = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				+ dataInicial
+				+ "' AND '"
+				+ dataFinal
+				+ "' AND barbeiro = '"
+				+ barber + "';";
+
+		PreparedStatement preparedStatement = connection
+				.prepareStatement(sqlCodeToSelectFromGivenService);
+
+		ResultSet resultInstance = preparedStatement.executeQuery();
+
+		return resultInstance;
+	}
+
+	/**
+	 * Method used to execute some action on DB
+	 * 
+	 * @param message
+	 *            - SQL code of action to be executed
+	 * @throws SQLException
+	 */
 	public void updateQuery(String message) throws SQLException {
-		Connection connection = FactoryConnection.getInstance().getConnection();
+		Connection connection = createConnectionWithDB();
+
 		PreparedStatement preparedStatement = connection
 				.prepareStatement(message);
 		preparedStatement.executeUpdate();
