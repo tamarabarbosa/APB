@@ -56,7 +56,7 @@ public class PhonebookDAO {
 		return true;
 	}
 
-	public boolean delete(Contact contact) throws SQLException {
+	public boolean delete(Phonebook contact) throws SQLException {
 		if (contact == null)
 			return false;
 
