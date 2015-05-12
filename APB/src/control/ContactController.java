@@ -11,73 +11,144 @@ package control;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import dao.ContactDAO;
 import dao.PhonebookDAO;
 import model.Contact;
 import model.Phonebook;
 
 public class ContactController {
 
+	// Stores the current instance of the class
 	private static ContactController instance;
 
+	// Class constructor
 	private ContactController() {
 	}
 
-	// this method include barber on the phonebook
+	/**
+	 * Include a new contact on the database
+	 * 
+	 * @param contact
+	 *            - Contact to be included
+	 * @return true if the inclusion was made right or false if it does not.
+	 * @throws SQLException
+	 */
 	public boolean include(Contact phonebook) throws SQLException {
+		boolean returnMethodincludeContact;
 		if (phonebook == null) {
-			return false;
+			returnMethodincludeContact = false;
 		} else {
-			PhonebookDAO.getInstance().insert(phonebook);
-			return true;
+			PhonebookDAO phonebookDAOInstance = PhonebookDAO.getInstance();
+			phonebookDAOInstance.insert(phonebook);
+
+			returnMethodincludeContact = true;
 		}
+		return returnMethodincludeContact;
 	}
 
-	// this method change barber on the phonebook
+	/**
+	 * Change a contact on the database
+	 * 
+	 * @param contactToChangeName
+	 *            - Name of the contact that will be replaced
+	 * @param newContact
+	 *            - New contact to replace the old one
+	 * @return true if the changes was made right or false if it does not.
+	 * @throws SQLException
+	 */
 	public boolean change(String name, Contact phonebook) throws SQLException {
+		boolean returnMethodchangeContact;
 		if (phonebook == null) {
-			return false;
+			returnMethodchangeContact = false;
 		} else {
-			Contact phonebook_change = phonebook;
-			PhonebookDAO.getInstance().change(name, phonebook_change,
-					phonebook);
-			return true;
+			Contact phonebookChange = phonebook;
+			PhonebookDAO editPhonebookDataInstance = PhonebookDAO.getInstance();
+			editPhonebookDataInstance.change(name, phonebookChange,
+					phonebookChange);
+
+			returnMethodchangeContact = true;
 		}
+		return returnMethodchangeContact;
 	}
 
-	// this method exclude barber on the phonebook
-	public boolean delete(Contact contact) throws SQLException {
+	/**
+	 * Remove a contact from database
+	 * 
+	 * @param contactToBeRemoved
+	 *            - The contact to be deleted
+	 * @return true if the exclusion was made right or false if it does not.
+	 * @throws SQLException
+	 */
+	public boolean delete(Phonebook contact) throws SQLException {
+		boolean returnMethodremoveContact;
 		if (contact == null) {
-			return false;
+			returnMethodremoveContact = false;
 		} else {
-			PhonebookDAO.getInstance().delete(contact);
-			return true;
+			PhonebookDAO deletePhonebookDataInstance = PhonebookDAO
+					.getInstance();
+			deletePhonebookDataInstance.delete(contact);
+
+			returnMethodremoveContact = true;
 		}
+
+		return returnMethodremoveContact;
 	}
 
-	// this method check if the instance is null case dont he set new phonebook
+	/**
+	 * @return The current instance if it exists or instantiate a new one if
+	 *         does not
+	 */
 	public static ContactController getInstance() {
 		if (instance == null) {
 			instance = new ContactController();
-			return instance;
 		} else {
-			return instance;
+			// Nothing to do because if 'instance' is not null, there is an
+			// active instance
 		}
+
+		return instance;
 	}
 
-	// show results of contacts
+	/**
+	 * Provides access to the registered contacts on the database
+	 * 
+	 * @return a ResultSet object with all contacts registered on the database
+	 * @throws SQLException
+	 */
 	public ResultSet showContactsRegistered(Phonebook contact)
 			throws SQLException {
 		return PhonebookDAO.getInstance().mostrarContatosCadastrados(contact);
 	}
 
-	// show results by name
+	/**
+	 * Search for a contact by it's name
+	 * 
+	 * @param contact
+	 *            - Contact to be searched
+	 * @return a ResultSet object with all contacts with the given contact name
+	 * @throws SQLException
+	 */
 	public ResultSet searchByName(Contact contact) throws SQLException {
-		return PhonebookDAO.getInstance().searchByNome(contact);
+		ContactDAO contactDAOInstance = ContactDAO.getInstance();
+		ResultSet searchByNameResult = contactDAOInstance.searchByNome(contact);
+
+		return searchByNameResult;
 	}
 
-	// show results by phone
+	/**
+	 * Search for a contact by it's phone number
+	 * 
+	 * @param contact
+	 *            - Contact to be searched
+	 * @return a ResultSet object with all contacts with the given contact phone
+	 *         number
+	 * @throws SQLException
+	 */
 	public ResultSet searchByPhonebook(Contact contact) throws SQLException {
-		return PhonebookDAO.getInstance().searchByPhone(contact);
+		PhonebookDAO contactDAOInstance = PhonebookDAO.getInstance();
+		ResultSet searchPhoneResult = contactDAOInstance.searchByPhone(contact);
+
+		return searchPhoneResult;
 	}
 
 }
