@@ -14,50 +14,88 @@ import java.sql.SQLException;
 import dao.DoneServiceDAO;
 import model.DoneService;
 
-;
-
 public class DoneServiceController {
 
+	// General class constructor
 	private DoneServiceController() {
 	}
 
+	/**
+	 * @return - Return the current instance if exists, or instantiate a new one
+	 *         if does not and return it
+	 */
 	public static DoneServiceController getInstance() {
+		// "DoneServiceController" class instance
 		if (instance == null) {
 			instance = new DoneServiceController();
 		} else {
-			/* nothing to do. */
+			// Nothing to do - because the condition "if" is just used to check
+			// the initial value of the variable
 		}
+
 		return instance;
 
 	}
 
+	// Stores the current instance of the class
 	private static DoneServiceController instance;
 
-	// Method used to insert a service
-	public boolean insert(DoneService job) throws SQLException {
-		if (job != null) {
-			DoneServiceDAO.getInstance().insert(job);
-			return true;
+	/**
+	 * Method used to insert a service
+	 * 
+	 * @param providedService
+	 *            - Contains the provided service
+	 * @return - Return the status of the insertion
+	 */
+	public boolean insert(DoneService providedService) throws SQLException {
+		boolean providedServiceInserted;
+
+		if (providedService != null) {
+			DoneServiceDAO.getInstance().insert(providedService);
+
+			providedServiceInserted = true;
 		} else {
-			return false;
+			providedServiceInserted = false;
 		}
+
+		return providedServiceInserted;
 	}
 
-	// Method used to delete a service
-	public boolean delete(DoneService job) throws SQLException {
-		if (job != null) {
-			DoneServiceDAO.getInstance().delete(job);
-			return true;
+	/**
+	 * Method used to delete a service
+	 * 
+	 * @param providedService
+	 *            - Contains the provided service
+	 * @return - Return the status of the exclusion
+	 */
+	public boolean delete(DoneService providedService) throws SQLException {
+		boolean providedServiceDeleted;
+
+		if (providedService != null) {
+			DoneServiceDAO.getInstance().delete(providedService);
+
+			providedServiceDeleted = true;
 		} else {
-			return false;
+			providedServiceDeleted = false;
 		}
+
+		return providedServiceDeleted;
 	}
 
-	// Method that gives access to the registered services
-	public ResultSet mostrarJobsPrestadosCadastrados(DoneService job)
+	/**
+	 * Method that gives access to the registered services
+	 * 
+	 * @param providedService
+	 *            - Contains the provided service
+	 * @return - Return the ResultSet of the Show Done Service Registered
+	 */
+	public ResultSet mostrarJobsPrestadosCadastrados(DoneService providedService)
 			throws SQLException {
-		return DoneServiceDAO.getInstance()
-				.mostrarJobsPrestadosCadastrados(job);
+		DoneServiceDAO doneServiceDAOInstance = DoneServiceDAO.getInstance();
+		ResultSet showRegistredDoneServicesResult = doneServiceDAOInstance
+				.showRegistredDoneServices(providedService);
+
+		return showRegistredDoneServicesResult;
 	}
 
 }
