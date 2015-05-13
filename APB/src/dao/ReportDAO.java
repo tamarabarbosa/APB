@@ -35,11 +35,12 @@ public class ReportDAO {
 	}
 
 	/**
-	 * Create a connection with DB
+	 * Search for done services between two dates
 	 * 
-	 * @return The connection established
+	 * @param report
+	 *            - Report object that contains the dates to search between
+	 * @return a ResultSet object with the done services found
 	 * @throws SQLException
-	 * @return - Return the connection with the database
 	 */
 	public ResultSet searchByData(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -54,17 +55,14 @@ public class ReportDAO {
 	}
 
 	/**
-	 * Method used to search barber services
+	 * Search for done services between two dates and by the barber whom did the
+	 * service
 	 * 
-	 * @param barberName
-	 *            - Contains the barber name
-	 * @param initialDate
-	 *            - Receives the initial date
-	 * @param finalDate
-	 *            - Receives the final date
+	 * @param report
+	 *            - Report object that contains the dates to search between and
+	 *            barber name
+	 * @return a ResultSet object with the done services found
 	 * @throws SQLException
-	 * @return - Return the ResultSet of the selection of the search by a
-	 *         service
 	 */
 	public ResultSet searchByDataEBarber(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -81,10 +79,12 @@ public class ReportDAO {
 	}
 
 	/**
-	 * Method used to execute some action on DB
+	 * Search for done services between two dates and by the service type
 	 * 
-	 * @param message
-	 *            - SQL code of action to be executed
+	 * @param report
+	 *            - Report object that contains the dates to search between and
+	 *            service type name
+	 * @return a ResultSet object with the done services found
 	 * @throws SQLException
 	 */
 	public ResultSet searchByDataEJob(Report report) throws SQLException {
@@ -102,7 +102,14 @@ public class ReportDAO {
 
 	}
 
-	// this method search report by barber
+	/**
+	 * Search for done services by the barber who did it
+	 * 
+	 * @param report
+	 *            - Report object that contains the barber name to search for
+	 * @return a ResultSet object with the done services found
+	 * @throws SQLException
+	 */
 	public ResultSet searchByBarber(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
@@ -113,7 +120,15 @@ public class ReportDAO {
 		return rs;
 	}
 
-	// this method search by barber and service
+	/**
+	 * Search for done services by the barber who did it and the service type
+	 * 
+	 * @param report
+	 *            - Report object that contains the barber name and the service
+	 *            type to search for
+	 * @return a ResultSet object with the done services found
+	 * @throws SQLException
+	 */
 	public ResultSet searchByBarberEJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
@@ -125,7 +140,14 @@ public class ReportDAO {
 		return rs;
 	}
 
-	// this method search by service
+	/**
+	 * Search for done services by the service type
+	 * 
+	 * @param report
+	 *            - Report object that contains the service type to search for
+	 * @return a ResultSet object with the done services found
+	 * @throws SQLException
+	 */
 	public ResultSet searchByJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
@@ -136,7 +158,15 @@ public class ReportDAO {
 		return rs;
 	}
 
-	// this method search by date, barber and service
+	/**
+	 * Search for done services between two dates, by the service type and the
+	 * barber who did it
+	 * 
+	 * @param report
+	 *            - Report object that contains the service type to search for
+	 * @return a ResultSet object with the done services found
+	 * @throws SQLException
+	 */
 	public ResultSet searchByDataBarberEJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
