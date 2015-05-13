@@ -21,58 +21,60 @@ public class ReportDAO {
 
 	private ReportDAO() {
 	}
-	//this method check if the report is there
+
+	// this method check if the report is there
 	public static ReportDAO getInstance() {
 		if (instance == null)
 			instance = new ReportDAO();
 		return instance;
 	}
-	//this method search by report by date in the database
+
+	// this method search by report by date in the database
 	public ResultSet searchByData(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
-						+ report.getDataInicial()
+						+ report.getInitialDate()
 						+ "' AND '"
-						+ report.getDataFinal() + "';");
+						+ report.getEndDate() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
-	//this method search by report date by barber in the database
-	public ResultSet searchByDataEBarber(Report report)
-			throws SQLException {
+
+	// this method search by report date by barber in the database
+	public ResultSet searchByDataEBarber(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
-						+ report.getDataInicial()
+						+ report.getInitialDate()
 						+ "' AND '"
-						+ report.getDataFinal()
+						+ report.getEndDate()
 						+ "' AND barber = '"
 						+ report.getBarber() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
-	//this method search by service date by date in the database
-	public ResultSet searchByDataEJob(Report report)
-			throws SQLException {
+
+	// this method search by service date by date in the database
+	public ResultSet searchByDataEJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
-						+ report.getDataInicial()
+						+ report.getInitialDate()
 						+ "' AND '"
-						+ report.getDataFinal()
+						+ report.getEndDate()
 						+ "' AND name = '"
-						+ report.getTipoJob() + "';");
+						+ report.getServiceType() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 
 	}
-	//this method search report by barber
-	public ResultSet searchByBarber(Report report)
-			throws SQLException {
+
+	// this method search report by barber
+	public ResultSet searchByBarber(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM jobprestado WHERE barber = '"
@@ -81,43 +83,42 @@ public class ReportDAO {
 
 		return rs;
 	}
-	//this method search by barber and service
-	public ResultSet searchByBarberEJob(Report report)
-			throws SQLException {
+
+	// this method search by barber and service
+	public ResultSet searchByBarberEJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM jobprestado WHERE barber = '"
-						+ report.getBarber()
-						+ "' AND name = '"
-						+ report.getTipoJob() + "';");
+						+ report.getBarber() + "' AND name = '"
+						+ report.getServiceType() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
-	//this method search by service
-	public ResultSet searchByJob(Report report)
-			throws SQLException {
+
+	// this method search by service
+	public ResultSet searchByJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM jobprestado WHERE name = '"
-						+ report.getTipoJob() + "';");
+						+ report.getServiceType() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
 	}
-	//this method search by date, barber and service
-	public ResultSet searchByDataBarberEJob(Report report)
-			throws SQLException {
+
+	// this method search by date, barber and service
+	public ResultSet searchByDataBarberEJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
 				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
-						+ report.getDataInicial()
+						+ report.getInitialDate()
 						+ "' AND '"
-						+ report.getDataFinal()
+						+ report.getEndDate()
 						+ "' AND barber = '"
 						+ report.getBarber()
 						+ "' AND name = '"
-						+ report.getTipoJob() + "';");
+						+ report.getServiceType() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
