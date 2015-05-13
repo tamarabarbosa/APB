@@ -16,19 +16,32 @@ import model.Report;
 
 public class ReportController {
 
+	// Stores the current instance of the class
 	private static ReportController instance;
 
+	// General class constructor
 	public ReportController() {
 	}
 
-	// Method that gives access to the registered reports and also gives the
-	// option to search it by date
+	/**
+	 * @return - Return the current instance if exists, or instantiate a new one
+	 *         if does not and return it
+	 */
 	public ResultSet searchByData(Report report) throws SQLException {
 		return ReportDAO.getInstance().searchByData(report);
 	}
 
-	// Method that gives access to the registered reports and also gives the
-	// option to search it by date and barber
+	/**
+	 * Method that gives access to the barber services search
+	 * 
+	 * @param barberName
+	 *            - Contains the barber name
+	 * @param initialDate
+	 *            - Contains the initial date
+	 * @param finalDate
+	 *            - Contains the final date
+	 * @return - Return the ResultSet of the search
+	 */
 	public ResultSet searchByDataEBarber(Report report) throws SQLException {
 		return ReportDAO.getInstance().searchByDataEBarber(report);
 	}
