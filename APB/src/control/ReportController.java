@@ -24,58 +24,93 @@ public class ReportController {
 	}
 
 	/**
-	 * @return - Return the current instance if exists, or instantiate a new one
-	 *         if does not and return it
+	 * Method that gives access to the registered reports and also gives the
+	 * option to search it by date
+	 * 
+	 * @param report
+	 *            - Contains the report object
+	 * @return - Return the ResultSet of the search by date
 	 */
 	public ResultSet searchByData(Report report) throws SQLException {
 		return ReportDAO.getInstance().searchByData(report);
 	}
 
 	/**
-	 * Method that gives access to the barber services search
+	 * Method that gives access to the registered reports and also gives the
+	 * option to search it by date and barber
 	 * 
-	 * @param barberName
-	 *            - Contains the barber name
-	 * @param initialDate
-	 *            - Contains the initial date
-	 * @param finalDate
-	 *            - Contains the final date
-	 * @return - Return the ResultSet of the search
+	 * @param report
+	 *            - Contains the report object
+	 * @return - Return the ResultSet of the search by date and barber
 	 */
 	public ResultSet searchByDataEBarber(Report report) throws SQLException {
 		return ReportDAO.getInstance().searchByDataEBarber(report);
 	}
 
-	// Method that gives access to the registered reports and also gives the
-	// option to search it by date and service
+	/**
+	 * Method that gives access to the registered reports and also gives the
+	 * option to search it by date and service
+	 * 
+	 * @param report
+	 *            - Contains the report object
+	 * @return - Return the ResultSet of the search by date and service
+	 */
 	public ResultSet searchByDataEJob(Report report) throws SQLException {
 		return ReportDAO.getInstance().searchByDataEJob(report);
 	}
 
-	// Method that gives access to the registered reports and also gives the
-	// option to search it by barber
+	/**
+	 * Method that gives access to the registered reports and also gives the
+	 * option to search it by barber
+	 * 
+	 * @param report
+	 *            - Contains the report object
+	 * @return - Return the ResultSet of the search by barber
+	 */
 	public ResultSet searchByBarber(Report report) throws SQLException {
 		return ReportDAO.getInstance().searchByBarber(report);
 	}
 
-	// Method that gives access to the registered reports and also gives the
-	// option to search it by barber and service
+	/**
+	 * Method that gives access to the registered reports and also gives the
+	 * option to search it by barber and service
+	 * 
+	 * @param report
+	 *            - Contains the report object
+	 * @return - Return the ResultSet of the search by barber and service
+	 */
 	public ResultSet searchByBarberEJob(Report report) throws SQLException {
 		return ReportDAO.getInstance().searchByBarberEJob(report);
 	}
 
-	// Method that gives access to the registered reports and also gives the
-	// option to search it by service
+	/**
+	 * Method that gives access to the registered reports and also gives the
+	 * option to search it by service
+	 * 
+	 * @param report
+	 *            - Contains the report object
+	 * @return - Return the ResultSet of the search by service
+	 */
 	public ResultSet searchByJob(Report report) throws SQLException {
 		return ReportDAO.getInstance().searchByJob(report);
 	}
 
-	// Method that gives access to the registered reports and also gives the
-	// option to search it by date, barber and service
+	/**
+	 * Method that gives access to the registered reports and also gives the
+	 * option to search it by date, barber and service
+	 * 
+	 * @param report
+	 *            - Contains the report object
+	 * @return - Return the ResultSet of the search by date, barber and service
+	 */
 	public ResultSet searchByDataBarberEJob(Report report) throws SQLException {
 		return ReportDAO.getInstance().searchByDataBarberEJob(report);
 	}
 
+	/**
+	 * @return - Return the current instance if exists, or instantiate a new one
+	 *         if does not and return it
+	 */
 	public static ReportController getInstance() {
 		if (instance == null) {
 			instance = new ReportController();
