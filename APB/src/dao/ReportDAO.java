@@ -29,8 +29,13 @@ public class ReportDAO {
 	 *         not and return it
 	 */
 	public static ReportDAO getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new ReportDAO();
+		} else {
+			// Nothing to do because if 'instance' is not null, there is an
+			// active instance
+		}
+
 		return instance;
 	}
 
@@ -43,15 +48,18 @@ public class ReportDAO {
 	 * @throws SQLException
 	 */
 	public ResultSet searchByData(Report report) throws SQLException {
+		String prepareStatementToMethod = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				+ report.getInitialDate()
+				+ "' AND '"
+				+ report.getEndDate()
+				+ "';";
+
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
-						+ report.getInitialDate()
-						+ "' AND '"
-						+ report.getEndDate() + "';");
-		ResultSet rs = pst.executeQuery();
+				.prepareStatement(prepareStatementToMethod);
+		ResultSet instanceStatement = pst.executeQuery();
 
-		return rs;
+		return instanceStatement;
 	}
 
 	/**
@@ -66,16 +74,18 @@ public class ReportDAO {
 	 */
 	public ResultSet searchByDataEBarber(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
-						+ report.getInitialDate()
-						+ "' AND '"
-						+ report.getEndDate()
-						+ "' AND barber = '"
-						+ report.getBarber() + "';");
-		ResultSet rs = pst.executeQuery();
 
-		return rs;
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				+ report.getInitialDate()
+				+ "' AND '"
+				+ report.getEndDate()
+				+ "' AND barbeiro = '" + report.getBarber() + "';";
+
+		PreparedStatement pst = connection
+				.prepareStatement(prepareStatementMethod);
+		ResultSet instanceStatement = pst.executeQuery();
+
+		return instanceStatement;
 	}
 
 	/**
@@ -89,16 +99,18 @@ public class ReportDAO {
 	 */
 	public ResultSet searchByDataEJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
-						+ report.getInitialDate()
-						+ "' AND '"
-						+ report.getEndDate()
-						+ "' AND name = '"
-						+ report.getServiceType() + "';");
-		ResultSet rs = pst.executeQuery();
 
-		return rs;
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				+ report.getInitialDate()
+				+ "' AND '"
+				+ report.getEndDate()
+				+ "' AND nome = '" + report.getServiceType() + "';";
+
+		PreparedStatement pst = connection
+				.prepareStatement(prepareStatementMethod);
+		ResultSet queryResult = pst.executeQuery();
+
+		return queryResult;
 
 	}
 
@@ -112,12 +124,15 @@ public class ReportDAO {
 	 */
 	public ResultSet searchByBarber(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM jobprestado WHERE barber = '"
-						+ report.getBarber() + "';");
-		ResultSet rs = pst.executeQuery();
 
-		return rs;
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE barbeiro = '"
+				+ report.getBarber() + "';";
+
+		PreparedStatement pst = connection
+				.prepareStatement(prepareStatementMethod);
+		ResultSet queryResult = pst.executeQuery();
+
+		return queryResult;
 	}
 
 	/**
@@ -131,13 +146,17 @@ public class ReportDAO {
 	 */
 	public ResultSet searchByBarberEJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM jobprestado WHERE barber = '"
-						+ report.getBarber() + "' AND name = '"
-						+ report.getServiceType() + "';");
-		ResultSet rs = pst.executeQuery();
 
-		return rs;
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE barbeiro = '"
+				+ report.getBarber()
+				+ "' AND nome = '"
+				+ report.getServiceType() + "';";
+
+		PreparedStatement pst = connection
+				.prepareStatement(prepareStatementMethod);
+		ResultSet queryResult = pst.executeQuery();
+
+		return queryResult;
 	}
 
 	/**
@@ -150,12 +169,15 @@ public class ReportDAO {
 	 */
 	public ResultSet searchByJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM jobprestado WHERE name = '"
-						+ report.getServiceType() + "';");
-		ResultSet rs = pst.executeQuery();
 
-		return rs;
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE nome = '"
+				+ report.getServiceType() + "';";
+
+		PreparedStatement pst = connection
+				.prepareStatement(prepareStatementMethod);
+		ResultSet queryResult = pst.executeQuery();
+
+		return queryResult;
 	}
 
 	/**
@@ -169,18 +191,22 @@ public class ReportDAO {
 	 */
 	public ResultSet searchByDataBarberEJob(Report report) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
-		PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM jobprestado WHERE data BETWEEN '"
-						+ report.getInitialDate()
-						+ "' AND '"
-						+ report.getEndDate()
-						+ "' AND barber = '"
-						+ report.getBarber()
-						+ "' AND name = '"
-						+ report.getServiceType() + "';");
-		ResultSet rs = pst.executeQuery();
 
-		return rs;
+		String prepareStatementMethod = "SELECT * FROM servicoprestado WHERE data BETWEEN '"
+				+ report.getInitialDate()
+				+ "' AND '"
+				+ report.getEndDate()
+				+ "' AND barbeiro = '"
+				+ report.getBarber()
+				+ "' AND nome = '"
+				+ report.getServiceType() + "';";
+
+		PreparedStatement pst = connection
+				.prepareStatement(prepareStatementMethod);
+
+		ResultSet instanceStatement = pst.executeQuery();
+
+		return instanceStatement;
 	}
 
 }
