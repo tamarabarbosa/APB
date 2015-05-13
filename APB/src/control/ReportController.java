@@ -32,7 +32,10 @@ public class ReportController {
 	 * @return - Return the ResultSet of the search by date
 	 */
 	public ResultSet searchByData(Report report) throws SQLException {
-		return ReportDAO.getInstance().searchByData(report);
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByDateResult = reportDAOInstance.searchByData(report);
+
+		return searchByDateResult;
 	}
 
 	/**
@@ -44,7 +47,11 @@ public class ReportController {
 	 * @return - Return the ResultSet of the search by date and barber
 	 */
 	public ResultSet searchByDataEBarber(Report report) throws SQLException {
-		return ReportDAO.getInstance().searchByDataEBarber(report);
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByDateAndBarberResult = reportDAOInstance
+				.searchByDataEBarber(report);
+
+		return searchByDateAndBarberResult;
 	}
 
 	/**
@@ -56,7 +63,11 @@ public class ReportController {
 	 * @return - Return the ResultSet of the search by date and service
 	 */
 	public ResultSet searchByDataEJob(Report report) throws SQLException {
-		return ReportDAO.getInstance().searchByDataEJob(report);
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByDateAndServiceResult = reportDAOInstance
+				.searchByDataEJob(report);
+
+		return searchByDateAndServiceResult;
 	}
 
 	/**
@@ -68,7 +79,11 @@ public class ReportController {
 	 * @return - Return the ResultSet of the search by barber
 	 */
 	public ResultSet searchByBarber(Report report) throws SQLException {
-		return ReportDAO.getInstance().searchByBarber(report);
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByBarberResult = reportDAOInstance
+				.searchByBarber(report);
+
+		return searchByBarberResult;
 	}
 
 	/**
@@ -80,7 +95,11 @@ public class ReportController {
 	 * @return - Return the ResultSet of the search by barber and service
 	 */
 	public ResultSet searchByBarberEJob(Report report) throws SQLException {
-		return ReportDAO.getInstance().searchByBarberEJob(report);
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByBarberAndServiceResult = reportDAOInstance
+				.searchByBarberEJob(report);
+
+		return searchByBarberAndServiceResult;
 	}
 
 	/**
@@ -92,7 +111,10 @@ public class ReportController {
 	 * @return - Return the ResultSet of the search by service
 	 */
 	public ResultSet searchByJob(Report report) throws SQLException {
-		return ReportDAO.getInstance().searchByJob(report);
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByServiceResult = reportDAOInstance.searchByJob(report);
+
+		return searchByServiceResult;
 	}
 
 	/**
@@ -104,7 +126,11 @@ public class ReportController {
 	 * @return - Return the ResultSet of the search by date, barber and service
 	 */
 	public ResultSet searchByDataBarberEJob(Report report) throws SQLException {
-		return ReportDAO.getInstance().searchByDataBarberEJob(report);
+		ReportDAO reportDAOInstance = ReportDAO.getInstance();
+		ResultSet searchByDateBarberAndServiceResult = reportDAOInstance
+				.searchByDataBarberEJob(report);
+
+		return searchByDateBarberAndServiceResult;
 	}
 
 	/**
@@ -112,11 +138,14 @@ public class ReportController {
 	 *         if does not and return it
 	 */
 	public static ReportController getInstance() {
+		// "ReportController" class instance
 		if (instance == null) {
 			instance = new ReportController();
 		} else {
-			/* nothing to do. */
+			// Nothing to do - because the condition "if" is just used to check
+			// the initial value of the variable
 		}
+
 		return instance;
 	}
 
