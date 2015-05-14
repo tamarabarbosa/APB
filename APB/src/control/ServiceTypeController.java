@@ -27,12 +27,17 @@ public class ServiceTypeController {
 	 * @return if exists Service Type To Include
 	 */
 	public boolean insert(ServiceType typeJob) throws SQLException {
+		boolean existsServiceTypeToInclude;
 		if (typeJob == null) {
-			return false;
+			existsServiceTypeToInclude = false;
 		} else {
-			ServiceTypeDAO.getInstance().insert(typeJob);
-			return true;
+			ServiceTypeDAO serviceTypeDAOInstance = ServiceTypeDAO
+					.getInstance();
+
+			serviceTypeDAOInstance.insert(typeJob);
+			existsServiceTypeToInclude = true;
 		}
+		return existsServiceTypeToInclude;
 	}
 
 	/**
@@ -45,13 +50,21 @@ public class ServiceTypeController {
 	 * @return modifyServiceType - if exists modify Service Type
 	 */
 	public boolean change(String name, ServiceType typeJob) throws SQLException {
+		boolean existsNewServiceType;
 		if (typeJob == null) {
-			return false;
+			existsNewServiceType = false;
 		} else {
-			ServiceType typeJob_change = typeJob;
-			ServiceTypeDAO.getInstance().change(name, typeJob_change, typeJob);
-			return true;
+			// Auxiliary variable used to change the service type
+			ServiceType changedServiceType = typeJob;
+
+			ServiceTypeDAO serviceTypeDAOInstance = ServiceTypeDAO
+					.getInstance();
+
+			serviceTypeDAOInstance.change(existsNewServiceType,
+					changedServiceType, typeJob);
+			existsNewServiceType = true;
 		}
+		return existsNewServiceType;
 	}
 
 	/**
@@ -63,12 +76,17 @@ public class ServiceTypeController {
 	 */
 	public boolean delete(ServiceType typeJob) throws SQLException {
 
+		boolean existsServiceTypeToDelete;
 		if (typeJob == null) {
-			return false;
+			existsServiceTypeToDelete = false;
 		} else {
-			ServiceTypeDAO.getInstance().delete(typeJob);
-			return true;
+			ServiceTypeDAO serviceTypeDAOInstance = ServiceTypeDAO
+					.getInstance();
+
+			serviceTypeDAOInstance.delete(typeJob);
+			existsServiceTypeToDelete = true;
 		}
+		return existsServiceTypeToDelete;
 	}
 
 	// General class constructor
@@ -81,8 +99,9 @@ public class ServiceTypeController {
 		if (instance == null) {
 			instance = new ServiceTypeController();
 		} else {
-			/* nothing to do. */
+			// Nothing to do
 		}
+
 		return instance;
 	}
 
@@ -95,9 +114,14 @@ public class ServiceTypeController {
 	 * @return showRegistredServiceTypes - display Registered Types Of Service
 	 *         Result
 	 */
-	public ResultSet mostrarTipoJobCadastrados(ServiceType job)
+	public ResultSet showRegistredServiceTypes(ServiceType service)
 			throws SQLException {
-		return ServiceTypeDAO.getInstance().mostrarTipoJobCadastrados(job);
+		ServiceTypeDAO serviceTypeDAOInstance = ServiceTypeDAO.getInstance();
+
+		ResultSet displayRegisteredTypesOfServiceResult = serviceTypeDAOInstance
+				.displayRegisteredTypesOfService(service);
+
+		return displayRegisteredTypesOfServiceResult;
 	}
 
 	/**
@@ -106,8 +130,14 @@ public class ServiceTypeController {
 	 * @param serviceTypeToSearch
 	 *            - Service type to search for
 	 */
-	public static ResultSet searchByNome(ServiceType job) throws SQLException {
-		return ServiceTypeDAO.getInstance().searchByNome(job);
+	public static ResultSet searchByName(ServiceType service)
+			throws SQLException {
+		ServiceTypeDAO serviceTypeDAOInstance = ServiceTypeDAO.getInstance();
+
+		ResultSet searchByNameResult = serviceTypeDAOInstance
+				.searchByName(service);
+
+		return searchByNameResult;
 	}
 
 }
