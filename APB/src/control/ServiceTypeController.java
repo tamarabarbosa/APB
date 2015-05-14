@@ -19,7 +19,13 @@ public class ServiceTypeController {
 	// Stores the current instance of the class
 	private static ServiceTypeController instance;
 
-	// Method that modify a service type on the system
+	/**
+	 * Method that includes a new service type
+	 * 
+	 * @param serviceTypeToInclude
+	 *            - Service type to be included
+	 * @return if exists Service Type To Include
+	 */
 	public boolean insert(ServiceType typeJob) throws SQLException {
 		if (typeJob == null) {
 			return false;
@@ -29,20 +35,32 @@ public class ServiceTypeController {
 		}
 	}
 
-	// Method that change a service type on the system
-	public boolean change(String name, ServiceType typeJob)
-			throws SQLException {
+	/**
+	 * Method that modify a service type on the system
+	 * 
+	 * @param serviceTypeToNoChangeName
+	 *            - Contains the name of the service type to change
+	 * @param newServiceType
+	 *            - New service type that will replace the old one on DB
+	 * @return modifyServiceType - if exists modify Service Type
+	 */
+	public boolean change(String name, ServiceType typeJob) throws SQLException {
 		if (typeJob == null) {
 			return false;
 		} else {
 			ServiceType typeJob_change = typeJob;
-			ServiceTypeDAO.getInstance().change(name, typeJob_change,
-					typeJob);
+			ServiceTypeDAO.getInstance().change(name, typeJob_change, typeJob);
 			return true;
 		}
 	}
 
-	// Method that delete a service type on the system
+	/**
+	 * Method that delete a service type on the system
+	 * 
+	 * @param serviceTypeToDelete
+	 *            - Contains the service type to be deleted
+	 * @return deleteServiceType - if exists service type to delete
+	 */
 	public boolean delete(ServiceType typeJob) throws SQLException {
 
 		if (typeJob == null) {
@@ -53,6 +71,7 @@ public class ServiceTypeController {
 		}
 	}
 
+	// General class constructor
 	private ServiceTypeController() {
 	}
 
@@ -67,15 +86,26 @@ public class ServiceTypeController {
 		return instance;
 	}
 
-	// Return a ResultSet interface object with the service types registered on
-	// the system
+	/**
+	 * Return a ResultSet interface object with the service types registered on
+	 * the system
+	 * 
+	 * @param service
+	 *            - Never used ahead, Check need.
+	 * @return showRegistredServiceTypes - display Registered Types Of Service
+	 *         Result
+	 */
 	public ResultSet mostrarTipoJobCadastrados(ServiceType job)
 			throws SQLException {
-		return ServiceTypeDAO.getInstance().mostrarTipoJobCadastrados(
-				job);
+		return ServiceTypeDAO.getInstance().mostrarTipoJobCadastrados(job);
 	}
 
-	// Search for an specific service type name
+	/**
+	 * Search for an specific service type name
+	 * 
+	 * @param serviceTypeToSearch
+	 *            - Service type to search for
+	 */
 	public static ResultSet searchByNome(ServiceType job) throws SQLException {
 		return ServiceTypeDAO.getInstance().searchByNome(job);
 	}
