@@ -28,8 +28,13 @@ public class ServiceTypeDAO {
 	 *         not and return it
 	 */
 	public static ServiceTypeDAO getInstance() {
-		if (instance == null)
+		if (instance == null) {
 			instance = new ServiceTypeDAO();
+		} else {
+			// Nothing to do - because the condition "if" is just used to check
+			// the initial value of the variable
+		}
+
 		return instance;
 	}
 
@@ -42,14 +47,20 @@ public class ServiceTypeDAO {
 	 * @return - Return the status of the insertion
 	 */
 	public boolean insert(ServiceType typeJob) throws SQLException {
-		if (typeJob == null)
-			return false;
+		boolean serviceTypeInserted;
+		if (typeJob == null) {
+			serviceTypeInserted = false;
+		} else {
+			String sqlCodeToInsertServiceType = "INSERT INTO "
+					+ "tiposervico (nome, preco) VALUES (" + "\""
+					+ typeJob.getTempName() + "\", " + "\""
+					+ typeJob.getNameServiceType() + "\"); ";
 
-		this.updateQuery("INSERT INTO " + "typejob (name, preco) VALUES ("
-				+ "\"" + typeJob.getNameServiceType() + "\", " + "\""
-				+ typeJob.getPrice() + "\"); ");
+			this.updateQuery(sqlCodeToInsertServiceType);
 
-		return true;
+			serviceTypeInserted = true;
+		}
+		return serviceTypeInserted;
 	}
 
 	/**
@@ -64,17 +75,27 @@ public class ServiceTypeDAO {
 	 * @throws SQLException
 	 * @return - Return the status of the edition
 	 */
-	public boolean change(String name, ServiceType typeJob_change,
+	public boolean change(boolean existsNewServiceType, ServiceType typeJob_change,
 			ServiceType typeJob) throws SQLException {
-		if (typeJob_change == null || typeJob == null)
-			return false;
+		boolean serviceTypeEdited;
+		if (typeJob_change == null || typeJob == null) {
+			serviceTypeEdited = false;
+		} else {
+			String sqlCodeToUpdateServiceType = "UPDATE tiposervico SET nome = '"
+					+ typeJob.getNameServiceType()
+					+ "', "
+					+ "preco = '"
+					+ typeJob_change.getPrice()
+					+ "' WHERE"
+					+ " nome = '"
+					+ existsNewServiceType + "';";
 
-		this.updateQuery("UPDATE typejob SET name = '"
-				+ typeJob_change.getNameServiceType() + "', " + "preco = '"
-				+ typeJob_change.getPrice() + "' WHERE" + " name = '" + name
-				+ "';");
+			this.updateQuery(sqlCodeToUpdateServiceType);
+			serviceTypeEdited = true;
 
-		return true;
+		}
+
+		return serviceTypeEdited;
 	}
 
 	/**
@@ -86,12 +107,34 @@ public class ServiceTypeDAO {
 	 * @return - Return the status of the exclusion
 	 */
 	public boolean delete(ServiceType typeJob) throws SQLException {
-		if (typeJob == null)
-			return false;
+		boolean serviceTypeDeleted;
+		if (typeJob == null) {
+			serviceTypeDeleted = false;
+		} else {
+			String sqlCodeToDeleteServiceType = "DELETE FROM tiposervico WHERE "
+					+ "tipoServico.nome = \""
+					+ typeJob.getNameServiceType()
+					+ "\";";
 
-		this.updateQuery("DELETE FROM typejob WHERE " + "typeJob.name = \""
-				+ typeJob.getNameServiceType() + "\";");
-		return true;
+			this.updateQuery(sqlCodeToDeleteServiceType);
+			serviceTypeDeleted = true;
+		}
+
+		return serviceTypeDeleted;
+	}
+
+	/**
+	 * Create a connection with DB
+	 * 
+	 * @return The connection established
+	 * @throws SQLException
+	 */
+	public Connection createConnectionWithDB() throws SQLException {
+		FactoryConnection factoryConnectionInstance = FactoryConnection
+				.getInstance();
+		Connection connection = factoryConnectionInstance.getConnection();
+
+		return connection;
 	}
 
 	/**
@@ -103,7 +146,8 @@ public class ServiceTypeDAO {
 	 * @return - Return the connection with the database
 	 */
 	public void updateQuery(String message) throws SQLException {
-		Connection connection = FactoryConnection.getInstance().getConnection();
+		Connection connection = createConnectionWithDB();
+
 		PreparedStatement preparedStatement = connection
 				.prepareStatement(message);
 		preparedStatement.executeUpdate();
@@ -120,13 +164,14 @@ public class ServiceTypeDAO {
 	 * @return - Return the ResultSet of the selection of the all data from
 	 *         services type
 	 */
-	public ResultSet mostrarTipoJobCadastrados(ServiceType job)
+	public ResultSet displayRegisteredTypesOfService(ServiceType job)
 			throws SQLException {
-		Connection connection = FactoryConnection.getInstance().getConnection();
-		ResultSet rs = connection.createStatement().executeQuery(
-				"SELECT * FROM typejob;");
+		Connection connection = createConnectionWithDB();
 
-		return rs;
+		ResultSet resultInstance = connection.createStatement().executeQuery(
+				"SELECT * FROM tiposervico;");
+
+		return resultInstance;
 	}
 
 	/**
@@ -137,14 +182,18 @@ public class ServiceTypeDAO {
 	 * @throws SQLException
 	 * @return - Return ResultSet of the search by name
 	 */
-	public ResultSet searchByNome(ServiceType job) throws SQLException {
-		Connection connection = FactoryConnection.getInstance().getConnection();
-		java.sql.PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM typejob WHERE " + "name = '"
-						+ job.getNameServiceType() + "';");
-		ResultSet rs = pst.executeQuery();
+	public ResultSet searchByName(ServiceType service) throws SQLException {
+		Connection connection = createConnectionWithDB();
 
-		return rs;
+		java.sql.PreparedStatement preparedStatement;
+
+		preparedStatement = connection
+				.prepareStatement("SELECT * FROM tiposervico WHERE "
+						+ "nome = '" + service.getNameServiceType() + "';");
+
+		ResultSet resultInstance = preparedStatement.executeQuery();
+
+		return resultInstance;
 	}
 
 }
