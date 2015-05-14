@@ -16,17 +16,31 @@ import model.ServiceType;
 
 public class ServiceTypeDAO {
 
+	// Stores the current instance of the class
 	private static ServiceTypeDAO instance;
 
+	// General class constructor
 	private ServiceTypeDAO() {
 	}
-	//this method check if existence of type of service in data base
+
+	/**
+	 * @return The current instance, if exists, or instantiate a new one if does
+	 *         not and return it
+	 */
 	public static ServiceTypeDAO getInstance() {
 		if (instance == null)
 			instance = new ServiceTypeDAO();
 		return instance;
 	}
-	//this method include type of service provided
+
+	/**
+	 * Method used to include a service type
+	 * 
+	 * @param addServiceType
+	 *            - Includes the type of the service
+	 * @throws SQLException
+	 * @return - Return the status of the insertion
+	 */
 	public boolean insert(ServiceType typeJob) throws SQLException {
 		if (typeJob == null)
 			return false;
@@ -37,30 +51,57 @@ public class ServiceTypeDAO {
 
 		return true;
 	}
-	//this method change type of service provided
+
+	/**
+	 * Method used to edit a service type
+	 * 
+	 * @param serviceTypeName
+	 *            - Receives the name of the type of service
+	 * @param editedServiceType
+	 *            - Gets the edited service type
+	 * @param editServiceType
+	 *            - Edits the service type
+	 * @throws SQLException
+	 * @return - Return the status of the edition
+	 */
 	public boolean change(String name, ServiceType typeJob_change,
 			ServiceType typeJob) throws SQLException {
 		if (typeJob_change == null || typeJob == null)
 			return false;
 
 		this.updateQuery("UPDATE typejob SET name = '"
-				+ typeJob_change.getNameServiceType() + "', "
-				+ "preco = '" + typeJob_change.getPrice() + "' WHERE"
-				+ " name = '" + name + "';");
+				+ typeJob_change.getNameServiceType() + "', " + "preco = '"
+				+ typeJob_change.getPrice() + "' WHERE" + " name = '" + name
+				+ "';");
 
 		return true;
 	}
-	//this method exclude type of service provided
+
+	/**
+	 * Method used to delete a service type
+	 * 
+	 * @param deleteServiceType
+	 *            - Deletes the service type
+	 * @throws SQLException
+	 * @return - Return the status of the exclusion
+	 */
 	public boolean delete(ServiceType typeJob) throws SQLException {
 		if (typeJob == null)
 			return false;
 
-		this.updateQuery("DELETE FROM typejob WHERE "
-				+ "typeJob.name = \"" + typeJob.getNameServiceType()
-				+ "\";");
+		this.updateQuery("DELETE FROM typejob WHERE " + "typeJob.name = \""
+				+ typeJob.getNameServiceType() + "\";");
 		return true;
 	}
-	//this method make connection with database
+
+	/**
+	 * Method used to execute some action on DB
+	 * 
+	 * @param message
+	 *            - SQL code of action to be executed
+	 * @throws SQLException
+	 * @return - Return the connection with the database
+	 */
 	public void updateQuery(String message) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		PreparedStatement preparedStatement = connection
@@ -69,7 +110,16 @@ public class ServiceTypeDAO {
 		preparedStatement.close();
 		connection.close();
 	}
-	//this method show type of service registred
+
+	/**
+	 * Method used to display the registered service types
+	 * 
+	 * @param service
+	 *            - Contains the services
+	 * @throws SQLException
+	 * @return - Return the ResultSet of the selection of the all data from
+	 *         services type
+	 */
 	public ResultSet mostrarTipoJobCadastrados(ServiceType job)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
@@ -78,12 +128,20 @@ public class ServiceTypeDAO {
 
 		return rs;
 	}
-	//this method search by name type of service
+
+	/**
+	 * Method used to search by name
+	 * 
+	 * @param service
+	 *            - Contains the services
+	 * @throws SQLException
+	 * @return - Return ResultSet of the search by name
+	 */
 	public ResultSet searchByNome(ServiceType job) throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		java.sql.PreparedStatement pst = connection
-				.prepareStatement("SELECT * FROM typejob WHERE "
-						+ "name = '" + job.getNameServiceType() + "';");
+				.prepareStatement("SELECT * FROM typejob WHERE " + "name = '"
+						+ job.getNameServiceType() + "';");
 		ResultSet rs = pst.executeQuery();
 
 		return rs;
