@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.text.ParseException;
 
+import java.util.logging.Logger;
+
 @SuppressWarnings("serial")
 public class Administrative extends JFrame {
 
@@ -67,6 +69,7 @@ public class Administrative extends JFrame {
 				RegisterBarber frame = new RegisterBarber();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+				Logger.getLogger("Criate the boutton and open the phonebook frame");
 			}
 		});
 		btnBarber.setBounds(10, 45, 157, 37);
@@ -81,6 +84,7 @@ public class Administrative extends JFrame {
 				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+				Logger.getLogger("Criate the boutton and open the Service Type frame");
 			}
 		});
 		btnTipoJob.setBounds(215, 45, 149, 37);
@@ -110,6 +114,8 @@ public class Administrative extends JFrame {
 				MainMenu frame = new MainMenu();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+				Logger.getLogger("Criate the boutton to go back");
+
 			}
 		});
 		btnVoltar.setBounds(151, 141, 89, 23);
@@ -131,6 +137,7 @@ public class Administrative extends JFrame {
 				}
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+				Logger.getLogger("Criate the boutton and open the receipt frame");
 			}
 		});
 		btnRecibo.setBounds(215, 93, 149, 37);
