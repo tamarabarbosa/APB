@@ -21,6 +21,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class NewServiceType extends JFrame {
@@ -43,6 +44,7 @@ public class NewServiceType extends JFrame {
 				}
 			}
 		});
+		Logger.getLogger("Create the frame to a new Done service");
 	}
 
 	/**
@@ -69,7 +71,7 @@ public class NewServiceType extends JFrame {
 			ServiceTypeController jobController = ServiceTypeController
 					.getInstance();
 			ServiceType job = new ServiceType();
-			ResultSet rs = jobController.mostrarTipoJobCadastrados(job);
+			ResultSet rs = jobController.showRegistredServiceTypes(job);
 			while (rs.next()) {
 				String[] dados = new String[5];
 				dados[0] = rs.getString("name");
@@ -92,7 +94,7 @@ public class NewServiceType extends JFrame {
 				NewServiceType frame = new NewServiceType();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-
+				Logger.getLogger("new components of view was created");
 			}
 		});
 		btnNovo.setBounds(380, 24, 94, 23);
@@ -120,6 +122,7 @@ public class NewServiceType extends JFrame {
 		});
 		btnAlterar.setBounds(380, 58, 94, 23);
 		contentPane.add(btnAlterar);
+		Logger.getLogger("the type service was changed");
 
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addMouseListener(new MouseAdapter() {
@@ -142,6 +145,7 @@ public class NewServiceType extends JFrame {
 				if (confirmacao == JOptionPane.YES_OPTION) {
 					ServiceTypeController typeJobController = ServiceTypeController
 							.getInstance();
+					
 					try {
 						typeJobController.delete(typeJob);
 					} catch (SQLException e1) {
@@ -152,12 +156,17 @@ public class NewServiceType extends JFrame {
 					NewServiceType frame = new NewServiceType();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
+					Logger.getLogger("the service is removed ");
+				}
+				else{
+					//nothing to do
 				}
 
 			}
 		});
 		btnRemover.setBounds(380, 92, 94, 23);
 		contentPane.add(btnRemover);
+		Logger.getLogger("the service was deleted");
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.setBounds(380, 228, 94, 23);
