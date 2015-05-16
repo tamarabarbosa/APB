@@ -1,13 +1,13 @@
 package view;
 
 import java.awt.EventQueue;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -56,6 +56,7 @@ public class GenerateReceipt extends JFrame {
 		String databr = sdf2.format(dataISO);
 
 		return databr;
+		Logger.getLogger("Date converted to ABNT");
 	}
 
 	public String ConvertDateToABNTWhitoutToolbar(String data)
@@ -68,6 +69,7 @@ public class GenerateReceipt extends JFrame {
 		String databr = sdf2.format(dataISO);
 
 		return databr;
+		Logger.getLogger("Date converted to ABNT whitout toolbar");
 	}
 
 	private String ConvertDateToISO(String data) throws ParseException {
@@ -78,6 +80,7 @@ public class GenerateReceipt extends JFrame {
 		String dataISO = sdf2.format(dataABNT);
 
 		return dataISO;
+		Logger.getLogger("Date converted to ISO");
 	}
 
 	public static void main(String[] args) {
