@@ -115,6 +115,7 @@ public class GenerateReceipt extends JFrame {
 				new String[] { "Selecione um barber" }));
 		comboBoxBarbers.setBounds(10, 32, 304, 26);
 		contentPane.add(comboBoxBarbers);
+		Logger.getLogger("Show ComboBox with Barbers");
 
 		try {
 			ResultSet rs = BarberController.getInstance().search();
@@ -136,7 +137,7 @@ public class GenerateReceipt extends JFrame {
 		JLabel lblDataDeInicio = new JLabel("Data Inicial");
 		lblDataDeInicio.setBounds(36, 89, 86, 14);
 		contentPane.add(lblDataDeInicio);
-
+		
 		textFieldDataFinal = new JFormattedTextField(mascaraFormatoData);
 		textFieldDataFinal.setBounds(190, 110, 124, 20);
 		contentPane.add(textFieldDataFinal);
@@ -258,6 +259,7 @@ public class GenerateReceipt extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				Logger.getLogger("generate recipt");
 			}
 		});
 		btnGenerateReceipt.setBounds(202, 175, 112, 35);
@@ -271,6 +273,7 @@ public class GenerateReceipt extends JFrame {
 				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+				Logger.getLogger("back to menu");
 			}
 		});
 		btnVoltar.setBounds(10, 175, 112, 35);
