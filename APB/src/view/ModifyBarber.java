@@ -19,6 +19,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class ModifyBarber extends JFrame {
@@ -40,6 +41,7 @@ public class ModifyBarber extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				Logger.getLogger("Create the frame of moddify barber");
 			}
 		});
 	}
@@ -105,7 +107,7 @@ public class ModifyBarber extends JFrame {
 			BarberController barberController = BarberController.getInstance();
 			barber.setName(Barber.getTempName());
 
-			ResultSet rs = barberController.searchPorNome(barber);
+			ResultSet rs = barberController.searchBarberByName(barber);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));
@@ -150,6 +152,7 @@ public class ModifyBarber extends JFrame {
 				} catch (SQLException k) {
 					mostrarMensagemDeErro(k.getMessage());
 				}
+				Logger.getLogger("save the change of barber");
 			}
 		});
 		buttonSalvar.setBounds(10, 196, 125, 23);
@@ -162,6 +165,8 @@ public class ModifyBarber extends JFrame {
 				textFieldRg.setText("");
 				textFieldPhone.setText("");
 				textFieldChair.setText("");
+				
+				Logger.getLogger("Clean the fields ");
 			}
 		});
 		buttonLimpar.setBounds(308, 196, 138, 23);
@@ -178,6 +183,7 @@ public class ModifyBarber extends JFrame {
 		});
 		buttonVoltar.setBounds(158, 196, 125, 23);
 		contentPane.add(buttonVoltar);
+		Logger.getLogger("Create the button to back");
 
 	}
 
