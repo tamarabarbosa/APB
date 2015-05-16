@@ -177,7 +177,7 @@ public class NewBarber extends JFrame {
 		});
 		botaoVoltar.setBounds(158, 177, 125, 23);
 		contentPane.add(botaoVoltar);
-		Logger.getLogger("make the action to return");
+		Logger.getLogger("make the action to return was created");
 
 	}
 

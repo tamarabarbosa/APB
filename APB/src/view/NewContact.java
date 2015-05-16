@@ -94,7 +94,7 @@ public class NewContact extends JFrame {
 				} catch (BarberException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				}
-				Logger.getLogger("save the change confirm to a new contact was created");
+				Logger.getLogger("confirm to a new contact was created");
 			}
 
 		});
@@ -115,7 +115,7 @@ public class NewContact extends JFrame {
 
 		btnVoltar.setBounds(166, 218, 100, 33);
 		contentPane.add(btnVoltar);
-		Logger.getLogger("save the change confirm to a new barber was created");
+		Logger.getLogger("return was created");
 		
 		JButton btnLimparCampos = new JButton("Limpar Campos");
 		btnLimparCampos.addMouseListener(new MouseAdapter() {
@@ -157,7 +157,7 @@ public class NewContact extends JFrame {
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricao.setBounds(22, 117, 64, 14);
 		contentPane.add(lblDescricao);
-		Logger.getLogger("clean the fields");
+		Logger.getLogger("the field is clear");
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {

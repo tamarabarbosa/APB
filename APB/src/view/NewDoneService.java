@@ -7,9 +7,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
-
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -23,11 +23,13 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Logger;
 
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
 import dao.FactoryConnection;
+
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
@@ -48,6 +50,7 @@ public class NewDoneService extends JFrame {
 				}
 			}
 		});
+		Logger.getLogger("Create the frame to a new Done service");
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -98,13 +101,14 @@ public class NewDoneService extends JFrame {
 										+ name[1] + "\";");
 						ResultSet rs1 = pst1.executeQuery();
 						rs1.next();
+						Logger.getLogger("connection rs1 has been established");
 
 						textValor.setText(rs1.getString("preco"));
 					} catch (SQLException e) {
 						mostrarMensagemDeErro(e.getMessage());
 					}
 			}
-
+					
 		});
 		comboBoxJob.setModel(new DefaultComboBoxModel(
 				new String[] { "Selecione um type de servi\u00E7o" }));
@@ -121,6 +125,7 @@ public class NewDoneService extends JFrame {
 					.prepareStatement("SELECT name FROM typejob;");
 			ResultSet rs = pst.executeQuery();
 			ResultSet rs2 = pst2.executeQuery();
+			Logger.getLogger("connection rs2 has been established");
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -154,22 +159,23 @@ public class NewDoneService extends JFrame {
 						SimpleDateFormat sdf = new SimpleDateFormat(
 								"yyyy-MM-dd");
 						data = sdf.format(d);
+						Logger.getLogger("date was formated");
 
 						String[] name = comboBoxJob.getSelectedItem()
 								.toString().split(" - ");
 						String[] barber = comboBoxBarber.getSelectedItem()
 								.toString().split(" - ");
 
-						DoneService job_prestado = new DoneService();
+						DoneService job_done = new DoneService();
 
-						job_prestado.setBarberName(barber[1]);
-						job_prestado.setServiceName(name[1]);
-						job_prestado.setPrice(textValor.getText());
-						job_prestado.setDate(data);
+						job_done.setBarberName(barber[1]);
+						job_done.setServiceName(name[1]);
+						job_done.setPrice(textValor.getText());
+						job_done.setDate(data);
 
 						DoneServiceController jobController = DoneServiceController
 								.getInstance();
-						jobController.insert(job_prestado);
+						jobController.insert(job_done);
 
 						JOptionPane.showMessageDialog(null,
 								"Serviço criado com sucesso");
@@ -191,6 +197,7 @@ public class NewDoneService extends JFrame {
 		});
 		botaoSalvar.setBounds(27, 129, 89, 23);
 		contentPane.add(botaoSalvar);
+		Logger.getLogger("a new service was created");
 
 		JButton botaoLimparCampos = new JButton("Limpar Campos");
 		botaoLimparCampos.addMouseListener(new MouseAdapter() {
@@ -203,6 +210,7 @@ public class NewDoneService extends JFrame {
 		});
 		botaoLimparCampos.setBounds(152, 129, 148, 23);
 		contentPane.add(botaoLimparCampos);
+		Logger.getLogger("the field is clear");
 
 		JButton botaoVoltar = new JButton("Voltar");
 		botaoVoltar.addMouseListener(new MouseAdapter() {
@@ -216,6 +224,7 @@ public class NewDoneService extends JFrame {
 		});
 		botaoVoltar.setBounds(329, 129, 89, 23);
 		contentPane.add(botaoVoltar);
+		Logger.getLogger("make the action to return was created");
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
