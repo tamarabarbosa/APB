@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class APB extends JFrame {
@@ -61,6 +63,7 @@ public class APB extends JFrame {
 		lblAPB.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAPB.setBounds(127, 175, 288, 57);
 		contentPane.add(lblAPB);
+		Logger.getLogger("Open the inicial screen");
 
 		JButton btnIniciar = new JButton("Iniciar");
 		btnIniciar.addActionListener(new ActionListener() {
@@ -71,6 +74,7 @@ public class APB extends JFrame {
 				MainMenu frame = new MainMenu();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+				Logger.getLogger("Open the main frame");
 			}
 		});
 		btnIniciar.setIcon(new ImageIcon(APB.class
@@ -82,6 +86,7 @@ public class APB extends JFrame {
 		btnFechar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+				Logger.getLogger("Close the main frame");
 			}
 		});
 		btnFechar.setIcon(new ImageIcon(APB.class
