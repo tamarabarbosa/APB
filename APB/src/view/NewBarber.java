@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,6 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class NewBarber extends JFrame {
@@ -44,6 +46,7 @@ public class NewBarber extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				Logger.getLogger("Create the frame to a new barber");
 			}
 		});
 	}
@@ -106,6 +109,8 @@ public class NewBarber extends JFrame {
 		contentPane.add(lblChair);
 
 		botaoSalvar = new JButton("Salvar");
+		Logger.getLogger("initialize the components of the frame");
+		
 		botaoSalvar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent k) {
@@ -134,6 +139,7 @@ public class NewBarber extends JFrame {
 				} catch (SQLException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
+				Logger.getLogger("save the change confirm to a new barber was created");
 			}
 
 		});
@@ -158,7 +164,8 @@ public class NewBarber extends JFrame {
 		});
 		botaoLimparCampos.setBounds(308, 177, 138, 23);
 		contentPane.add(botaoLimparCampos);
-
+		Logger.getLogger("clean the fields");
+		
 		botaoVoltar = new JButton("Voltar");
 		botaoVoltar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -171,11 +178,12 @@ public class NewBarber extends JFrame {
 		});
 		botaoVoltar.setBounds(158, 177, 125, 23);
 		contentPane.add(botaoVoltar);
+		Logger.getLogger("make the action to return");
 
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 }
