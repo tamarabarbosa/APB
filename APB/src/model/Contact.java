@@ -10,7 +10,7 @@ package model;
 
 import exception.BarberException;
 
-;
+
 
 public class Contact {
 

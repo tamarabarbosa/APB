@@ -50,7 +50,7 @@ public class ServiceTypeController {
 	 * @return modifyServiceType - if exists modify Service Type
 	 */
 	public boolean change(String name, ServiceType typeJob) throws SQLException {
-		boolean existsNewServiceType;
+		boolean existsNewServiceType = false;
 		if (typeJob == null) {
 			existsNewServiceType = false;
 		} else {
