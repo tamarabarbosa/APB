@@ -44,7 +44,7 @@ public class NewServiceType extends JFrame {
 				}
 			}
 		});
-		Logger.getLogger("Create the frame to a new Done service");
+		Logger.getLogger("Create the frame to a new service type");
 	}
 
 	/**
@@ -77,6 +77,7 @@ public class NewServiceType extends JFrame {
 				dados[0] = rs.getString("name");
 				dados[1] = rs.getString("preco");
 				modelo.addRow(dados);
+				Logger.getLogger("table is created");
 			}
 		} catch (SQLException e) {
 			mostrarMensagemDeErro(e.getMessage());

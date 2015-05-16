@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,6 +39,7 @@ public class RegisterBarber extends JFrame {
 				}
 			}
 		});
+		Logger.getLogger("Create the frame to a register Barber");
 	}
 
 	// Class constructor
@@ -81,7 +83,8 @@ public class RegisterBarber extends JFrame {
 		}
 
 		scrollPane.setViewportView(table);
-
+		Logger.getLogger("table with data of barber was create");
+		
 		JButton botaoNovo = new JButton("Novo");
 		botaoNovo.addMouseListener(new MouseAdapter() {
 			@Override
@@ -102,6 +105,7 @@ public class RegisterBarber extends JFrame {
 		botaoNovo.setBounds(494, 11, 158, 28);
 		contentPane.add(botaoNovo);
 
+
 		JButton botaoAlterar = new JButton("Alterar");
 		botaoAlterar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -121,6 +125,7 @@ public class RegisterBarber extends JFrame {
 		});
 		botaoAlterar.setBounds(494, 50, 158, 28);
 		contentPane.add(botaoAlterar);
+		
 
 		JButton botaoRemover = new JButton("Remover");
 		botaoRemover.addMouseListener(new MouseAdapter() {
@@ -146,9 +151,13 @@ public class RegisterBarber extends JFrame {
 						RegisterBarber frame = new RegisterBarber();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
+						Logger.getLogger("the register is removed ");
+					}
+					else{
+						//nothing to do
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
-					mostrarMensagemDeErro("Selecione um Barber para remover");
+					mostrarMensagemDeErro("Selecione um Barbereiro para remover");
 				} catch (BarberException e) {
 					mostrarMensagemDeErro(e.getMessage());
 				} catch (SQLException e) {
@@ -158,6 +167,7 @@ public class RegisterBarber extends JFrame {
 		});
 		botaoRemover.setBounds(494, 89, 158, 28);
 		contentPane.add(botaoRemover);
+		Logger.getLogger("the register was deleted");
 
 		JButton botaoVoltar = new JButton("Voltar");
 		botaoVoltar.addMouseListener(new MouseAdapter() {
@@ -175,7 +185,7 @@ public class RegisterBarber extends JFrame {
 
 	// Method that shows a error message
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
