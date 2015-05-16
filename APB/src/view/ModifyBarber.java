@@ -136,7 +136,7 @@ public class ModifyBarber extends JFrame {
 
 					BarberController barberController = BarberController
 							.getInstance();
-					barberController.change(name, barber);
+					barberController.modifyBarber(name, barber);
 
 					JOptionPane.showMessageDialog(null, "Barber "
 							+ textFieldNome.getText()
@@ -152,12 +152,12 @@ public class ModifyBarber extends JFrame {
 				} catch (SQLException k) {
 					mostrarMensagemDeErro(k.getMessage());
 				}
-				Logger.getLogger("save the change of barber");
 			}
 		});
 		buttonSalvar.setBounds(10, 196, 125, 23);
 		contentPane.add(buttonSalvar);
-
+		Logger.getLogger("save the change of barber");
+		
 		JButton buttonLimpar = new JButton("Limpar Campos");
 		buttonLimpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

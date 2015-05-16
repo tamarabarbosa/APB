@@ -19,6 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class ModifyContact extends JFrame {
@@ -38,6 +39,7 @@ public class ModifyContact extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				Logger.getLogger("Create the frame to Modify Contact");
 			}
 		});
 	}
@@ -90,6 +92,8 @@ public class ModifyContact extends JFrame {
 				textFieldNome.setText(rs.getString("name"));
 				textFieldPhone.setText(rs.getString("telefone"));
 				textFieldDescricao.setText(rs.getString("descricao"));
+				
+				Logger.getLogger("initialize the components of the frame");
 			}
 			name = textFieldNome.getText();
 		} catch (SQLException e) {
@@ -131,7 +135,8 @@ public class ModifyContact extends JFrame {
 		});
 		btnSalvarAlteracao.setBounds(83, 136, 153, 31);
 		contentPane.add(btnSalvarAlteracao);
-
+		Logger.getLogger("save the change of contact");
+		
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -146,6 +151,8 @@ public class ModifyContact extends JFrame {
 		});
 		btnVoltar.setBounds(259, 136, 165, 31);
 		contentPane.add(btnVoltar);
+		Logger.getLogger("Create the button to back");
+
 	}
 
 	// Method that shows the error message when a exception is triggered
