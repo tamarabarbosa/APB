@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -39,6 +40,7 @@ public class RegisterDoneService extends JFrame {
 				}
 			}
 		});
+		Logger.getLogger("Create the frame to a register Done Service");
 	}
 
 	// These methods are used to initialize the components
@@ -79,6 +81,7 @@ public class RegisterDoneService extends JFrame {
 		}
 
 		scrollPane.setViewportView(table);
+		Logger.getLogger("table with data of service done was created");
 
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addMouseListener(new MouseAdapter() {
@@ -106,6 +109,7 @@ public class RegisterDoneService extends JFrame {
 				dispose();
 			}
 		});
+		Logger.getLogger("table with contains of contacs was create");
 		btnPesquisar.setBounds(380, 58, 94, 23);
 		contentPane.add(btnPesquisar);
 
@@ -140,6 +144,7 @@ public class RegisterDoneService extends JFrame {
 						RegisterDoneService frame = new RegisterDoneService();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
+						Logger.getLogger("the register of done service is removed ");
 					}
 				} catch (ArrayIndexOutOfBoundsException e) {
 					mostrarMensagemDeErro("Selecione um Serviço para remover");
@@ -155,6 +160,7 @@ public class RegisterDoneService extends JFrame {
 		});
 		btnRemover.setBounds(380, 92, 94, 23);
 		contentPane.add(btnRemover);
+		Logger.getLogger("the register of done service was deleted");
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
