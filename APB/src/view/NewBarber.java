@@ -46,9 +46,9 @@ public class NewBarber extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				Logger.getLogger("Create the frame to a new barber");
 			}
 		});
+		Logger.getLogger("Create the frame to a new barber");
 	}
 
 	public NewBarber() throws ParseException {
@@ -162,10 +162,9 @@ public class NewBarber extends JFrame {
 				textFieldChair.setText("");
 			}
 		});
+		Logger.getLogger("clean the fields");
 		botaoLimparCampos.setBounds(308, 177, 138, 23);
 		contentPane.add(botaoLimparCampos);
-		Logger.getLogger("clean the fields");
-		
 		botaoVoltar = new JButton("Voltar");
 		botaoVoltar.addMouseListener(new MouseAdapter() {
 			@Override

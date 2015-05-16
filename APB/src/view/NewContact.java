@@ -21,6 +21,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class NewContact extends JFrame {
@@ -41,6 +42,7 @@ public class NewContact extends JFrame {
 				}
 			}
 		});
+		Logger.getLogger("Create the frame to a new contact");
 	}
 
 	public NewContact() throws ParseException {
@@ -56,6 +58,7 @@ public class NewContact extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		MaskFormatter mascraFormatTel = new MaskFormatter("(##)####-####");
+		Logger.getLogger("initialize the components of new contact");
 
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addMouseListener(new MouseAdapter() {
@@ -83,12 +86,15 @@ public class NewContact extends JFrame {
 					RegisterPhonebook frame = new RegisterPhonebook();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
-
+					
+					
+					
 				} catch (SQLException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				} catch (BarberException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				}
+				Logger.getLogger("save the change confirm to a new contact was created");
 			}
 
 		});
@@ -109,7 +115,8 @@ public class NewContact extends JFrame {
 
 		btnVoltar.setBounds(166, 218, 100, 33);
 		contentPane.add(btnVoltar);
-
+		Logger.getLogger("save the change confirm to a new barber was created");
+		
 		JButton btnLimparCampos = new JButton("Limpar Campos");
 		btnLimparCampos.addMouseListener(new MouseAdapter() {
 			@Override
@@ -122,6 +129,7 @@ public class NewContact extends JFrame {
 
 		btnLimparCampos.setBounds(287, 218, 125, 33);
 		contentPane.add(btnLimparCampos);
+
 
 		textFieldNome = new JTextField();
 		textFieldNome.setBounds(85, 23, 327, 20);
@@ -149,6 +157,7 @@ public class NewContact extends JFrame {
 		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescricao.setBounds(22, 117, 64, 14);
 		contentPane.add(lblDescricao);
+		Logger.getLogger("clean the fields");
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
