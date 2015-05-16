@@ -151,7 +151,7 @@ public class ModifyContact extends JFrame {
 		});
 		btnVoltar.setBounds(259, 136, 165, 31);
 		contentPane.add(btnVoltar);
-		Logger.getLogger("Create the button to back");
+		Logger.getLogger("make the action to back");
 
 	}
 

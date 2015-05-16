@@ -18,6 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class ModifyServiceType extends JFrame {
@@ -73,7 +74,7 @@ public class ModifyServiceType extends JFrame {
 			ServiceTypeController jobController = ServiceTypeController
 					.getInstance();
 			typejob.setNameServiceType(ServiceType.getTempName());
-			ResultSet rs = ServiceTypeController.searchByNome(typejob);
+			ResultSet rs = ServiceTypeController.searchByName(typejob);
 
 			while (rs.next()) {
 				textFieldNome.setText(rs.getString("name"));
@@ -85,6 +86,7 @@ public class ModifyServiceType extends JFrame {
 		} catch (ServiceException e) {
 			mostrarMensagemDeErro(e.getMessage());
 		}
+		Logger.getLogger("initialize the components on the frame");
 
 		JButton buttonSalvar = new JButton("Salvar");
 		buttonSalvar.addActionListener(new ActionListener() {
@@ -117,6 +119,7 @@ public class ModifyServiceType extends JFrame {
 		});
 		buttonSalvar.setBounds(10, 86, 124, 23);
 		contentPane.add(buttonSalvar);
+		Logger.getLogger("save the change of the type of service is modify");
 
 		JButton buttonLimpar = new JButton("Limpar Campos");
 		buttonLimpar.addActionListener(new ActionListener() {
@@ -129,6 +132,7 @@ public class ModifyServiceType extends JFrame {
 		});
 		buttonLimpar.setBounds(282, 86, 128, 23);
 		contentPane.add(buttonLimpar);
+		Logger.getLogger("clean the fields");
 
 		JButton buttonVoltar = new JButton("Voltar");
 		buttonVoltar.addActionListener(new ActionListener() {
@@ -142,6 +146,7 @@ public class ModifyServiceType extends JFrame {
 		});
 		buttonVoltar.setBounds(144, 86, 128, 23);
 		contentPane.add(buttonVoltar);
+		Logger.getLogger("make the action to back");
 	}
 
 	// Method that shows the error message when a exception is triggered
