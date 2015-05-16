@@ -273,7 +273,6 @@ public class GenerateReceipt extends JFrame {
 				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				Logger.getLogger("back to menu");
 			}
 		});
 		btnVoltar.setBounds(10, 175, 112, 35);

@@ -19,6 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class MainMenu extends JFrame {
@@ -69,6 +70,8 @@ public class MainMenu extends JFrame {
 				Administrative frame = new Administrative();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+				
+				Logger.getLogger("Create the menu frame");
 			}
 		});
 		btnAdministrativo.setBounds(10, 60, 157, 37);
@@ -81,6 +84,8 @@ public class MainMenu extends JFrame {
 				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
+				
+				Logger.getLogger("create the button of register of done service");
 			}
 		});
 		btnJobsPrestados.setBounds(179, 60, 157, 37);
@@ -104,6 +109,8 @@ public class MainMenu extends JFrame {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				
+				Logger.getLogger("create the button of report");
 			}
 		});
 		btnRelatorios.setBounds(346, 60, 149, 37);
@@ -111,7 +118,8 @@ public class MainMenu extends JFrame {
 	}
 
 	private void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
+		Logger.getLogger("show the message error");
 	}
 }

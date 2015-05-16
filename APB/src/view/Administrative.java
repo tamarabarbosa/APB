@@ -69,7 +69,7 @@ public class Administrative extends JFrame {
 				RegisterBarber frame = new RegisterBarber();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				Logger.getLogger("Criate the boutton and open the phonebook frame");
+				Logger.getLogger("Create the boutton and open the phonebook frame");
 			}
 		});
 		btnBarber.setBounds(10, 45, 157, 37);
@@ -84,7 +84,7 @@ public class Administrative extends JFrame {
 				RegisterDoneService frame = new RegisterDoneService();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				Logger.getLogger("Criate the boutton and open the Service Type frame");
+				Logger.getLogger("Create the boutton and open the Service Type frame");
 			}
 		});
 		btnTipoJob.setBounds(215, 45, 149, 37);
@@ -114,7 +114,7 @@ public class Administrative extends JFrame {
 				MainMenu frame = new MainMenu();
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				Logger.getLogger("Criate the boutton to go back");
+				Logger.getLogger("Create the boutton to go back");
 
 			}
 		});
@@ -137,7 +137,7 @@ public class Administrative extends JFrame {
 				}
 				frame.setVisible(true);
 				frame.setLocationRelativeTo(null);
-				Logger.getLogger("Criate the boutton and open the receipt frame");
+				Logger.getLogger("Create the boutton and open the receipt frame");
 			}
 		});
 		btnRecibo.setBounds(215, 93, 149, 37);
