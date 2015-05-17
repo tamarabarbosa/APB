@@ -27,6 +27,8 @@ import java.awt.event.ItemEvent;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import java.util.logging.Logger;
+
 @SuppressWarnings("serial")
 public class SearchReport extends JFrame {
 
@@ -53,7 +55,9 @@ public class SearchReport extends JFrame {
 				} catch (Exception e) {
 					mostrarMensagemDeErro(e.getMessage());
 				}
+				Logger.getLogger("Aplication is launch");
 			}
+
 		});
 	}
 
@@ -107,6 +111,7 @@ public class SearchReport extends JFrame {
 					txtDataInicial.setEnabled(true);
 					txtDataFinal.setEnabled(true);
 				}
+				Logger.getLogger("Open the frame search Report");
 			}
 		});
 		checkPorData.setBounds(6, 23, 71, 23);
@@ -273,6 +278,7 @@ public class SearchReport extends JFrame {
 					}
 
 				}
+				Logger.getLogger("Show the search");
 
 			}
 		});
@@ -297,6 +303,7 @@ public class SearchReport extends JFrame {
 				} catch (ParseException e1) {
 					mostrarMensagemDeErro(e1.getMessage());
 				}
+				Logger.getLogger("Go back to de main menu");
 			}
 		});
 		btnVoltar.setBounds(241, 228, 105, 23);
