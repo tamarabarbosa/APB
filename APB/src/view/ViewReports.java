@@ -9,6 +9,8 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale.Category;
+import java.util.logging.Logger;
 
 import javax.naming.ldap.ControlFactory;
 import javax.swing.JButton;
@@ -34,11 +36,14 @@ public class ViewReports extends JFrame {
 	private double total = 0;
 	private String numero;
 	List<String> jobs = new ArrayList<String>();
-	private int contador = 0;
+	private int counter = 0;
 	private int numeroTotalDeJobs = 0;
 	private double valorTotalDoJob = 0;
 	private double valorTotalASerPAgo = 0;
 	private double total2 = 0;
+	/**
+	 * Launch the application.
+	 */
 
 	DecimalFormat decimal = new DecimalFormat("##0.00");
 
@@ -53,8 +58,14 @@ public class ViewReports extends JFrame {
 				}
 			}
 		});
+		Logger.getLogger("Aplication is launch");
 	}
-
+	
+	/**
+	 * Create the frame.
+	 * 
+	 * @throws SQLException
+	 */
 	public ViewReports() throws SQLException, ReceiptException,
 			NullPointerException, ParseException {
 		setTitle("Relat\u00F3rios");
@@ -101,14 +112,14 @@ public class ViewReports extends JFrame {
 
 				if (jobs.contains(rs.getString("name")) == false) {
 					jobs.add(rs.getString("name"));
-					contador++;
+					counter++;
 				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for (int job = 0; job < counter; job++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (jobs.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(job).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoJob = valorTotalDoJob + valor;
@@ -118,7 +129,7 @@ public class ViewReports extends JFrame {
 				}
 
 				String[] dados = new String[4];
-				dados[0] = jobs.get(i);
+				dados[0] = jobs.get(job);
 				dados[1] = Integer.toString(numeroTotalDeJobs);
 				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
@@ -149,14 +160,14 @@ public class ViewReports extends JFrame {
 
 				if (jobs.contains(rs.getString("name")) == false) {
 					jobs.add(rs.getString("name"));
-					contador++;
+					counter++;
 				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for (int job = 0; job < counter; job++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (jobs.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(job).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoJob = valorTotalDoJob + valor;
@@ -166,7 +177,7 @@ public class ViewReports extends JFrame {
 				}
 
 				String[] dados = new String[4];
-				dados[0] = jobs.get(i);
+				dados[0] = jobs.get(job);
 				dados[1] = Integer.toString(numeroTotalDeJobs);
 				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
@@ -199,14 +210,14 @@ public class ViewReports extends JFrame {
 
 				if (jobs.contains(rs.getString("name")) == false) {
 					jobs.add(rs.getString("name"));
-					contador++;
+					counter++;
 				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for (int job = 0; job < counter; job++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (jobs.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(job).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoJob = valorTotalDoJob + valor;
@@ -216,7 +227,7 @@ public class ViewReports extends JFrame {
 				}
 
 				String[] dados = new String[4];
-				dados[0] = jobs.get(i);
+				dados[0] = jobs.get(job);
 				dados[1] = Integer.toString(numeroTotalDeJobs);
 				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
@@ -250,14 +261,14 @@ public class ViewReports extends JFrame {
 
 				if (jobs.contains(rs.getString("name")) == false) {
 					jobs.add(rs.getString("name"));
-					contador++;
+					counter++;
 				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for (int job = 0; job < counter; job++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (jobs.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(job).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoJob = valorTotalDoJob + valor;
@@ -267,7 +278,7 @@ public class ViewReports extends JFrame {
 				}
 
 				String[] dados = new String[4];
-				dados[0] = jobs.get(i);
+				dados[0] = jobs.get(job);
 				dados[1] = Integer.toString(numeroTotalDeJobs);
 				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
@@ -298,14 +309,14 @@ public class ViewReports extends JFrame {
 
 				if (jobs.contains(rs.getString("name")) == false) {
 					jobs.add(rs.getString("name"));
-					contador++;
+					counter++;
 				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for (int job = 0; job < counter; job++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (jobs.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(job).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoJob = valorTotalDoJob + valor;
@@ -315,7 +326,7 @@ public class ViewReports extends JFrame {
 				}
 
 				String[] dados = new String[4];
-				dados[0] = jobs.get(i);
+				dados[0] = jobs.get(job);
 				dados[1] = Integer.toString(numeroTotalDeJobs);
 				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
@@ -347,14 +358,14 @@ public class ViewReports extends JFrame {
 
 				if (jobs.contains(rs.getString("name")) == false) {
 					jobs.add(rs.getString("name"));
-					contador++;
+					counter++;
 				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for (int job = 0; job < counter; job++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (jobs.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(job).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoJob = valorTotalDoJob + valor;
@@ -364,7 +375,7 @@ public class ViewReports extends JFrame {
 				}
 
 				String[] dados = new String[4];
-				dados[0] = jobs.get(i);
+				dados[0] = jobs.get(job);
 				dados[1] = Integer.toString(numeroTotalDeJobs);
 				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
@@ -395,14 +406,14 @@ public class ViewReports extends JFrame {
 
 				if (jobs.contains(rs.getString("name")) == false) {
 					jobs.add(rs.getString("name"));
-					contador++;
+					counter++;
 				}
 			}
 
-			for (int i = 0; i < contador; i++) {
+			for (int job = 0; job < counter; job++) {
 				rs.beforeFirst();
 				while (rs.next()) {
-					if (jobs.get(i).equals(rs.getString("name"))) {
+					if (jobs.get(job).equals(rs.getString("name"))) {
 						numero = rs.getString("preco").replace(",", ".");
 						double valor = Double.parseDouble(numero);
 						valorTotalDoJob = valorTotalDoJob + valor;
@@ -412,7 +423,7 @@ public class ViewReports extends JFrame {
 				}
 
 				String[] dados = new String[4];
-				dados[0] = jobs.get(i);
+				dados[0] = jobs.get(job);
 				dados[1] = Integer.toString(numeroTotalDeJobs);
 				dados[2] = Double.toString(valorTotalDoJob)
 						.replace(".", ",")
@@ -432,6 +443,7 @@ public class ViewReports extends JFrame {
 				valorTotalDoJob = 0;
 			}
 		}
+		Logger.getLogger(" Report was created with sucess");
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -486,7 +498,7 @@ public class ViewReports extends JFrame {
 
 		if (SearchReport.typeBusca != 0) {
 			try {
-				CategoryDataset cds;
+				Category cds;
 				cds = createDatasetRelatorio();
 				String titulo = "Total Por Dia";
 				String eixoy = "Valores";
@@ -495,7 +507,7 @@ public class ViewReports extends JFrame {
 				boolean tooltips = true;
 				boolean urls = true;
 				JFreeChart graf = ControlFactory.createBarChart(titulo,
-						txt_legenda, eixoy, cds, PlotOrientation.VERTICAL,
+						txt_legenda, eixoy, cds, PlotOrientation.VERTICAL,	
 						legenda, tooltips, urls);
 				ChartPanel myChartPanel = new ChartPanel(graf, true);
 				myChartPanel.setSize(painelGrafico.getWidth(),
@@ -529,6 +541,7 @@ public class ViewReports extends JFrame {
 		});
 		btnGrafico.setBounds(680, 159, 94, 62);
 		contentPane.add(btnGrafico);
+		Logger.getLogger("chart was created with sucess");
 
 		JButton btnTabela = new JButton("Tabela");
 		btnTabela.addMouseListener(new MouseAdapter() {
@@ -559,7 +572,7 @@ public class ViewReports extends JFrame {
 		painelTotalPago.add(lblvalorTotalDoBarber);
 	}
 
-	private CategoryDataset createDatasetRelatorio() throws SQLException,
+	private CategoryDataset createDatasetReport() throws SQLException,
 			ReportException, NullPointerException, ParseException {
 
 		Report report = new Report();
@@ -627,17 +640,21 @@ public class ViewReports extends JFrame {
 
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-		for (int i = 0; i < dias.size(); i++) {
+		for (int initialDay = 0; initialDay < dias.size(); initialDay++) {
 			rs.beforeFirst();
 
 			while (rs.next())
-				if (rs.getString("data").equals(dias.get(i)))
+				if (rs.getString("data").equals(dias.get(initialDay))){
 					totalPorDia += Double.parseDouble(rs.getString("preco")
 							.replace(",", "."));
 
-			dataset.addValue(totalPorDia, dias.get(i), dias.get(0) + " - "
+			dataset.addValue(totalPorDia, dias.get(initialDay), dias.get(0) + " - "
 					+ dias.get(dias.size() - 1));
 			totalPorDia = 0;
+				}
+				else{
+					//nothing to do
+				}
 		}
 
 		return dataset;
