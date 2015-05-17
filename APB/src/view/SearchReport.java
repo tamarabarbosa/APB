@@ -151,6 +151,7 @@ public class SearchReport extends JFrame {
 
 		checkBarber.setBounds(6, 23, 59, 23);
 		panelBarber.add(checkBarber);
+		Logger.getLogger("label was created with sucess");
 
 		JPanel panelJob = new JPanel();
 		panelJob.setLayout(null);
@@ -192,7 +193,7 @@ public class SearchReport extends JFrame {
 							"Digite o name do barber.");
 				} else if (txtJob.getText().equals("")) {
 					JOptionPane.showMessageDialog(null,
-							"Digite um type de serviço.");
+							"Digite um type de serviï¿½o.");
 				} else if (txtDataFinal.getText().equals("")) {
 					JOptionPane
 							.showMessageDialog(null, "Digite uma data final");
@@ -259,7 +260,7 @@ public class SearchReport extends JFrame {
 						&& checkPorData.getState() == false
 						&& checkJob.getState() == false) {
 					JOptionPane.showMessageDialog(null,
-							"Selecione uma opção de busca");
+							"Selecione uma opï¿½ï¿½o de busca");
 				}
 				if (typeBusca != 0) {
 					try {
@@ -315,7 +316,7 @@ public class SearchReport extends JFrame {
 	}
 
 	private static void mostrarMensagemDeErro(String informacao) {
-		JOptionPane.showMessageDialog(null, informacao, "Atenção",
+		JOptionPane.showMessageDialog(null, informacao, "Atenï¿½ï¿½o",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
 
