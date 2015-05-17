@@ -18,6 +18,7 @@ import java.awt.EventQueue;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class RegisterPhonebook extends JFrame {
@@ -35,6 +36,7 @@ public class RegisterPhonebook extends JFrame {
 				}
 			}
 		});
+		Logger.getLogger("Create the frame to a register phonebook");
 	}
 
 	// Class constructor
@@ -70,11 +72,11 @@ public class RegisterPhonebook extends JFrame {
 		try {
 			ContactController phonebookController = ContactController
 					.getInstance();
-			Phonebook contact = new Phonebook();
+			Phonebook contact = new Phonebook("nome", "telefone", "descricao");
 			ResultSet rs = phonebookController.showContactsRegistered(contact);
 			while (rs.next()) {
 				String[] dados = new String[3];
-				dados[0] = rs.getString("name");
+				dados[0] = rs.getString("nome");
 				dados[1] = rs.getString("telefone");
 				dados[2] = rs.getString("descricao");
 				modelo.addRow(dados);
@@ -84,15 +86,16 @@ public class RegisterPhonebook extends JFrame {
 		}
 
 		scrollPane.setViewportView(table);
+		Logger.getLogger("table with register phonebook was created");
 
 		JButton btnNovo = new JButton("Novo");
 		btnNovo.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				dispose();
-				NovoContato frame;
+				NewContact frame;
 				try {
-					frame = new NovoContato();
+					frame = new NewContact();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (ParseException e) {
@@ -103,6 +106,7 @@ public class RegisterPhonebook extends JFrame {
 		});
 		btnNovo.setBounds(455, 24, 94, 23);
 		contentPane.add(btnNovo);
+		Logger.getLogger("table with register of Phonebook was create");
 
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addMouseListener(new MouseAdapter() {
