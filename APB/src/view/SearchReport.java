@@ -258,7 +258,7 @@ public class SearchReport extends JFrame {
 				}
 				if (typeBusca != 0) {
 					try {
-						VisualizarRelatorios frame = new VisualizarRelatorios();
+						ViewReports frame = new ViewReports();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
 						dispose();
@@ -284,7 +284,7 @@ public class SearchReport extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				try {
-					VisualizarRelatorios frame = new VisualizarRelatorios();
+					ViewReports frame = new ViewReports();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 					dispose();
