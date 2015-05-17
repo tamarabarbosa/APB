@@ -79,7 +79,8 @@ public class SearchContact extends JFrame {
 		JLabel lblPesquisar = new JLabel("Pesquisar:");
 		lblPesquisar.setBounds(20, 137, 66, 14);
 		contentPane.add(lblPesquisar);
-
+		Logger.getLogger("table was created");
+		
 		JButton btnPesquisarNome = new JButton("Pesquisar Nome");
 		btnPesquisarNome.addMouseListener(new MouseAdapter() {
 			@Override
@@ -87,7 +88,7 @@ public class SearchContact extends JFrame {
 				try {
 
 					for (int row = 0; row < modelo.getRowCount(); row++) {
-						modelo.removeRow(linha);
+						modelo.removeRow(row);
 					}
 
 					Contact contact = new Contact();
