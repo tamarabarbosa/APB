@@ -23,6 +23,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 @SuppressWarnings("serial")
 public class SearchContact extends JFrame {
@@ -41,6 +42,7 @@ public class SearchContact extends JFrame {
 				}
 			}
 		});
+		Logger.getLogger("Create the frame to a Search contact");
 	}
 
 	public SearchContact() {
@@ -84,8 +86,8 @@ public class SearchContact extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 
-					for (int i = 0; i < modelo.getRowCount(); i++) {
-						modelo.removeRow(i);
+					for (int row = 0; row < modelo.getRowCount(); row++) {
+						modelo.removeRow(linha);
 					}
 
 					Contact contact = new Contact();
@@ -118,8 +120,8 @@ public class SearchContact extends JFrame {
 
 				try {
 
-					for (int i = 0; i < modelo.getRowCount(); i++) {
-						modelo.removeRow(i);
+					for (int row = 0; row < modelo.getRowCount(); row++) {
+						modelo.removeRow(row);
 					}
 
 					Contact contact = new Contact();
@@ -161,12 +163,13 @@ public class SearchContact extends JFrame {
 					frame.setLocationRelativeTo(null);
 
 				} catch (ArrayIndexOutOfBoundsException e1) {
-					mostrarMensagemDeErro("Selecione um contact para change");
+					mostrarMensagemDeErro("Selecione um contact para mudança");
 				}
 			}
 		});
 		btnAlterar.setBounds(98, 228, 89, 23);
 		contentPane.add(btnAlterar);
+		Logger.getLogger("user select with sucess");
 
 		JButton btnRemover = new JButton("Remover");
 		btnRemover.addMouseListener(new MouseAdapter() {
@@ -194,6 +197,10 @@ public class SearchContact extends JFrame {
 						SearchContact frame = new SearchContact();
 						frame.setVisible(true);
 						frame.setLocationRelativeTo(null);
+						Logger.getLogger("user are removed");
+					}
+					else{
+						//nothing to do
 					}
 				} catch (ArrayIndexOutOfBoundsException e1) {
 					mostrarMensagemDeErro("Selecione um contact para remover");
@@ -206,6 +213,7 @@ public class SearchContact extends JFrame {
 		});
 		btnRemover.setBounds(216, 228, 89, 23);
 		contentPane.add(btnRemover);
+		Logger.getLogger("user was deleted");
 
 		JButton btnVoltar = new JButton("Voltar");
 		btnVoltar.addMouseListener(new MouseAdapter() {
