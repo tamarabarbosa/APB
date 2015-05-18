@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import exception.ReportException;
+import java.util.logging.Logger;
 
 public class Report {
 
@@ -40,14 +41,14 @@ public class Report {
 	 * @param serviceType
 	 *            is the service type that was done.
 	 *
-	 * @exception IllegalArgumentException 
-	 * 								if the class set a null value to the initialDate.
-	 * @exception IllegalArgumentException 
-	 * 								if the class set a null value to the endDate.
-	 * @exception IllegalArgumentException 
-	 * 								if the class set a null value to the barber.
-	 * @exception IllegalArgumentException 
-	 * 								if the class set a null value to the serviceType.
+	 * @exception IllegalArgumentException
+	 *                if the class set a null value to the initialDate.
+	 * @exception IllegalArgumentException
+	 *                if the class set a null value to the endDate.
+	 * @exception IllegalArgumentException
+	 *                if the class set a null value to the barber.
+	 * @exception IllegalArgumentException
+	 *                if the class set a null value to the serviceType.
 	 */
 	public Report(String initialDate, String endDate, String barber,
 			String serviceType) throws ReportException {
@@ -56,6 +57,8 @@ public class Report {
 		this.endDate = endDate;
 		this.barber = barber;
 		this.serviceType = serviceType;
+
+		Logger.getLogger("Create the atributes of Report");
 
 		if (this.initialDate == null)
 			throw new IllegalArgumentException(INITIAL_DATE_EMPTY);
@@ -73,26 +76,24 @@ public class Report {
 	/**
 	 * Get the initial date of the service done.
 	 *
-	 * @return initialDate 
-	 *				the date when the service started.
+	 * @return initialDate the date when the service started.
 	 */
 	public String getInitialDate() {
 		return initialDate;
 	}
 
-	
 	/**
-	* Set the date of the the service started in the report, according with
-	* brazilian standards.
-	*
-	* @param initialDate 
-	*				is the date when the service started.
-	*
-	* @exception NullPointerException 
-	*					if the initialDate is setted with a null value.
-	* @exception AssertionError
-	*					if the initialDate is setted with empty field.
-	*/
+	 * Set the date of the the service started in the report, according with
+	 * brazilian standards.
+	 *
+	 * @param initialDate
+	 *            is the date when the service started.
+	 *
+	 * @exception NullPointerException
+	 *                if the initialDate is setted with a null value.
+	 * @exception AssertionError
+	 *                if the initialDate is setted with empty field.
+	 */
 	public void setInitialDate(String initialDate) throws ReportException,
 			NullPointerException, ParseException {
 		if (initialDate == null)
@@ -108,6 +109,9 @@ public class Report {
 			String stringDateBR = dateUSFormat.format(dateISO);
 
 			this.initialDate = stringDateBR;
+
+			Logger.getLogger("Verify the format of date");
+
 		}
 
 	}
@@ -115,25 +119,24 @@ public class Report {
 	/**
 	 * Get the final date when the service was done.
 	 *
-	 * @return 
-	 *		endDate the date when the service was done.
+	 * @return endDate the date when the service was done.
 	 */
 	public String getEndDate() {
 		return endDate;
 	}
 
 	/**
-	* Set the date when the the service finished in the report, according with
-	* brazilian standards.
-	*
-	* @param endDate 
-	*				is the date when the service finished.
-	*
-	* @exception NullPointerException 
-	*					if the endDate is setted with a null value.
-	* @exception AssertionError
-	*					if the endDate is setted with empty field.
-	*/
+	 * Set the date when the the service finished in the report, according with
+	 * brazilian standards.
+	 *
+	 * @param endDate
+	 *            is the date when the service finished.
+	 *
+	 * @exception NullPointerException
+	 *                if the endDate is setted with a null value.
+	 * @exception AssertionError
+	 *                if the endDate is setted with empty field.
+	 */
 	public void setEndDate(String endDate) throws ReportException,
 			NullPointerException, ParseException {
 
@@ -150,32 +153,33 @@ public class Report {
 			String stringDateBR = dateUSFormat.format(dateISO);
 
 			this.endDate = stringDateBR;
+
+			Logger.getLogger("Verify the format of date");
+
 		}
 	}
 
 	/**
 	 * Get the barber that done the service.
 	 *
-	 * @return barber 
-	 *				the barber that did the service
+	 * @return barber the barber that did the service
 	 */
 	public String getBarber() {
 		return barber;
 	}
 
 	/**
-	* Set the barber that did the service, case the user input
-	* an invalid date the method return an warning while the user
-	* doesn't fill correctly.
-	*
-	* @param barber
-	*			is the barber that did the service.
-	*
-	* @exception NullPointerException 
-	*					if the barber is setted with a null value.
-	* @exception AssertionError
-	*					if the barber is setted with empty field.
-	*/
+	 * Set the barber that did the service, case the user input an invalid date
+	 * the method return an warning while the user doesn't fill correctly.
+	 *
+	 * @param barber
+	 *            is the barber that did the service.
+	 *
+	 * @exception NullPointerException
+	 *                if the barber is setted with a null value.
+	 * @exception AssertionError
+	 *                if the barber is setted with empty field.
+	 */
 	public void setBarber(String barber) throws ReportException {
 		if (barber == null)
 			throw new NullPointerException(BARBER_EMPTY);
@@ -183,31 +187,32 @@ public class Report {
 			throw new AssertionError(BARBER_EMPTY);
 		else
 			this.barber = barber;
+
+		Logger.getLogger("Verify empty barber");
+
 	}
 
 	/**
-	* Get the type of service that was done.
-	*
-	* @return serviceType
-	*				the type of service that was done.
-	*/
+	 * Get the type of service that was done.
+	 *
+	 * @return serviceType the type of service that was done.
+	 */
 	public String getServiceType() {
 		return serviceType;
 	}
 
 	/**
-	* Set the type of service that was done, case the user input
-	* an invalid date the method return an warning while the user
-	* doesn't fill correctly.
-	*
-	* @param serviceType
-	*			is the type of service that was done.
-	*
-	* @exception NullPointerException 
-	*					if the serviceType is setted with a null value.
-	* @exception AssertionError
-	*					if the serviceType is setted with empty field.
-	*/
+	 * Set the type of service that was done, case the user input an invalid
+	 * date the method return an warning while the user doesn't fill correctly.
+	 *
+	 * @param serviceType
+	 *            is the type of service that was done.
+	 *
+	 * @exception NullPointerException
+	 *                if the serviceType is setted with a null value.
+	 * @exception AssertionError
+	 *                if the serviceType is setted with empty field.
+	 */
 	public void setServiceType(String serviceType) throws ReportException {
 		if (serviceType == null)
 			throw new NullPointerException(SERVICE_TYPE_EMPTY);
@@ -215,17 +220,19 @@ public class Report {
 			throw new AssertionError(SERVICE_TYPE_EMPTY);
 		else
 			this.serviceType = serviceType;
+
+		Logger.getLogger("Verify empty service type");
+
 	}
 
 	/**
-	* It's a method to validate the date beyond brazilian standards, and returns
-	* the right date to the class. 
-	*
-	* @param date
-	*			is the current date of the done service.
-	* @return stringDateBR
-	*			is the date with brazilian standards.
-	*/
+	 * It's a method to validate the date beyond brazilian standards, and
+	 * returns the right date to the class.
+	 *
+	 * @param date
+	 *            is the current date of the done service.
+	 * @return stringDateBR is the date with brazilian standards.
+	 */
 	public String ConvertToABNT(String date) throws ParseException {
 
 		SimpleDateFormat dateBRFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -233,6 +240,8 @@ public class Report {
 
 		SimpleDateFormat dateUSFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String stringDateBR = dateUSFormat.format(dateISO);
+
+		Logger.getLogger("Verify the format of date");
 
 		return stringDateBR;
 	}
