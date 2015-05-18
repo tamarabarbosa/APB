@@ -16,6 +16,7 @@ import exception.ServiceException;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Logger;
 
 public class DoneService {
 
@@ -49,6 +50,8 @@ public class DoneService {
 		this.serviceName = serviceName;
 		this.price = price;
 		this.barberName = barberName;
+
+		Logger.getLogger("Create the atributes od DoneService");
 	}
 
 	/**
@@ -109,12 +112,15 @@ public class DoneService {
 			this.serviceName = serviceName;
 		else
 			throw new ServiceException(INVALID_SERVICE_NAME);
+
+		Logger.getLogger("Verify empty service name");
+
 	}
 
 	/**
-	 * Set the Barber name to search in appointment book, case the Barber
-	 * name doesn't exist or the field setted empty, the method return an
-	 * warning while the user doesn't fill correctly.
+	 * Set the Barber name to search in appointment book, case the Barber name
+	 * doesn't exist or the field setted empty, the method return an warning
+	 * while the user doesn't fill correctly.
 	 *
 	 * @param barberName
 	 *            is the name of Barber to be placed into barberName.
@@ -134,22 +140,26 @@ public class DoneService {
 			this.barberName = barberName;
 		else
 			throw new ServiceException(INVALID_BARBER);
+
+		Logger.getLogger("Verify empty barber");
+
 	}
 
 	/**
-	* Set the price of the service done by the barber, case the user input
-	* an invalid price the method return an warning while the user
-	* doesn't fill correctly.
-	* @param price
-	*			is the price of service to be placed into price.
-	*
-	* @exception NullPointerException
-	*						if the price is equal to a null value.
-	* @exception ServiceException
-	*						if the price is setted empty.  
-	* @exception ServiceException
-	*						if the user set any invalid price.
-	*/
+	 * Set the price of the service done by the barber, case the user input an
+	 * invalid price the method return an warning while the user doesn't fill
+	 * correctly.
+	 * 
+	 * @param price
+	 *            is the price of service to be placed into price.
+	 *
+	 * @exception NullPointerException
+	 *                if the price is equal to a null value.
+	 * @exception ServiceException
+	 *                if the price is setted empty.
+	 * @exception ServiceException
+	 *                if the user set any invalid price.
+	 */
 	public void setPrice(String price) throws ServiceException {
 		if (price == null)
 			throw new NullPointerException(EMPTY_PRICE);
@@ -159,23 +169,25 @@ public class DoneService {
 			this.price = price;
 		else
 			throw new ServiceException(INVALID_PRICE);
+
+		Logger.getLogger("Verify empty service price");
+
 	}
 
 	/**
-	* Set the date when the service was done, case the user input
-	* an invalid date the method return an warning while the user
-	* doesn't fill correctly.
-	*
-	* @param date 
-	*			is the current date of the done service.
-	*
-	* @exception NullPointerException 
-	* 							if the date is equal to a null value.
-	* @exception ServiceException 
-	*							if the date is setted empty.
-	* @exception ServiceException
-	*							if the user set an invalid date.
-	*/
+	 * Set the date when the service was done, case the user input an invalid
+	 * date the method return an warning while the user doesn't fill correctly.
+	 *
+	 * @param date
+	 *            is the current date of the done service.
+	 *
+	 * @exception NullPointerException
+	 *                if the date is equal to a null value.
+	 * @exception ServiceException
+	 *                if the date is setted empty.
+	 * @exception ServiceException
+	 *                if the user set an invalid date.
+	 */
 	public void setDate(String date) throws ServiceException, ParseException {
 
 		if (date == null)
@@ -195,17 +207,19 @@ public class DoneService {
 			this.date = stringDateBR;
 		} else
 			throw new ServiceException(INVALID_DATE);
+
+		Logger.getLogger("Verify empty service date");
+
 	}
 
 	/**
-	* It's a method to validate the date beyond brazilian standards, and returns
-	* the right date to the class. 
-	*
-	* @param date
-	*			is the current date of the done service.
-	* @return stringDateBR
-	*			is the date with brazilian standards.
-	*/
+	 * It's a method to validate the date beyond brazilian standards, and
+	 * returns the right date to the class.
+	 *
+	 * @param date
+	 *            is the current date of the done service.
+	 * @return stringDateBR is the date with brazilian standards.
+	 */
 	public String ConvertTOABNT(String date) throws ParseException {
 
 		SimpleDateFormat dateBRFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -213,6 +227,8 @@ public class DoneService {
 
 		SimpleDateFormat dateUSFormat = new SimpleDateFormat("dd/MM/yyyy");
 		String stringDateBR = dateUSFormat.format(dateISO);
+
+		Logger.getLogger("Return a new format of date");
 
 		return stringDateBR;
 	}
