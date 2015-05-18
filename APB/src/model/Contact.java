@@ -9,8 +9,7 @@
 package model;
 
 import exception.BarberException;
-
-
+import java.util.logging.Logger;
 
 public class Contact {
 
@@ -35,6 +34,8 @@ public class Contact {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.description = description;
+
+		Logger.getLogger("Atributes of Contact");
 	}
 
 	/**
@@ -84,12 +85,15 @@ public class Contact {
 			this.name = name;
 		else
 			throw new BarberException(INVALID_NAME);
+
+		Logger.getLogger("empty name");
+
 	}
 
 	/**
-	 * Set the phone number of the barber to search in appointment book, case the
-	 * tphone number doesn't exist or the field setted empty, the method return
-	 * an warning while the user doesn't fill correctly.
+	 * Set the phone number of the barber to search in appointment book, case
+	 * the tphone number doesn't exist or the field setted empty, the method
+	 * return an warning while the user doesn't fill correctly.
 	 *
 	 * @param phoneNumber
 	 *            is the phone number of the barber to be placed into
@@ -108,6 +112,9 @@ public class Contact {
 			this.phoneNumber = phoneNumber;
 		else
 			throw new BarberException(INVALID_PHONE);
+
+		Logger.getLogger("empty phone");
+
 	}
 
 	/**
