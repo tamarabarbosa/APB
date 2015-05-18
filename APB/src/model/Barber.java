@@ -9,6 +9,7 @@
 package model;
 
 import exception.BarberException;
+import java.util.logging.Logger;
 
 public class Barber {
 
@@ -91,6 +92,8 @@ public class Barber {
 
 		if (this.chair == null)
 			throw new IllegalArgumentException(EMPTY_CHAIR);
+
+		Logger.getLogger("empty arguments");
 	}
 
 	/**
@@ -162,6 +165,8 @@ public class Barber {
 			this.name = name;
 		else
 			throw new BarberException(INVALID_NAME);
+
+		Logger.getLogger("Get Invalid names");
 	}
 
 	/**
@@ -198,6 +203,9 @@ public class Barber {
 				this.cpf = cpf;
 			else
 				throw new BarberException(INVALID_CPF);
+
+			Logger.getLogger("Get Invalid cpf");
+
 		} catch (AssertionError e) {
 			throw new BarberException(INVALID_CPF);
 		}
@@ -231,6 +239,8 @@ public class Barber {
 			this.rg = rg;
 		else
 			throw new AssertionError(INVALID_RG);
+
+		Logger.getLogger("Get Invalid rg");
 	}
 
 	/**
@@ -260,6 +270,9 @@ public class Barber {
 			this.phoneNumber = phoneNumber;
 		else
 			throw new AssertionError(INVALID_PHONE);
+
+		Logger.getLogger("Get Invalid phones");
+
 	}
 
 	/**
@@ -290,6 +303,9 @@ public class Barber {
 			this.chair = chair;
 		else
 			throw new BarberException(INVALID_CHAIR);
+
+		Logger.getLogger("Get Invalid chair");
+
 	}
 
 	/**
