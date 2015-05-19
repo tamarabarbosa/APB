@@ -38,6 +38,8 @@ public class BarberControllerTest {
 	@Test
 	public void getInstanceDeBarberControlerDeveRetonarInstanciaCorrente() {
 		assertEquals(BarberController.getInstance(), barberController);
+
+		Logger.getLogger("Compares names of barber");
 	}
 
 	@Test
@@ -46,6 +48,9 @@ public class BarberControllerTest {
 			assertTrue(barberController.insert(barber));
 		} catch (SQLException e) {
 			e.printStackTrace();
+
+			Logger.getLogger("Test the insert of barber");
+
 		}
 	}
 
@@ -55,6 +60,9 @@ public class BarberControllerTest {
 			assertTrue(barberController.delete(barber));
 		} catch (SQLException e) {
 			e.printStackTrace();
+
+			Logger.getLogger("Test the delete of barber");
+
 		}
 	}
 
@@ -64,6 +72,9 @@ public class BarberControllerTest {
 			assertTrue(barberController.modifyBarber(barber.getName(), barber));
 		} catch (SQLException e) {
 			e.printStackTrace();
+
+			Logger.getLogger("Test the modify of barber");
+
 		}
 	}
 
@@ -73,6 +84,9 @@ public class BarberControllerTest {
 			assertFalse(barberController.insert(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
+
+			Logger.getLogger("Test the insert of barber null");
+
 		}
 	}
 
@@ -82,6 +96,9 @@ public class BarberControllerTest {
 			assertFalse(barberController.delete(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
+
+			Logger.getLogger("Test the delete of barber null");
+
 		}
 	}
 
@@ -91,6 +108,9 @@ public class BarberControllerTest {
 			assertFalse(barberController.modifyBarber(null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
+
+			Logger.getLogger("Test the change of barber null");
+
 		}
 	}
 
@@ -100,6 +120,9 @@ public class BarberControllerTest {
 		ResultSet rs = barberController.searchBarbers();
 		while (rs.next())
 			;
+
+		Logger.getLogger("Test the seach of barber null");
+
 	}
 
 	@Test
@@ -108,6 +131,9 @@ public class BarberControllerTest {
 		ResultSet rs = barberController.showRegisteredBarbers(barber);
 		while (rs.next())
 			;
+
+		Logger.getLogger("Test the show of barber null");
+
 	}
 
 	@Test
@@ -116,5 +142,8 @@ public class BarberControllerTest {
 		ResultSet rs = barberController.searchBarberByName(barber);
 		while (rs.next())
 			;
+
+		Logger.getLogger("Test the search of barber null");
+
 	}
 }
