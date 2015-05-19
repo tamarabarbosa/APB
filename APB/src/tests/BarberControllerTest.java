@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import control.BarberController;
 import exception.BarberException;
+import java.util.logging.Logger;
 
 public class BarberControllerTest {
 
@@ -22,7 +23,7 @@ public class BarberControllerTest {
 		try {
 			barber.setName("Alessandro");
 			barber.setRg("418757896");
-			barber.setPhone("3389-9085");
+			barber.setPhoneNumber("3389-9085");
 			barber.setCpf("02919594150");
 			barber.setChair("5");
 		} catch (NullPointerException e) {
@@ -60,7 +61,7 @@ public class BarberControllerTest {
 	@Test
 	public void changeDeBarberControllerDeveEnviarUmBarber() {
 		try {
-			assertTrue(barberController.change(barber.getNome(), barber));
+			assertTrue(barberController.modifyBarber(barber.getName(), barber));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -87,27 +88,33 @@ public class BarberControllerTest {
 	@Test
 	public void changeBarberNaoPodePassarBarberNullo() {
 		try {
-			assertFalse(barberController.change(null, null));
+			assertFalse(barberController.modifyBarber(null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void procurarPorBarberControllerDeveMostrarUmBarber() throws SQLException {
-		ResultSet rs = barberController.pesquisar();
-		while (rs.next());
+	public void procurarPorBarberControllerDeveMostrarUmBarber()
+			throws SQLException {
+		ResultSet rs = barberController.searchBarbers();
+		while (rs.next())
+			;
 	}
 
 	@Test
-	public void mostrarBarbersDeBarberControllerDeveMostrarUmBarber() throws SQLException {
-		ResultSet rs = barberController.mostrarBarbersCadastrados(barber);
-		while(rs.next());
+	public void mostrarBarbersDeBarberControllerDeveMostrarUmBarber()
+			throws SQLException {
+		ResultSet rs = barberController.showRegisteredBarbers(barber);
+		while (rs.next())
+			;
 	}
 
 	@Test
-	public void searchByNomeDeBarberControllerDeveMostrarUmBarber() throws SQLException {
-		ResultSet rs = barberController.searchByNome(barber);
-		while(rs.next());
+	public void searchByNomeDeBarberControllerDeveMostrarUmBarber()
+			throws SQLException {
+		ResultSet rs = barberController.searchBarberByName(barber);
+		while (rs.next())
+			;
 	}
 }
