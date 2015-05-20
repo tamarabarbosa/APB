@@ -22,19 +22,19 @@ public class BarberDAOTest {
 	@Before
 	public void setUp() {
 		try {
-			barber.setNome("Alessandro");
+			barber.setName("Alessandro");
 			barber.setRg("418757896");
-			barber.setPhone("3389-9085");
+			barber.setName("3389-9085");
 			barber.setCpf("02919594150");
 			barber.setChair("5");
-			barber2.setNome("Luciano");
+			barber2.setName("Luciano");
 			barber2.setRg("418757896");
-			barber2.setPhone("3389-9085");
+			barber2.setName("3389-9085");
 			barber2.setCpf("02919594150");
 			barber2.setChair("5");
 
 			BarberDAO barberDao = BarberDAO.getInstance();
-			barberDao.insert(barber);
+			barberDao.includeBarber(barber);
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarberException e) {
@@ -54,11 +54,11 @@ public class BarberDAOTest {
 	@Test
 	public void insertDeBarberDAODeveCadastrarUmBarber() {
 		try {
-			assertTrue(barberDAO.insert(barber));
+			assertTrue(barberDAO.includeBarber(barber));
 
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			ResultSet rs = connection.createStatement().executeQuery("SELECT name FROM barber WHERE "
-					+ " name = \"" + barber.getNome() + "\";");
+					+ " name = \"" + barber.getName() + "\";");
 			rs.next();
 			assertEquals("Alessandro", rs.getString("name"));
 			rs.close();
@@ -71,11 +71,11 @@ public class BarberDAOTest {
 	@Test (expected = AssertionError.class)
 	public void deleteDeBarberDAODeveEnviarUmBarber() {
 		try {
-			assertTrue(barberDAO.delete(barber));
+			assertTrue(barberDAO.deleteBarber(barber));
 
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			ResultSet rs = connection.createStatement().executeQuery("SELECT name FROM barber WHERE "
-					+ " name = \"" + barber.getNome() + "\";");
+					+ " name = \"" + barber.getName() + "\";");
 			rs.next();
 			fail();
 			rs.close();
@@ -87,12 +87,12 @@ public class BarberDAOTest {
 	@Test
 	public void changeDeBarberDaoDeveAlterarUmBarber() {
 		try {
-			assertTrue(barberDAO.change(barber.getNome(), barber, barber2));
+			assertTrue(barberDAO.changeBarber(barber.getName(), barber, barber2));
 
-			barberDAO.change(barber.getCpf(),barber2, barber);
+			barberDAO.changeBarber(barber.getCpf(),barber2, barber);
 			Connection connection = FactoryConnection.getInstance().getConnection();
 			java.sql.PreparedStatement pst1 = connection.prepareStatement("SELECT name FROM barber WHERE "
-							+ " name = \"" + barber.getNome() + "\";");
+							+ " name = \"" + barber.getName() + "\";");
 
 			ResultSet rs = pst1.executeQuery();
 
@@ -108,7 +108,7 @@ public class BarberDAOTest {
 	@Test
 	public void insertDeBarberDAOPassandoUmBarberNulo() {
 		try {
-			assertFalse(barberDAO.insert(null));
+			assertFalse(barberDAO.includeBarber(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -117,7 +117,7 @@ public class BarberDAOTest {
 	@Test
 	public void deleteDeBarberDAOPassandoUmBarberNulo() {
 		try {
-			assertFalse(barberDAO.delete(null));
+			assertFalse(barberDAO.deleteBarber(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -126,7 +126,7 @@ public class BarberDAOTest {
 	@Test
 	public void changeDeBarberDaoPassandoUmBarberNulo() {
 		try {
-			assertFalse(barberDAO.change(barber.getNome(), null, null));
+			assertFalse(barberDAO.changeBarber(barber.getName(), null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -135,7 +135,7 @@ public class BarberDAOTest {
 	@Test
 	public void changeDeBarberDaoPassandoUmBarberAlteradoNulo() {
 		try {
-			assertFalse(barberDAO.change(barber.getNome(), null, barber));
+			assertFalse(barberDAO.changeBarber(barber.getName(), null, barber));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -144,7 +144,7 @@ public class BarberDAOTest {
 	@Test
 	public void pesquisarDeBarberDAODeveMostrarUmBarber() {
 		try {
-			ResultSet rs = barberDAO.pesquisar();
+			ResultSet rs = barberDAO.search();
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -158,7 +158,7 @@ public class BarberDAOTest {
 	@Test
 	public void mostrarBarbersCadastradosDeBarberDAODeveMostrarBarbers() {
 		try {
-			ResultSet rs = barberDAO.mostrarBarbersCadastrados(barber);
+			ResultSet rs = barberDAO.showRegisteredBarber(barber);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -172,7 +172,7 @@ public class BarberDAOTest {
 	@Test
 	public void searchByNomeDeBarberDAODeveMostrarBarbers() {
 		try {
-			ResultSet rs = barberDAO.searchByNome(barber);
+			ResultSet rs = barberDAO.searchByName(barber);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
