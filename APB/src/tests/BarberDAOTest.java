@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 import model.Barber;
 
@@ -49,8 +50,10 @@ public class BarberDAOTest {
 	@Test
 	public void getInstanceDeBarberDAODeveRetonarInstanciaCorrente() {
 		assertEquals(BarberDAO.getInstance(), barberDAO);
+		
+		Logger.getLogger("barber created");
 	}
-
+		
 	@Test
 	public void insertDeBarberDAODeveCadastrarUmBarber() {
 		try {
@@ -65,7 +68,8 @@ public class BarberDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		Logger.getLogger("barber was cadastrate");
+		
 	}
 
 	@Test (expected = AssertionError.class)
@@ -82,7 +86,9 @@ public class BarberDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.getLogger("barber was delete ");
 	}
+	
 
 	@Test
 	public void changeDeBarberDaoDeveAlterarUmBarber() {
@@ -103,6 +109,7 @@ public class BarberDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.getLogger("barber changed");
 	}
 
 	@Test
@@ -112,6 +119,7 @@ public class BarberDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.getLogger("barber null is insert");
 	}
 
 	@Test
@@ -121,6 +129,7 @@ public class BarberDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.getLogger("delete barber null is right");
 	}
 
 	@Test
@@ -130,6 +139,7 @@ public class BarberDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.getLogger("barber null is changed");
 	}
 
 	@Test
@@ -153,6 +163,7 @@ public class BarberDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.getLogger("barber is shows");
 	}
 
 	@Test
@@ -167,6 +178,7 @@ public class BarberDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.getLogger("show the barber registered");
 	}
 
 	@Test
@@ -181,6 +193,7 @@ public class BarberDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		Logger.getLogger("show the barber by name is right");
 	}
 
 }
