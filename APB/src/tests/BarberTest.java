@@ -20,9 +20,9 @@ public class BarberTest {
 	public void setUp() {
 		try {
 			barber =  new Barber();
-			barber.setNome("Alessandro");
+			barber.setName("Alessandro");
 			barber.setRg("418757896");
-			barber.setPhone("3389-9085");
+			barber.setPhoneNumber("3389-9085");
 			barber.setCpf("02919594150");
 			barber.setChair("10");
 		} catch (NullPointerException e) {
@@ -35,7 +35,7 @@ public class BarberTest {
 	@Test (expected = NullPointerException.class)
 	public void barberNaoPodePossuirNomeNuloPassandoPeloSetter() {
 		try {
-			barber.setNome(null);
+			barber.setName(null);
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
@@ -65,7 +65,7 @@ public class BarberTest {
 	@Test (expected = NullPointerException.class)
 	public void barberNaoPodePossuirPhoneNuloPassandoPeloSetter() {
 		try {
-			barber.setPhone(null);
+			barber.setPhoneNumber(null);
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
@@ -161,7 +161,7 @@ public class BarberTest {
 	@Test (expected = AssertionError.class)
 	public void numeroDoPhoneNaoPodeConterLetras() {
 		try {
-			barber.setPhone("65465a4");
+			barber.setPhoneNumber("65465a4");
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
@@ -169,7 +169,7 @@ public class BarberTest {
 
 	@Test
 	public void testeParaGetterDeNomeDeBarber() {
-		assertEquals("Alessandro", barber.getNome());
+		assertEquals("Alessandro", barber.getName());
 	}
 
 	@Test
@@ -184,7 +184,7 @@ public class BarberTest {
 
 	@Test
 	public void testeParaGetterDePhoneDeBarber() {
-		assertEquals("3389-9085", barber.getPhone());
+		assertEquals("3389-9085", barber.getPhoneNumber());
 	}
 
 	@Test
@@ -194,24 +194,24 @@ public class BarberTest {
 
 	@Test
 	public void testeParaGetterDeTempNomeDeBarber() {
-		assertEquals(null, Barber.getTempNome());
+		assertEquals(null, Barber.getTempName());
 	}
 
 	@Test
 	public void setDeBarberDeveFuncionar() {
 		try {
-			barber.setNome("Alessandro");
+			barber.setName("Alessandro");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
-		assertEquals("Alessandro", barber.getNome());
+		assertEquals("Alessandro", barber.getName());
 	}
 
 	@Test (expected = BarberException.class)
 	public void nameComNumero() throws BarberException {
-		barber.setNome("J040");
+		barber.setName("J040");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
@@ -240,13 +240,13 @@ public class BarberTest {
 
 	@Test (expected =  BarberException.class)
 	public void namePassadoEmBrancro() throws BarberException {
-		barber.setNome("");
+		barber.setName("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
 	@Test (expected =  BarberException.class)
 	public void telefonePassadoEmBrancro() throws BarberException {
-		barber.setPhone("");
+		barber.setPhoneNumber("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
@@ -274,20 +274,20 @@ public class BarberTest {
 
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerNulo() throws JobException {
-		Barber.setTempNome(null);
+		Barber.setTempName(null);
 		Assert.fail("Deve lançar uma exceção");
 	}
 
 
 	@Test (expected = AssertionFailedError.class)
 	public void setterDeTempNomeNaoPodeSerEmBranco() {
-		Barber.setTempNome("");
+		Barber.setTempName("");
 		Assert.fail("Deve lançar uma exceção");
 	}
 
 	@Test (expected = AssertionError.class)
 	public void tempNomeValido() throws BarberException {
-		Barber.setTempNome("João");
-		assertEquals("João", Phonebook.getTempNome());
+		Barber.setTempName("João");
+		assertEquals("João", Phonebook.getTempName());
 	}
 }
