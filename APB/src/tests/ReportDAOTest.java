@@ -11,21 +11,21 @@ import model.Report;
 import org.junit.Before;
 import org.junit.Test;
 
-import dao.RelatorioDAO;
+import dao.ReportDAO;
 
-import exception.RelatorioException;
+import exception.ReportException;
 
 public class ReportDAOTest {
 
 	Report report = new Report();
 
 	@Before
-	public void setUp() throws RelatorioException, ParseException {
+	public void setUp() throws ReportException, ParseException {
 		try {
 			report.setBarber("Luciano");
-			report.setDataFinal("09/09/2013");
-			report.setDataInicial("01/01/2013");
-			report.setTipoJob("corte");
+			report.setEndDate("09/09/2013");
+			report.setInitialDate("01/01/2013");
+			report.setServiceType("corte");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
@@ -34,17 +34,17 @@ public class ReportDAOTest {
 
 	@Test
 	public void getInstanceDeRelatorioDAODeveRetonarInstanciaCorrente() {
-		RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
-		assertEquals(RelatorioDAO.getInstance(), relatorioDAO);
+		ReportDAO relatorioDAO = ReportDAO.getInstance();
+		assertEquals(ReportDAO.getInstance(), relatorioDAO);
 	}
 
 	@Test
 	public void procurarPorDataDeRelatorioDAODeveMostrarUmRelatorio() {
 		try {
-			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
+			ReportDAO relatorioDAO = ReportDAO.getInstance();
 			ResultSet rs = relatorioDAO.searchByData(report);
 
-			while(rs.next()) {
+			while (rs.next()) {
 				String name = rs.getString("name");
 				assertEquals("Corte", name);
 			}
@@ -57,7 +57,7 @@ public class ReportDAOTest {
 	@Test
 	public void searchByDataEJobDAODeveMostrarUmRelatorio() {
 		try {
-			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
+			ReportDAO relatorioDAO = ReportDAO.getInstance();
 			ResultSet rs = relatorioDAO.searchByDataEJob(report);
 
 			while (rs.next()) {
@@ -73,10 +73,10 @@ public class ReportDAOTest {
 	@Test
 	public void searchByBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
-			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
+			ReportDAO relatorioDAO = ReportDAO.getInstance();
 			ResultSet rs = relatorioDAO.searchByBarber(report);
 
-			while(rs.next()) {
+			while (rs.next()) {
 				String name = rs.getString("name");
 				assertEquals("Corte", name);
 			}
@@ -89,10 +89,10 @@ public class ReportDAOTest {
 	@Test
 	public void searchByBArbeiroEJobDAODeveMostrarUmRelatorio() {
 		try {
-			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
+			ReportDAO relatorioDAO = ReportDAO.getInstance();
 			ResultSet rs = relatorioDAO.searchByBarberEJob(report);
 
-			while(rs.next()) {
+			while (rs.next()) {
 				String name = rs.getString("name");
 				assertEquals("Corte", name);
 			}
@@ -105,7 +105,7 @@ public class ReportDAOTest {
 	@Test
 	public void searchByJobDAODeveMostrarUmRelatorio() {
 		try {
-			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
+			ReportDAO relatorioDAO = ReportDAO.getInstance();
 			ResultSet rs = relatorioDAO.searchByJob(report);
 
 			while (rs.next()) {
@@ -121,7 +121,7 @@ public class ReportDAOTest {
 	@Test
 	public void searchByDataEBArbeiroDAODeveMostrarUmRelatorio() {
 		try {
-			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
+			ReportDAO relatorioDAO = ReportDAO.getInstance();
 			ResultSet rs = relatorioDAO.searchByDataEBarber(report);
 
 			while (rs.next()) {
@@ -135,9 +135,9 @@ public class ReportDAOTest {
 	}
 
 	@Test
-	public void searchByDataBarberEJobDAODeveMostrarUmRelatorio(){
+	public void searchByDataBarberEJobDAODeveMostrarUmRelatorio() {
 		try {
-			RelatorioDAO relatorioDAO = RelatorioDAO.getInstance();
+			ReportDAO relatorioDAO = ReportDAO.getInstance();
 			ResultSet rs = relatorioDAO.searchByDataBarberEJob(report);
 
 			while (rs.next()) {
@@ -147,7 +147,6 @@ public class ReportDAOTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 
 	}
 
