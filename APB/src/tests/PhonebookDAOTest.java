@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.Phonebook;
+import model.Contact;
 
 import org.junit.Test;
 
@@ -13,8 +13,8 @@ import dao.PhonebookDAO;
 
 public class PhonebookDAOTest {
 
-	Phonebook contact = new Phonebook();
-	Phonebook contact2 = new Phonebook();
+	Contact contact = new Contact();
+	Contact contact2 = new Contact();
 	PhonebookDAO phonebookDAO = PhonebookDAO.getInstance();
 
 	@Test
@@ -43,7 +43,8 @@ public class PhonebookDAOTest {
 	@Test
 	public void changeDePhonebookDAODeveEnviarUmContato() {
 		try {
-			assertTrue(phonebookDAO.change(contact.getNome(),contact, contact2));
+			assertTrue(phonebookDAO
+					.change(contact.getName(), contact, contact2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,7 +71,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void changeDePhonebookDAOPassandoUmContatoNulo() {
 		try {
-			assertFalse(phonebookDAO.change(contact.getNome(),contact, null));
+			assertFalse(phonebookDAO.change(contact.getName(), contact, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -79,7 +80,7 @@ public class PhonebookDAOTest {
 	@Test
 	public void changeDePhonebookDAOPassandoUmPhonebookAleradoNulo() {
 		try {
-			assertFalse(phonebookDAO.change(contact.getNome(), null, contact));
+			assertFalse(phonebookDAO.change(contact.getName(), null, contact));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
