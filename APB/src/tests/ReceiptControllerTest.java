@@ -11,41 +11,46 @@ import model.Report;
 import org.junit.Before;
 import org.junit.Test;
 
-import control.ReciboController;
-import exception.ReciboException;
-import exception.RelatorioException;
+import control.ReceiptController;
+import exception.ReceiptException;
+import exception.ReportException;
 
 public class ReceiptControllerTest {
 
 	Report report = new Report();
 
 	@Before
-	public void setUp() throws ReciboException, ParseException {
+	public void setUp() throws ReceiptException, ParseException {
 
-				try {
-					report.setBarber("Fulano");
-					report.setDataFinal("09/09/2013");
-					report.setDataInicial("01/01/2013");
+		try {
+			report.setBarber("Fulano");
+			report.setEndDate("09/09/2013");
+			;
+			report.setInitialDate("01/01/2013");
 
-				} catch (RelatorioException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+		} catch (ReportException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
 	@Test
 	public void getInstanceDeReciboDAODeveRetonarInstanciaCorrente() {
-		ReciboController reciboController = ReciboController.getInstance();
-		assertEquals(ReciboController.getInstance(), reciboController);
+		ReceiptController reciboController = ReceiptController.getInstance();
+		assertEquals(ReceiptController.getInstance(), reciboController);
 	}
 
 	@Test
-	public void procurarPorDataEBarberDeReciboControllerDeveMostrarUmRecibo() throws SQLException {
-		ReciboController reciboController = new ReciboController();
-		ResultSet rs = reciboController.pesquisarJobsDoBarber(report.getBarber(), report.getDataInicial(), report.getDataFinal());
+	public void procurarPorDataEBarberDeReciboControllerDeveMostrarUmRecibo()
+			throws SQLException {
+		ReceiptController reciboController = new ReceiptController();
+		ResultSet rs = reciboController.barberServicesSearch(
+				report.getBarber(), report.getInitialDate(),
+				report.getEndDate());
 
-		while(rs.next());
+		while (rs.next())
+			;
 	}
 
 }
