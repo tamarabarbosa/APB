@@ -79,7 +79,7 @@ public class ContactController {
 	 * @return true if the exclusion was made right or false if it does not.
 	 * @throws SQLException
 	 */
-	public boolean delete(Phonebook contact) throws SQLException {
+	public boolean delete(Contact contact) throws SQLException {
 		boolean returnMethodremoveContact;
 		if (contact == null) {
 			returnMethodremoveContact = false;
@@ -115,7 +115,7 @@ public class ContactController {
 	 * @return a ResultSet object with all contacts registered on the database
 	 * @throws SQLException
 	 */
-	public ResultSet showContactsRegistered(Phonebook contact)
+	public ResultSet showContactsRegistered(Contact contact)
 			throws SQLException {
 		return PhonebookDAO.getInstance().mostrarContatosCadastrados(contact);
 	}

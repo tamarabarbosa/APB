@@ -5,40 +5,41 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.Contact;
 import model.Phonebook;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import control.PhonebookController;
+import control.ContactController;
 import exception.BarberException;
 
 public class PhonebookControllerTest {
 
-	Phonebook contact = new Phonebook();
+	Contact contact = new Contact();
 
 	@Before
 	public void setUp() {
 		try {
-			contact.setNome("Corte");
-			contact.setPhone("3895-5698");
-			contact.setDescricao("AAA");
+			contact.setName("Corte");
+			contact.setPhoneNumber("3895-5698");
+			contact.setDescription("AAA");
 		} catch (BarberException e) {
 			e.printStackTrace();
 		}
 	}
 
-	PhonebookController phonebookController = PhonebookController.getInstance();
+	ContactController phonebookController = ContactController.getInstance();
 
 	@Test
 	public void getInstanceDePhonebookControllerDeveRetornarInstanciaCorrente() {
-		assertEquals(PhonebookController.getInstance(), phonebookController);
+		assertEquals(ContactController.getInstance(), phonebookController);
 	}
 
 	@Test
 	public void insertDePhonebookControllerDeveEnviarUm() {
 		try {
-			assertTrue(phonebookController.insert(contact));
+			assertTrue(phonebookController.include(contact));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -57,7 +58,7 @@ public class PhonebookControllerTest {
 	@Test
 	public void changeDePhonebookControllerDeveEnviarUmaPhonebookAlterada() {
 		try {
-			assertTrue(phonebookController.change(contact.getNome(),contact));
+			assertTrue(phonebookController.change(contact.getName(), contact));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -66,7 +67,7 @@ public class PhonebookControllerTest {
 	@Test
 	public void insertPhonebookNaoPodePassarPhonebookNullo() {
 		try {
-			assertFalse(phonebookController.insert(null));
+			assertFalse(phonebookController.include(null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -84,28 +85,34 @@ public class PhonebookControllerTest {
 	@Test
 	public void changePhonebookNaoPodePassarPhonebookNullo() {
 		try {
-			assertFalse(phonebookController.change(null,null));
+			assertFalse(phonebookController.change(null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void mostrarContatosDePhonebookControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = phonebookController.mostrarContatosCadastrados(contact);
-		while(rs.next());
+	public void mostrarContatosDePhonebookControllerDeveMostrarUmContato()
+			throws SQLException {
+		ResultSet rs = phonebookController.showContactsRegistered(contact);
+		while (rs.next())
+			;
 	}
 
 	@Test
-	public void searchByNomeDePhonebookControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = phonebookController.searchByNome(contact);
-		while(rs.next());
+	public void searchByNomeDePhonebookControllerDeveMostrarUmContato()
+			throws SQLException {
+		ResultSet rs = phonebookController.searchByName(contact);
+		while (rs.next())
+			;
 	}
 
 	@Test
-	public void searchByPhoneDePhonebookControllerDeveMostrarUmContato() throws SQLException {
-		ResultSet rs = phonebookController.searchByPhone(contact);
-		while(rs.next());
+	public void searchByPhoneDePhonebookControllerDeveMostrarUmContato()
+			throws SQLException {
+		ResultSet rs = phonebookController.searchByPhonebook(contact);
+		while (rs.next())
+			;
 	}
 
 }

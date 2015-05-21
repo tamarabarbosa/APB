@@ -56,7 +56,7 @@ public class PhonebookDAO {
 		return true;
 	}
 
-	public boolean delete(Phonebook contact) throws SQLException {
+	public boolean delete(Contact contact) throws SQLException {
 		if (contact == null)
 			return false;
 
@@ -74,7 +74,7 @@ public class PhonebookDAO {
 		connection.close();
 	}
 
-	public ResultSet mostrarContatosCadastrados(Phonebook contact)
+	public ResultSet mostrarContatosCadastrados(Contact contact)
 			throws SQLException {
 		Connection connection = FactoryConnection.getInstance().getConnection();
 		ResultSet rs = connection.createStatement().executeQuery(
