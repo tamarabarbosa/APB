@@ -12,22 +12,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dao.PhonebookDAO;
-import dao.ReciboDAO;
-import exception.ReciboException;
-import exception.RelatorioException;
+import dao.ReceiptDAO;
+import exception.ReceiptException;
+import exception.ReceiptException;
 
 public class ReceiptDAOTest {
 
 	Report report = new Report();
 
 	@Before
-	public void setUp() throws ReciboException, ParseException {
+	public void setUp() throws ReceiptException, ParseException {
 		try {
 			report.setBarber("Fulano");
-			report.setDataFinal("09/09/2013");
-			report.setDataInicial("01/01/2013");
+			report.setInitialDate("09/09/2013");
+			report.setEndDate("01/01/2013");
 
-		} catch (RelatorioException e) {
+		} catch (ReceiptException e) {
 			e.printStackTrace();
 		}
 
@@ -35,17 +35,16 @@ public class ReceiptDAOTest {
 
 	@Test
 	public void getInstanceDeReciboDAODeveRetonarInstanciaCorrente() {
-		ReciboDAO reciboDAO = ReciboDAO.getInstance();
-		assertEquals(ReciboDAO.getInstance(), reciboDAO);
+		ReceiptDAO reciboDAO = ReceiptDAO.getInstance();
+		assertEquals(ReceiptDAO.getInstance(), reciboDAO);
 	}
 
 	@Test
 	public void searchByDataEBArbeiroDAODeveMostrarUmRecibo() {
 		try {
-			ReciboDAO reciboDAO = ReciboDAO.getInstance();
-			ResultSet rs = reciboDAO.pesquisarJobsDoBarber(
-					report.getBarber(), report.getDataInicial(),
-					report.getDataFinal());
+			ReceiptDAO reciboDAO = ReceiptDAO.getInstance();
+			ResultSet rs = reciboDAO.barberServicesSearch(report.getBarber(),
+					report.getInitialDate(), report.getEndDate());
 
 			while (rs.next()) {
 				String name = rs.getString("name");
