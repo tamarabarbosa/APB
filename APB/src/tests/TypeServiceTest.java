@@ -2,95 +2,96 @@ package tests;
 
 import static org.junit.Assert.*;
 import junit.framework.Assert;
-import model.TipoJob;
+import model.ServiceType;
+import model.ServiceType;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.JobException;
-
+import exception.ServiceException;
 
 public class TypeServiceTest {
 
-	TipoJob  job =  new TipoJob();
+	ServiceType Service = new ServiceType();
 
 	@Before
-	public void setUp(){
+	public void setUp() {
 		try {
-			job.setNomeTipoJob("Corte");
-			job.setPreco("14,50");
-		} catch (JobException e) {
+			Service.setNameServiceType("Corte");
+			Service.setPrice("14,50");
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void getterDeNomeDeveRetornarValorPassado(){
-		assertEquals("Corte", job.getNomeTipoJob());
+	public void getterDeNomeDeveRetornarValorPassado() {
+		assertEquals("Corte", Service.getNameServiceType());
 	}
 
 	@Test
-	public void getterDePrecoDeveRetornarValorPassado(){
-		assertEquals("14,50", job.getPreco());
+	public void getterDePrecoDeveRetornarValorPassado() {
+		assertEquals("14,50", Service.getPrice());
 	}
 
-	@Test (expected = NullPointerException.class)
-	public void setterDePrecoNaoPodeSerNulo() throws JobException {
-		job.setPreco(null);
+	@Test(expected = NullPointerException.class)
+	public void setterDePrecoNaoPodeSerNulo() throws ServiceException {
+		Service.setPrice(null);
 		Assert.fail("Deve lançar exceção");
 	}
 
-	@Test (expected = NullPointerException.class)
-	public void setterDeNomeNaoPodeSerNulo() throws JobException {
-		job.setNomeTipoJob(null);
+	@Test(expected = NullPointerException.class)
+	public void setterDeNomeNaoPodeSerNulo() throws ServiceException {
+		Service.setNameServiceType(null);
 		Assert.fail("Deve lançar exceção");
 	}
 
-	@Test (expected = IllegalArgumentException.class)
-	public void setterDePrecoNaoPodeSerInvalido() throws JobException {
-		job.setPreco("14.50%");
+	@Test(expected = IllegalArgumentException.class)
+	public void setterDePrecoNaoPodeSerInvalido() throws ServiceException {
+		Service.setPrice("14.50%");
 		Assert.fail("Deve lançar exceção");
 	}
 
-	@Test (expected =  JobException.class)
-	public void setterDePrecoJobNaoPodeSerEmBranco() throws JobException {
-		job.setPreco("");
+	@Test(expected = ServiceException.class)
+	public void setterDePrecoServiceNaoPodeSerEmBranco()
+			throws ServiceException {
+		Service.setPrice("");
 		Assert.fail("Deve lançar exceção");
 	}
 
-	@Test (expected =  JobException.class)
-	public void setterDeNomeJobNaoPodeSerEmBranco() throws JobException {
-		job.setNomeTipoJob("");
+	@Test(expected = ServiceException.class)
+	public void setterDeNomeServiceNaoPodeSerEmBranco() throws ServiceException {
+		Service.setNameServiceType("");
 		Assert.fail("Deve lançar exceção");
 	}
 
-	@Test (expected = AssertionError.class)
-	public void getterDeTempNomeDeveRetornarValorPassado() throws JobException {
-		assertEquals("Corte", TipoJob.getTempNome());
+	@Test(expected = AssertionError.class)
+	public void getterDeTempNomeDeveRetornarValorPassado()
+			throws ServiceException {
+		assertEquals("Corte", ServiceType.getTempName());
 	}
 
-	@Test (expected = NullPointerException.class)
-	public void setterDeTempNomeNaoPodeSerNulo() throws JobException {
-		TipoJob.setTempNome(null);
+	@Test(expected = NullPointerException.class)
+	public void setterDeTempNomeNaoPodeSerNulo() throws ServiceException {
+		ServiceType.setTempName(null);
 		Assert.fail("Deve lançar exceção");
 	}
 
-
-	@Test (expected = JobException.class)
-	public void setterDeTempNomeNaoPodeSerEmBranco() throws JobException {
-		TipoJob.setTempNome("");
+	@Test(expected = ServiceException.class)
+	public void setterDeTempNomeNaoPodeSerEmBranco() throws ServiceException {
+		ServiceType.setTempName("");
 		Assert.fail("Deve lançar exceção");
 	}
 
 	@Test
 	public void tempNomeValido() {
 		try {
-			TipoJob.setTempNome("Barba");
-		} catch (JobException e) {
+			ServiceType.setTempName("Barba");
+		} catch (ServiceException e) {
 			e.printStackTrace();
 			Assert.fail("Não Deve lançar exceção");
 		}
-		assertEquals("Barba", TipoJob.getTempNome());
+		assertEquals("Barba", ServiceType.getTempName());
 	}
 
 }
