@@ -121,7 +121,7 @@ public class ReportTest {
 	public void construtorDeRelatorioNaoPodePassarDataFinalNula() {
 		try {
 			new Report("2013-01-01", null, "Chico", "barba");
-		} catch (RelatorioException e) {
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -130,7 +130,7 @@ public class ReportTest {
 	public void construtorDeRelatorioNaoPodePassarDataInicialNula() {
 		try {
 			new Report(null, "2013-01-01", "Chico", "barba");
-		} catch (RelatorioException e) {
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -139,7 +139,7 @@ public class ReportTest {
 	public void construtorDeRelatorioNaoPodePassarTipoJobNulo() {
 		try {
 			new Report("2013-01-01", "2013-01-01", "Chico", null);
-		} catch (RelatorioException e) {
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -149,7 +149,7 @@ public class ReportTest {
 		try {
 			new Report("2013-01-01", "2013-12-31", "Chico", "barba");
 			assertEquals(report, report);
-		} catch (RelatorioException e) {
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
