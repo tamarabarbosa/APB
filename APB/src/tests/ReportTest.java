@@ -9,7 +9,7 @@ import model.Report;
 import org.junit.Before;
 import org.junit.Test;
 
-import exception.RelatorioException;
+import exception.ReportException;
 
 public class ReportTest {
 
@@ -21,121 +21,125 @@ public class ReportTest {
 			report = new Report();
 
 			report.setBarber("Chico");
-			report.setTipoJob("barba");
-			report.setDataInicial("01/01/2013");
-			report.setDataFinal("09/09/2013");
+			report.setServiceType("barba");
+			report.setInitialDate("01/01/2013");
+			report.setEndDate("09/09/2013");
 
 		} catch (NullPointerException e) {
 			e.printStackTrace();
+		} catch (ReportException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void dataInicialNaoPodeSerSettadaNula() throws NullPointerException,
+			ParseException {
+		try {
+			report.setDataInicial(null);
 		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = NullPointerException.class)
-	public void dataInicialNaoPodeSerSettadaNula() throws NullPointerException, ParseException {
-		try {
-			report.setDataInicial(null);
-		} catch (RelatorioException e){
-			e.printStackTrace();
-		}
-	}
-
-	@Test (expected = AssertionError.class)
-	public void dataInicialNaoPodeSerSettadaEmBranco() throws NullPointerException, ParseException {
+	@Test(expected = AssertionError.class)
+	public void dataInicialNaoPodeSerSettadaEmBranco()
+			throws NullPointerException, ParseException {
 		try {
 			report.setDataInicial("");
-		} catch (RelatorioException e){
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = NullPointerException.class)
-	public void dataFinalNaoPodeSerSettadaNula() throws NullPointerException, ParseException {
+	@Test(expected = NullPointerException.class)
+	public void dataFinalNaoPodeSerSettadaNula() throws NullPointerException,
+			ParseException {
 		try {
 			report.setDataFinal(null);
-		} catch (RelatorioException e){
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = AssertionError.class)
-	public void dataFinalNaoPodeSerSettaEmBranco() throws NullPointerException, ParseException {
+	@Test(expected = AssertionError.class)
+	public void dataFinalNaoPodeSerSettaEmBranco() throws NullPointerException,
+			ParseException {
 		try {
 			report.setDataFinal("");
-		} catch (RelatorioException e){
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public void barberNaoPodeSerSettadoNulo() {
 		try {
 			report.setBarber(null);
-		} catch (RelatorioException e){
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = AssertionError.class)
+	@Test(expected = AssertionError.class)
 	public void barberNaoPodeSerSettoEmBranco() {
 		try {
 			report.setBarber("");
-		} catch (RelatorioException e){
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public void typeDeJobNaoPodeSerSettadoNulo() {
 		try {
 			report.setTipoJob(null);
-		} catch (RelatorioException e){
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = AssertionError.class)
+	@Test(expected = AssertionError.class)
 	public void typeDeJobNaoPodeSerSettoEmBranco() {
 		try {
 			report.setTipoJob("");
-		} catch (RelatorioException e){
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarBarberNulo() {
 		try {
-			new Report ("2013-01-01", "2013-01-01", null, "barba");
-		} catch(RelatorioException e){
+			new Report("2013-01-01", "2013-01-01", null, "barba");
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarDataFinalNula() {
 		try {
 			new Report("2013-01-01", null, "Chico", "barba");
-		} catch (RelatorioException e){
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarDataInicialNula() {
 		try {
-			new Report (null, "2013-01-01", "Chico", "barba");
-		} catch (RelatorioException e){
+			new Report(null, "2013-01-01", "Chico", "barba");
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
 
-	@Test (expected = IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void construtorDeRelatorioNaoPodePassarTipoJobNulo() {
 		try {
-			new Report ("2013-01-01", "2013-01-01", "Chico", null);
-		} catch (RelatorioException e){
+			new Report("2013-01-01", "2013-01-01", "Chico", null);
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
@@ -143,9 +147,9 @@ public class ReportTest {
 	@Test
 	public void construtorDeRelatorioPassandoTodosOsDadosCorretos() {
 		try {
-			new Report ("2013-01-01", "2013-12-31", "Chico", "barba");
+			new Report("2013-01-01", "2013-12-31", "Chico", "barba");
 			assertEquals(report, report);
-		} catch (RelatorioException e){
+		} catch (RelatorioException e) {
 			e.printStackTrace();
 		}
 	}
