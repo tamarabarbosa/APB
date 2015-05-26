@@ -36,8 +36,8 @@ public class ReportTest {
 	public void dataInicialNaoPodeSerSettadaNula() throws NullPointerException,
 			ParseException {
 		try {
-			report.setDataInicial(null);
-		} catch (RelatorioException e) {
+			report.setInitialDate(null);
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -46,8 +46,8 @@ public class ReportTest {
 	public void dataInicialNaoPodeSerSettadaEmBranco()
 			throws NullPointerException, ParseException {
 		try {
-			report.setDataInicial("");
-		} catch (RelatorioException e) {
+			report.setInitialDate("");
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -56,8 +56,8 @@ public class ReportTest {
 	public void dataFinalNaoPodeSerSettadaNula() throws NullPointerException,
 			ParseException {
 		try {
-			report.setDataFinal(null);
-		} catch (RelatorioException e) {
+			report.setEndDate(null);
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -66,8 +66,8 @@ public class ReportTest {
 	public void dataFinalNaoPodeSerSettaEmBranco() throws NullPointerException,
 			ParseException {
 		try {
-			report.setDataFinal("");
-		} catch (RelatorioException e) {
+			report.setEndDate("");
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
