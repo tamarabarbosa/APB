@@ -161,23 +161,23 @@ public class ReportTest {
 
 	@Test
 	public void metodoParaTestarGetterDeTipoDeJob() {
-		assertEquals("barba", report.getTipoJob());
+		assertEquals("barba", report.getServiceType());
 	}
 
 	@Test
 	public void metodoParaTestarGetterDeDataInicial() {
-		assertEquals("2013-01-01", report.getDataInicial());
+		assertEquals("2013-01-01", report.getInitialDate());
 	}
 
 	@Test
 	public void metodoParaTestarGetterDeDataFinal() {
-		assertEquals("2013-09-09", report.getDataFinal());
+		assertEquals("2013-09-09", report.getEndDate());
 	}
 
 	@Test
 	public void testeDataParaConverter() {
 		try {
-			report.ConverterDataParaABNT("2010-10-10");
+			report.ConvertToABNT("2010-10-10");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
