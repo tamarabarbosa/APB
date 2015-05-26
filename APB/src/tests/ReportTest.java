@@ -76,7 +76,7 @@ public class ReportTest {
 	public void barberNaoPodeSerSettadoNulo() {
 		try {
 			report.setBarber(null);
-		} catch (RelatorioException e) {
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -85,7 +85,7 @@ public class ReportTest {
 	public void barberNaoPodeSerSettoEmBranco() {
 		try {
 			report.setBarber("");
-		} catch (RelatorioException e) {
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -93,8 +93,8 @@ public class ReportTest {
 	@Test(expected = NullPointerException.class)
 	public void typeDeJobNaoPodeSerSettadoNulo() {
 		try {
-			report.setTipoJob(null);
-		} catch (RelatorioException e) {
+			report.setServiceType(null);
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -102,8 +102,8 @@ public class ReportTest {
 	@Test(expected = AssertionError.class)
 	public void typeDeJobNaoPodeSerSettoEmBranco() {
 		try {
-			report.setTipoJob("");
-		} catch (RelatorioException e) {
+			report.setServiceType("");
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
@@ -112,7 +112,7 @@ public class ReportTest {
 	public void construtorDeRelatorioNaoPodePassarBarberNulo() {
 		try {
 			new Report("2013-01-01", "2013-01-01", null, "barba");
-		} catch (RelatorioException e) {
+		} catch (ReportException e) {
 			e.printStackTrace();
 		}
 	}
