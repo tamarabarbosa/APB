@@ -5,43 +5,44 @@ import static org.junit.Assert.*;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.JobPrestado;
+import model.DoneService;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import dao.JobPrestadoDAO;
-import exception.JobException;
+import dao.DoneServiceDAO;
+import exception.ServiceException;
 
 public class ServiceProvidedDAOTest {
 
-	JobPrestado job = new JobPrestado();
-	JobPrestado job2 = new JobPrestado();
+	DoneService job = new DoneService();
+	DoneService job2 = new DoneService();
+
 	@Before
 	public void setUp() {
 		try {
-			job.setNomeJob("Corte");
-			job.setNomeBarber("Alessandro");
-			job.setData("10/10/2010");
-			job.setPreco("10,00");
-			job2.setNomeJob("Barba");
-			job2.setNomeBarber("Luciano");
-			job2.setData("01/01/2010");
-			job2.setPreco("9,90");
+			job.setServiceName("Corte");
+			job.setServiceName("Alessandro");
+			job.setDate("10/10/2010");
+			job.setPrice("10,00");
+			job2.setServiceName("Barba");
+			job2.setServiceName("Luciano");
+			job2.setDate("01/01/2010");
+			job2.setPrice("9,90");
 		} catch (NullPointerException e) {
 			e.printStackTrace();
-		} catch (JobException e) {
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 	}
 
-	JobPrestadoDAO jobDAO = JobPrestadoDAO.getInstance();
+	DoneServiceDAO jobDAO = DoneServiceDAO.getInstance();
 
 	@Test
 	public void getInstanceDeJobPrestadoDAODeveRetonarInstanciaCorrente() {
-		assertEquals(JobPrestadoDAO.getInstance(), jobDAO);
+		assertEquals(DoneServiceDAO.getInstance(), jobDAO);
 	}
 
 	@Test
