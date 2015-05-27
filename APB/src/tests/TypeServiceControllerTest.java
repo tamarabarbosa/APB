@@ -21,9 +21,9 @@ public class TypeServiceControllerTest {
 	@Before
 	public void setUp() {
 		try {
-			job.setNomeTipoJob("Corte");
-			job.setPreco("15,00");
-		} catch (JobException e) {
+			job.setNameServiceType("Corte");
+			job.setPrice("15,00");
+		} catch (ServiceException e) {
 			e.printStackTrace();
 		}
 	}
@@ -54,7 +54,7 @@ public class TypeServiceControllerTest {
 	@Test
 	public void changeDeTipoJobControllerDeveAlterarUmTipoJob() {
 		try {
-			assertTrue(jobController.change(job.getNomeTipoJob(), job));
+			assertTrue(jobController.change(job.getNameServiceType(), job));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -90,7 +90,7 @@ public class TypeServiceControllerTest {
 	@Test
 	public void mostrarBarbersDeBarberControllerDeveMostrarUmBarber()
 			throws SQLException {
-		ResultSet rs = jobController.mostrarTipoJobCadastrados(job);
+		ResultSet rs = jobController.showRegistredServiceTypes(job);
 		while (rs.next())
 			;
 	}
@@ -98,7 +98,7 @@ public class TypeServiceControllerTest {
 	@Test
 	public void searchByNomeDeTipoJobControllerDeveMostrarUmJob()
 			throws SQLException {
-		ResultSet rs = jobController.searchByNome(job);
+		ResultSet rs = jobController.searchByName(job);
 		while (rs.next())
 			;
 	}
