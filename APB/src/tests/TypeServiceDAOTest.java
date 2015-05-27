@@ -5,21 +5,21 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.TipoJob;
+import model.ServiceType;
 
 import org.junit.Test;
 
-import dao.TipoJobDAO;
+import dao.ServiceTypeDAO;
 
 public class TypeServiceDAOTest {
 
-	TipoJob typejob = new TipoJob();
-	TipoJob typejob2 = new TipoJob();
-	TipoJobDAO jobDAO = TipoJobDAO.getInstance();
+	ServiceType typejob = new ServiceType();
+	ServiceType typejob2 = new ServiceType();
+	ServiceTypeDAO jobDAO = ServiceTypeDAO.getInstance();
 
 	@Test
 	public void getInstanceDeTipoJobDAODeveRetonarInstanciaCorrente() {
-		assertEquals(TipoJobDAO.getInstance(), jobDAO);
+		assertEquals(ServiceTypeDAO.getInstance(), jobDAO);
 	}
 
 	@Test
@@ -43,7 +43,8 @@ public class TypeServiceDAOTest {
 	@Test
 	public void changeDeTipoJobDAODeveEnviarUmTipoJob() {
 		try {
-			assertTrue(jobDAO.change(typejob.getNomeTipoJob(),typejob, typejob2));
+			assertTrue(jobDAO.change(typejob.getNomeTipoJob(), typejob,
+					typejob2));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
