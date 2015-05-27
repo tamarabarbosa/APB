@@ -43,7 +43,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void changeDeTipoJobDAODeveEnviarUmTipoJob() {
 		try {
-			assertTrue(jobDAO.change(typejob.getNomeTipoJob(), typejob,
+			assertTrue(jobDAO.change(typejob.getNameServiceType(), typejob,
 					typejob2));
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -71,7 +71,8 @@ public class TypeServiceDAOTest {
 	@Test
 	public void changeDeTipoJobDAOPassandoUmJobNulo() {
 		try {
-			assertFalse(jobDAO.change(typejob.getNomeTipoJob(), typejob, null));
+			assertFalse(jobDAO.change(typejob.getNameServiceType(), typejob,
+					null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -80,7 +81,8 @@ public class TypeServiceDAOTest {
 	@Test
 	public void changeDeTipoJobDAOPassandoUmJobAlteradoNulo() {
 		try {
-			assertFalse(jobDAO.change(typejob.getNomeTipoJob(), null, typejob));
+			assertFalse(jobDAO.change(typejob.getNameServiceType(), null,
+					typejob));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -89,7 +91,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void mostrarJobsDeTipoJobDAODeveMostrarJob() {
 		try {
-			ResultSet rs = jobDAO.mostrarTipoJobCadastrados(typejob);
+			ResultSet rs = jobDAO.displayRegisteredTypesOfService(typejob);
 
 			while (rs.next()) {
 				String name = rs.getString("name");
@@ -103,7 +105,7 @@ public class TypeServiceDAOTest {
 	@Test
 	public void searchByNomeDeTipoJobDAODeveMostrarJob() {
 		try {
-			ResultSet rs = jobDAO.searchByNome(typejob);
+			ResultSet rs = jobDAO.searchByName(typejob);
 
 			while (rs.next()) {
 				String name = rs.getString("name");

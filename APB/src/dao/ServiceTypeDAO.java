@@ -75,7 +75,7 @@ public class ServiceTypeDAO {
 	 * @throws SQLException
 	 * @return - Return the status of the edition
 	 */
-	public boolean change(boolean existsNewServiceType, ServiceType typeJob_change,
+	public boolean change(String string, ServiceType typeJob_change,
 			ServiceType typeJob) throws SQLException {
 		boolean serviceTypeEdited;
 		if (typeJob_change == null || typeJob == null) {
@@ -88,7 +88,7 @@ public class ServiceTypeDAO {
 					+ typeJob_change.getPrice()
 					+ "' WHERE"
 					+ " nome = '"
-					+ existsNewServiceType + "';";
+					+ string + "';";
 
 			this.updateQuery(sqlCodeToUpdateServiceType);
 			serviceTypeEdited = true;
