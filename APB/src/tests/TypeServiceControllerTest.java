@@ -5,21 +5,21 @@ import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import model.TipoJob;
+import model.ServiceType;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import control.TipoJobController;
-import exception.JobException;
+import control.ServiceTypeController;
+import exception.ServiceException;
 
 public class TypeServiceControllerTest {
 
-	TipoJob job = new TipoJob();
-	TipoJobController jobController = TipoJobController.getInstance();
+	ServiceType job = new ServiceType();
+	ServiceTypeController jobController = ServiceTypeController.getInstance();
 
 	@Before
-	public void setUp(){
+	public void setUp() {
 		try {
 			job.setNomeTipoJob("Corte");
 			job.setPreco("15,00");
@@ -30,7 +30,7 @@ public class TypeServiceControllerTest {
 
 	@Test
 	public void getInstanceDeTipoJobControllerDeveRetornarInstanciaCorrente() {
-		assertEquals(TipoJobController.getInstance(), jobController);
+		assertEquals(ServiceTypeController.getInstance(), jobController);
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class TypeServiceControllerTest {
 	@Test
 	public void changeDeTipoJobControllerDeveAlterarUmTipoJob() {
 		try {
-			assertTrue(jobController.change(job.getNomeTipoJob(),job));
+			assertTrue(jobController.change(job.getNomeTipoJob(), job));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -81,22 +81,26 @@ public class TypeServiceControllerTest {
 	@Test
 	public void changeTipoJobNaoPodePassarTipoJobNullo() {
 		try {
-			assertFalse(jobController.change(null,null));
+			assertFalse(jobController.change(null, null));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	@Test
-	public void mostrarBarbersDeBarberControllerDeveMostrarUmBarber() throws SQLException {
+	public void mostrarBarbersDeBarberControllerDeveMostrarUmBarber()
+			throws SQLException {
 		ResultSet rs = jobController.mostrarTipoJobCadastrados(job);
-		while(rs.next());
+		while (rs.next())
+			;
 	}
 
 	@Test
-	public void searchByNomeDeTipoJobControllerDeveMostrarUmJob() throws SQLException {
+	public void searchByNomeDeTipoJobControllerDeveMostrarUmJob()
+			throws SQLException {
 		ResultSet rs = jobController.searchByNome(job);
-		while(rs.next());
+		while (rs.next())
+			;
 	}
 
 }
