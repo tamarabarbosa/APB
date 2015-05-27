@@ -19,100 +19,100 @@ public class ServiceProvidedTest {
 	@Test
 	public void testeDeConstrutor() {
 		DoneService job1 = new DoneService("Corte", "15,00", "Claudio");
-		assertEquals("Corte", job1.getNomeJob());
-		assertEquals("15,00", job1.getPreco());
-		assertEquals("Claudio", job1.getNomeBarber());
+		assertEquals("Corte", job1.getServiceName());
+		assertEquals("15,00", job1.getPrice());
+		assertEquals("Claudio", job1.getBarberName());
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void testeSetNomeNaoNulo() throws ServiceException {
-		job.setNomeJob(null);
+		job.setServiceName(null);
 		Assert.fail("Deve lan�ar exce��o");
 	}
 
 	@Test(expected = ServiceException.class)
 	public void testeSetNomeBranco() throws ServiceException {
-		job.setNomeJob("");
+		job.setServiceName("");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
 	@Test(expected = ServiceException.class)
 	public void testeSetNomeForaDeFormato() throws ServiceException {
-		job.setNomeJob("123");
+		job.setServiceName("123");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
 	@Test
 	public void testeSetNomeValido() {
 		try {
-			job.setNomeJob("Corte");
+			job.setServiceName("Corte");
 		} catch (ServiceException e) {
 			e.printStackTrace();
 			Assert.fail("N�o deve lan�ar exce��o");
 		}
-		assertEquals("Corte", job.getNomeJob());
+		assertEquals("Corte", job.getServiceName());
 	}
 
 	@Test(expected = ServiceException.class)
 	public void precoForaDeFormato() throws ServiceException {
-		job.setPreco("as");
+		job.setPrice("as");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void testePrecoNaoNulo() throws ServiceException {
-		job.setPreco(null);
+		job.setPrice(null);
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
 	@Test(expected = ServiceException.class)
 	public void testePrecoEmBranco() throws ServiceException {
-		job.setPreco("");
+		job.setPrice("");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
 	@Test
 	public void testePrecoValido() {
 		try {
-			job.setPreco("123,45");
+			job.setPrice("123,45");
 		} catch (ServiceException e) {
 			Assert.fail("N�o deve lan�ar exce��o");
 		}
-		assertEquals("123,45", job.getPreco());
+		assertEquals("123,45", job.getPrice());
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void testeNomeBarberNulo() throws ServiceException {
-		job.setNomeBarber(null);
+		job.setServiceName(null);
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
 	@Test(expected = ServiceException.class)
 	public void testeNomeBarberEmBranco() throws ServiceException {
-		job.setNomeBarber("");
+		job.setServiceName("");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
 	@Test(expected = ServiceException.class)
 	public void testeNomeBarberForaDeFormato() throws ServiceException {
-		job.setNomeBarber("123");
+		job.setServiceName("123");
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
 	@Test(expected = AssertionFailedError.class)
 	public void testeNomeBarberValido() {
 		try {
-			job.setNomeBarber("Jo�o");
+			job.setServiceName("Jo�o");
 		} catch (ServiceException e) {
 			Assert.fail("Não deve lançar uma exceção");
 		}
-		assertEquals("Jo�o", job.getNomeBarber());
+		assertEquals("Jo�o", job.getServiceName());
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void testeDataNulo() throws ServiceException {
 		try {
-			job.setData(null);
+			job.setDate(null);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (AssertionFailedError e) {
@@ -121,10 +121,10 @@ public class ServiceProvidedTest {
 		Assert.fail("Deve lan�ar uma exce��o");
 	}
 
-	@Test(expected = JobException.class)
+	@Test(expected = ServiceException.class)
 	public void testeDataEmBranco() throws ServiceException {
 		try {
-			job.setData("");
+			job.setDate("");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (AssertionFailedError e) {
@@ -136,7 +136,7 @@ public class ServiceProvidedTest {
 	@Test(expected = ServiceException.class)
 	public void testeDataForaDeFormato() throws ServiceException {
 		try {
-			job.setData("abc");
+			job.setDate("abc");
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (AssertionFailedError e) {
@@ -157,7 +157,7 @@ public class ServiceProvidedTest {
 	@Test
 	public void testeDataNormal() {
 		try {
-			job.setData("10/10/2012");
+			job.setDate("10/10/2012");
 		} catch (ServiceException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
@@ -167,6 +167,6 @@ public class ServiceProvidedTest {
 
 	@Test(expected = AssertionError.class)
 	public void getterDeDataDeveFuncionar() {
-		assertEquals("10/10/2012", job.getData());
+		assertEquals("10/10/2012", job.getDate());
 	}
 }
