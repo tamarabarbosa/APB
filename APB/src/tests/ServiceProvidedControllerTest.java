@@ -6,30 +6,30 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import model.JobPrestado;
+import model.DoneService;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import control.JobPrestadoController;
-import exception.JobException;
+import control.DoneServiceController;
+import exception.ServiceException;
 
 public class ServiceProvidedControllerTest {
-	JobPrestado job = new JobPrestado();
-	JobPrestadoController jobController = JobPrestadoController.getInstance();
+	DoneService job = new DoneService();
+	DoneServiceController jobController = DoneServiceController.getInstance();
 
 	@Before
-	public void setUp() throws JobException, ParseException {
-		job.setNomeJob("Corte");
-		job.setNomeBarber("Joao");
-		job.setPreco("125,23");
-		job.setData("20/12/2013");
+	public void setUp() throws ServiceException, ParseException {
+		job.setServiceName("Corte");
+		job.setBarberName("Joao");
+		job.setPrice("125,23");
+		job.setDate("20/12/2013");
 
 	}
 
 	@Test
 	public void getInstanceDeJobPrestadoControllerDeveRetornarInstanciaCorrente() {
-		assertEquals(JobPrestadoController.getInstance(), jobController);
+		assertEquals(DoneServiceController.getInstance(), jobController);
 	}
 
 	@Test
@@ -69,8 +69,10 @@ public class ServiceProvidedControllerTest {
 	}
 
 	@Test
-	public void mostrarJobPrestadoDeJobPrestadoControllerDeveMostrarUmJob() throws SQLException {
+	public void mostrarJobPrestadoDeJobPrestadoControllerDeveMostrarUmJob()
+			throws SQLException {
 		ResultSet rs = jobController.mostrarJobsPrestadosCadastrados(job);
-		while(rs.next());
+		while (rs.next())
+			;
 	}
 }
