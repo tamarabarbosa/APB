@@ -57,9 +57,9 @@ public class ContactDAO {
 		} else {
 			String sqlCodeToInsertContact = "INSERT INTO "
 					+ "agenda (nome, telefone, descricao) VALUES (" + "\""
-					+ phonebook.getName() + "\", " + "\""
-					+ phonebook.getPhoneNumber() + "\", " + "\""
-					+ phonebook.getDescription() + "\"); ";
+					+ Phonebook.getName() + "\", " + "\""
+					+ Phonebook.getPhoneNumber() + "\", " + "\""
+					+ Phonebook.getDescription() + "\"); ";
 
 			this.updateQuery(sqlCodeToInsertContact);
 			dataToPhonebookInserted = true;
@@ -88,10 +88,10 @@ public class ContactDAO {
 			dataToPhonebookEdited = false;
 		} else {
 			String sqlCodeToUpdatePhonebook = "UPDATE agenda SET "
-					+ "nome = \"" + phonebook_change.getName() + "\", "
-					+ "telefone = \"" + phonebook_change.getPhoneNumber()
+					+ "nome = \"" + Phonebook.getName() + "\", "
+					+ "telefone = \"" + Phonebook.getPhoneNumber()
 					+ "\", " + "descricao = \""
-					+ phonebook_change.getDescription() + "\"" + " WHERE "
+					+ Phonebook.getDescription() + "\"" + " WHERE "
 					+ " agenda.nome = \"" + name + "\";";
 
 			this.updateQuery(sqlCodeToUpdatePhonebook);
@@ -108,7 +108,7 @@ public class ContactDAO {
 			return false;
 
 		this.updateQuery("DELETE FROM phonebook WHERE "
-				+ "phonebook.telefone = \"" + contact.getPhoneNumber() + "\";");
+				+ "phonebook.telefone = \"" + Phonebook.getPhoneNumber() + "\";");
 		return true;
 	}
 
@@ -203,7 +203,7 @@ public class ContactDAO {
 		Connection connection = createConnectionWithDB();
 
 		String sqlCodeToSelectThroughPhoneFromPhonebook = "SELECT * FROM agenda WHERE "
-				+ "telefone = '" + contact.getPhoneNumber() + "';";
+				+ "telefone = '" + Phonebook.getPhoneNumber() + "';";
 
 		java.sql.PreparedStatement preparedStatement = connection
 				.prepareStatement(sqlCodeToSelectThroughPhoneFromPhonebook);

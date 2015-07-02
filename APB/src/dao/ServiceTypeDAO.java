@@ -53,7 +53,7 @@ public class ServiceTypeDAO {
 		} else {
 			String sqlCodeToInsertServiceType = "INSERT INTO "
 					+ "tiposervico (nome, preco) VALUES (" + "\""
-					+ typeJob.getTempName() + "\", " + "\""
+					+ ServiceType.getTempName() + "\", " + "\""
 					+ typeJob.getNameServiceType() + "\"); ";
 
 			this.updateQuery(sqlCodeToInsertServiceType);
