@@ -2,9 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JFreeChart"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javadocx"/>
 	<classpathentry kind="lib" path="C:/mysql-connector-java-5.1.25-bin.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/eduardo/Área de Trabalho/FGA/TecProg/Projeto/APB/apache-log4j-1.2.17/log4j-1.2.17.jar" sourcepath="/home/eduardo/.m2/repository/log4j/log4j/1.2.17/log4j-1.2.17-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -9,6 +9,7 @@
 package model;
 
 import exception.BarberException;
+
 import java.util.logging.Logger;
 
 public class Contact {
@@ -29,8 +30,11 @@ public class Contact {
 
 	/**
 	 * Constructor.
+	 * @param name 
+	 * @param phoneNumber 
+	 * @param description 
 	 */
-	public Contact() {
+	public Contact(String name, String phoneNumber, String description) {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.description = description;

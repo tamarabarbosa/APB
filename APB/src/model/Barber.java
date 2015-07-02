@@ -9,6 +9,7 @@
 package model;
 
 import exception.BarberException;
+
 import java.util.logging.Logger;
 
 public class Barber {
@@ -56,6 +57,8 @@ public class Barber {
 	 * @param chair
 	 *            is the chair that the barber will work, to be placed into
 	 *            chair.
+	 * @param rg 
+	 * @param cpf 
 	 *
 	 * @exception BarberException
 	 *                as parameter.
@@ -71,7 +74,7 @@ public class Barber {
 	 *             if the chair isn't filled .
 	 */
 	public Barber(String name, String ir, String id, String phoneNumber,
-			String chair) throws BarberException {
+			String chair, String rg, String cpf) throws BarberException {
 		this.name = name;
 		this.cpf = cpf;
 		this.rg = rg;
