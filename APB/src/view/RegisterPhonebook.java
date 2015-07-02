@@ -9,6 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import model.Contact;
 import model.Phonebook;
 import control.ContactController;
 

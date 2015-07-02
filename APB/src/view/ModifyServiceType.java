@@ -27,6 +27,7 @@ public class ModifyServiceType extends JFrame {
 	private JTextField textFieldNome;
 	private JTextField textFieldPreco;
 	private String name;
+	private ServiceTypeController jobController;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -71,7 +72,7 @@ public class ModifyServiceType extends JFrame {
 
 		try {
 			ServiceType typejob = new ServiceType();
-			ServiceTypeController jobController = ServiceTypeController
+			jobController = ServiceTypeController
 					.getInstance();
 			typejob.setNameServiceType(ServiceType.getTempName());
 			ResultSet rs = ServiceTypeController.searchByName(typejob);

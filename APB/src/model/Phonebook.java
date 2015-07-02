@@ -39,9 +39,9 @@ public class Phonebook {
 	 *            is the description of itself.
 	 */
 	public Phonebook(String name, String phoneNumber, String description) {
-		this.name = name;
-		this.phoneNumber = phoneNumber;
-		this.description = description;
+		Phonebook.name = name;
+		Phonebook.phoneNumber = phoneNumber;
+		Phonebook.description = description;
 
 		Logger.getLogger("Create the atributes of Phonebook");
 
@@ -91,7 +91,7 @@ public class Phonebook {
 		if ("".equals(name))
 			throw new BarberException(EMPTY_NAME);
 		else if (name.matches("^[[ ]|\\p{L}*]+$"))
-			this.name = name;
+			Phonebook.name = name;
 		else
 			throw new BarberException(INVALID_NAME);
 
@@ -118,7 +118,7 @@ public class Phonebook {
 			throw new BarberException(EMPTY_PHONE);
 		else if (phoneNumber
 				.matches("(\\([\\d]{2,3}\\))?[ ]*[\\d]{4,4}[ ]*-[ ]*[\\d]{4,4}[ ]*$"))
-			this.phoneNumber = phoneNumber;
+			Phonebook.phoneNumber = phoneNumber;
 		else
 			throw new BarberException(INVALID_PHONE);
 
@@ -134,7 +134,7 @@ public class Phonebook {
 	 *            description.
 	 */
 	public void setDescription(String description) {
-		this.description = description;
+		Phonebook.description = description;
 	}
 
 	// Class methods

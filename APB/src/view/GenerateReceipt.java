@@ -27,8 +27,6 @@ import control.ReceiptController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import com.javadocx.CreateDocx;
-
 @SuppressWarnings("serial")
 public class GenerateReceipt extends JFrame {
 
@@ -118,7 +116,7 @@ public class GenerateReceipt extends JFrame {
 		Logger.getLogger("Show ComboBox with Barbers");
 
 		try {
-			ResultSet rs = BarberController.getInstance().search();
+			ResultSet rs = BarberController.getInstance().searchBarberByName();
 			while (rs.next()) {
 				comboBoxBarbers.addItem(rs.getString("chair") + " - "
 						+ rs.getString("name"));
@@ -198,7 +196,7 @@ public class GenerateReceipt extends JFrame {
 								.toString().split(" - ");
 
 						ResultSet rs = reciboController.getInstance()
-								.pesquisarJobsDoBarber(name[1], dataInicialIso,
+								.searchByJobsDoBarber(name[1], dataInicialIso,
 										dataFinalIso);
 						while (rs.next()) {
 							numero = rs.getString("preco").replace(",", ".");

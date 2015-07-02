@@ -30,11 +30,8 @@ public class Contact {
 
 	/**
 	 * Constructor.
-	 * @param name 
-	 * @param phoneNumber 
-	 * @param description 
 	 */
-	public Contact(String name, String phoneNumber, String description) {
+	public Contact() {
 		this.name = name;
 		this.phoneNumber = phoneNumber;
 		this.description = description;
